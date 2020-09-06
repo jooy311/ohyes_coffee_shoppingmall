@@ -1,0 +1,188 @@
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	int category=0;
+	if(request.getParameter("category")!=null) {
+		category=Integer.parseInt(request.getParameter("category"));
+	}
+
+	String search=request.getParameter("search");
+	if(request.getParameter("search")==null) search="";
+	String keyword=request.getParameter("keyword");
+	if(request.getParameter("keyword")==null) keyword="";
+	
+	//전달된 페이지 번호 저장 -> 존재하지 않는경우 첫번째 페이지
+	int pageNum=1;
+	if(request.getParameter("pageNum")!=null){
+		pageNum=Integer.parseInt(request.getParameter("pageNum"));
+	}
+	
+	//하나의 페이지에 출력될 게시글 갯수 저장
+	int pageSize=12;//기본값
+	if(request.getParameter("pageSize")!=null){
+		pageSize=Integer.parseInt(request.getParameter("pageSize"));
+	}
+	
+	//총 게시글 갯수 계산하여 저장
+	int totalBoard=ProductDAO.getProductDAO().selectProductCount(search, keyword, category);
+
+	//총 페이지 갯수 계산하여 저장
+	int totalPage=(int)Math.ceil((double)totalBoard/pageSize);
+	
+	//전달된 페이지 검증
+	if(pageNum<=0 || pageNum>totalPage) {
+		pageNum=1;
+	}
+	
+	//현재페이지에 대한 시작 게시글 번호 계산하여 저장
+	int startRow=(pageNum-1)*pageSize+1;
+	
+	//현재페이지에 대한 종료 게시글 번호 계산하여 저장
+	int endRow=pageNum*pageSize;
+	
+	//마지막 페이지에 대한 종료 게시글 번호 계산하여 저장
+	if(endRow>totalBoard){
+		endRow=totalBoard;
+	}
+	
+	//게시글의 시작과 종료 게시글 번호를 전달받아 게시글을 출력하는 메소드호출
+	List<ProductDTO> productList=ProductDAO.getProductDAO().selectNameProduct(startRow, endRow, search, keyword, category);
+
+
+%>
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            <div>
+                <!--카테고리 타이틀, 현재위치, 메뉴표시-->
+                <div class="allStore-prd-menupackage">
+                    <div>
+                        <ul class="menuCategory">
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product">전체 상품</a></li>
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product&category=1">커피용품</a></li>
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product&category=2">블렌드 원두</a></li>
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product&category=3">싱글오리진 원두</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!--카테고리 타이틀, 현재위치, 메뉴표시-->
+
+                <!--상품카운트, 조건검색-->
+                <div class="xans-product-normalmenu allStore-product-normalmenu ">
+                    <div class="function">
+                        <ul id="type" class="xans-product-orderby">
+                            <li ><a href="#">상품명</a></li>
+                            <li ><a href="#">낮은가격</a></li>
+                            <li ><a href="#">높은가격</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--상품카운트, 조건검색-->
+
+                <div class="xans-product-normalpackage allStore-new ">
+                    <div class="xans-product-listnormal best_product">
+                    
+                        <!-- 상품목록 -->
+                        <ul class="new-items grid4">
+                        	<% for(ProductDTO product:productList) {%>
+                            <li id="'<%= product.getpNo()%>'" class="prdItem ">
+                                <div class="itemLay">
+                                    <div class="thumbnail">
+                                        <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=product.getpNo()%>">
+                                            <img src="<%=request.getContextPath()%>/coffee/admin/product_images/<%=product.getpImage()%>" id="'<%=product.getpImage()%>'" alt="'<%=product.getpName()%>'"/>
+                                        </a>
+                                    </div>
+                                    <div class="description">
+                                        <strong class="name">
+                                            <a href="#상품페이지">
+                                                <span style="font-size:13px;color:#000000;font-weight:bold;"><%=product.getpName()%></span>
+                                            </a>
+                                        </strong>
+                                        <ul class="xans-product-listitem spec">
+                                            <li>
+                                                <span style="font-size:15px;color:#000000;font-weight:bold;"><%=product.getpCost()%></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <% } %>
+                        </ul>
+                        <!-- /상품목록 -->
+                        
+                    </div>
+                </div>
+
+                <!--페이징-->
+                <% 
+					int blockSize=5;
+					int startPage=(pageNum-1)/blockSize*blockSize+1;
+					int endPage=startPage+blockSize-1;
+					if(endPage>totalPage) {
+						endPage=totalPage;
+					}
+					
+				%>
+				
+                <div class="ec-base-paginate">
+                	<% if(startPage>blockSize) { %>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=product&work=product&pageNum=1&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn">
+                    <img src="images/btn_page_first.gif" alt="처음"/>
+                    </a>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=product&work=product&pageNum=<%=startPage-blockSize%>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn">
+					<img src="images/btn_page_prev.gif" alt="이전"/>
+					</a>
+                	<% } else { %>
+                	<img src="images/btn_page_first.gif" alt="처음"/>
+                	<img src="images/btn_page_prev.gif" alt="이전"/>
+                	<% } %>
+                    <ol>
+                    <% for(int i=startPage;i<=endPage;i++) { %>
+                    	<% if(pageNum!=i) { %>
+                        <li><a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=product&work=product&pageNum=<%=i%>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="other"><%=i%></a></li>
+                        <% } else { %>
+                        <li><a href="#" class="this"><%=i%></a></li>                        
+                        <% } %>
+                    <% } %>
+                    </ol>
+                    <% if(endPage!=totalPage) { %>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=product&work=product&pageNum=<%=startPage+blockSize%>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn"><img src="images/btn_page_next.gif"alt="다음"/></a>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=product&work=product&pageNum=<%=totalPage %>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn"><img src="images/btn_page_last.gif" alt="마지막"/></a>
+                	<% } else { %>
+                	<img src="images/btn_page_next.gif" alt="다음"/>
+                	<img src="images/btn_page_last.gif"alt="마지막"/>
+                	<% } %>
+                </div>
+                <%------------------------------%>
+                <br/>
+                <%-- 검색 --%>
+                <div class="ec-base-paginate">	
+                    <form id="boardSearchForm" method="post">
+                    	<input id="board_no" name="category" value="<%=category%>" type="hidden"/>
+                        <div class="xans-board-search">
+                            <fieldset class="boardSearch">
+                                <p>
+                                    <select id="search_key" name="search">
+                                        <option value="p_name">상품명</option>
+                                    </select> 
+                                    <input id="search" name="keyword" class="inputTypeText" type="text" /> 
+                                    <button type="submit"><img src="<%=request.getContextPath()%>/coffee/images/btn_find.gif" alt="찾기" /></button>
+                                </p>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+                <%------------------------------%>
+            </div>
+        </div>
+    </div>
+</div>
+<!--allStore_wrap-->

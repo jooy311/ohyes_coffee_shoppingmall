@@ -1,0 +1,189 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import ohyes.coffee.dto.NoticeDTO;
+
+public class NoticeDAO extends JdbcDAO {
+	
+	private static NoticeDAO _dao;
+	
+	private NoticeDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new NoticeDAO();
+	}
+	
+	public static NoticeDAO getDAO() {
+		return _dao;
+	}
+	
+	/** 상수필드 => select 메소드에 사용 **/
+	final static int SELECT_TITLE= 1; 
+	final static int SELECT_KEYWORD = 2; 
+	final static int SELECT_STATUS= 3; 
+	
+	/** 공지글 select (다중행) : 모든행 검색 **/
+	public List<NoticeDTO> selectNoticeAll(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<NoticeDTO> noticeList=new ArrayList<NoticeDTO>();
+		
+		try {
+			con=getConnection();
+			
+			String sql="select * from notice where notice_status in (1,2) order by notice_no";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeDTO notice=new NoticeDTO();
+				notice.setNoticeNo(rs.getInt("notice_no"));
+				notice.setNoticeTitle(rs.getString("notice_title"));
+				notice.setNoticeContents(rs.getString("notice_contents"));
+				notice.setNoticeDate(rs.getString("notice_date"));
+				notice.setNoticeReadcount(rs.getInt("notice_readcount"));
+				notice.setNoticeStatus(rs.getInt("notice_status"));
+				
+				noticeList.add(notice);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러] selectNoticeAll() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		
+		return noticeList;
+	}
+	
+	/** 공지글 select (다중행) : 검색패널에서 (수정필요!!!!)**/
+	public List<NoticeDTO> selectNotice(int search, String string){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<NoticeDTO> noticeList=new ArrayList<NoticeDTO>();
+		
+		try {
+			con=getConnection();
+			
+			if(search==SELECT_TITLE) {
+				String sql="select * from Notice where notice_title like '%'||?||'%' order by notice_no";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, string);
+			} else if(search==SELECT_KEYWORD) {
+				String sql="select * from Notice where notice_contents like '%'||?||'%' order by notice_no";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, string);
+			} //상태검색 추가예정
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeDTO notice=new NoticeDTO();
+				notice.setNoticeNo(rs.getInt("notice_no"));
+				notice.setNoticeTitle(rs.getString("notice_title"));
+				notice.setNoticeContents(rs.getString("notice_contents"));
+				notice.setNoticeDate(rs.getString("notice_date"));
+				notice.setNoticeReadcount(rs.getInt("notice_readcount"));
+				notice.setNoticeStatus(rs.getInt("notice_status"));
+				
+				noticeList.add(notice);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러] selectNoticeAll() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		
+		return noticeList;
+	}
+	
+	
+	
+	/** 공지글 insert : DTO => int **/
+	public int insertNotice(NoticeDTO notice) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			int row=0;
+			
+			try {
+				con=getConnection();
+				
+				String sql="insert into notice values(?, ?, ?, sysdate, ?, 1)";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, notice.getNoticeNo());
+				pstmt.setString(2,  notice.getNoticeTitle());
+				pstmt.setString(3, notice.getNoticeContents());
+				pstmt.setInt(4, notice.getNoticeReadcount());
+				
+				pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("[에러] insertNotice() 메소드의 SQL 오류 : " + e.getMessage());
+			} finally {
+				close(con, pstmt);
+			}
+			return row;
+	}
+	
+	/** 공지글 select : 다음 공지글 번호 **/
+	public int selectNextNo() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int nextNo=0;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select notice_seq.nextval from dual";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				nextNo=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러] selectNextNo() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return nextNo;
+		
+	}
+
+	/** 공지글 update : 글번호, 상태값 => 변경행 / 상태변경 (반환값 => 삭제 : 0, 임시저장 : 1, 글올리기 : 2) **/
+	public int updateNoticeStatus(int noticeNo, int noticeStatus) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int row=0;
+		
+		try {
+			con=getConnection();
+			
+			String sql="update Notice set notice_status=? where notice_no=? ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, noticeStatus);
+			pstmt.setInt(2, noticeNo);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[에러] updateNoticeStatus() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return row;
+}
+	
+	
+}

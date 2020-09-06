@@ -1,0 +1,144 @@
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String keyword=request.getParameter("keyword");
+	if(request.getParameter("keyword")==null) keyword="";
+	String search=request.getParameter("search");
+	if(request.getParameter("search")==null) search="";
+
+
+	
+	int pageNum=1;
+	if(request.getParameter("pageNum")!=null){
+		pageNum=Integer.parseInt(request.getParameter("pageNum"));
+	}
+	int pageSize=5;
+	if(request.getParameter("pageSize")!=null){
+		pageSize=Integer.parseInt(request.getParameter("pageSize"));
+	}
+	
+	int totalProduct=ProductDAO.getProductDAO().selectProductCount(search, keyword, 0);
+
+	
+	int totalPage=(int)Math.ceil((double)totalProduct/pageSize);
+	
+	if(pageNum<=0 || pageNum>totalPage){
+		pageNum=1;
+	}
+	
+	int startRow=(pageNum-1)*pageSize+1;
+	int endRow=pageNum*pageSize;
+	
+	if(endRow>totalProduct){
+		endRow=totalProduct;
+	}
+	
+	List<ProductDTO> productList=null;
+	if(request.getParameter("keyword")!=null){
+		productList=ProductDAO.getProductDAO().selectNameProduct(startRow, endRow, search, keyword, 0);		
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <link rel="stylesheet" type="text/css" href="../css/post.css" />
+    <title>제품검색</title>
+</head>
+
+<body id="popup">
+    <div class="xans-search xans-search-frompackage ec-base-layer">
+        <div class="header">
+            <h1>상품검색</h1>
+        </div>
+        <div class="content">
+            <form id="searchForm" name="searchForm" onsubmit="return submitCheck();" method="post">
+                <div class="xans-search xans-search-boardform ">
+                    <fieldset class="ec-base-box">
+                        <legend>상품검색</legend>
+                        <select id="search_type" name="search">
+                            <option value="p_name">상품명</option>
+                            <option value="pcategory_code">상품코드</option>
+                        </select>
+                        <input id="keyword" name="keyword"  class="inputTypeText"/> 
+                        <input type="image" src="../images/btn_board_search.gif" alt="검색" class="btn"/>
+                         
+                    </fieldset>
+                    <div class="resultArea">
+                        <p class="total">총 <strong><%=totalProduct%></strong>개 의 상품이 검색되었습니다.</p>
+                        <p class="limit">
+                        	<select id="limit" name="pageSize">
+                                <option value="5" <% if(pageSize==5) { %> selected="selected" <% } %>>5개씩 보기</option>
+                                <option value="10" <% if(pageSize==10) { %> selected="selected" <% } %>>10개씩 보기</option>
+                                <option value="20" <% if(pageSize==20) { %> selected="selected" <% } %>>20개씩 보기</option>
+                                <option value="30" <% if(pageSize==30) { %> selected="selected" <% } %>>30개씩 보기</option>
+							</select>
+						</p>
+                    </div>
+                </div>
+            </form>
+            <div class="ec-base-table typeList">
+                <table border="1" summary="">
+                    <caption>제품 검색결과입니다</caption>
+                    <colgroup>
+                        <col style="width:100px" />
+                        <col style="width:auto" />
+                        <col style="width:80px" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">상품 이미지</th>
+                            <th scope="col">상품 정보</th>
+                            <th scope="col">선택</th>
+                        </tr>
+                    </thead>
+                    <% if(productList!=null) { %>
+                    <tbody class="center">
+                    	<% for(ProductDTO product:productList) { %>
+                        <tr class="xans-search xans-search-boardlist xans-record-">
+                            <td class="thumb"><img src="../<%=product.getpImagePath()%>" alt=""></td>
+                            <td class="left"> <%=product.getpName() %> <strong class="gBlank5 txtEm"><%=product.getpCost() %></strong>
+                            </td>
+                            <td>
+                            	<a href="javascript:searchClose('<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=product.getpNo()%>','<%=product.getpImagePath()%>','<%=product.getpName()%>','<%=product.getpCost()%>','<%=product.getpNo()%>');">
+                                    <img src="../images/btn_board_select.gif" alt="선택">
+                               	</a>
+                           	</td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	function submitCheck(){
+    		if(searchForm.keyword.value==""){
+    			searchForm.keyword.focus();
+    			return false;
+    		}
+    		return true;
+    	}
+    	
+    	
+    	function searchClose(href,src,pName,pCost,pNo) {
+    		opener.$(".productLink").attr('href',href);
+			opener.$('#iPrdImg').attr('src' , src);
+			opener.$('#sPrdName').text(pName);
+			opener.$('#sPrdPrice').text(pCost);
+			opener.$('#iPrdView').attr('class', '');
+			opener.pForm.productNO.value=pNo;
+    		window.close();
+    	}
+    	
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%
+ 	//입력파일을 저장하기위해 서버디렉토리의 시스템경로를 반환받아 저장
+ 	String saveDirectory = request.getServletContext().getRealPath("/coffee/admin/product_images");
+ 	
+ 	//multipartRequest인스턴스를 생성
+ 	//=>파일을 업로드 시키기 위함
+ 	MultipartRequest mr = new MultipartRequest(request, saveDirectory, 30*1024*1024, "utf-8", new DefaultFileRenamePolicy());
+ 	
+ 	//enroll페이지에서 전달한 파라미터를 받아온다
+ 	String product_category = mr.getParameter("product_category"); //1,2,3중에 하나
+ 	System.out.println("카테고리" + product_category);
+ 	String selected_no = mr.getParameter("beansGram");
+ 	if(selected_no == null) selected_no = "0"; //커피용품일때
+ 	
+ 	String product_no = mr.getParameter("product_no");
+ 	
+ 	String realNo =product_category + selected_no + product_no;
+ 	
+ 	String product_date = mr.getParameter("product_date");
+ 	String product_name = mr.getParameter("product_name");
+ 	String product_cost = mr.getParameter("product_cost");//
+ 	String product_brief = mr.getParameter("product_brief");
+ 	int product_stock = Integer.parseInt(mr.getParameter("product_stock"));
+ 	String product_detail = mr.getParameter("product_detail");
+ 	String product_image = mr.getFilesystemName("product_image");
+ 	String product_detail_image = mr.getFilesystemName("product_detail_image");
+ 	
+ 	
+ 	
+ %>

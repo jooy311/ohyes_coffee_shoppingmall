@@ -1,0 +1,941 @@
+NN.Utils = {
+	debug: function () {
+		return;
+		if (typeof console == "undefined" || !console.firebug) return;
+		console.log.apply(console, arguments);
+	},
+	'g': function (id) {
+		return document.getElementById(id);
+	},
+	'chkbox': function (options) {
+		var o = document.getElementsByName(options.name);
+		if (o == null) return;
+		switch (o.length) {
+			case 0:
+				var chk = false;
+				var o = document.getElementById(options.name);
+				if (o == null) return false;
+				if (o.checked == true) var chk = true;
+				switch (options.mode) {
+					default:
+						return chk;
+						break;
+					case 'val':
+						return chk == true ? o.value : -1;
+						break;
+				}
+				return false;
+				break;
+			default:
+				for (var i = 0, stack = []; i < o.length; i++) {
+					switch (options.mode) {
+						default:
+							o[i].checked = !o[i].checked;
+							break;
+						case 'un':
+							o[i].checked = false;
+							break;
+						case 'all':
+							o[i].checked = true;
+							break;
+						case 'chk':
+							if (o[i].checked == true) var chk = true;
+							break;
+						case 'val':
+							if (o[i].checked == true) var val = i;
+							break;
+						case 'stack':
+							if (o[i].checked == true) stack.push(o[i].value);
+							break;
+						case 'key':
+							if (o[i].checked == true) var key = i;
+							break;
+					}
+				}
+				if (options.mode == 'chk' && chk != true) {
+					if (typeof options.msg != 'undefined') alert(options.msg);
+					return false;
+				}
+				else if (options.mode == 'val') {
+					if (typeof val == 'undefined') return -1;
+					return o[val].value;
+				}
+				else if (options.mode == 'stack') {
+					return stack;
+				}
+				else if (options.mode == 'key') {
+					if (typeof key == 'undefined') return -1;
+					return key;
+				}
+				break;
+		}
+	},
+	'getPageSize': function () {
+		var xScroll, yScroll;
+		if (window.innerHeight && window.scrollMaxY) {
+			xScroll = document.body.scrollWidth;
+			yScroll = window.innerHeight + window.scrollMaxY;
+		}
+		else if (document.body.scrollHeight > document.body.offsetHeight) { // all but Explorer Mac
+			xScroll = document.body.scrollWidth;
+			yScroll = document.body.scrollHeight;
+		}
+		else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari
+			xScroll = document.body.offsetWidth;
+			yScroll = document.body.offsetHeight;
+		}
+		var windowWidth, windowHeight;
+		if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
+			windowWidth = document.documentElement.clientWidth;
+			windowHeight = document.documentElement.clientHeight;
+		}
+		else if (document.body) { // other Explorers
+			windowWidth = document.body.clientWidth;
+			windowHeight = document.body.clientHeight;
+		}
+		if (yScroll < windowHeight) {
+			pageHeight = windowHeight;
+		}
+		else {
+			pageHeight = yScroll;
+		}
+		if (xScroll < windowWidth) {
+			pageWidth = windowWidth;
+		}
+		else {
+			pageWidth = xScroll;
+		}
+		arrayPageSize = new Array(pageWidth, pageHeight, windowWidth, windowHeight, xScroll, yScroll);
+		return arrayPageSize;
+	},
+	'getPageScroll': function () {
+		var yScroll;
+		if (self.pageYOffset) {
+			yScroll = self.pageYOffset;
+		}
+		else if (document.documentElement && document.documentElement.scrollTop) {
+			yScroll = document.documentElement.scrollTop;
+		}
+		else if (document.body) {
+			yScroll = document.body.scrollTop;
+		}
+		return yScroll;
+	},
+	'getAbsolutePosition': function (element) {
+		var r = {
+			x: element.offsetLeft,
+			y: element.offsetTop
+		};
+		if (element.offsetParent) {
+			var tmp = NN.Utils.getAbsolutePosition(element.offsetParent);
+			r.x += tmp.x;
+			r.y += tmp.y;
+		}
+		return r;
+	},
+	'prevent': function (e) {
+		if (e.stopPropagation) e.stopPropagation();
+		else e.cancelBubble = true;
+		if (e.preventDefault) {
+			e.preventDefault();
+		}
+		e.returnValue = false;
+	},
+	'disableSelect': function (obj) {
+		var bs = obj || document.body.style;
+		if (bs.MozUserSelect != undefined) {
+			bs.MozUserSelect = 'none';
+		}
+		else if (bs.KhtmlUserSelect != undefined) {
+			bs.KhtmlUserSelect = 'none';
+		}
+		else {
+			bs.unselectable = 'on';
+		}
+	},
+	'restoreSelect': function (obj) {
+		var bs = obj || document.body.style;
+		if (bs.MozUserSelect != undefined) {
+			bs.MozUserSelect = null;
+		}
+		else if (bs.KhtmlUserSelect != undefined) {
+			bs.KhtmlUserSelect = null;
+		}
+		else {
+			bs.unselectable = 'off';
+		}
+	},
+	'displayMultimedia': function (src, width, height, options) {
+		var defaults = {
+			wmode: 'transparent',
+			allowScriptAccess: 'sameDomain',
+			quality: 'high',
+			flashvars: '',
+			autostart: false,
+			movieType: 'url'
+		};
+		var params = Object.extend(defaults, options || {});
+		switch (params['movieType']) {
+			case 'url':
+				var autostart = (params.autostart && params.autostart != 'false') ? 'true' : 'false';
+				delete(params.autostart);
+				var
+					clsid = "",
+					codebase = "",
+					html = "";
+				if (/\.swf/i.test(src)) {
+					clsid = 'clsid:D27CDB6E-AE6D-11cf-96B8-444553540000';
+					codebase = "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0";
+					html = '<object classid="' + clsid + '" codebase="' + codebase + '" width="' + width + '" height="' + height + '" flashvars="' + params.flashvars + '" movieType="' + params['movieType'] + '">';
+					html += '<param name="movie" value="' + src + '" />';
+					for (var name in params) {
+						if (params[name] != 'undefined' && params[name] != '') {
+							html += '<param name="' + name + '" value="' + params[name] + '" />';
+						}
+					}
+					html += '<embed src="' + src + '" autostart="' + autostart + '"  width="' + width + '" height="' + height + '" flashvars="' + params.flashvars + '" wmode="' + params.wmode + '"></embed>' + '</object>';
+				}
+				else {
+					html = '<embed movieType="' + params['movieType'] + '" src="' + src + '" autostart="' + autostart + '" width="' + width + '" height="' + height + '"></embed>';
+				}
+				break;
+			case 'src':
+			case 'custom':
+				var html = decodeURIComponent(src).replace('_sub_', 'src');
+				break;
+		}
+		return html;
+	},
+	'modifyElement': function (param) {
+		if (typeof param['targetIDKey'] == 'number') {
+			var objTarget = document.getElementsByName(param['targetID'])[param['targetIDKey']];
+		}
+		else {
+			var objTarget = document.getElementById(param['targetID']);
+		}
+		var mode = param['mode'];
+		var value = param['val'];
+		if (!value) return;
+		switch (mode) {
+			default:
+				break;
+			case 'selectbox':
+				for (var i = 0, t = objTarget.length; i < t; i++) {
+					if (value == objTarget[i].value) {
+						objTarget.selectedIndex = i;
+						break;
+					}
+				}
+				break;
+			case 'chkbox':
+				var objTarget = document.getElementsByName(param['targetID']);
+				for (var i = 0, t = objTarget.length; i < t; i++) {
+					if (value == objTarget[i].value) {
+						objTarget[i].checked = true;
+						if (typeof param['callback'] == 'function') {
+							param['callback']();
+						}
+					}
+				}
+				break;
+		}
+	},
+	'getStyle': function (el, styleProp) {
+		var x = el;
+		if (x.currentStyle) {
+			var y = x.currentStyle[styleProp];
+		}
+		else if (window.getComputedStyle) {
+			var y = document.defaultView.getComputedStyle(x, null).getPropertyValue(styleProp);
+		}
+		return y;
+	},
+	'stripslashes': function (str) {
+		return (str + '').replace(/\0/g, '0').replace(/\\([\\'"])/g, '$1')
+	}
+};
+function NNEvent() {
+	this.events = {};
+	this.eventsStatic = {};
+	this.add = function (objTarget, evtType, func, mode) {
+		mode = mode || 'default';
+		var objEvents = mode == 'default' ? this.events : this.eventsStatic;
+		if (typeof objEvents[objTarget.tagName] == 'undefined') {
+			objEvents[objTarget.tagName] = new Array();
+		}
+		objEvents[objTarget.tagName].push({
+			'obj': objTarget,
+			'type': evtType,
+			'func': func
+		});
+		addEvent(objTarget, evtType, func, true);
+	};
+	this.remove = function (objTarget, evtType, func) {
+		removeEvent(objTarget, evtType, func, true);
+	};
+	this.destroy = function (mode) {
+		mode = mode || 'default';
+		var objEvents = mode == 'default' ? this.events : this.eventsStatic;
+		for (var i in objEvents) {
+			for (var j = 0, jt = objEvents[i].length; j < jt; j++) {
+				if (objEvents[i][j] == null || objEvents[i][j].type == 'unload') continue;
+				this.remove(objEvents[i][j].obj, objEvents[i][j].type, objEvents[i][j].func, true);
+				objEvents[i][j] = null;
+			}
+			delete objEvents[i];
+		}
+		objEvents = {};
+	};
+	this.purge = {
+		'list': [],
+		'add': function (obj) {
+			this.list.push(obj);
+		},
+		'destroy': function () {
+			for (var i = 0, t = this.list.length; i < t; i++) {
+				this.core(this.list[i]);
+			}
+			this.list = [];
+		},
+		'core': function (d) {
+			var
+				a = d.attributes,
+				i,
+				l,
+				n;
+			if (a) {
+				l = a.length;
+				for (i = 0; i < l; i += 1) {
+					n = a[i].name;
+					if (typeof d[n] === 'function') {
+						d[n] = null;
+					}
+				}
+			}
+			a = d.childNodes;
+			if (a) {
+				l = a.length;
+				for (i = 0; i < l; i += 1) {
+					this.core(d.childNodes[i]);
+				}
+			}
+		}
+	};
+}
+(function () {
+	var m = document.uniqueID
+		&& document.compatMode
+		&& !window.XMLHttpRequest
+		&& document.execCommand;
+	try {
+		if (!! m) {
+			m("BackgroundImageCache", false, true);
+		}
+	}
+	catch (oh) {}
+})();
+function installHyperscriptEach(a, f) {
+	for (var i = 0, l = a.length; i < l; i++) {
+		f(a[i]);
+	}
+};
+function installHyperscript(namespace, oDocument) {
+	installHyperscriptEach('a big blockquote br b center code dd dl dt div em font form h1 h2 h3 h4 h5 h6 hr img iframe input i li ol option pre p script select small span strike strong style sub sup table tbody td textarea tr ul u'.split(' '), function (label) {
+		namespace[label] = function () {
+			var tag = oDocument.createElement(label);
+			installHyperscriptEach(arguments, function (arg) {
+				if (arg.nodeType) {
+					tag.appendChild(arg);
+				}
+				else if (typeof arg == 'string' || typeof arg == 'number') {
+					tag.innerHTML += arg;
+				}
+				else if (typeof arg == 'array') {
+					for (var i = 0; i < arg.length; i++) {
+						tag.appendChild(arg[i]);
+					}
+				}
+				else {
+					for (var attr in arg) {
+						if (attr == 'style') {
+							for (var sty in arg[attr]) {
+								if (arg[attr].hasOwnProperty(sty) == false) continue;
+								tag[attr][sty] = arg[attr][sty];
+							}
+						}
+						else {
+							tag[attr] = arg[attr];
+						}
+					}
+				}
+			});
+			return tag;
+		};
+	});
+}
+function addEvent(elm, evType, fn, capture) {
+	if (!capture) var capture = true;
+	if (elm.addEventListener) {
+		elm.addEventListener(evType, fn, capture);
+		return true;
+	}
+	else if (elm.attachEvent) {
+		var r = elm.attachEvent('on' + evType, fn);
+		return r;
+	}
+	else {
+		elm['on' + evType] = fn;
+	}
+}
+function removeEvent(object, evt, func, capture) {
+	if (typeof func != 'function') {
+		return false;
+	}
+	if (object.removeEventListener) {
+		object.removeEventListener(evt, func, capture);
+		return true;
+	}
+	else if (object.detachEvent) {
+		object.detachEvent('on' + evt, func);
+		return true;
+	}
+	return false;
+}
+var $A2 = Array.from = function (iterable) {
+	if (!iterable) return [];
+	if (iterable.toArray) {
+		return iterable.toArray();
+	}
+	else {
+		var results = [];
+		for (var i = 0, length = iterable.length; i < length; i++) results.push(iterable[i]);
+		return results;
+	}
+};
+Function.prototype.bind2 = function () {
+	var
+		__method = this,
+		args = $A2(arguments),
+		object = args.shift();
+	return function () {
+		return __method.apply(object, args.concat($A2(arguments)));
+	}
+};
+Function.prototype.bind2Event = function () {
+	for (var i = 0, method = this, args = [], len = arguments.length; i < len; i++) {
+		args.push(arguments[i]);
+	}
+	return function (event) {
+		return method.apply(args[0], [event || window.event].concat(args.slice(1)));
+	}
+};
+Object.extend = function (destination, source) {
+	for (var property in source) {
+		destination[property] = source[property];
+	}
+	return destination;
+};
+Array.prototype.search = function (val) {
+	var len = this.length;
+	for (var i = 0; i < len; i++) {
+		if (new String(this[i]).trim() == new String(val).trim()) return i;
+	}
+	return -1;
+};
+Array.prototype.remove = function (idx) {
+	var temp = new Array();
+	var i = this.length;
+	while (i > idx) {
+		var kk = this.pop();
+		temp.push(kk);
+		i--;
+	}
+	for (var i = temp.length - 2; i >= 0; i--) {
+		this.push(temp[i]);
+	}
+};
+String.prototype.trim = new Function("return this.replace(/^\\s+|\\s+$/g,'')"); // trim both
+Array.prototype._each = function (iterator) {
+	for (var i = 0, length = this.length; i < length; i++) {
+		iterator(this[i]);
+	}
+};
+Array.prototype.each2 = function (iterator) {
+	var index = 0;
+	try {
+		this._each(function (value) {
+			iterator(value, index++);
+		});
+	}
+	catch (e) {
+		if (e != {}) throw e;
+	}
+	return this;
+};
+Array.prototype.include = function (object) {
+	var found = false;
+	this.each2(function (value) {
+		if (value == object) {
+			found = true;
+		}
+	});
+	return found;
+};
+window.isString = function (it) {
+	return !!arguments.length && it != null && (typeof it == "string" || it instanceof String);
+};
+var eachjQuery = function (o, cb, s) {
+	var n, l;
+	if (!o) {
+		return 0;
+	}
+	s = s || o;
+	if (typeof (o.length) != 'undefined') {
+		for (n = 0, l = o.length; n < l; n++) {
+			if (cb.call(s, o[n], n, o) === false) {
+				return 0;
+			}
+		}
+	}
+	else {
+		for (n in o) {
+			if (o.hasOwnProperty(n)) {
+				if (cb.call(s, o[n], n, o) === false) {
+					return 0;
+				}
+			}
+		}
+	}
+	return 1;
+};
+NN.DOM = {
+	ELEMENT_NODE: 1,
+	ATTRIBUTE_NODE: 2,
+	TEXT_NODE: 3,
+	NOCURSOR_TAGS: ['img', 'hr', 'br'],
+	getObj: function (node) {
+		var o = new Object();
+		o.node = node;
+		return o;
+	},
+	getParent: function (n, f, r) {
+		var na;
+		n = this.get(n);
+		r = r || this.oSelf.getIFDoc().body;
+		if (typeof f == 'string') {
+			na = f.toUpperCase();
+			f = function (n) {
+				var s = false;
+				if (n.nodeType == 1 && na === '*') {
+					s = true;
+					return false;
+				}
+				eachjQuery(na.split(','), function (v) {
+					if (n.nodeType == 1 && (n.nodeName.toUpperCase() == v || n.nodeName.toUpperCase() == v)) {
+						s = true;
+						return false; // Break loop
+					}
+				});
+				return s;
+			};
+		}
+		while (n) {
+			if (n == r) return null;
+			if (f(n)) return n;
+			n = n.parentNode;
+		}
+		return null;
+	},
+	get: function (e) {
+		var n;
+		if (e && this.oSelf.getIFDoc() && typeof (e) == 'string') {
+			n = e;
+			e = this.oSelf.getIFDoc().getElementById(e);
+			if (e && e.id !== n) {
+				return this.oSelf.getIFDoc().getElementsByName(n)[1];
+			}
+		}
+		return e;
+	},
+	remove: function (n, k) {
+		return this.run(n, function (n) {
+			var p, g;
+			p = n.parentNode;
+			if (!p) return null;
+			if (k) {
+				eachjQuery(n.childNodes, function (c) {
+					p.insertBefore(c.cloneNode(true), n);
+				});
+			}
+			return p.removeChild(n);
+		});
+	},
+	run: function (e, f, s) {
+		var
+			t = this,
+			o;
+		if (this.oSelf.getIFDoc() && typeof (e) === 'string') {
+			e = t.get(e);
+		}
+		if (!e) {
+			return false;
+		}
+		s = s || this;
+		if (!e.nodeType && (e.length || e.length === 0)) {
+			o = [];
+			eachjQuery(e, function (e, i) {
+				if (e) {
+					if (typeof (e) == 'string') {
+						e = t.getIFDoc().getElementById(e);
+					}
+					o.push(f.call(s, e, i));
+				}
+			});
+			return o;
+		}
+		return f.call(s, e);
+	},
+	isElm: function (node) {
+		return (node && node.nodeType == 1);
+	},
+	hasNodeByTagName: function (node, tags) {
+		if (!this.isElm(node)) {
+			return false;
+		}
+		if (!tags) {
+			tags = [];
+		}
+		else if (typeof (tags) == "string") {
+			tags = [tags];
+		}
+		var cNode = node.firstChild;
+		while (cNode) {
+			if (this.chkNode(cNode, tags)) {
+				return true;
+			}
+			cNode = cNode.nextSibling;
+		}
+		return false;
+	},
+	chkNode: function (node, tags) {
+		if (!tags) {
+			return false;
+		}
+		else if (typeof (tags) == "string") {
+			return (node && node.nodeType == 1 && tags == node.nodeName.toLowerCase());
+		}
+		else {
+			return (node && node.nodeType == 1 && tags.include(node.nodeName.toLowerCase()));
+		}
+	},
+	chkBrNode: function (node) {
+		return this.chkNode(node, 'br');
+	},
+	chkListNode: function (node) {
+		return this.chkNode(node, ['ul', 'ol']);
+	},
+	chkParaNode: function (node) {
+		return this.chkNode(node, ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li']);
+	},
+	chkBlockNode: function (node) {
+		return this.chkNode(node, ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'].concat(['div', 'ul', 'ol', 'pre', 'td', 'table', 'button']));
+	},
+	insideTable: function (node) {
+		return (this.schNode(node, ['td', 'th']) != null);
+	},
+	includeNode: function (srcNode, destNode) {
+		if (!srcNode || !destNode) {
+			return false;
+		}
+		var cNode = srcNode.firstChild;
+		while (true) {
+			if (!cNode) {
+				return false;
+			}
+			if (cNode == destNode) {
+				return true;
+			}
+			if (cNode.firstChild) {
+				cNode = cNode.firstChild;
+			}
+			else if (cNode.nextSibling) {
+				cNode = cNode.nextSibling;
+			}
+			else {
+				while (!cNode.nextSibling) {
+					if (cNode == srcNode) {
+						break;
+					}
+					cNode = cNode.parentNode;
+				}
+				if (cNode == srcNode) {
+					break;
+				}
+				cNode = cNode.nextSibling;
+			}
+		}
+		return false;
+	},
+	schGroupNode: function (node) {
+		return this.schNode(node, ['div', 'ul', 'ol', 'pre', 'td', 'table', 'button']);
+	},
+	schParaNode: function (node) {
+		return this.schNode(node, ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'], ['div', 'ul', 'ol', 'pre', 'td', 'table', 'button']);
+	},
+	schParaInTable: function (node) {
+		return this.schNode(node, ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'], ['td', 'th']);
+	},
+	schCellNode: function (node) {
+		return this.schNode(node, ['td', 'th']);
+	},
+	schNode: function (node, tags, endTags) {
+		if (!node) return null;
+		if (!tags) return null;
+		if (typeof tags == "string") tags = [tags];
+		if (!endTags) {
+			endTags = ['body'];
+		}
+		else if (typeof (endTags) == "string") {
+			endTags = [endTags];
+		}
+		if (node.nodeType == 3) {
+			node = node.parentNode;
+		}
+		while (node) {
+			if (this.chkNode(node, endTags)) {
+				return null;
+			}
+			else if (this.chkNode(node, tags)) {
+				return node;
+			}
+			node = node.parentNode;
+		}
+		return null;
+	},
+	cltChild: function (node, tag) {
+		var nodelist = [];
+		if (!node) {
+			return nodelist;
+		}
+		var cNode = node.firstChild;
+		var pNode = node;
+		while (true) {
+			if (!cNode) {
+				break;
+			}
+			if (this.chkNode(cNode, tag)) {
+				nodelist.push(cNode);
+			}
+			if (cNode.firstChild) {
+				cNode = cNode.firstChild;
+			}
+			else if (cNode.nextSibling) {
+				cNode = cNode.nextSibling;
+			}
+			else {
+				while (!cNode.nextSibling) {
+					if (cNode == pNode) {
+						break;
+					}
+					cNode = cNode.parentNode;
+				}
+				if (cNode == pNode) {
+					break;
+				}
+				cNode = cNode.nextSibling;
+			}
+		}
+		return nodelist;
+	},
+	moveChild: function (sNode, dNode) {
+		if (!sNode || !dNode) {
+			return;
+		}
+		while (sNode.firstChild) {
+			dNode.appendChild(sNode.firstChild);
+		}
+	},
+	getIndex: function (node) {
+		if (!node) {
+			return -1;
+		}
+		var idx = -1;
+		var pNode = node.parentNode;
+		var cNode = pNode.firstChild;
+		while (cNode) {
+			idx++;
+			if (cNode == node) {
+				break;
+			}
+			cNode = cNode.nextSibling;
+		}
+		return idx;
+	},
+	insertAt: function (sNode, dNode) {
+		dNode.parentNode.insertBefore(sNode, dNode);
+	},
+	insertNext: function (sNode, dNode) {
+		if (dNode.nextSibling) {
+			dNode.parentNode.insertBefore(sNode, dNode.nextSibling);
+		}
+		else {
+			dNode.parentNode.appendChild(sNode);
+		}
+	},
+	removeNode: function (node) {
+		if (!node) return;
+		var cNode = node.firstChild;
+		while (cNode) {
+			if (cNode.nodeType == 1 && ["leftMarker", "rightMarker", "marker"].include(cNode.id)) {
+				var nNode = cNode.nextSibling;
+				node.parentNode.insertBefore(cNode, node);
+				cNode = nNode;
+			}
+			else {
+				cNode = cNode.nextSibling;
+			}
+		}
+		if (node.parentNode) {
+			node.parentNode.removeChild(node);
+		}
+	},
+	parentNodeFix: function (elNode) {
+		if (NN.Browser.MSIE) {
+			if (!elNode) return elNode;
+			while (elNode.previousSibling) {
+				elNode = elNode.previousSibling;
+			}
+			return elNode.parentNode
+		}
+		else {
+			return elNode.parentNode
+		}
+	}
+};
+function shortcut(shortcut, callback, opt, ed) {
+	var default_options = {
+		'type': 'keydown',
+		'propagate': false,
+		'target': document
+	};
+	if (!opt) opt = default_options;
+	else {
+		for (var dfo in default_options) {
+			if (typeof opt[dfo] == 'undefined') opt[dfo] = default_options[dfo];
+		}
+	}
+	var ele = opt.target;
+	if (typeof opt.target == 'string') ele = document.getElementById(opt.target);
+	var ths = this;
+	var func = function (e) {
+		e = e || window.event;
+		if (e.keyCode) code = e.keyCode;
+		else if (e.which) code = e.which;
+		var character = String.fromCharCode(code).toLowerCase();
+		var keys = shortcut.toLowerCase().split("+");
+		var kp = 0;
+		var shift_nums = {
+			"`": "~",
+			"1": "!",
+			"2": "@",
+			"3": "#",
+			"4": "$",
+			"5": "%",
+			"6": "^",
+			"7": "&",
+			"8": "*",
+			"9": "(",
+			"0": ")",
+			"-": "_",
+			"=": "+",
+			";": ":",
+			"'": "\"",
+			",": "<",
+			".": ">",
+			"/": "?",
+			"\\": "|"
+		};
+		var special_keys = {
+			'esc': 27,
+			'escape': 27,
+			'tab': 9,
+			'space': 32,
+			'return': 13,
+			'enter': 13,
+			'backspace': 8,
+			'scrolllock': 145,
+			'scroll_lock': 145,
+			'scroll': 145,
+			'capslock': 20,
+			'caps_lock': 20,
+			'caps': 20,
+			'numlock': 144,
+			'num_lock': 144,
+			'num': 144,
+			'pause': 19,
+			'break': 19,
+			'insert': 45,
+			'home': 36,
+			'delete': 46,
+			'end': 35,
+			'pageup': 33,
+			'page_up': 33,
+			'pu': 33,
+			'pagedown': 34,
+			'page_down': 34,
+			'pd': 34,
+			'left': 37,
+			'up': 38,
+			'right': 39,
+			'down': 40,
+			'f1': 112,
+			'f2': 113,
+			'f3': 114,
+			'f4': 115,
+			'f5': 116,
+			'f6': 117,
+			'f7': 118,
+			'f8': 119,
+			'f9': 120,
+			'f10': 121,
+			'f11': 122,
+			'f12': 123
+		};
+		for (var i = 0; k = keys[i], i < keys.length; i++) {
+			if (k == 'ctrl' || k == 'control') {
+				if (e.ctrlKey) kp++;
+			}
+			else if (k == 'shift') {
+				if (e.shiftKey) kp++;
+			}
+			else if (k == 'alt') {
+				if (e.altKey) kp++;
+			}
+			else if (k.length > 1) { //If it is a special key
+				if (special_keys[k] == code) kp++;
+			}
+			else { //The special keys did not match
+				if (character == k) kp++;
+				else {
+					if (shift_nums[character] && e.shiftKey) { //Stupid Shift key bug created by using lowercase
+						character = shift_nums[character];
+						if (character == k) kp++;
+					}
+				}
+			}
+		}
+		if (kp == keys.length) {
+			callback(e);
+			if (!opt['propagate']) { //Stop the event
+				e.cancelBubble = true;
+				e.returnValue = false;
+				if (e.stopPropagation) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
+				return false;
+			}
+		}
+	};
+	ed.oEvent.add(ele, opt['type'], func);
+}

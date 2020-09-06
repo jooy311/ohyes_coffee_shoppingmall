@@ -1,0 +1,33 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
+<%@page import="ohyes.coffee.dao.ProductAdminDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--product_list.jsp문서에서 관리자가 원하는 상품행에서 [삭제]버튼을 눌렀을 시, 해당하는 행의 상품을 삭제할 수 있도록 하는 action문서--%>
+
+<%
+	//2.view페이지에서 받아올 값은 [삭제]를 누른 행의 상품번호
+       	String productNo = (String)request.getParameter("productNo");
+       	System.out.println("받아온값 : "+productNo);
+   
+       	productNo = new String(productNo.getBytes("ISO-8859-1"), "UTF-8");//한글깨짐해결
+
+       	//3. 받아온값으로 DAO로 보내서 검색하도록 한다.
+       	int selectedPno = ProductAdminDAO.getProductDAO().deleteProductAdmin(productNo);
+       	System.out.println("dao에서 받아온값 : "+"productNo");
+       	
+       	//4.리퀘스트에 다시 저장하고(세션이용해도 됨)
+       	request.setAttribute("selectedPno", selectedPno);//productList라는 속성값으로 리스트에 담긴 상품객체들을 다른 JSP로 넘긴다
+%>
+<!-- 템플릿 사이트를 이용하지 않았다면 forward를 이용하는게 맞지만 , 템플릿사이트가 모든흐름을 통제하기 때문에 똑같이 include를 사용해 주는 것이 맞다. -->
+<jsp:include page="product_list.jsp" />
+
+
+
+
+
+
+
+

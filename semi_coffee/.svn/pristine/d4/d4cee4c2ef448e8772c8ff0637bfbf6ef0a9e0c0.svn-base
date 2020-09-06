@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+ <div class="container-fluid">
+
+     <h1 class="mt-4">오늘의 매출</h1><h4>(2020년 7월 25일 기준)</h4>
+     
+     	  <div class="grid-container">
+     	  	<!-- 주문 >> 전체주문목록 으로 이동 -->
+	  <div class="grid-item item1"> 
+	  <a href="" style="text-decoration: none"><strong class="title">주문 <span id="orderCount" class="count">(20건)</span></strong>
+        	<span class="data">
+              	<strong id="orderPrice" class="value">**</strong>
+              	<span class="unit">원</span>
+        	</span></a>
+       	  </div>
+       	  
+       	  <!-- 주문 >> 매출페이지로 이동하던데 우리는 그냥 눈에 보이는 데이터로만 끝내도 될듯? -->  
+	  <div class="grid-item item2">
+	  	<a href="" style="text-decoration: none"><strong class="title">결제 <span id="orderCount" class="count">(18건)</span></strong>
+         	<span class="data">
+               	<strong id="orderPrice" class="value">**</strong>
+               	<span class="unit">원</span>
+         	</span></a>
+       	  </div>
+       	  
+       	  <!-- 취소 >> 취소관리로 이동 -->
+	  <div class="grid-item item3">
+	  	<a href="" style="text-decoration: none"><strong class="title">취소<span id="orderCount" class="count">(2건)</span></strong>
+         	<div class="data">
+               	<strong id="orderPrice" class="value">**</strong>
+               	<span class="unit">원</span>
+         	</div></a>
+	  </div>  
+  </div>  
+
+   <h1 class="mt-4">주문 현황</h1><h4>(최근 1개월 기준)</h4>
+      	  <div class="grid-container">
+		  <div class="grid-item item1"> 
+		  <a href="" style="text-decoration: none"><strong class="title">주문 <span id="orderCount" class="count">(20건)</span></strong>
+         	<span class="data">
+               	<strong id="orderPrice" class="value">**</strong>
+               	<span class="unit">원</span>
+         	</span></a>
+        	  </div>
+        	  
+		  <div class="grid-item item2">
+		  	<a href="" style="text-decoration: none"><strong class="title">결제 <span id="orderCount" class="count">(18건)</span></strong>
+	         	<span class="data">
+                	<strong id="orderPrice" class="value">**</strong>
+                	<span class="unit">원</span>
+	         	</span></a>
+        	  </div>
+        	  
+		  <div class="grid-item item3">
+		  	<a href="" style="text-decoration: none"><strong class="title">취소<span id="orderCount" class="count">(2건)</span></strong>
+	         	<span class="data">
+                	<strong id="orderPrice" class="value">**</strong>
+                	<span class="unit">원</span>
+	         	</span></a>
+	 </div>  
+  </div>
+ </div>         
+
+
+
+

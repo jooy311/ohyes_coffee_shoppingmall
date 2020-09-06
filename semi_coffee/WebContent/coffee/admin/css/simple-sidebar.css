@@ -1,0 +1,123 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ 
+ /*home.html 그리드 레이아웃 사용*/
+ .grid-container {
+  display: grid;
+  grid-gap: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+  border-right: 2px solid #eee;
+} 
+
+.item1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.item2 {
+  grid-column: 2;
+  grid-row: 1 ;
+}
+
+.item3 {
+  grid-column: 3;
+  grid-row: 1 ;
+  border: none;
+}
+
+.grid-item:hover {
+	background-color : #eee;
+}
+ 
+ /* 메뉴바 아코디언 설정 */
+ .accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 13px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+  color : #444;
+}
+
+.menua {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-size: 12px;
+}
+
+.menua a {
+	color : #666666;
+}
+ 
+
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+ 
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+  
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+  
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}

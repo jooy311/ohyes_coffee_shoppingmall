@@ -1,0 +1,76 @@
+package ohyes.coffee.dto;
+
+/*
+
+이름                 널?       유형           
+------------------ -------- ------------ 
+CART_NO            NOT NULL NUMBER       
+CART_MEM_ID        NOT NULL VARCHAR2(12) 
+CART_P_NO          NOT NULL NUMBER       
+CART_AMOUNT        NOT NULL NUMBER       
+CART_PRODUCT_TOTAL NOT NULL NUMBER       
+CART_TOTAL         NOT NULL NUMBER
+ */
+
+public class CartDTO {
+	private int CART_NO;
+	private String CART_MEM_ID;
+	private int CART_P_NO;
+	private int CART_AMOUNT;
+	private int CART_PRODUCT_TOTAL;
+	private int CART_TOTAL;
+	
+	public CartDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getCART_NO() {
+		return CART_NO;
+	}
+
+	public void setCART_NO(int cART_NO) {
+		CART_NO = cART_NO;
+	}
+
+	public String getCART_MEM_ID() {
+		return CART_MEM_ID;
+	}
+
+	public void setCART_MEM_ID(String cART_MEM_ID) {
+		CART_MEM_ID = cART_MEM_ID;
+	}
+
+	public int getCART_P_NO() {
+		return CART_P_NO;
+	}
+
+	public void setCART_P_NO(int cART_P_NO) {
+		CART_P_NO = cART_P_NO;
+	}
+
+	public int getCART_AMOUNT() {
+		return CART_AMOUNT;
+	}
+
+	public void setCART_AMOUNT(int cART_AMOUNT) {
+		CART_AMOUNT = cART_AMOUNT;
+	}
+
+	public int getCART_PRODUCT_TOTAL() {
+		return CART_PRODUCT_TOTAL;
+	}
+
+	public void setCART_PRODUCT_TOTAL(int cART_PRODUCT_TOTAL) {
+		CART_PRODUCT_TOTAL = cART_PRODUCT_TOTAL;
+	}
+
+	public int getCART_TOTAL() {
+		return CART_TOTAL;
+	}
+
+	public void setCART_TOTAL(int cART_TOTAL) {
+		CART_TOTAL = cART_TOTAL;
+	}
+	
+	
+}

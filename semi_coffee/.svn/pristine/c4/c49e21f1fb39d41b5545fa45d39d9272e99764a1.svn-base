@@ -1,0 +1,426 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0041)http://coffeechoi.co.kr/order/basket.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+
+
+<link rel="stylesheet" type="text/css" href="./php/optimizer.php">
+<link rel="stylesheet" type="text/css" href="./php/optimizer(1).php">
+
+
+<!--allStore_contents-->
+<div id="allStore_contents">
+	<div class="allStore_layout">
+		<div>
+
+<!--타이틀, 현재위치-->
+<div class="allStore-board-menupackage">   
+<div class="title">
+	<h2>장바구니</h2>
+	</div>
+</div>
+
+<!--타이틀, 현재위치-->
+
+<!-- 장바구니 모듈 Package -->
+<div class="xans-element- xans-order xans-order-basketpackage ">
+
+<!-- 탭 -->
+<div class="xans-element- xans-order xans-order-tabinfo ec-base-tab typeLight ">
+<ul class="menu">
+<li class="selected "><a>상품 (3)</a></li>
+</ul>
+<p class="right ">장바구니에 담긴 상품은 30일 동안 보관됩니다.</p>
+</div>
+
+<!-- 장바구니 비어있을 때 -->
+
+<!-- 일반상품 -->
+<div class="orderListArea ec-base-table typeList">
+<div class="xans-element- xans-order xans-order-normtitle title ">
+<h3>일반상품 (3)</h3>
+</div>
+
+<!-- 일반상품 (기본배송) -->
+<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal xans-record-">
+<caption>기본배송</caption>
+<colgroup>
+<col style="width:27px">
+<col style="width:92px">
+<col style="width:auto">
+<col style="width:98px">
+<col style="width:75px">
+<col style="width:98px">
+<col style="width:98px">
+<col style="width:85px">
+<col style="width:98px">
+<col style="width:110px">
+</colgroup>
+<thead>
+<tr>
+	<th scope="col"><input type="checkbox" onclick="Basket.setCheckBasketList(&#39;basket_product_normal_type_normal&#39;, this);"></th>
+	<th scope="col">이미지</th>
+	<th scope="col">상품정보</th>
+	<th scope="col">판매가</th>
+	<th scope="col">수량</th>
+	<th scope="col">합계</th>
+	<th scope="col">삭제</th>
+</tr>
+</thead>
+<tfoot class="right"><tr>
+<td colspan="10">
+<span class="gLeft">[기본배송]</span> 상품구매금액 <strong>6,000 <span class="displaynone">()</span></strong>
+<span class="displaynone"> </span> + 배송비 <span class="displaynone"> </span> <span class="displaynone">
+ - 상품할인금액 0 </span> = 합계 : <strong class="txtEm gIndent10"><span class="txt18">6,000</span>원</strong>
+ <span class="displaynone"> </span>
+</td>
+</tr>
+</tfoot>
+
+
+<tbody class="xans-element- xans-order xans-order-list center">
+<tr class="xans-record-">
+<td><input type="checkbox" id="basket_chk_id_0" name="basket_product_normal_type_normal"></td>
+<td class="thumb"><a href="#">
+<img src="#" onerror="this.src=&#39;http://img.echosting.cafe24.com/thumb/img_product_small.gif&#39;;" alt="브라질 NY2 100g"></a></td>
+<td class="left">
+<a href="http://coffeechoi.co.kr/product/detail.html?product_no=24&amp;cate_no=46">
+<strong>브라질 NY2 100g</strong> </a><span class="displaynone"><br>(영문명 : )</span>
+<ul class="xans-element- xans-order xans-order-optionall option"><li class="xans-record-">
+<strong class="displaynone">브라질 NY2 100g</strong>[옵션: 원두 100g/더치커피] <span class="displaynone">(1개)</span>
+
+
+<!-- //참고 -->
+</li>
+</ul>
+</td>
+<td class="right">
+<div class="">
+<strong>6,000원</strong><p class="displaynone"></p>
+</div>
+
+</td>
+
+<td style="user-select: auto;">
+<span class="" style="user-select: auto;">
+<span class="ec-base-qty" style="user-select: auto;">
+<input id="quantity_id_0" name="quantity_name_0" size="10" value="10" type="text" 
+style="user-select: auto;">
+<a href="javascript:;" onclick="Basket.addQuantityShortcut('quantity_id_0', 0);" style="user-select: auto;">
+<img src="http://img.echosting.cafe24.com/skin/base/common/btn_quantity_up.gif" alt="수량증가" class="up" style="user-select: auto;"></a>
+<a href="javascript:;" onclick="Basket.outQuantityShortcut('quantity_id_0', 0);" style="user-select: auto;">
+<img src="http://img.echosting.cafe24.com/skin/base/common/btn_quantity_down.gif" alt="수량감소" class="down" style="user-select: auto;"></a>
+</span>
+<a href="javascript:;" class="gBlank5" onclick="Basket.modifyQuantity()" style="user-select: auto;">
+<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_modify.gif" alt="변경" style="user-select: auto;"></a>
+</span>
+<span class="displaynone" style="user-select: auto;">2</span>
+</td>
+
+
+
+<td class="right">
+<strong>6,000원</strong>
+<div class="displaynone"></div>
+</td>
+<td class="button">
+	<a href="javascript:;" onclick="Basket.deleteBasketItem(0);"><img src="../coffee/basket/image/btn_delete.gif" alt="삭제"></a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+<!-- 선택상품 제어 버튼 -->
+<div class="xans-element- xans-order xans-order-selectorder ec-base-button ">
+<span class="gRight">
+<a href="http://coffeechoi.co.kr/order/basket.html#none" onclick="Basket.emptyBasket()">
+<img src="../coffee/basket/image/btn_clear.gif" alt="장바구니비우기"></a>
+</span>
+</div>
+
+<!-- 주문 버튼 -->
+<div class="xans-element- xans-order xans-order-totalorder ec-base-button justify">
+<a href="index.jsp?workgroup=pay&work=Pay" onclick="Basket.orderAll(this)" style="line-height: 40px;"
+	link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class=" allStore-color-btn1 ">
+	전체상품주문
+	</a>
+<a href="index.jsp?workgroup=pay&work=Pay" onclick="Basket.orderSelectBasket(this)" style="line-height: 40px;"
+	link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="allStore-color-btn2 ">
+	선택상품주문
+	</a>
+	</div>
+</div>
+<!-- //장바구니 모듈 Package -->
+
+
+<!-- 이용안내 -->
+<div class="xans-element- xans-order xans-order-basketguide ec-base-help "><h3>이용안내</h3>
+<div class="inner">
+<h4>장바구니 이용안내</h4>
+<ol>
+	<li class="item1">선택하신 상품의 수량을 변경하시려면 수량변경 후 [변경] 버튼을 누르시면 됩니다.</li>
+	<li class="item2">[쇼핑계속하기] 버튼을 누르시면 쇼핑을 계속 하실 수 있습니다.</li>
+	<li class="item3">장바구니와 관심상품을 이용하여 원하시는 상품만 주문하거나 관심상품으로 등록하실 수 있습니다.</li>
+	<li class="item4">파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로 교체됩니다.</li>
+</ol>
+<h4>무이자할부 이용안내</h4>
+<ol>
+	<li class="item1">상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기] 버튼을 눌러 주문/결제 하시면 됩니다.</li>
+	<li class="item2">[전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에 대한 주문/결제가 이루어집니다.</li>
+	<li class="item3">단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수 없습니다.</li>
+</ol>
+</div>
+</div>
+
+<!-- Start Script for IFDO (장바구니 분석) -->
+
+<div style="display:none;" class="xans-element- xans-order xans-order-basketpackage ">
+<div class="orderListArea">
+<div id="ifdo_basket_list">
+
+<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal xans-record-">
+	<tbody class="xans-element- xans-order xans-order-list center middle">
+	<tr class="ifdo_basket_ul xans-record-">
+		<td class="ifdo_product_name">브라질 NY2 100g</td>
+		<td class="ifdo_product_price">6,000원</td>
+		<td class="ifdo_product_no">24</td>
+		<td class="ifdo_product_cate"></td>
+		<td class="ifdo_product_num"><input id="quantity_id_0" name="quantity_name_0" size="2" value="1" type="text"></td>
+	</tr>
+	</tbody>
+</table>
+		</div>
+	</div>
+</div>
+      
+<script type="text/javascript">
+	var _NB_LO = [];
+    var _NB_plist =[];
+	var obj = document.getElementById('ifdo_basket_list');
+	if( obj != null ){
+		var obj2 = obj.getElementsByClassName('ifdo_basket_ul');
+		var len = obj2.length;
+		if( len > 0 ){
+			for(var i=0;i<len;i++){
+				var _l_name=obj2[i].getElementsByClassName('ifdo_product_name')[0].textContent;
+				var _l_price=obj2[i].getElementsByClassName('ifdo_product_price')[0].textContent;
+                var _l_cate=obj2[i].getElementsByClassName('ifdo_product_cate')[0].textContent;
+				var _l_pc=obj2[i].getElementsByClassName('ifdo_product_no')[0].textContent;
+                var _l_num=obj2[i].getElementsByClassName('ifdo_product_num')[0].getElementsByTagName('input')[0].value;
+				if(_l_name!=''&&_l_price!=''&&_l_num!=''){
+                    if( typeof _NB_plist[_l_name] == 'undefined'){
+                        var _t_obj = {};
+                        _t_obj['PN'] = _l_name;
+						_t_obj['PC'] = _l_pc;
+						_t_obj['AM'] = parseInt(_l_num.replace(/[^0-9]/gi,''));
+                        _t_obj['PR'] = parseInt(_l_price.replace(/[^0-9]/gi,''))*_t_obj['AM'];
+                        _t_obj['CT'] = '';
+                        _NB_LO.push(_t_obj);
+						_NB_plist[_l_name] = _l_name;
+                    }
+				}
+			}
+		}
+	}
+    var _NB_PM = 'u';/*장바구니 구분값*/	
+</script>	
+<!-- End Script for IFDO -->
+				
+
+</div>
+        </div>
+    </div>
+
+<!-- //참고 -->
+
+<!-- Start Script for IFDO (회원분석) -->
+
+<div style="display: none;" id="ifdo_login" class="xans-element- xans-layout xans-layout-statelogon ">
+<div id="ifdo_login_id"><span class="xans-member-var-id"> </span></div>
+<div id="ifdo_login_name"><span class="xans-member-var-name"> </span></div>
+<div id="ifdo_login_grpname"><span class="xans-member-var-group_name"> </span></div>
+<div id="ifdo_login_mileage"></div>
+<div id="ifdo_login_deposit"></div>
+<div id="ifdo_login_email"><span class="xans-member-var-email"> </span></div>
+</div>
+<script type="text/javascript">
+var _SSG=sessionStorage;function _G_UDF(a){var b='';if(_SSG.getItem(a)!=null) b=_SSG.getItem(a); return b;};
+if( _G_UDF('_LOGINID') !='' ){
+var _NB_ID = _G_UDF('_LOGINID'); var _NB_EMAIL=_G_UDF('_EMAIL');var _NB_UDF={'udf01':_G_UDF('_NAME'),'udf06':_G_UDF('_GRPNAME')};
+}
+</script>	
+<!-- End Script for IFDO -->
+
+
+<script>
+try {
+	// Account ID 적용
+	if (!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "s_4c89751248cb";
+	
+	// 마일리지 White list가 있을 경우
+	wcs.mileageWhitelist = ["boogie111111.cafe24.com", "www.boogie111111.cafe24.com", "m.boogie111111.cafe24.com", "coffeechoi.co.kr", "www.coffeechoi.co.kr", "m.coffeechoi.co.kr"];
+                
+	// 레퍼러 (스크립트 인젠션 공격 대응 strip_tags) ECQAINT-15101
+	wcs.setReferer("http://coffeechoi.co.kr/product/%EB%B8%8C%EB%9D%BC%EC%A7%88-ny2-100g/24/category/46/display/1/");
+
+	// 유입 추적 함수 호출
+	wcs.inflow("coffeechoi.co.kr");
+
+	// 로그수집
+	wcs_do();
+	} catch (e) {};
+</script>
+
+<script type="text/javascript" src="./php/i18n.php" charset="utf-8"></script>
+
+<script type="text/javascript">
+var EC_MOBILE = false;
+var EC_MOBILE_DEVICE = false;
+var EC_MOBILE_USE = true;
+localStorage.setItem('EC_JQUERY_VERSION','1.4.4');
+var mobileWeb = false;
+var bUseElastic = false;
+var sSearchBannerUseFlag = 'F';
+var SHOP_CURRENCY_INFO = {"1":{"aShopCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"aShopSubCurrencyInfo":null,"aBaseCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"fExchangeRate":1,"fExchangeSubRate":null,"aFrontCurrencyFormat":{"head":"","tail":"\uc6d0"},"aFrontSubCurrencyFormat":{"head":"","tail":""}}};
+EC_SHOP_FRONT_NEW_OPTION_COMMON.initObject();
+EC_SHOP_FRONT_NEW_OPTION_BIND.initChooseBox();
+EC_SHOP_FRONT_NEW_OPTION_DATA.initData();
+var sBasketDelvType = 'A';
+var bIsNewProduct = true;
+var sUseBasketConfirm = 'T';
+var sUsePaymentMethodPerProduct = 'F';
+var sPage = "ORDER_BASKET";
+var aSoldoutDisplay = [];
+var aReserveStockMessage = {"show_stock_message":"F","Q":"[\uc7ac\uace0 : [:\uc218\ub7c9:]\uac1c][\ub2f9\uc77c\ubc1c\uc1a1]","R":"[\uc7ac\uace0 : [:\uc218\ub7c9:]\uac1c][\uc608\uc57d\uc8fc\ubb38]","N":"","stock_message_replace_name":"[:\uc218\ub7c9:]"};
+var option_type24 = 'E';
+var option_name_mapper24 = '중량#$%분쇄도';
+var option_stock_data24 = '{\"8\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\
+	"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"P000000X\":{\"stock_number\":0,\"stock_price\":\
+		"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"is_reserve_stat\":\"N\"},\"9\":{\"stock_number\":0,\"stock_price\":\
+			"4000.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"4000.00\",\"is_reserve_stat\":\"N\"},\"10\":{\
+				"stock_number\":0,\"stock_price\":\"14000.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"14000.00\",\
+				"is_reserve_stat\":\"N\"},\"14\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\
+					"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"15\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\
+						"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"16\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\
+							"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"17\":{\"stock_number\":0,\"stock_price\
+								":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"}}';
+var item_count = '12';
+var item_listing_type24 = 'S';
+var product_option_price_display24 = 'F';
+var option_type2424 = 'E';
+var option_name_mapper2424 = '중량#$%분쇄도';
+var option_stock_data2424 = '{\"8\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\
+	"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"P000000X\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\
+		":\"T\",\"use_soldout\":\"F\",\"is_reserve_stat\":\"N\"},\"9\":{\"stock_number\":0,\"stock_price\":\"4000.00\",\"use_stock\":false,\"is_display\":\"T\",\
+			"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"4000.00\",\"is_reserve_stat\":\"N\"},\"10\":{\"stock_number\":0,\"stock_price\":\"14000.00\",\
+				"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"14000.00\",\"is_reserve_stat\":\"N\"},\"14\":{\
+					"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\
+					",\"is_reserve_stat\":\"N\"},\"15\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\
+						":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"16\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\
+							"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"17\":{\"stock_number\":0,\"stock_price\":\"0.00\
+								",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"}}';
+var item_count24 = '12';
+var product_option_price_display2424 = 'F';
+var aSoldoutDisplay = [];
+var option_type32 = 'E';
+var option_name_mapper32 = '중량#$%분쇄도';
+var option_stock_data32 = '{\"8\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\
+	"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"P00000BG\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\
+		":\"T\",\"use_soldout\":\"F\",\"is_reserve_stat\":\"N\"},\"9\":{\"stock_number\":0,\"stock_price\":\"4000.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\
+			":\"T\",\"use_soldout\":\"F\",\"option_price\":\"4000.00\",\"is_reserve_stat\":\"N\"},\"10\":{\"stock_number\":0,\"stock_price\":\"14000.00\",\"use_stock\
+				":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"14000.00\",\"is_reserve_stat\":\"N\"},\"14\":{\"stock_number\
+					":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\
+					":\"N\"},\"15\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\
+						":\"0.00\",\"is_reserve_stat\":\"N\"},\"16\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\
+							",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"17\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\
+								"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"}}';
+var item_count = '12';
+var item_listing_type32 = 'S';
+var product_option_price_display32 = 'F';
+var option_type3232 = 'E';
+var option_name_mapper3232 = '중량#$%분쇄도';
+var option_stock_data3232 = '{\"8\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\
+	"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"P00000BG\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\
+		":\"T\",\"use_soldout\":\"F\",\"is_reserve_stat\":\"N\"},\"9\":{\"stock_number\":0,\"stock_price\":\"4000.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\
+			":\"T\",\"use_soldout\":\"F\",\"option_price\":\"4000.00\",\"is_reserve_stat\":\"N\"},\"10\":{\"stock_number\":0,\"stock_price\":\"14000.00\",\"use_stock\":false,\
+				"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"14000.00\",\"is_reserve_stat\":\"N\"},\"14\":{\"stock_number\":0,\"stock_price\
+					":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"15\":{\
+						"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\
+						"is_reserve_stat\":\"N\"},\"16\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\",\"is_selling\":\"T\",\"use_soldout\
+							":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"},\"17\":{\"stock_number\":0,\"stock_price\":\"0.00\",\"use_stock\":false,\"is_display\":\"T\
+								",\"is_selling\":\"T\",\"use_soldout\":\"F\",\"option_price\":\"0.00\",\"is_reserve_stat\":\"N\"}}';
+var item_count32 = '12';
+var product_option_price_display3232 = 'F';
+var EC_BASKET_BENEFIT_INFO = '{"total_benefit_price_raw":0,"aBenefit":{"total_subscriptionpayseqsale_price":0,"total_periodsale_price":0,"total_membersale_price":0,
+"total_rebuysale_price":0,"total_bulksale_price":0,"total_newproductsale_price":0,"total_membergroupsale_price":0,"total_setproductsale_price":0,"total_shipfeesale_price":0}}'
+var aBasketProductData = [];
+aBasketProductData[0] = {"delvtype":"A","main_cate_no":"46","product_no":24,"opt_id":"R0000000043","product_type":"normal_type","naver_used_exception":"F",
+"quantity":1,"check_quantity":1,"check_quantity_type":"O","product_qty":1,"option_add":"F","product_min":1,"product_max_type":"F","product_max":0,
+"product_code":"P000000X","product_price":6000,"opt_price":0,"product_sum_price":6000,"product_sale_price":6000,"product_name":"\ube0c\ub77c\uc9c8 NY2 100g",
+"opt_str":"\uc911\ub7c9=\uc6d0\ub450 100g, \ubd84\uc1c4\ub3c4=\ub354\uce58\ucee4\ud53c","item_code":"P000000X000A","option_type":"E","has_option":"T",
+"has_option_add":"F","is_set_product":"F","set_product_name":"","set_product_no":0,"basket_prd_no":956,"item_listing_type":"S","is_oversea_able":false,
+"set_product_list":null,"buy_unit":1,"check_buy_unit_type":"O","wish_selected_item":"","wish_save_data":"","olink_data":"8!@#16","product_paymethod":
+"card,cash,cell,kakaopay,mileage,tcash","option_attached_file_info_json":"","total_unit_add_sale":0,"use_store_pickup":"F","sIsBenefitEventProduct":"F",
+"add_sale_related_qty":0,"add_sale_not_related_qty":0,"supplier_id":"boogie111111","param":"?product_no=24&cate_no=46","img":
+	"\/\/coffeechoi.co.kr\/web\/product\/tiny\/20200108\/9b3871c51d0a3c9264a263a7213f04fb.jpg","name_alt":"\ube0c\ub77c\uc9c8 NY2 100g","product_name_link":
+"<a href = \"\/product\/\ube0c\ub77c\uc9c8-ny2-100g\/24\/category\/46\/\" class=\"ec-product-name\" >\ube0c\ub77c\uc9c8 NY2 100g<\/a>","option_str":
+"[\uc635\uc158: \uc6d0\ub450 100g\/\ub354\uce58\ucee4\ud53c]","form_quantity":"<input id=\"quantity_id_0\" name=\"quantity_name_0\" size=\"2\" value=\"1\" 
+type=\"text\"  \/>","option_change_display":"","product_price_div_id":"product_price_div0","discount":"","product_price_display":false,"product_price_str":
+"6,000\uc6d0","product_sale_price_div_id":"product_sale_price_div0","product_sale_price_display":"displaynone","product_sale_price_front_id":
+"product_sale_price_front0","product_sale_price_str":"6,000\uc6d0","sum_price_front_id":"sum_price_front0","sum_price":"6,000\uc6d0","sum_price_org":6000,
+"is_subscription":"F","check_buy_unit":1};
+aBasketProductData[0].product_name = "브라질 NY2 100g";
+aBasketProductData[0].set_product_name = "";
+aBasketProductData[0].opt_str = "중량=원두 100g, 분쇄도=더치커피";
+aBasketProductData[0].sIsBenefitEventProduct = "F";
+aBasketProductData[0].layer_option_str = "";
+aBasketProductData[1] = {"delvtype":"A","main_cate_no":"46","product_no":24,"opt_id":"R0000000021","product_type":"normal_type","naver_used_exception":"F",
+"quantity":1,"check_quantity":1,"check_quantity_type":"O","product_qty":1,"option_add":"F","product_min":1,"product_max_type":"F","product_max":0,"product_code":
+"P000000X","product_price":6000,"opt_price":0,"product_sum_price":6000,"product_sale_price":6000,"product_name":"\ube0c\ub77c\uc9c8 NY2 100g","opt_str":
+"\uc911\ub7c9=\uc6d0\ub450 100g, \ubd84\uc1c4\ub3c4=\ud578\ub4dc\ub4dc\ub9bd\/\ucee4\ud53c\uba54\uc774\ucee4","item_code":"P000000X000A","option_type":"E",
+"has_option":"T","has_option_add":"F","is_set_product":"F","set_product_name":"","set_product_no":0,"basket_prd_no":955,"item_listing_type":"S","is_oversea_able":false,
+"set_product_list":null,"buy_unit":1,"check_buy_unit_type":"O","wish_selected_item":"","wish_save_data":"","olink_data":"8!@#15","product_paymethod":
+"card,cash,cell,kakaopay,mileage,tcash","option_attached_file_info_json":"","total_unit_add_sale":0,"use_store_pickup":"F","sIsBenefitEventProduct":"F",
+"add_sale_related_qty":0,"add_sale_not_related_qty":0,"supplier_id":"boogie111111","param":"?product_no=24&cate_no=46","img":
+"\/\/coffeechoi.co.kr\/web\/product\/tiny\/20200108\/9b3871c51d0a3c9264a263a7213f04fb.jpg","name_alt":"\ube0c\ub77c\uc9c8 NY2 100g","product_name_link":
+"<a href = \"\/product\/\ube0c\ub77c\uc9c8-ny2-100g\/24\/category\/46\/\" class=\"ec-product-name\" >\ube0c\ub77c\uc9c8 NY2 100g<\/a>",
+"option_str":"[\uc635\uc158: \uc6d0\ub450 100g\/\ud578\ub4dc\ub4dc\ub9bd\/\ucee4\ud53c\uba54\uc774\ucee4]","form_quantity":"<input id=\"quantity_id_1\" name=\
+"quantity_name_1\" size=\"2\" value=\"1\" type=\"text\"  \/>","option_change_display":"","product_price_div_id":"product_price_div1","discount":"",
+"product_price_display":false,"product_price_str":"6,000\uc6d0","product_sale_price_div_id":"product_sale_price_div1","product_sale_price_display":"displaynone",
+"product_sale_price_front_id":"product_sale_price_front1","product_sale_price_str":"6,000\uc6d0","sum_price_front_id":"sum_price_front1","sum_price":"6,000\uc6d0",
+"sum_price_org":6000,"is_subscription":"F","check_buy_unit":1};
+aBasketProductData[1].product_name = "브라질 NY2 100g";
+aBasketProductData[1].set_product_name = "";
+aBasketProductData[1].opt_str = "중량=원두 100g, 분쇄도=핸드드립/커피메이커";
+aBasketProductData[1].sIsBenefitEventProduct = "F";
+aBasketProductData[1].layer_option_str = "";
+aBasketProductData[2] = {"delvtype":"A","main_cate_no":"43","product_no":32,"opt_id":"R0000000021","product_type":"normal_type","naver_used_exception":"F",
+"quantity":3,"check_quantity":3,"check_quantity_type":"O","product_qty":3,"option_add":"F","product_min":1,"product_max_type":"F","product_max":0,
+"product_code":"P00000BG","product_price":6000,"opt_price":0,"product_sum_price":6000,"product_sale_price":6000,"product_name":
+"\uc624\ub80c\uc9c0 \ube14\ub80c\ub4dc 100g","opt_str":"\uc911\ub7c9=\uc6d0\ub450 100g, \ubd84\uc1c4\ub3c4=\ud578\ub4dc\ub4dc\ub9bd\/\ucee4\ud53c\uba54\uc774\ucee4",
+"item_code":"P00000BG000A","option_type":"E","has_option":"T","has_option_add":"F","is_set_product":"F","set_product_name":"","set_product_no":0,"basket_prd_no":936,
+"item_listing_type":"S","is_oversea_able":false,"set_product_list":null,"buy_unit":1,"check_buy_unit_type":"O","wish_selected_item":"","wish_save_data":"",
+"olink_data":"8!@#15","product_paymethod":"card,cash,cell,kakaopay,mileage,tcash","option_attached_file_info_json":"null","total_unit_add_sale":0,"use_store_pickup":
+"F","sIsBenefitEventProduct":"F","add_sale_related_qty":0,"add_sale_not_related_qty":0,"supplier_id":"boogie111111","param":"?product_no=32&cate_no=43","img":
+"\/\/coffeechoi.co.kr\/web\/product\/tiny\/20200108\/1da821e07e3009c3b6e7ea4d2618b864.jpg","name_alt":"\uc624\ub80c\uc9c0 \ube14\ub80c\ub4dc 100g","product_name_link":
+"<a href = \"\/product\/\uc624\ub80c\uc9c0-\ube14\ub80c\ub4dc-100g\/32\/category\/43\/\" class=\"ec-product-name\" >\uc624\ub80c\uc9c0 \ube14\ub80c\ub4dc 100g<\/a>",
+"option_str":"[\uc635\uc158: \uc6d0\ub450 100g\/\ud578\ub4dc\ub4dc\ub9bd\/\ucee4\ud53c\uba54\uc774\ucee4]","form_quantity":"<input id=\"quantity_id_2\" name=\
+"quantity_name_2\" size=\"2\" value=\"3\" type=\"text\"  \/>","option_change_display":"","product_price_div_id":"product_price_div2","discount":"",
+"product_price_display":false,"product_price_str":"6,000\uc6d0","product_sale_price_div_id":"product_sale_price_div2","product_sale_price_display":"displaynone",
+"product_sale_price_front_id":"product_sale_price_front2","product_sale_price_str":"6,000\uc6d0","sum_price_front_id":"sum_price_front2","sum_price":"18,000\uc6d0",
+"sum_price_org":18000,"is_subscription":"F","check_buy_unit":1};
+
+</script>
+
+<iframe src="./html/saved_resource.html" id="log_realtime" style="display: none;"></iframe>
+<script src="./html/weblog_ubp.html"></script>
+<script type="text/javascript" src="./js/weblog.js" id="log_script"></script>
+<div id="modalBackpanel"></div><div id="modalContainer">
+<iframe id="modalContent" scroll="0" scrolling="no" frameborder="0" src="./html/saved_resource(1).html"></iframe>
+</div>
+</body></html>

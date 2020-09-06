@@ -1,0 +1,206 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import ohyes.coffee.dto.ProductDTO;
+
+public class ProductAdminDAO extends JdbcDAO {
+	//싱글톤 사용
+	private static ProductAdminDAO _dao;
+	
+	public ProductAdminDAO() {
+		
+	}
+	
+	static {
+		_dao = new ProductAdminDAO();
+	}
+	
+	public static ProductAdminDAO getProductDAO() {
+		return _dao;
+	}
+	
+	//상품의 갯수를 반환하는 메소드
+	public int selectCountProduct() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			con = getConnection();
+			String sql = "select count(*) from product";//페이지 처음 들어갔을 때 count 해주는 쿼리문
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);//검색대상이 1개 이므로
+			}
+		}catch (SQLException e) {
+			System.out.println("selectCountProduct() 메소드에서 발생하는 오류 " + e.getMessage());
+		}finally {
+			close(con, pstmt, rs);
+		}
+		return count;
+	}
+	
+	//관리자에서 처음 페이지에 들어갔을때 (또는 전체검색 클릭) 모든 검색결과를 보여주기 위한 메소드 + 페이징 처리
+	public List<ProductDTO> selectProductAdminAll(int startRow, int endRow) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		
+		
+		try {
+			con = getConnection();
+			String sql = "select * from (select rownum rn , temp.* from (select * from product where p_status = 1) temp) where rn between ? and ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO product = new ProductDTO();
+				
+				product.setpNo(rs.getString("p_no"));
+			//	product.setPcategoryCode(rs.getInt("pcategory_code"));
+				product.setpStock(rs.getInt("p_stock"));
+				product.setpName(rs.getString("p_name"));
+				product.setpCost(rs.getString("p_cost"));
+				//product.setpBrief(rs.getString("p_brief"));
+				product.setpImage(rs.getString("P_IMAGE"));
+				//product.setpImagePath(rs.getString("P_IMAGE_PATH"));
+				//product.setpImageDetail(rs.getString("P_IMAGE_DETAIL"));
+				//product.setpImageDetailPath(rs.getString("P_IMAGE_DETAIL_PATH"));
+				product.setpDate(rs.getString("P_DATE"));
+				//product.setpStatus(rs.getString("P_STATUS"));
+				product.setpSalesCount(rs.getInt("P_SALESCOUNT"));
+				
+				list.add(product);
+				
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("selectProductAdminAll()메소드에서의 오류" + e.getMessage());
+		}finally {
+			close(con, pstmt, rs);
+		}
+		
+		
+		return list; //이름이 같은 상품이 있을 수 있으므로
+	}
+
+	//관리자에서 관리자가 원하는 값으로 검색하기 위한 메소드
+	public List<ProductDTO> selectProductAdminNameNo(int index1, String value, int index2, int index3, String startRow, String endRow){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		
+		try {
+			con = getConnection();
+			String query1 = "";
+			String query2 = "";
+			String query3 = "";
+			String setValue = "%" + value + "%";
+			String sql = "";
+			
+			//%%로 검색해야돼
+			if(index1 == 1) {//이름으로 검색하겠다.
+				query1 = "p_name like ?";
+			}else if(index1 == 2) {//상품번호로 검색하겠다.
+				query1 = "p_no like ?";
+			}
+			
+			if(index2 == 3) {
+				query2 = "pcategory_code = 1";//커피용품
+			}else if(index2 == 4) {
+				query2 = "pcategory_code = 2";//블렌드원두
+			}else if (index2 == 5) {
+				query2 = "pcategory_code = 3";//싱글오리진원드
+			}
+			
+			if(index3 == 6) {//전체기간
+				query3 = "";//이거 이렇게 하면안돼
+			}else if (index3 == 7) {//오늘로부터 7일 전
+				query3 = "p_date >= TO_CHAR(SYSDATE-7,'YYYYMMDD')";
+			}else if (index3 == 8) {//오늘로부터 한달전
+				query3 = "p_date >= TO_CHAR(SYSDATE-30,'YYYYMMDD')";
+			}else if (index3 == 9) {//오늘로부터 3개월전
+				query3 = "p_date >= TO_CHAR(SYSDATE-90,'YYYYMMDD')";
+			}
+			
+			if(query3 == "") {
+				sql = "select * from product where " + query1 + " and " + query2 + " and p_status = 1";
+			}else {
+				sql = "select * from product where " + query1 + " and " + query2 + " and " + query3 + " and p_status = 1";
+			}
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, setValue);//value = 관리자가 뭐라고 text를 적었는지.
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO product = new ProductDTO();
+				
+				product.setpNo(rs.getString("p_no"));
+		    	//product.setPcategoryCode(rs.getInt("pcategory_code"));
+				product.setpStock(rs.getInt("p_stock"));
+				product.setpName(rs.getString("p_name"));
+				product.setpCost(rs.getString("p_cost"));
+				//product.setpBrief(rs.getString("p_brief"));
+				product.setpImage(rs.getString("P_IMAGE"));
+				//product.setpImagePath(rs.getString("P_IMAGE_PATH"));
+				//product.setpImageDetail(rs.getString("P_IMAGE_DETAIL"));
+				//product.setpImageDetailPath(rs.getString("P_IMAGE_DETAIL_PATH"));
+				product.setpDate(rs.getString("P_DATE"));
+				//product.setpStatus(rs.getString("P_STATUS"));
+				product.setpSalesCount(rs.getInt("P_SALESCOUNT"));
+				
+				list.add(product);
+				System.out.println(list.size());
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("selectProductAdminNameNo()메소드에서의 오류 " + e.getMessage());
+		}finally {
+			close(con, pstmt, rs);
+		}
+		return list;
+	}
+
+	//관리자에서 관라자가 원하는 상품을 삭제(=숨김)하기 위한 메소드(체크박스 값 리스트로 가져와서 for문돌려서 다 삭제해서 이용해봐도 될거같은데...나중에 해보자)
+	public int deleteProductAdmin(String pno){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		int rows = 0;
+		
+		try {
+			con = getConnection();
+			String sql = "update product set p_status = 0 where p_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pno);//value = 관리자가 뭐라고 text를 적었는지.
+			
+			rows = pstmt.executeUpdate();
+			
+		}catch (SQLException e) {
+			System.out.println("deleteProductAdmin()메소드에서의 오류 " + e.getMessage());
+		}finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+}

@@ -1,0 +1,116 @@
+<%@page import="ohyes.coffee.dao.QnaBoardDAO"%>
+<%@page import="ohyes.coffee.dto.QnaDTO"%>
+<%@page import="ohyes.coffee.dao.boardNoticeDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/coffee/Mypage/login_check.jspf" %>  
+<%
+//전달값을 반환받아 저장
+	int qnaNo=Integer.parseInt(request.getParameter("qnaNo"));
+	String pageNum=request.getParameter("pageNum");
+	String search=request.getParameter("search");
+	String keyword=request.getParameter("keyword");
+	
+	//게시글번호를 전달받아 BOARD 테이블에 저장된 해당 게시글을 검색하여
+	//반환하는 DAO 클래스의 메소드 호출
+	QnaDTO board=QnaBoardDAO.getDAO().selectNumBoard(qnaNo);
+	
+	if(!loginMember.getMemId().equals(board.getQnaMemId())) {
+		out.println("<script type='text/javascript'>");
+		out.println("location.href='"+request.getContextPath()+"/site/index.jsp?workgroup=error&work=error400';");
+		out.println("</script>");
+		return;
+	}
+%>
+<link rel="stylesheet" type="text/css" href="../css/optimizerf714.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<!--allStore_contents-->
+<div id="allStore_contents">
+	<div class="allStore_layout">
+		<div>
+			<div
+				class="xans-element- xans-board xans-board-writepackage-4 xans-board-writepackage xans-board-4 ">
+				<!--타이틀, 현재위치-->
+				<div
+					class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4 allStore-board-menupackage ">
+					<div class="title">
+						<h2>
+							<font color="#555555">QNA게시판</font>
+						</h2>
+					</div>
+					<div class="nav-path">
+						<ol>
+							<li><a href="<%=request.getContextPath()%>/coffee/index.jsp">홈</a></li>
+							<li title="현재 위치"><strong>QNA게시판</strong></li>
+						</ol>
+					</div>
+				</div>
+<form action="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=board&work=qnamodify_action" method="post" id="boardForm">
+	<input type="hidden" name="num" value="<%=qnaNo%>">
+	<input type="hidden" name="pageNum" value="<%=pageNum%>">
+	<input type="hidden" name="search" value="<%=search%>">
+	<input type="hidden" name="keyword" value="<%=keyword%>">
+				
+				<div class="ec-base-table typeWrite" style="padding-right: 80px;">
+						<table border="1" summary="">
+							<caption>글쓰기 폼</caption>
+
+							<tbody>
+
+								<tr>
+
+									<th scope="row">제목</th>
+									<td><input style="width: 300px; height: 25px;"
+										id="subject" name="subject" 
+										 class="inputTypeText" 
+										value="<%=board.getQnaTitle()%>" type="text" /></td>
+								</tr>
+
+								<tr class="">
+									<th scope="row">ID</th>
+									<td><%=loginMember.getMemId()%></td>
+								</tr>
+								<tr>
+								<th scope="row" >카테고리</th>
+									<td >
+					<select name="qnaCode">
+										<option value="1"<% if(board.getQnaCode()==1) { %> selected="selected" <% } %>>회원/정보관리</option>
+										<option value="2"<% if(board.getQnaCode()==2) { %> selected="selected" <% } %>>주문/결제</option>
+										<option value="3"<% if(board.getQnaCode()==3) { %> selected="selected" <% } %>>배송</option>
+										<option value="4"<% if(board.getQnaCode()==4) { %> selected="selected" <% } %>>반품/환불/교환/AS</option>
+										<option value="5"<% if(board.getQnaCode()==5) { %> selected="selected" <% } %>>기타</option>
+								</select>
+				</td ></tr>
+								<tr class="">
+									<th scope="row" colspan="2">내용</th>
+								</tr>
+								<!-- 내용 크기수정해야됨 -->
+								<tr class="">
+									<td colspan="2"><textarea style="width: 1200px;" rows="15"
+											cols="100" name="contents"><%=board.getQnaContents()%></textarea></td>
+								</tr>
+								
+							<tbody>
+							</tbody>
+				
+
+
+							<tr class="agree ">
+							</tr>
+							</tbody>
+						</table>
+				</div>
+						<div class="ec-base-button ">
+					<button type="submit" style=" float: right; margin-right: 100px; "><img src="./board/images/board_save.png"  ></button>			
+					</div>
+				</form>
+				
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+<!--allStore_contents-->
+

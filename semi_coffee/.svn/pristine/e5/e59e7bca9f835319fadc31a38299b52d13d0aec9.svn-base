@@ -1,0 +1,136 @@
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String pageNum=request.getParameter("pageNum");
+
+	String no=request.getParameter("no");
+	if(no==null) no="";
+	ProductDTO product=ProductDAO.getProductDAO().selectNoProduct(no);
+%>
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            <div>
+                <div class="xans-board xans-board-writepackage-4 xans-board-writepackage xans-board-4 ">
+                    <!--타이틀, 현재위치-->
+                <div class="allStore-board-menupackage">
+                    <div class="title">
+                        <h2>
+                            <font color="#555555">상품후기</font>
+                        </h2>
+                    </div>
+                    <div class="nav-path">
+                        <ol>
+                            <li><a href="#">홈</a></li>
+                            <li title="현재 위치"><strong>상품후기</strong></li>
+                        </ol>
+                    </div>
+                </div>
+                <!--타이틀, 현재위치-->
+                    <form id="boardWriteForm" name="" action="http://coffeechoi.co.kr/exec/front/Board/write/4" method="post" target="_self" enctype="multipart/form-data">
+                        
+                        <div class="xans-board xans-board-write-4 xans-board-write xans-board-4">
+                            <!-- 상품정보선택 -->
+                            <div class="ec-base-box typeProduct  ">
+                                <p class="thumbnail">
+                                    <% if(product!=null) {%>
+                                	<a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=product.getpNo()%>">
+                                		<img id="iPrdImg" src="<%=product.getpImagePath()%>" onerror="this.src='http://img.echosting.cafe24.com/thumb/75x75.gif'" alt="">
+                                	</a>
+                                    <% } else { %>
+                                	<img id="iPrdImg" src="images/75x75.gif">
+                                    <% } %>
+                               	</p>
+                                <div class="information">
+                                    <span id="sPrdCommonImg"></span> 
+                                    	<% if(product!=null) {%>
+                                    <h3>
+                                        <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=product.getpNo()%>" id="aPrdNameLink">
+                                        <span id="sPrdName"><%=product.getpName()%></span>
+                                        </a>
+                                    </h3>
+                                    <p class="price">
+                                        <span id="sPrdPrice"><%=product.getpCost()%></span>
+                                    </p>
+                                        <% } %>
+                                    <p class="button">
+                                        <span id="iPrdView" class="" style="display: inline;">
+                                    	<% if(product!=null) {%>
+                                            <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=product.getpNo()%>" id="aPrdLink" target="_blank">
+                                                <img src="images/btn_prd_detail.gif" alt="상품상세보기">
+                                            </a>
+                                        <% } %>
+                                        </span>
+                                        <span class="">
+                                            <a href="#none" onclick="BOARD_WRITE.product_popup('/product/search_board_list.html')">
+                                                <img src="images/btn_prd_select.gif" alt="상품정보선택">
+                                            </a>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="ec-base-table typeWrite ">
+                                 <table border="1" summary="">
+                                     <caption>글쓰기 폼</caption>
+                                     <colgroup>
+                                         <col style="width:130px;" />
+                                         <col style="width:auto;" />
+                                     </colgroup>
+                                     <tbody>
+                                         <tr>
+                                             <th scope="row">제목</th>
+                                             <td> 
+                                                 <input id="subject" name="review_title" class="inputTypeText" value="" type="text" /> 
+                                             </td>
+                                         </tr>
+                                         <tr class="">
+                                             <th scope="row">작성자</th>
+                                             <td>
+                                                 <input id="writer" name="review_memid" class="inputTypeText" value="멤버아이디" type="text" readonly/>
+                                             </td>
+                                         </tr>
+                                         <tr class="">
+                                             <th scope="row" colspan="2" name="review_content">내용</th>
+                                         </tr>
+                                         <!-- 내용 크기수정해야됨 -->
+                                             <tr class="">
+                                                 <td  colspan="2">
+                                                     <textarea rows="15" cols="200" name="contents"></textarea>
+                                                 </td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                 </div>
+                                 <div class="ec-base-button ">
+                                     <span class="gLeft">
+                                         <span class="displaynone">
+                                             <a href="#none" onclick="">
+                                                 <img src="./images/btn_reply_admin.gif" alt="관리자답변보기" />
+                                             </a>
+                                         </span>
+                                     <a href="review.html">
+                                         <img src="images/btn_list.gif" alt="목록" /></a>
+                                 </span>
+                                 <span class="gRight">
+                                     <a href="#none" class="allStore-color-btn1">
+                                         등록
+                                     </a>
+                                     <a href="review.html" class="allStore-color-btn3">
+                                         취소
+                                     </a>
+                                 </span>
+                             </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--allStore_contents-->
+</div>

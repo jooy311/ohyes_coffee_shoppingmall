@@ -1,0 +1,24 @@
+<%@page import="ohyes.coffee.dto.QnaDTO"%>
+<%@page import="ohyes.coffee.dao.QnaBoardDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/coffee/Mypage/login_check.jspf" %>  
+<%	
+	int num=QnaBoardDAO.getDAO().selectNextNum();
+	String qnaTitle=request.getParameter("subject");
+	String qnaContents=request.getParameter("contents");
+	int QnaCode=Integer.parseInt(request.getParameter("qnaCode"));
+
+	QnaDTO board=new QnaDTO();
+	board.setQnaNo(num);
+	board.setQnaMemId(loginMember.getMemId());
+	board.setQnaTitle(qnaTitle);
+	board.setQnaContents(qnaContents);
+	board.setQnaCode(QnaCode);
+	
+	QnaBoardDAO.getDAO().insertBoard(board);
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=board&work=qnaboard';");
+	out.println("</script>");
+%>

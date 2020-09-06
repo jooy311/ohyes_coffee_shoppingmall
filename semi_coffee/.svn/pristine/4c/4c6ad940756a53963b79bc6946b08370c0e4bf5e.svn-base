@@ -1,0 +1,192 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import ohyes.coffee.dto.NoticeDTO;
+
+public class NoticeAdminDAO extends JdbcDAO {
+	
+	private static NoticeAdminDAO _dao;
+	
+	private NoticeAdminDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new NoticeAdminDAO();
+	}
+	
+	public static NoticeAdminDAO getDAO() {
+		return _dao;
+	}
+	
+	/**상수필드**/
+	public final static int UPDATE=9;
+	public final static int DELETE=0;
+	public final static int SAVE_ONLY=1;
+	public final static int SAVE_AND_SUBMIT=2;
+	
+	
+	/** 공지글 select (다중행) : 모든행 검색 **/
+	public List<NoticeDTO> selectNoticeAdminAll(){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<NoticeDTO> noticeList=new ArrayList<NoticeDTO>();
+		
+		try {
+			con=getConnection();
+			
+			String sql="select * from notice where notice_status in (1,2) order by notice_no";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeDTO notice=new NoticeDTO();
+				notice.setNoticeNo(rs.getInt("notice_no"));
+				notice.setNoticeTitle(rs.getString("notice_title"));
+				notice.setNoticeContents(rs.getString("notice_contents"));
+				notice.setNoticeDate(rs.getString("notice_date"));
+				notice.setNoticeReadcount(rs.getInt("notice_readcount"));
+				notice.setNoticeStatus(rs.getInt("notice_status"));
+				
+				noticeList.add(notice);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러] selectNoticeAll() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		
+		return noticeList;
+	}
+	
+	/** 공지글 select : 글번호 => DTO**/
+	public NoticeDTO selectNoticeAdminNo(int noticeNo){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		NoticeDTO notice=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select * from Notice where notice_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				notice=new NoticeDTO();
+				notice.setNoticeNo(rs.getInt("notice_no"));
+				notice.setNoticeTitle(rs.getString("notice_title"));
+				notice.setNoticeContents(rs.getString("notice_contents"));
+				notice.setNoticeDate(rs.getString("notice_date"));
+				notice.setNoticeReadcount(rs.getInt("notice_readcount"));
+				notice.setNoticeStatus(rs.getInt("notice_status"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러] selectNoticeNo() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		
+		return notice;
+	}
+	
+	
+	
+	/** 공지글 insert : DTO => int **/
+	public int insertNoticeAdmin(NoticeDTO notice) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			int row=0;
+			
+			try {
+				con=getConnection();
+				
+				String sql="insert into notice values(?, ?, ?, sysdate, ?, 1)";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, notice.getNoticeNo());
+				pstmt.setString(2,  notice.getNoticeTitle());
+				pstmt.setString(3, notice.getNoticeContents());
+				pstmt.setInt(4, notice.getNoticeReadcount());
+				
+				pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("[에러] insertNotice() 메소드의 SQL 오류 : " + e.getMessage());
+			} finally {
+				close(con, pstmt);
+			}
+			return row;
+	}
+	
+	/** 공지글 select : 다음 공지글 번호 **/
+	public int selectNextNo() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int nextNo=0;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select notice_seq.nextval from dual";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				nextNo=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러] selectNextNo() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return nextNo;
+		
+	}
+
+	/** 공지글 update :  **/
+	public int updateNoticeAdmin(NoticeDTO notice, final int noticeStatus) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int row=0;
+		
+		try {
+			con=getConnection();
+			
+			if(noticeStatus==UPDATE) {
+				String sql="update Notice set notice_title=?, notice_contents=? where notice_no=? ";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, notice.getNoticeTitle());
+				pstmt.setString(2, notice.getNoticeContents());
+				pstmt.setInt(3, notice.getNoticeNo());
+			} else {
+				String sql="update Notice set notice_status=? where notice_no=? ";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, noticeStatus);
+				pstmt.setInt(2, notice.getNoticeNo());
+				
+			}
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[에러] updateNotice() 메소드의 SQL 오류 : " + e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return row;
+}
+	
+	
+}

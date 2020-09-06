@@ -1,0 +1,259 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="ohyes.coffee.dto.OrderListDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="ohyes.coffee.dao.OrderPayAdminDAO"%>
+<%@page import="ohyes.coffee.dao.OrderPayDAO"%>
+<%@page import="ohyes.coffee.pagination.Page"%>
+<%@page import="ohyes.coffee.dto.OrderPayDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%
+	String select_classification = request.getParameter("select_classification");//주문자인지 주문번호인지
+	if(select_classification == null) select_classification = "";
+	
+	String search_order = request.getParameter("search_order");//input에 검색단어
+	if(search_order == null) search_order = "";
+	search_order = new String(search_order.getBytes("ISO-8859-1"), "UTF-8");
+	
+	String order_date = request.getParameter("order_date");
+	if(order_date == null) order_date = "";
+	
+	String order_p = request.getParameter("order_p");
+	if(order_p == null) order_p = "";
+	
+	String search_order_p = request.getParameter("search_order_p");
+	if(search_order_p == null) search_order_p = "";
+	search_order_p = new String(search_order_p.getBytes("ISO-8859-1"), "UTF-8");
+	
+	
+	String[] order_status = request.getParameterValues("order_status");
+	if(order_status == null) {
+		order_status = new String[2];
+		order_status[0] = "";
+		order_status[1] = "";
+	//order_status[0] = new String(order_status[0].getBytes("ISO-8859-1"), "UTF-8");
+	//order_status[1] = new String(order_status[1].getBytes("ISO-8859-1"), "UTF-8");
+	}
+	String checkedStatus = "";
+	for(int i = 0; i< order_status.length; i++){
+		if(!order_status[i].equals(""))
+			checkedStatus = order_status[i];
+		
+	}
+	
+	
+	
+	//페이지 인스턴스 생성
+	Page pagination = new Page();
+	int pageNum = 0;
+	if(request.getParameter("pageNum") == null ){
+		pageNum = 1;//null이면 일단 1페이지로 이동 할 수 있도록
+	}else {
+		pageNum = Integer.parseInt(request.getParameter("pageNum"));//null값이 아니라면 해당 페이지 번호로 설정
+	}
+	System.out.println("페이지번호 : " + pageNum);
+	pagination.setNum(pageNum);//현재 페이지를 설정
+	
+
+	pagination.setCount(OrderPayAdminDAO.getOrderPayAdminDAO().selectCountOrderPay(select_classification, search_order, order_date, order_p, order_status, search_order_p));
+	System.out.println("게시물의 갯수 : " + pagination.getCount());
+
+	int startRow = pagination.getDisplayPost();
+	int endRow = pagination.getPostNum() * pageNum;
+	
+ 	List<OrderListDTO> orderPayList = OrderPayAdminDAO.getOrderPayAdminDAO().selectOrderPayAdminAll(pagination.getDisplayPost(), pagination.getPostNum(),select_classification, search_order, order_date, order_p, order_status, search_order_p);
+	System.out.println(pagination.getDisplayPost()+"   "+ pagination.getPostNum()*pageNum);
+ 	System.out.println("리스트 사이즈 : "+orderPayList.size());
+	System.out.println("=====================================");
+    
+%>
+
+	<div class="container-fluid">
+	<div>&nbsp;</div>
+	  <h4><i class="fa fa-angle-right"></i> 주문검색 </h4><hr>
+		<div class="container">
+		
+			<form id = "orderList" name = "orderListForm" action = "<%=request.getContextPath()%>/coffee/admin/index.jsp?part=order&work=list" method = "post">
+			
+				<div class="row">
+					<div class="col-25">
+						<label for="fname">검색 분류</label>
+					</div>
+					<div class="col-75">
+						<!--상품명인지 상품코드인지 선택-->
+						<select id="select_classification" name="select_classification"
+							style="width: 30%">
+							<option value="mem_id">주문자 아이디</option>
+							<option value="order_no">주문번호</option>
+						</select> 
+						<input type="text" id="search_order" name="search_order"
+							placeholder="입력.." style="width: 30%">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-25">
+						<label for="order_date">기간</label>
+					</div>
+					<div class="col-75">
+						<select id="order_date" name="order_date">
+							<option value="all">전체</option>
+							<option value="for7days">7일</option>
+							<option value="for1month">1개월</option>
+							<option value="for3month">3개월</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-25">
+						<label for="order_p">상품</label>
+					</div>
+					<div class="col-75">
+						<select id="order_p" name="order_p" style="width: 30%">
+							<option value="p_name" >상품이름</option>
+							<option value="p_no">상품번호(코드)</option>
+						</select>
+						
+						<input type="text" id="search_order_p" name="search_order_p"
+							placeholder="입력.." style="width: 30%">
+							
+					</div>
+				</div>
+				
+				
+				<div class="row checkList">
+					<div class="col-25">
+						<label for="order_status">주문상태</label>
+					</div>
+					<div style = "border:1px #eee; padding-top :15px;">
+						<input type="checkbox" name="order_status" value="1">주문완료&nbsp;&nbsp;
+						<input type="checkbox" name="order_status" value="0">주문취소&nbsp;&nbsp;
+					</div>
+				</div>
+
+				<div class="row">
+					<input type="submit" value="검색">
+				</div>
+			</form>
+		</div>
+		
+	<%------------목록출력 -------------%>
+	<div class="col-md-12">
+		<div>&nbsp;</div><div>&nbsp;</div>
+            <div class="content-panel">
+              <h4><i class="fa fa-angle-right"></i> 주문목록 </h4>
+              <p>
+					(검색된 상품 갯수 : <%=pagination.getCount()%>)
+			  </p>
+              <table class="table table-striped table-advance table-hover">
+ 				
+                <thead>
+                  <tr>
+                    <th><i class="fa fa-bullhorn"></i>주문날짜</th>
+                    <th class="hidden-phone"><i class="fa fa-question-circle"></i> 주문번호</th>
+                    <th><i class="fa fa-bookmark"></i>주문자 아이디</th>
+                    <th><i class="fa fa-bookmark"></i>주문자</th>
+                   <%-- <th><i class="fa fa-bookmark"></i>상품코드</th>--%>
+                    <%--<th><i class="fa fa-bookmark"></i>상품이름</th>--%>
+                    <th><i class=" fa fa-edit"></i>결제금액</th>
+                    <th><i class=" fa fa-edit"></i>결제상태</th>
+                    <th><i class=" fa fa-edit"></i>삭제</th>
+                   
+                
+                  </tr>
+                </thead>
+                <tbody>
+                <%if(pagination.getCount() == 0) { %>
+                	<tr>
+                		<td colspan = "8" style = "text-align: center">검색된 결과가 없습니다.</td>
+                	</tr>
+                	
+                <%} else {
+                	
+                	for(OrderListDTO order : orderPayList){
+                      
+                %>
+                  <tr>
+                  	<td id = "orderDate"><%=order.getOrderDate().substring(0, 10)%></td>
+                    <td id = "orderNo"><a href="#" id ="orderDetail_<%=order.getOrderNo()%>" name="<%=order.getOrderNo()%>" class="orderDetail"><%=order.getOrderNo()%></a></td>
+					<td id = "orderMemId"><%=order.getMemID()%></td>
+					<td id = "orderMemName"><%=order.getMemName()%></td>
+					<%-- <td id = "orderProduct"><%=order.getOrderdetailPNo()%> </td>--%>
+					<%--<td id = "orderProductName"><%=order.getpName()%> </td>--%>
+					<td id = "orderTotalCost"><span><%=DecimalFormat.getCurrencyInstance().format(order.getOrderTotalCost())%></span></td>
+					<td id = "orderStatus"><%if(order.getOrderStatus() == 1)%>주문완료 <%else%>주문취소</td>
+					<%--<button  id = "deleteBtn" class="btn btn-danger btn-xs"
+                      		onclick="javascript:location.href = '<%=request.getContextPath()%>/coffee/admin/index.jsp?part=product&work=delete_action&productNO=<%=product.getpNo()%>'">삭제</button>--%>
+ 				
+                  </tr>
+                <%} }%>
+                 
+                </tbody>
+              </table>
+            </div>
+            <!-- /content-panel -->
+          </div>
+	</div>
+	
+	<div style="text-align: center;">
+		<%--액션은 하지 않는다. 자기자신한테 보낼것이므로 --%>
+		<form id = "paging" method = "post" >
+		<input type = "hidden" name = "pageNum" vlaue = "<%=pageNum%>">
+		
+			<input type = "hidden" name = "select_classification" vlaue = "<%=select_classification%>">
+			<input type = "hidden" name = "search_order" vlaue = "<%=search_order%>">
+			<input type = "hidden" name = "order_date" vlaue = "<%=search_order%>">
+			<input type = "hidden" name = "order_p" vlaue = "<%=order_p%>">
+			<input type = "hidden" name = "search_order_p" vlaue = "<%=search_order_p%>">
+			<input type = "hidden" name = "order_status" vlaue = "<%=order_status%>">
+		
+		
+		<% if(pagination.getStartPageNum() > pagination.getPageNumCnt()) { //첫번째 블럭이 아닌경우 %>
+		<%--페이지 넘길때에도 검색값을 넘겨 다음페이지에서도 검색값이 나올 수 있도록 한다 --%>
+		
+		<a href = "<%=request.getContextPath()%>/coffee/admin/index.jsp?part=order&work=list&pageNum=<%=pagination.getStartPageNum()-pagination.getPageNumCnt() %>&
+			select_classification=<%=select_classification%>&search_order=<%=search_order%>&order_date=<%=order_date%>&order_p=<%=order_p%>&search_order_p=<%=search_order_p%>
+			&order_status=<%=checkedStatus%>">[이전]</a>
+		<%}else { %>
+		[이전]
+		<%} %>
+	
+	
+	<% for(int i=pagination.getStartPageNum(); i<= pagination.getEndPageNum(); i++) { %>
+		<% if(pageNum != i){ %>
+			
+			<a href="<%=request.getContextPath()%>/coffee/admin/index.jsp?part=order&work=list&pageNum=<%=i%>&
+			select_classification=<%=select_classification%>&search_order=<%=search_order%>&order_date=<%=order_date%>&order_p=<%=order_p%>&search_order_p=<%=search_order_p%>
+			&order_status=<%=checkedStatus%>">[<%=i %>]</a>
+		<%}else{ %>
+			<span style="font-size: 18px; font-weight: bold;">[<%=i %>]</span>
+		<% } %>
+	<% } %>
+	
+	<% if(pagination.getStartPageNum() != pagination.getPageNum()) { //첫번째 블럭이 아닌경우 %>
+		<a href = "<%=request.getContextPath()%>/coffee/admin/index.jsp?part=order&work=list&pageNum=<%=pagination.getStartPageNum()+pagination.getPageNumCnt() %>&
+			select_classification=<%=select_classification%>&search_order=<%=search_order%>&order_date=<%=order_date%>&order_p=<%=order_p%>&search_order_p=<%=search_order_p%>
+			&order_status=<%=checkedStatus%>">[다음]</a>
+		
+		<%}else { %>
+		[마지막]
+		<%} %>
+	
+	</form>
+	
+	</div>
+	<div><p><p></div>
+
+	<!-- -------------------------------------스크립트 시작----------------------------------- -->
+	<script type="text/javascript">
+		//주문번호 a링크 클릭시 새 창뜨면서 주문 상세를 볼 수 있다.
+		//주문 상세에는 상품코드, 상품이름, 주문한 상품의 수량, 총 주문 가격을 출력한다
+		$(".orderDetail").click(function() {
+			var tmp = $(this).attr("name");
+			var orderNo = $("#orderDetail_"+tmp).text();
+			 window.open("<%=request.getContextPath()%>/coffee/admin/order/order_detail_list.jsp?orderNo="+orderNo,
+		           		"order_detail_list", "width=500,height=300,left=450,top=250");
+		});
+	</script>
+

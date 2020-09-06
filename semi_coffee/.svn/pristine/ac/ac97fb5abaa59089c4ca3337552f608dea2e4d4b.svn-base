@@ -1,0 +1,150 @@
+package ohyes.coffee.dto;
+
+import java.util.Date;
+
+/*
+ 
+ 이름                  				널?       유형             
+------------------- -------- -------------- 
+P_NO                NOT NULL VARCHAR2(6)    
+PCATEGORY_CODE      NOT NULL NUMBER(1)      
+P_STOCK             NOT NULL NUMBER         
+P_NAME              NOT NULL VARCHAR2(50)   
+P_COST              NOT NULL NUMBER         
+P_BRIEF             NOT NULL VARCHAR2(3000) 
+P_IMAGE             NOT NULL VARCHAR2(100)  
+P_IMAGE_PATH        NOT NULL VARCHAR2(500)  
+P_IMAGE_DETAIL      NOT NULL VARCHAR2(100)  
+P_IMAGE_DETAIL_PATH NOT NULL VARCHAR2(500)  
+P_DATE              NOT NULL DATE           
+P_STATUS                     NUMBER(1)      
+P_SALESCOUNT        NOT NULL NUMBER     
+ 
+ * */
+
+
+public class ProductDTO {
+	private String pNo;
+	private int pcategoryCode;
+	private int pStock;
+	private String pName;
+	private int pCost;
+	private String pBrief;
+	private String pImage;
+	private String pImagePath;
+	private String pImageDetail;
+	private String pImageDetailPath;
+	private String pDate;
+	private String pStatus;
+	private int pSalesCount;
+	
+	public ProductDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getpNo() {
+		return pNo;
+	}
+
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
+	}
+
+	public int getPcategoryCode() {
+		return pcategoryCode;
+	}
+
+	public void setPcategoryCode(int pcategoryCode) {
+		this.pcategoryCode = pcategoryCode;
+	}
+
+	public int getpStock() {
+		return pStock;
+	}
+
+	public void setpStock(int pStock) {
+		this.pStock = pStock;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public int getpCost() {
+		return pCost;
+	}
+
+	public void setpCost(int pCost) {
+		this.pCost = pCost;
+	}
+
+	public String getpBrief() {
+		return pBrief;
+	}
+
+	public void setpBrief(String pBrief) {
+		this.pBrief = pBrief;
+	}
+
+	public String getpImage() {
+		return pImage;
+	}
+
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
+	}
+
+	public String getpImagePath() {
+		return pImagePath;
+	}
+
+	public void setpImagePath(String pImagePath) {
+		this.pImagePath = pImagePath;
+	}
+
+	public String getpImageDetail() {
+		return pImageDetail;
+	}
+
+	public void setpImageDetail(String pImageDetail) {
+		this.pImageDetail = pImageDetail;
+	}
+
+	public String getpImageDetailPath() {
+		return pImageDetailPath;
+	}
+
+	public void setpImageDetailPath(String pImageDetailPath) {
+		this.pImageDetailPath = pImageDetailPath;
+	}
+
+	public String getpDate() {
+		return pDate;
+	}
+
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
+
+	public String getpStatus() {
+		return pStatus;
+	}
+
+	public void setpStatus(String pStatus) {
+		this.pStatus = pStatus;
+	}
+
+	public int getpSalesCount() {
+		return pSalesCount;
+	}
+
+	public void setpSalesCount(int pSalesCount) {
+		this.pSalesCount = pSalesCount;
+	}
+	
+		
+}

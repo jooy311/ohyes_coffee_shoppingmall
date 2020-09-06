@@ -1,0 +1,202 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0041)http://coffeechoi.co.kr/myshop/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+
+
+<!--allStore_contents-->
+<div id="allStore_contents" style="user-select: auto;">
+	<div class="allStore_layout" style="user-select: auto;">        
+		<div style="user-select: auto;">
+
+	<!--타이틀, 현재위치-->
+	<div class="allStore-board-menupackage" style="user-select: auto;">
+		<div class="title" style="user-select: auto;">
+			<h2 style="user-select: auto;">마이페이지</h2>
+		</div>
+	</div>
+
+
+<!--타이틀, 현재위치-->
+	<div class="xans-element- xans-layout xans-layout-logincheck" style="user-select: auto;">
+	<!-- $url = /member/login.html -->
+	</div>
+
+
+<div class="xans-element- xans-myshop xans-myshop-asyncbenefit">
+	<div class="ec-base-box typeMember gMessage displaynone" style="user-select: auto;">
+		<div class="information" style="user-select: auto;">
+			<p class="thumbnail" style="user-select: auto;">
+			<img src="../coffee/Mypage/image/img_member_default.gif" alt="" 
+			onerror="this.src=&#39;http://img.echosting.cafe24.com/skin/base/member/img_member_default.gif&#39;;" 
+			class="myshop_benefit_group_image_tag"></p>
+			<div class="description" style="user-select: auto;">
+		<p>저희 쇼핑몰을 이용해 주셔서 감사합니다. <strong class="txtEm"><span><span class="xans-member-var-name"> </span></span></strong> 
+		님은 <strong>[<span class="xans-member-var-group_name">일반회원</span><span class="myshop_benefit_ship_free_message"></span>]</strong> 회원이십니다.</p>
+		<p class="displaynone myshop_benefit_display_no_benefit "><strong class="txtEm"><span class="myshop_benefit_dc_pay"></span> 
+		<span class="myshop_benefit_dc_min_price">0원 이상</span></strong> 구매시 <strong class="txtEm"><span class="myshop_benefit_dc_price">0원</span>
+		<span class="myshop_benefit_dc_type"></span></strong>을 <span class="myshop_benefit_use_dc">추가할인없음</span> 받으실 수 있습니다. 
+		<span class="myshop_benefit_dc_max_percent"></span></p>
+		<p class="displaynone myshop_benefit_display_with_all "><strong class="txtEm"><span class="myshop_benefit_dc_pay"></span> 
+		<span class="myshop_benefit_dc_min_price_mileage">0원 이상</span></strong> 구매시 <strong class="txtEm">
+		<span class="myshop_benefit_dc_price_mileage">0원</span><span class="myshop_benefit_dc_type_mileage"></span></strong>을 
+		<span class="myshop_benefit_use_dc_mileage"></span> 받으실 수 있습니다.
+		<span class="myshop_benefit_dc_max_mileage_percent"></span></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="xans-element- xans-myshop xans-myshop-asyncbankbook ec-base-box gHalf" style="user-select: auto;">
+	<ul>
+		<li style="user-select: auto;">
+			<strong class="title" style="user-select: auto;">총주문</strong>
+			<strong class="data" style="user-select: auto;">
+			<span id="xans_myshop_bankbook_order_price" style="user-select: auto;">0원</span>
+			(<span id="xans_myshop_bankbook_order_count" style="user-select: auto;">0</span>회)</strong>
+		</li>
+	</ul>
+</div>
+
+	<div id="myshopMain" class="xans-element- xans-myshop xans-myshop-main" style="user-select: auto;">
+		<div class="shopMain profile" style="user-select: auto;">
+		<h3><a href="index.jsp?workgroup=Mypage&work=editmember"><strong>profile</strong>회원 정보 변경</a></h3>
+		<p>회원이신 고객님의 개인정보를 관리 및 변경하는 공간입니다.<br>개인정보를 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다.</p>
+	  	  </div>
+			</div>
+		</div>
+	</div>
+</div>
+    
+    
+    
+<!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+<div>
+
+<!--타이틀, 현재위치-->
+    <div class="allStore-board-menupackage">
+    <div class="title">
+    <h2>주문조회</h2>
+    </div>
+    <div class="nav-path">
+
+    </div>
+</div>
+
+<!--타이틀, 현재위치-->
+
+<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab typeLight ">
+	<ul class="menu">
+		<li class="tab_class selected"><a href="http://coffeechoi.co.kr/myshop/order/list.html?history_start_date=2020-04-28&amp;history_end_date=
+		2020-07-27&amp;past_year=2019">주문내역조회 (<span id="xans_myshop_total_orders">1</span>)</a></li>
+		<li class="tab_class_cs"><a href="http://coffeechoi.co.kr/myshop/order/list.html?mode=cs&amp;history_start_date=2020-04-28&amp;history_end_date=
+		2020-07-27&amp;past_year=2019">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">1</span>)</a></li>
+    </ul>
+</div>
+
+<form method="get" id="OrderHistoryForm" name="OrderHistoryForm">
+<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
+
+<ul>
+	<li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+</ul>
+</div>
+<input id="mode" name="mode" value="" type="hidden">
+<input id="term" name="term" value="" type="hidden">
+</form>
+<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem ec-base-table typeList">
+<!-- $login_url = /member/login.html -->
+<div class="title">
+<h3>주문 상품 정보</h3>
+</div>
+<table border="1" summary="">
+<caption>주문 상품 정보</caption>
+<colgroup>
+<col style="width:135px;">
+<col style="width:93px;">
+<col style="width:auto;">
+<col style="width:61px;">
+<col style="width:111px;">
+<col style="width:111px;">
+<col style="width:111px;">
+</colgroup>
+<thead>
+<tr>
+	<th scope="col">주문일자<br>[주문번호]</th>
+	<th scope="col">이미지</th>
+	<th scope="col">상품정보</th>
+	<th scope="col">수량</th>
+	<th scope="col">상품구매금액</th>
+	<th scope="col">주문처리상태</th>
+	<th scope="col">취소/교환/반품</th>
+</tr></thead>
+<tbody class="center ">
+<tr class="xans-record-">
+<td class="number "> 2020-07-21<p>
+ <a href="http://coffeechoi.co.kr/myshop/order/detail.html?order_id=20200721-0000044&amp;page=1&amp;history_start_date=2020-04-28&
+amp;history_end_date=2020-07-27" class="line">[20200721-0000044]</a></p>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html#none" class="displaynone" onclick="OrderHistory.orderCancel(&#39;20200721-0000044&#39;)">
+	<img src="./image/btn_order_cancel.gif" alt="주문취소"></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/cancel.html?order_id=20200721-0000044" class="displaynone button">
+	<img src="./image/btn_order_cancel2.gif" alt="취소신청"></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/exchange.html?order_id=20200721-0000044" class="displaynone button">
+	<img src="./image/btn_order_exchange.gif" alt="교환신청"></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/return.html?order_id=20200721-0000044" class="displaynone button">
+	<img src="./image/btn_order_return.gif" alt="반품신청"></a>
+</td>
+<td class="thumb"><a href="http://coffeechoi.co.kr/product/detail.html?product_no=32&amp;cate_no=43">
+	<img src="./image/ba4695fbad0044a1576908a46c75736c.jpg" onerror="this.src=&#39;http://img.echosting.cafe24.com/thumb/img_product_small.gif&#39;;" alt=""></a></td>
+<td class="product left top">
+	<a href="http://coffeechoi.co.kr/product/detail.html?product_no=32&amp;cate_no=43"><strong>오렌지 블렌드 100g</strong></a>
+	<div class="option ">[옵션: 원두 100g/핸드드립/커피메이커]</div>
+	<p class="gBlank5 displaynone">무이자할부 상품</p>
+</td>
+<td>1</td>
+<td class="right">
+<strong>6,000원</strong><div class="displaynone"></div>
+</td>
+<td class="state">
+	<p class="txtEm">입금전취소</p>
+	<p class="displaynone"><a href="http://coffeechoi.co.kr/myshop/order/list.html#" target="_self"></a></p>
+	<p class="displaynone"><a href="http://coffeechoi.co.kr/myshop/order/list.html#none" class="line" onclick="">[]</a></p>
+	<a href="http://coffeechoi.co.kr/board/product/write.html?board_no=4&amp;product_no=32&amp;order_id=20200721-0000044" class="">
+	<img src="../coffee/Mypage/image/btn_order_comment.gif" alt="구매후기"></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html#none" class="displaynone" onclick="OrderHistory.withdraw(&#39;C&#39;,&#39;20200721-0000044|32|R0000000021|1987&#39;,&#39;F&#39;, &#39;F&#39;, &#39;F&#39;)">
+	<img src="./image/btn_order_retract.gif" alt="취소철회"></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html#none" class="displaynone" onclick="OrderHistory.withdraw(&#39;E&#39;,&#39;20200721-0000044|32|R0000000021|1987&#39;,&#39;F&#39;, &#39;F&#39;, &#39;F&#39;)">
+	<img src="./image/btn_order_retract2.gif" alt="교환철회"></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html#none" class="displaynone" onclick="OrderHistory.withdraw(&#39;R&#39;,&#39;20200721-0000044|32|R0000000021|1987&#39;,&#39;F&#39;, &#39;F&#39;, &#39;F&#39;)">
+	<img src="./image/btn_order_retract3.gif" alt="반품철회"></a>
+</td>
+<td>
+    <p class="displaynone">
+    <a href="http://coffeechoi.co.kr/myshop/order/list.html#none" class="line" onclick="OrderHistory.getDetailInfo(&#39;?product_no=32&amp;cate_no=43&amp;order_id=20200721-0000044&amp;ord_item_code=20200721-0000044-01&#39;);">
+    [상세정보]</a></p>
+	<p class="">-</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="message displaynone">주문 내역이 없습니다.</p>
+</div>
+
+<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate paging">
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html?page=1&amp;history_start_date=2020-04-28&amp;history_end_date=2020-07-27&amp;past_year=2019" class="btn first">
+	<i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html?page=1&amp;history_start_date=2020-04-28&amp;history_end_date=2020-07-27&amp;past_year=2019" class="btn">
+	<i class="fa fa-angle-left" aria-hidden="true"></i></a>
+<ol>
+	<li class="xans-record-">
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html?page=1&amp;history_start_date=2020-04-28&amp;history_end_date=2020-07-27&amp;past_year=2019" class="this">1</a></li>
+            </ol>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html?page=1&amp;history_start_date=2020-04-28&amp;history_end_date=2020-07-27&amp;past_year=2019" class="btn">
+	<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+	<a href="http://coffeechoi.co.kr/myshop/order/list.html?page=1&amp;history_start_date=2020-04-28&amp;history_end_date=2020-07-27&amp;past_year=2019" class="btn last">
+	<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+</div>
+</div>
+        </div>
+    </div>

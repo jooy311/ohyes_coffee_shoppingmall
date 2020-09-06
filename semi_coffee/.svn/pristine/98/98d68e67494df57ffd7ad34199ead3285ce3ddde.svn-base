@@ -1,0 +1,61 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import ohyes.coffee.dto.OrderPayDTO;
+import ohyes.coffee.dto.ProductDTO;
+
+
+public class OrderPayDAO extends JdbcDAO{
+private static OrderPayDAO _dao;
+	
+	public OrderPayDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new OrderPayDAO();
+	}
+	
+	public static OrderPayDAO getOrderPayDAO() {
+		return _dao;
+	}
+	
+	public ProductDTO selectProductSingle(int pno){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ProductDTO product = null;// = new ProductDTO();
+		
+		try {
+			con = getConnection();
+			String sql = "select * from product where p_no = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, pno);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				product = new ProductDTO();
+				
+				product.setpName(rs.getString("p_name"));
+				product.setpImage(rs.getString("p_image"));
+				product.setpCost(rs.getInt("p_cost"));
+				
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println("OrderPayDAO에서 selectProductSingle()메소드에서의 오류 ");
+		}
+		
+		return product;
+		
+	}
+}

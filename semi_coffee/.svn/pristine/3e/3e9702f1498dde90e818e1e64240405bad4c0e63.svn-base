@@ -1,0 +1,351 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+
+	<%
+		String message = (String)session.getAttribute("message");
+		if(message == null){
+			message = "";
+		}else {
+			session.removeAttribute("message");
+		}
+	
+	%>
+	
+	<!------------ contents 시작------------->
+	<div class="container-fluid">
+	<div>&nbsp;</div>
+	<h4><i class="fa fa-angle-right"></i> 상품등록 </h4>
+	<hr>
+
+	<div class="container">
+	<!-- 파일 보내야되니까 multipartform-data사용해야함 -->
+		<form id = "productForm" action="<%=request.getContextPath()%>/site/index.jsp?part=product&work=enroll_action" method = "post" enctype="multipart/form-data">
+			<!--상품카테고리  : 관리자가 이중 하나 고르면 상품번호 앞자리 자동설정될 수 있도록 하기-->
+			<div class="row">
+				<div class="col-25">
+					<label for="product_category">상품카테고리</label>
+				</div>
+
+				<div class="col-75">
+					<select id="product_category" name = "product_category" style ="width : 35%">
+						<!-- option태그를 사용할 때 보통 value태그를 같이 사용하는데, vlaue속성은 서버에 전송 될 값임. -->
+						<option value="goods" >커피용품</option>
+						<option value="blend_beans">블렌드 원두</option>
+						<option value="single_beans">싱글오리진 원두</option>
+					</select>
+					<div id = "selected_no" name = "selected_no" style = "color : red;">커피용품 카테고리 상품의 시작번호는 1 입니다.</div>
+					
+					<span id = "beans_radio" name = "beans_radio">
+						<input type = "radio" name = "beansGram" value = "1">&nbsp;&nbsp;100g
+						<input type = "radio" name = "beansGram" value = "2">&nbsp;&nbsp;200g
+						<input type = "radio" name = "beansGram" value = "5">&nbsp;&nbsp;500g
+					</span>
+					
+				</div>
+			</div>
+			<div>&nbsp;</div>
+			<!--상품번호  : 숫자만 받도록하게 하기-->
+			<div class="row">
+				<div class="col-25">
+					<label for="product_no">상품 번호</label>
+				</div>
+				
+				<div class="col-75">
+					<input type = "text" id = "product_no_front" name = "product_no_front" readonly="readonly" style= "width: 10%; float : left; margin-right: 10px;">
+					<input type="text" id="product_no" name = "product_no" numberOnly2 maxlength = "5"
+						placeholder="상품번호를 적어주세요.." style="width: 30%; float : left;">
+					<div class="double-chekc-btn" id = "chekc-btn" style= "width: 10%; float : left; margin-left: 10px;">중복체크</div>
+				</div>
+				
+				<div id = "check_no" style = "color : red; float : left; padding-left : 40%; "></div>
+			</div>
+			
+			<!--2. 상품 등록일 -->
+			<div class="row">
+				<div class="col-25">
+				<!-- 오늘 날짜를 불러오고. 수정불가능하게 하기 -->
+					<label for="product_date">상품 등록일</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="product_date" name = "product_date"
+						 style="width: 35%" readonly="readonly">
+				</div>
+			</div>
+
+			<!--3.. 상품 이름 -->
+			<div class="row">
+				<div class="col-25">
+				<!-- 글자제한을 줘야할 것같음 -->
+					<label for="product_name">상품 이름</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="product_name" name = "product_name" 
+						placeholder="상품 이름을 적어주세요">
+				</div>
+			</div>
+			
+			<div class="row">
+			<!-- 숫자로만 받을 수 있도록 해야함 -->
+				<div class="col-25">
+					<label for="product_cost">상품 가격</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="product_cost" numberOnly name = "product_cost"
+						placeholder="상품 가격을 설정해주세요">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="product_brief">상품 요약설명</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="product_brief" name = "product_brief"
+						placeholder="상품의 요약설명을 적어주세요..">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="product_stock">상품 재고현황</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="product_stock" name = "product_stock"
+						placeholder="상품의 재고를 적어주세요..">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="product_detail">상품 상세설명</label>
+				</div>
+
+				<div class="col-75">
+					<textarea id="product_detail" name = "product_detail"
+						placeholder="Write something.." style="height: 100px"></textarea>
+				</div>
+			</div>
+
+			<!---------------------------이미지넣기---------------------------->
+			<div class="row">
+				<div class="col-25">
+					<label for="product_image">상품 이미지</label>
+				</div>
+
+				<div class="col-75">
+
+					<input type="file" id="product_image" name = "product_image" size= 40>
+						
+					<div id="image_container"></div>
+					
+					<script>
+		        	function setThumbnail(event) { 
+		        		for (var imageofevent.target.files) { 
+		           		var reader = new FileReader(); reader.onload = function(event) { 
+		            	var img = document.createElement("product_image");
+		           		img.setAttribute("src",event.target.result);	           		
+		           		document.querySelector("div#image_container").appendChild(img); }; 
+		            	console.log(image); reader.readAsDataURL(image); } 
+		            } 
+		     	</script>
+
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-25">
+					<label for="product_detail_image">상품 상세 이미지</label>
+				</div>
+
+				<div class="col-75">
+
+					<input type="file" id="product_detail_image" name = "product_detail_image" accept="image/*"
+						onchange="setThumbnail(event);" multiple />
+					<div id="image_container"></div>
+					<script>
+		        	function setThumbnail(event) { for (var imageofevent.target.files) { 
+		            var reader = new FileReader(); reader.onload = function(event) { 
+		            	var img = document.createElement("product_detail_image");
+		           		img.setAttribute("src",event.target.result);	           		
+		           		document.querySelector("div#image_container").appendChild(img); }; 
+		            	console.log(image); reader.readAsDataURL(image); } 
+		            } 
+		     	</script>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<input type="submit" value="등록하기" style = "background-color: #007bff">
+			</div>
+			
+		</form>
+		<div id="message" style="color: red;"><%=message%></div>
+	</div>
+	<!--------- content끝 ----------->
+		
+		<!----------------------------------------- script/jquery시작 ----------------------------------------------------->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+		<script type="text/javascript">
+			//3자리 단위마다 콤마 생성
+			function addCommas(x) {
+			    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			 
+			//모든 콤마 제거
+			function removeCommas(x) {
+			    if(!x || x.length == 0) return "";
+			    else return x.split(",").join("");
+			}
+
+			//상품번호에 숫자만 받을 수 있도록 하는 코드
+			$("#product_no input:text[numberOnly2]").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			
+		
+			$("#product_no input:text[numberOnly]").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			//가격에 숫자만 받을 수 있도록 하는 코드
+			$("#product_cost input:text[numberOnly]").on("focus", function() {
+			    var x = $(this).val();
+			    x = removeCommas(x);
+			    $(this).val(x);
+				}).on("focusout", function() {
+			    var x = $(this).val();
+			    if(x && x.length > 0) {
+			        if(!$.isNumeric(x)) {
+			            x = x.replace(/[^0-9]/g,"");
+			        }
+			        x = addCommas(x);
+			        $(this).val(x);
+			    }
+				}).on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+
+			
+			
+			var selectedOption;
+			var selectedOption2 ;
+			
+			//관리자에게 카테고리를 선택했을때  상품번호가 어떤 번호로 시작하는지 알려주기 위한 코드
+			$("#product_category").change(function() {
+				if($("#product_category option:selected").val() == "goods"){
+					//$("#selected_no").text("커피용품 카테고리 상품의 시작번호는 1 입니다.");
+					selectedOption = 1;
+				}else if($("#product_category option:selected").val() == "blend_beans"){
+					$("#selected_no").text("블랜드 원두 카테고리 상품의 시작번호는 2 입니다.");
+					selectedOption = 2;
+				}else if($("#product_category option:selected").val() == "single_beans"){
+					$("#selected_no").text("싱글오리진 원두 카테고리 상품의 시작번호는 3 입니다.");
+					selectedOption = 3;
+				}
+			});
+			
+			//라디오버튼생성
+			
+			
+			 //= $("#input[name="beansGram"]:checked").val();
+			
+			//$("#product_no_front").val("11");
+			
+			
+			//상품번호 4자리로 안하면 알림뜨게
+			
+			
+			//오늘날짜 받아오기
+			$("#product_date").val(function (){
+			    var now = new Date();
+			    var year = now.getFullYear();
+			    var month = now.getMonth() + 1;    //1월이 0으로 되기때문에 +1을 함.
+			    var date = now.getDate();  
+			
+			    if((month + "").length < 2){        //2자리가 아니면 0을 붙여줌.
+			        month = "0" + month;
+			    }else{
+			         // ""을 빼면 year + month (숫자+숫자) 됨.. ex) 2018 + 12 = 2030이 리턴됨.
+			        month = "" + month;   
+			    }
+			    
+			    if((date + "").length <2){
+			    	date = "0"+date;
+			    }
+			    return today = year + "-" + month + "-" + date; 
+			});
+			
+			$("#beans_radio").hide();
+			$("#product_category").change(function() {
+				if($("#product_category option:selected").val() == "goods"){//원두를 선택했다면
+					$("#beans_radio").hide();
+				}else if($("#product_category option:selected").val() == "blend_beans"){
+					$("#beans_radio").show();
+					//selectedOption2 = $("#input[name="beansGram"]:checked").val();
+				}else if($("#product_category option:selected").val() == "single_beans"){
+					$("#beans_radio").show();
+					//selectedOption2 = $("#input[name="beansGram"]:checked").val();
+				}
+			});
+			
+			//$("#product_no_front").change(function() {
+			if($('input[name="beansGram"]:checked').val() != null && selectedOption != null)
+				$("#product_no_front").val(selectedOption + $('input[name="beansGram"]:checked').val());
+			//});
+		
+		</script>
+		
+		<script type="text/javascript">
+			$("#productForm").submit(function() {
+				if($("#product_category").val()=="") {
+					$("#message").text("제품의 카테고리를 선택해주세요.");
+					$("#product_category").focus();
+					return false;//submit하지 않겠단 의미
+				}
+				if($("#beans_radio").val()=="") {
+					$("#message").text("옵션을 선택해 주세요.");
+					$("#beans_radio").focus();
+					return false;
+				}
+				
+				if($("#product_no").val()=="") {
+					$("#message").text("상품 번호를 입력해 주세요.");
+					$("#product_no").focus();
+					return false;
+				}//+중복체크
+				
+				if($("#productName").val()=="") {
+					$("#message").text("제품명을 입력해 주세요.");
+					$("#productName").focus();
+					return false;
+				}
+				
+				if($("#mainImage").val()=="") {
+					$("#message").text("제품이미지를 입력해 주세요.");
+					$("#mainImage").focus();
+					return false;
+				}
+				
+				if($("#productDetail").val()=="") {
+					$("#message").text("제품상세설명을 입력해 주세요.");
+					$("#productDetail").focus();
+					return false;
+				}
+				
+				if($("#productQty").val()=="") {
+					$("#message").text("제품수량을 입력해 주세요.");
+					$("#productQty").focus();
+					return false;
+				}
+				
+				if($("#productPrice").val()=="") {
+					$("#message").text("제품가격을 입력해 주세요.");
+					$("#productPrice").focus();
+					return false;
+				}
+		});
+	
+</script>

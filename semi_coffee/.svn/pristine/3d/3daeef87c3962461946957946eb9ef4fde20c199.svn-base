@@ -1,0 +1,413 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--PG크로스브라우징필수내용 시작-->
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <!--PG크로스브라우징필수내용 끝-->
+    <!--allStore_css-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet" />
+    <link href="../css/nanumgothic.css" rel="stylesheet" />
+    <!--allStore_css_end-->
+    <!--allStore_js-->
+    <script src="../js/bookmark.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.bxslider.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <!--allStore_js-->
+    <script type="text/javascript" src="../js/common.js"></script>
+
+    <meta name="naver-site-verification" content="46a212a8c9077655035cc233096ab9e3ef3b6c8d" />
+    <meta name="google-site-verification" content="M5uppoctmHaAz4F9xq_2K1OnIhIzYQjtrwd80As5ADA" />
+    <link rel="canonical" href="write.html" />
+    <link rel="alternate" href="http://m.coffeechoi.co.kr/board/product/write.html" />
+    <meta property="og:url" content="http://coffeechoi.co.kr/board/product/write.html" />
+    <meta property="og:title" content="최준영 커피" />
+    <meta property="og:description" content="향이 좋은 커피, 최준영 커피입니다." />
+    <meta property="og:site_name" content="최준영커피" />
+    <meta property="og:type" content="website" />
+
+    <script type="text/javascript">var EC_SDE_SHOP_NUM = 1; var SHOP = {
+            getLanguage: function () { return "ko_KR"; }, getCurrency: function () { return "KRW"; }, getFlagCode: function () { return "KR"; }, getTimezone: function () { return "Asia/Seoul" }, isMultiShop: function () { return false; }, isDefaultShop: function () { return true; }, isDefaultLanguageShop: function (sLanguageCode) { return SHOP.isDefaultShop() && SHOP.isLanguageShop(sLanguageCode); }, isKR: function () { return true; }, isUS: function () { return false; }, isJP: function () { return false; }, isCN: function () { return false; }, isTW: function () { return false; }, isES: function () { return false; }, isPT: function () { return false; }, isVN: function () { return false; }, isPH: function () { return false; }, isLanguageShop: function (sLanguageCode) { return sLanguageCode === "ko_KR"; }, getDefaultShopNo: function () { return 1; }, getProductVer: function () { return 2; }, isSDE: function () { return true; }, isMode: function () { return false; }, getModeName: function () { return false; }, isMobileAdmin: function () { return false; }, isExperienceMall: function () { return false; }, getAdminID: function () { return '' }, getMallID: function () { return 'boogie111111' }, getCurrencyFormat: function (sPriceTxt, bIsNumberFormat) {
+                sPriceTxt = String(sPriceTxt);
+
+                var aCurrencySymbol = ["", "\uc6d0", false];
+
+                if (typeof SHOP_PRICE !== 'undefined' && isNaN(sPriceTxt.replace(/[,]/gi, '')) === false && bIsNumberFormat === true) {
+                    // bIsNumberFormat 사용하려면 Ui(':libUipackCurrency')->plugin('Currency') 화폐 라이브러리 추가 필요
+                    sPriceTxt = SHOP_PRICE.toShopPrice(sPriceTxt.replace(/[,]/gi, ''), true, EC_SDE_SHOP_NUM);
+                }
+
+                return aCurrencySymbol[0] + sPriceTxt + aCurrencySymbol[1];
+            }
+        }; var EC_COMMON_UTIL = { convertSslForString: function (sString) { return sString.replace(/http:/gi, ''); }, convertSslForHtml: function (sHtml) { return sHtml.replace(/((?:src|href)\s*=\s*['"])http:(\/\/(?:[a-z0-9\-_\.]+)\/)/ig, '$1$2'); }, getProtocol: function () { return 'http'; }, moveSsl: function () { if (EC_COMMON_UTIL.getProtocol() === 'http') { var oLocation = jQuery(window.location); var sUrl = 'https://' + oLocation.attr('host') + oLocation.attr('pathname') + oLocation.attr('search'); window.location.replace(sUrl); } }, setEcCookie: function (sKey, sValue, iExpire) { var exdate = new Date(); exdate.setDate(exdate.getDate() + iExpire); var setValue = escape(sValue) + "; domain=." + EC_GLOBAL_INFO.getBaseDomain() + "; path=/;expires=" + exdate.toUTCString(); document.cookie = sKey + "=" + setValue; } }; var EC_SHOP_LIB_INFO = {
+            getBankInfo: function () {
+                var oBankInfo = "";
+                $.ajax({
+                    type: "GET",
+                    url: "/exec/front/Shop/Bankinfo",
+                    dataType: "json",
+                    async: false,
+                    success: function (oResponse) {
+                        oBankInfo = oResponse;
+                    }
+                });
+                return oBankInfo;
+            }
+        };</script>
+    <script type="text/javascript">            var EC_ROOT_DOMAIN = "cafe24.com";
+        var EC_TRANSLATE_LOG_STATUS = "F";
+        var EC_GLOBAL_INFO = (function () {
+            var oData = { "base_domain": "boogie111111.cafe24.com", "root_domain": "cafe24.com", "is_global": false, "country_code": "KR", "language_code": "ko_KR", "admin_language_code": "ko_KR" };
+
+            return {
+                getBaseDomain: function () {
+                    return oData['base_domain'];
+                },
+
+                getRootDomain: function () {
+                    return oData['root_domain'];
+                },
+
+                isGlobal: function () {
+                    return oData['is_global'];
+                },
+
+                getCountryCode: function () {
+                    return oData['country_code'];
+                },
+
+                getLanguageCode: function () {
+                    return oData['language_code'];
+                },
+
+                getAdminLanguageCode: function () {
+                    return oData['admin_language_code'];
+                }
+            };
+        })();</script>
+  
+    <link rel="stylesheet" type="text/css" href="../css/optimizerf714.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+    <title>최준영커피</title>
+    <meta name="path_role" content="BOARD_PRODUCT_WRITE" />
+    <meta name="description" content="향이 좋은 커피, 최준영 커피입니다" />
+    <meta name="keywords" content="원두, 원두커피, 원두커피쇼핑몰, 볶은커피, 드립커피, 최준영, 최준영커피" />
+</head>
+
+<body>
+    <!--allStore_wrap-->
+    <div id="allStore_wrap">
+
+        <!--allStore_header-->
+        <div id="allStoreHeader">
+
+            <!--allStore_topbar-->
+            <div id="allStore_topbar">
+                <div class="allStore_layout">
+                    <div class="xans-element- xans-layout xans-layout-statelogoff ">
+                        <a href="#">로그인</a>
+                        <a href="#">회원가입<span class="point">+3,000원</span></a>
+                        <a href="#">장바구니</a>
+                        <a href="#">주문조회</a>
+                        <a href="#">마이페이지</a>
+                        <div class="boardbtn">
+                            <a href="#">게시판</a>
+                            <div class="board-dropdown">
+                                <ol class="xans-element- xans-layout xans-layout-boardinfo">
+                                    <li class="xans-record-">
+                                        <a href="index.html">상품후기</a>
+                                    </li>
+                                    <li class="xans-record-">
+                                        <a href="#">무료샘플</a>
+                                    </li>
+                                    <li class="xans-record-">
+                                        <a href="#">상품문의</a>
+                                    </li>
+                                    <li class="xans-record-">
+                                        <a href="#">공지사항</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--allStore_topbar-->
+
+            <div id="allStore_header">
+                <div class="allStore_layout">
+
+                    <div class="xans-element- xans-layout xans-layout-logotop logo "><a href="#홈">
+                            <img src="../images/55e83c846dd83ad8de1328d612ef5b6b_7_top.jpg" /></a>
+                    </div>
+
+                    <div id="allStore_search">
+                        <form id="searchBarForm" name="" action="http://coffeechoi.co.kr/product/search.html"
+                            method="get" target="_self" enctype="multipart/form-data">
+                            <input id="banner_action" name="banner_action" value="" type="hidden" />
+                            <div class="xans-element- xans-layout xans-layout-searchheader search-layout ">
+                                <fieldset>
+                                    <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg=""
+                                        class="inputTypeText" placeholder=""
+                                        onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text" />
+                                    <button class="icon icon-magnifier"
+                                        onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--allStore_nav-->
+            <div id="allStore_nav">
+                <div id="categoryList" class="xans-element- xans-layout xans-layout-category">
+                    <div class="allStore_layout">
+                        <div class="position">
+                            <ul>
+                                <li><a href="#">최준영커피 소개</a></li>
+                                <li class="xans-record-"><a href="#">전체 상품</a>
+                                </li>
+                                <li class="xans-record-"><a href="#">블렌드 원두</a>
+                                </li>
+                                <li class="xans-record-"><a href="#">싱글오리진
+                                        원두</a></li>
+                                <li><a href="index.html">상품후기</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--allStore_nav-->
+        </div>
+    </div>
+
+    <!--allStore_header-->
+
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            <div>
+                <div class="xans-element- xans-board xans-board-writepackage-4 xans-board-writepackage xans-board-4 ">
+                    <!--타이틀, 현재위치-->
+                    <div
+                        class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4 allStore-board-menupackage ">
+                        <div class="title">
+                            <h2>
+                                <font color="#555555">상품후기</font>
+                            </h2>
+                        </div>
+                        <div class="nav-path">
+                            <ol>
+                                <li><a href="#">홈</a></li>
+                                <li title="현재 위치"><strong>상품후기</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--타이틀, 현재위치-->
+                    <form id="boardWriteForm" name="" action="http://coffeechoi.co.kr/exec/front/Board/write/4" method="post" target="_self" enctype="multipart/form-data">
+                        <input id="board_no" name="board_no" value="4" type="hidden" />
+                        <input id="product_no" name="product_no" value="0" type="hidden" />
+                        <input id="move_write_after" name="move_write_after"
+                            value="http://coffeechoi.co.kr/board/상품후기/4/" type="hidden" />
+                        <input id="cate_no" name="cate_no" value="" type="hidden" />
+                        <input id="bUsePassword" name="bUsePassword" value="" type="hidden" />
+                        <input id="order_id" name="order_id" value="" type="hidden" />
+                        <input id="is_post_checked" name="is_post_checked" value="" type="hidden" />
+                        <input id="09e55a912fcf7e923123e24f698" name="09e55a912fcf7e923123e24f698"
+                            value="35145695e73088ebb69065b8244d9d37" type="hidden" />
+                        <div class="xans-element- xans-board xans-board-write-4 xans-board-write xans-board-4">
+                            <!-- 상품정보선택 -->
+                            <div class="ec-base-box typeProduct  ">
+                                <p class="thumbnail"><a href="#"><img id="iPrdImg" src="#" onerror="this.src='./images/75x75.gif'" alt="" /></a></p>
+                                <div class="information">
+                                    <span id="sPrdCommonImg"></span>
+                                    <h3><a href="#" id="aPrdNameLink"><span id="sPrdName"></span></a></h3>
+                                    <p class="price"><span id="sPrdPrice"></span></p>
+                                    <p class="button">
+                                        <span id="iPrdView" class="displaynone"><a href="#" id="aPrdLink" target="_blank">
+                                            <img src="./images/btn_prd_detail.gif" alt="상품상세보기" /></a>
+                                        </span>
+                                        <span class=""><a href="#none" onclick="BOARD_WRITE.product_popup('#')">
+                                            <img src="./images/btn_prd_select.gif" alt="상품정보선택" /></a>
+                                            </span>
+                                        <span class="displaynone"><a href="#none" onclick="BOARD_WRITE.product_popup('#')">
+                                            <img src="./images/btn_prd_order.gif" alt="주문상품선택" /></a>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="ec-base-table typeWrite ">
+                                <table border="1" summary="">
+                                    <caption>글쓰기 폼</caption>
+                                    <colgroup>
+                                        <col style="width:130px;" />
+                                        <col style="width:auto;" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">제목</th>
+                                            <td> <input id="subject" name="subject" fw-filter="isFill" fw-label="제목"
+                                                    fw-msg="" class="inputTypeText" placeholder="" maxLength="125"
+                                                    value="" type="text" /> </td>
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row">작성자</th>
+                                            <td><input id="writer" name="writer" fw-filter="isFill" fw-label="작성자"
+                                                    fw-msg="" class="inputTypeText" placeholder="" maxLength="50"
+                                                    value="" type="text" /></td>
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row" colspan="2">내용</th>
+                                        </tr>
+                                        <!-- 내용 크기수정해야됨 -->
+                                        <tr class="">
+                                            <td  colspan="2">
+                                                <textarea rows="15" cols="200" name="contents"></textarea>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody class="">
+                                        <tr>
+                                            <th scope="row">첨부파일1</th>
+                                            <td><input name="attach_file[]" type="file" /></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr class="displaynone">
+                                            <th scope="row">비밀글설정</th>
+                                            <td><input id="secure0" name="secure" fw-filter="isFill" fw-label="비밀글설정"
+                                                    fw-msg="" value="F" type="radio" checked="checked" /><label
+                                                    for="secure0">공개글</label>
+                                                <input id="secure1" name="secure" fw-filter="isFill" fw-label="비밀글설정"
+                                                    fw-msg="" value="T" type="radio" /><label for="secure1">비밀글</label>
+                                            </td>
+                                        </tr>
+                                        <tr class="agree ">
+                                            <th scope="row">개인정보 수집 및 <br />이용 동의</th>
+                                            <td>
+                                                <textarea id="privacy_agreement" name="privacy_agreement" fw-filter="" fw-label="개인정보보호정책" fw-msg="">
+■ 개인정보의 수집·이용 목적 
+                                                    
+서비스 제공 및 계약의 이행, 구매 및 대금결제, 물품배송 또는 청구지 발송, 회원관리 등을 위한 목적
+
+■ 수집하려는 개인정보의 항목
+
+이름, 주소, 연락처, 이메일 등
+
+■ 개인정보의 보유 및 이용 기간
+
+회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외없이 해당정보를 파기합니다. 
+                                                </textarea>
+                                                <br />
+                                                개인정보 수집 및 이용에 동의하십니까? 
+                                                <input id="privacy_agreement_radio0" name="privacy_agreement_radio" fw-filter="isFill" fw-label="개인정보보호정책" fw-msg="" value="T" type="radio" />
+                                                <label for="privacy_agreement_radio0">동의함</label>
+                                                <input id="privacy_agreement_radio1" name="privacy_agreement_radio" fw-filter="isFill" fw-label="개인정보보호정책" fw-msg="" value="F" type="radio" checked="checked" />
+                                                <label for="privacy_agreement_radio1">동의안함</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="ec-base-button ">
+                                <span class="gLeft">
+                                    <span class="displaynone"><a href="#none" onclick=""><img
+                                                src="./images/btn_reply_admin.gif"
+                                                alt="관리자답변보기" /></a></span>
+                                    <a href="review.html">
+                                        <img src="./images/btn_list.gif"
+                                            alt="목록" /></a>
+                                </span>
+                                <span class="gRight">
+                                    <a href="#none" onclick="BOARD_WRITE.form_submit('boardWriteForm');"
+                                        class="allStore-color-btn1">
+                                        등록
+                                    </a>
+                                    <a href="review.html" class="allStore-color-btn3">
+                                        취소
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--allStore_contents-->
+
+    <div id="allStore_footer" class="xans-layout xans-layout-footer ">
+        <div class="footer-top">
+            <div class="allStore_layout">
+                <ol class="menu">
+                    <li><a href="#">홈</a></li>
+                    <li><a href="#">회사소개</a></li>
+                    <li><a href="#">이용안내</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="allStore_layout">
+            <ul class="xans-layout xans-layout-info service-center">
+                <li class="">
+                    <h5>회사정보</h5>
+                    <pre>
+            <b>회사명</b><span>최준영 커피</span> <b>대표</b><span>최준영</span> <b>전화</b><span>070-8844-1417</span><br/><b>사업자등록번호</b><span>705-02-01087 <a href="#none" onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=7050201087', 'bizCommPop', 'width=750, height=950;');return false;">[사업자정보확인]</a></span> <br/><b>통신판매업 신고번호</b><span>2018-용인기흥-0603</span> <br/><b>주소</b><span>(16978) 경기도 용인시 기흥구 강남로 6 (구갈동) 204호</span><br/><b>이메일</b><span>help@coffeechoi.co.kr</span> <b>개인정보관리책임자</b><span>최준영</span><br/></pre>
+                </li>
+                <li class="">
+                    <h5>고객센터</h5>
+                    <h3>070-8844-1417</h3>
+                    <pre class="time"><b>평일 오후 2시~오후 6시 토,일,공휴일 휴무</b></pre>
+                </li>
+                <li>
+                    <h5>은행계좌</h5>
+                    <pre class="bank">
+                    <b>예금주</b>
+                    <span>최준영커피</span>
+                    <b>국민은행</b>
+                    <span>698901-01-149302</span> 
+                    </pre>
+                </li>
+                <li>
+                    <h5>SNS</h5>
+                    <ol class="menu">
+                        <li><a href="https://www.instagram.com/coffeechoi.co.kr" target="_blank"><img
+                                    src="./images/img//sns/instar.jpg" /> 인스타그램</a></li>
+                        <li><a href="https://www.facebook.com/coffeechoi.co.kr" target="_blank"><img
+                                    src="./images/img//sns/facebook.jpg" /> 페이스북</a></li>
+                        <li><a href="https://blog.naver.com/alang33" target="_blank"><img
+                                    src="./images/img//sns/blog.jpg" /> 네이버 블로그</a></li>
+                        <li><a href="http://pf.kakao.com/_ZkmnC" target="_blank"><img
+                                    src="./images/img//sns/kakao.jpg" />
+                                카카오톡 플러스친구</a></li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+        <div class="footer_lay">
+            <div class="copyright">Copyright © <strong>최준영커피</strong>. All rights reserved.</div>
+        </div>
+
+
+
+        <!--상단으로-->
+        <div class="allStore-goToTop">
+
+            <i class="icon icon-arrow-up"></i><br />TOP
+        </div>
+        <!--상단으로-->
+    </div>
+</body>
+
+</html>

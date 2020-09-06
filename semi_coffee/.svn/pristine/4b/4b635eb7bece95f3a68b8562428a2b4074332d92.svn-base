@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!--allStore_css-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet" />
+    <link href="../css/nanumgothic.css" rel="stylesheet" />
+    <!--allStore_css_end-->
+    <!--allStore_js-->
+    <script src="../js/bookmark.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.bxslider.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <!--allStore_js-->
+
+    <link rel="stylesheet" type="text/css"
+        href="../css/optimizeref4f.css" />
+    <link rel="stylesheet" type="text/css"
+        href="../css/common.css"/>
+
+    <title> 상품후기 - 최준영커피</title>
+</head>
+
+<body>
+    <!--allStore_wrap-->
+    <div id="allStore_wrap">
+        <!--allStore_header-->
+
+        <!--allStore_contents-->
+        <div id="allStore_contents">
+            <div class="allStore_layout">
+
+                <div>
+                    <div class="xans-element- xans-board xans-board-listpackage-4 xans-board-listpackage xans-board-4 ">
+                        <!--타이틀, 현재위치-->
+                        <div
+                            class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4 allStore-board-menupackage ">
+                            <div class="title">
+                                <h2>
+                                    <font color="#555555">상품후기</font>
+                                </h2>
+                            </div>
+                            <div class="nav-path">
+                                <ol>
+                                    <li><a href="../../../index.html">홈</a></li>
+                                    <li title="현재 위치"><strong>상품후기</strong></li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!--타이틀, 현재위치-->
+                        
+                        <div class="top-title-img "> </div>
+                        
+                        <div class="boardSort">
+                            <span
+                                class="xans-element- xans-board xans-board-replysort-4 xans-board-replysort xans-board-4 "></span>
+                        </div>
+                        <div class="ec-base-table typeList gBorder">
+                            <table border="1" summary="">
+                                <caption>상품 게시판 목록</caption>
+                                <colgroup
+                                    class="xans-element- xans-board xans-board-listheader-4 xans-board-listheader xans-board-4 ">
+                                    <col style="width:80px;" />
+                                    <col style="width:150px;" />
+                                    <col style="width:250px;" class="displaynone" />
+                                    <col style="width:auto;" />
+                                    <col style="width:80px;"  />
+                                    <col style="width:170px;" />
+                                    <col style="width:80px;"  />
+                                    <col style="width:55px;" class="displaynone" />
+                                    <col style="width:55px;" class="displaynone" />
+                                </colgroup>
+                                <thead
+                                    class="xans-element- xans-board xans-board-listheader-4 xans-board-listheader xans-board-4 ">
+                                    <tr>
+                                        <th scope="col"> 번호</th>
+                                        <th scope="col">상품정보</th>
+                                        <th scope="col" class="displaynone">카테고리</th>
+                                        <th scope="col">제목</th>
+                                        <th scope="col" >평점</th>
+                                        <th scope="col">작성자</th>
+                                        <th scope="col" >작성일</th>
+                                        <th scope="col" class="displaynone">조회</th>
+                                        <th scope="col" class="displaynone">추천</th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="xans-element- xans-board xans-board-notice-4 xans-board-notice xans-board-4 center">
+
+                                    <tr style="background-color:#FFFFFF; color:#555555;" class="xans-record-">
+                                        <td> 공지</td>
+                                        <td class="thumb left"><a
+                                                href="../../../product/%241/%242/index.html"><span></span></a></td>
+                                        <td class="displaynone"></td>
+                                        <td class="subject left txtBreak">
+                                            <span >
+                                                <a href="#none" onclick="BOARD.viewTarget('423','4',this);"><img
+                                                        src="../../../../img.echosting.cafe24.com/skin/base/board/btn_unfold.gif"
+                                                        alt="내용 보기" /></a>
+                                            </span>
+                                            <strong> <a
+                                                    href="../../../article/%ec%83%81%ed%92%88%ed%9b%84%ea%b8%b0/4/423/index.html"
+                                                    style="color:#555555;">상품후기 적립금 이벤트 안내</a> <span
+                                                    class="txtEm allStore-text-color1">[2]</span></strong>
+                                        </td>
+                                        <td ><img
+                                                src="../../../../img.echosting.cafe24.com/skin/base/board/ico_point5.gif"
+                                                alt="5점" /></td>
+                                        <td>최준영 커피</td>
+                                        <td ><span class="txtNum">2020-03-31</span></td>
+                                        <td class="displaynone"><span class="txtNum">55</span></td>
+                                        <td class="displaynone"><span class="txtNum">0</span></td>
+                                        
+                                    </tr>
+                                </tbody>
+                                <tbody class="xans-element- xans-board xans-board-list-4 xans-board-list xans-board-4 center">
+
+                                
+                                    <tr style="background-color:#FFFFFF; color:#555555;" class="xans-record-">
+                                        <td> 435</td>
+                                        <td class="thumb left"><a
+                                                href="../../../product/%ec%97%90%ed%8b%b0%ec%98%a4%ed%94%bc%ec%95%84-%ec%98%88%ea%b0%80%ec%b2%b4%ed%94%84-500g/27/index.html"><img
+                                                    src="../../../web/product/tiny/20200108/7c64cffcd16c8630fb3c4c28e0bd9fae.jpg"
+                                                    border="0" alt="" /><span>에티오피아 예가체프 500g</span></a></td>
+                                        <td class="displaynone"></td>
+                                        <td class="subject left txtBreak">
+                                            <span >
+                                                <a href="#none" onclick="BOARD.viewTarget('494','4',this);"><img
+                                                        src="../../../../img.echosting.cafe24.com/skin/base/board/btn_unfold.gif"
+                                                        alt="내용 보기" /></a>
+                                            </span>
+                                            <a href="../product/images//%ec%83%81%ed%92%88%ed%9b%84%ea%b8%b0/4/494/index.html"
+                                                style="color:#555555;">만족</a> <span
+                                                class="txtEm allStore-text-color1">[1]</span>
+                                        </td>
+                                        <td ><img
+                                                src="../../../../img.echosting.cafe24.com/skin/base/board/ico_point5.gif"
+                                                alt="5점" /></td>
+                                        <td>네****</td>
+                                        <td ><span class="txtNum">2020-07-21</span></td>
+                                        <td class="displaynone"><span class="txtNum">29</span></td>
+                                        <td class="displaynone"><span class="txtNum">0</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p
+                                class="xans-element- xans-board xans-board-empty-4 xans-board-empty xans-board-4 message displaynone ">
+                            </p>
+                        </div>
+                        <div
+                            class="xans-element- xans-board xans-board-buttonlist-4 xans-board-buttonlist xans-board-4  ec-base-button ">
+                            <span class="gRight">
+                                <a href="write.html" class=" allStore-color-btn1">
+                                    글쓰기
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="xans-element- xans-board xans-board-paging-4 xans-board-paging xans-board-4 ec-base-paginate">
+                        <a href="index5b1c.html?page=1"
+                            class="btn"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                        <ol>
+                            <li class="xans-record-"><a
+                                    href="index5b1c.html?page=1"
+                                    class="this">1</a></li>
+                            <li class="xans-record-"><a
+                                    href="index4eff.html?page=2"
+                                    class="other">2</a></li>
+                            <li class="xans-record-"><a
+                                    href="index9a66.html?page=3"
+                                    class="other">3</a></li>
+                            <li class="xans-record-"><a
+                                    href="index038b.html?page=4"
+                                    class="other">4</a></li>
+                            <li class="xans-record-"><a
+                                    href="index197e.html?page=5"
+                                    class="other">5</a></li>
+                            <li class="xans-record-"><a
+                                    href="index921f.html?page=6"
+                                    class="other">6</a></li>
+                            <li class="xans-record-"><a
+                                    href="indexaa98.html?page=7"
+                                    class="other">7</a></li>
+                            <li class="xans-record-"><a
+                                    href="indexbfb9.html?page=8"
+                                    class="other">8</a></li>
+                            <li class="xans-record-"><a
+                                    href="indexd952.html?page=9"
+                                    class="other">9</a></li>
+                            <li class="xans-record-"><a
+                                    href="index7e30.html?page=10"
+                                    class="other">10</a></li>
+                        </ol>
+                        <a href="index4eff.html?page=2"
+                            class="btn"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+
+
+
+                    <form id="boardSearchForm" name="" action="http://coffeechoi.co.kr/board/상품후기/4" method="get"
+                        target="_top" enctype="multipart/form-data">
+                        <input id="board_no" name="board_no" value="4" type="hidden" />
+                        <input id="page" name="page" value="1" type="hidden" />
+                        <input id="board_sort" name="board_sort" value="" type="hidden" />
+                        <div class="xans-element- xans-board xans-board-search-4 xans-board-search xans-board-4 ">
+                            <fieldset class="boardSearch">
+                                <legend>게시물 검색</legend>
+                                <p class="category "><select id="product_category_depth1" name="product_category_depth1"
+                                        fw-filter="" fw-label="" fw-msg="">
+                                        <option value="" selected="selected">대분류</option>
+                                        <option value="56">전체 상품</option>
+                                        <option value="43">블렌드 원두</option>
+                                        <option value="46">싱글오리진 원두</option>
+                                    </select><select id="product_category_depth2" name="product_category_depth2"
+                                        fw-filter="" fw-label="" fw-msg="">
+                                        <option value="" selected="selected">중분류</option>
+                                    </select><select id="product_category_depth3" name="product_category_depth3"
+                                        fw-filter="" fw-label="" fw-msg="">
+                                        <option value="" selected="selected">소분류</option>
+                                    </select><select id="product_category_depth4" name="product_category_depth4"
+                                        fw-filter="" fw-label="" fw-msg="">
+                                        <option value="" selected="selected">상세분류</option>
+                                    </select></p>
+                                <p><select id="search_date" name="search_date" fw-filter="" fw-label="" fw-msg="">
+                                        <option value="week">일주일</option>
+                                        <option value="month">한달</option>
+                                        <option value="month3">세달</option>
+                                        <option value="all">전체</option>
+                                    </select> <select id="search_key" name="search_key" fw-filter="" fw-label=""
+                                        fw-msg="">
+                                        <option value="subject">제목</option>
+                                        <option value="content">내용</option>
+                                        <option value="writer_name">글쓴이</option>
+                                        <option value="member_id">아이디</option>
+                                        <option value="nick_name">별명</option>
+                                        <option value="product">상품정보</option>
+                                    </select> <input id="search" name="search" fw-filter="" fw-label="" fw-msg=""
+                                        class="inputTypeText" placeholder="" value="" type="text" /> <a href="#none"
+                                        onclick="BOARD.form_submit('boardSearchForm');"><img
+                                            src="../images/btn_find.gif"
+                                            alt="찾기" /></a></p>
+                            </fieldset>
+                        </div>
+                    </form>
+                    <!-- 관리자 전용 메뉴 -->
+
+                    <!-- //관리자 전용 메뉴 -->
+                </div>
+            </div>
+        </div>
+        <!--allStore_contents-->
+    </div>
+</body>
+<!-- Mirrored from coffeechoi.co.kr/board/상품후기/4/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Jul 2020 14:09:03 GMT -->
+
+</html>

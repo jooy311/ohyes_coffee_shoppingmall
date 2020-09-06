@@ -1,0 +1,201 @@
+package ohyes.coffee.dao;
+
+/*
+이름                 널?       유형           
+------------------ -------- ------------ 
+CART_NO            NOT NULL NUMBER       
+CART_MEM_ID        NOT NULL VARCHAR2(12) 
+CART_P_NO          NOT NULL NUMBER       
+CART_AMOUNT        NOT NULL NUMBER       
+CART_PRODUCT_TOTAL NOT NULL NUMBER       
+CART_TOTAL         NOT NULL NUMBER 
+ */
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import ohyes.coffee.dto.CartDTO;
+
+public class CartDAO extends JdbcDAO {
+	private static CartDAO _dao;
+	
+	public CartDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new CartDAO();
+	}
+	
+	public static CartDAO getDAO() {
+		return _dao;
+	}
+	
+	public int insertCart(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="insert into cart values(?, ?, ?, ?, ?, ?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, cart.getCART_NO());
+			pstmt.setString(2, cart.getCART_MEM_ID());
+			pstmt.setInt(3, cart.getCART_P_NO());
+			pstmt.setInt(4, cart.getCART_AMOUNT());
+			pstmt.setInt(5, cart.getCART_PRODUCT_TOTAL());
+			pstmt.setInt(6, cart.getCART_TOTAL());
+			
+			rows=pstmt.executeUpdate();	
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+	public int updateCart(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			String sql="update cart set cart_amount=? where p_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, cart.getCART_NO());
+			pstmt.setString(2, cart.getCART_MEM_ID());
+			pstmt.setInt(3, cart.getCART_P_NO());
+			pstmt.setInt(4, cart.getCART_AMOUNT());
+			pstmt.setInt(5, cart.getCART_PRODUCT_TOTAL());
+			pstmt.setInt(6, cart.getCART_TOTAL());
+			
+			rows=pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} return rows;
+	}
+	
+	public int updateproducttotal(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			String sql="UPDATE CART SET CART_PRODUCT_TOTAL=(SELECT P_COST * CART_AMOUNT FROM PRODUCT WHERE P_NO=?) WHERE CART_NO=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, cart.getCART_NO());
+			pstmt.setString(2, cart.getCART_MEM_ID());
+			pstmt.setInt(3, cart.getCART_P_NO());
+			pstmt.setInt(4, cart.getCART_AMOUNT());
+			pstmt.setInt(5, cart.getCART_PRODUCT_TOTAL());
+			pstmt.setInt(6, cart.getCART_TOTAL());
+			
+			rows=pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} return rows;
+	}
+	
+	public int updatecarttotal(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			String sql="UPDATE CART SET CART_TOTAL=SUM(CART_PRODUCT_TOTAL) WHERE CART_NO=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, cart.getCART_NO());
+			pstmt.setString(2, cart.getCART_MEM_ID());
+			pstmt.setInt(3, cart.getCART_P_NO());
+			pstmt.setInt(4, cart.getCART_AMOUNT());
+			pstmt.setInt(5, cart.getCART_PRODUCT_TOTAL());
+			pstmt.setInt(6, cart.getCART_TOTAL());
+			
+			rows=pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} return rows;
+	}
+	
+	public int deleteCart(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			String sql="delete from cart where cart_no";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, cart.getCART_NO());
+			pstmt.setString(2, cart.getCART_MEM_ID());
+			pstmt.setInt(3, cart.getCART_P_NO());
+			pstmt.setInt(4, cart.getCART_AMOUNT());
+			pstmt.setInt(5, cart.getCART_PRODUCT_TOTAL());
+			pstmt.setInt(6, cart.getCART_TOTAL());
+			
+			rows=pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} return rows;
+	}
+	
+	public int deleteallCart(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			String sql="delete from cart where cart_mem_id";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, cart.getCART_NO());
+			pstmt.setString(2, cart.getCART_MEM_ID());
+			pstmt.setInt(3, cart.getCART_P_NO());
+			pstmt.setInt(4, cart.getCART_AMOUNT());
+			pstmt.setInt(5, cart.getCART_PRODUCT_TOTAL());
+			pstmt.setInt(6, cart.getCART_TOTAL());
+			
+			rows=pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} return rows;
+	}
+	
+	public int selectallcart(CartDTO cart) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		CartDTO cart=null;
+		try {
+			con=getConnection();
+			
+			
+			
+			String sql="SELECT * FROM CART WHERE MEM_ID=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs=pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		} return cart;
+	}
+	
+	
+	
+}

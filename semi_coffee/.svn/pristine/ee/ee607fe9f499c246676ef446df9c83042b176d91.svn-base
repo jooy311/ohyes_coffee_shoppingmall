@@ -1,0 +1,285 @@
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	ProductDTO product=null;
+	String no="";
+	
+	if(request.getParameter("no")!=null || request.getParameter("no")!=""){
+		no=request.getParameter("no");
+		product=ProductDAO.getProductDAO().selectNoProduct(no);
+	} else {
+		//잘못된 요청페이지
+	}
+%>
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            <div>
+                <!-- 상단 제품 정보  -->
+                <div class="xans-product xans-product-detail">
+                    <div class="detailArea ">
+
+                        <!-- 이미지 영역 -->
+                        <div class="xans-product xans-product-image imgArea ">
+                            <!-- //참고 -->
+                            <div class="keyImg">
+                                <div class="thumbnail">
+                                    <a>
+                                        <img src="<%=product.getpImagePath() %>" alt="'<%=product.getpImage() %>'" class="bigimg BigImage"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //이미지 영역 -->
+
+                        <!-- 상세정보 내역 -->
+                        <div class="infoArea">
+                            <div class="product_name">
+                                <%=product.getpName() %>
+                            </div>
+                            <div class="infoAreaLay">
+                                <!--left-->
+                                <div class="info-left">
+                                    <div class="xans-product xans-product-detaildesign">
+                                        <table border="1" >
+                                            <caption> 기본 정보</caption>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span style="font-size:15px;color:#000000;font-weight:bold;">판매가</span>
+                                                    </th>
+                                                    <td>
+                                                        <span style="font-size:15px;color:#000000;font-weight:bold;">
+                                                            <strong id="span_product_price_text"><%=product.getpCost() %></strong>
+                                                            <input id="product_price" name="product_price" value="" type="hidden" />
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span style="font-size:12px;color:#555555;">요약설명</span>
+                                                    </th>
+                                                    <td>
+                                                        <span style="font-size:12px;color:#555555;">
+                                                            <span id="span_mileage_text"><%=product.getpBrief() %></span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span style="font-size:12px;color:#555555;">배송방법</span>
+                                                    </th>
+                                                    <td>
+                                                        <span style="font-size:12px;color:#555555;">택배</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span style="font-size:12px;color:#555555;">배송비</span>
+                                                    </th>
+                                                    <td>
+                                                        <span style="font-size:12px;color:#555555;">
+                                                            <span class="delv_price_B">
+                                                                2500원
+                                                            </span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                  
+                                    <div id="totalProducts" >
+                                        <table border="1" >
+                                            <colgroup>
+                                                <col style="width:284px;" />
+                                                <col style="width:80px;" />
+                                                <col style="width:110px;" />
+                                            </colgroup>
+                                            <tbody class="">
+                                                <tr>
+                                                    <td>수량</td>
+                                                    <td>
+                                                        <span class="quantity">
+                                                        <!-- =================자바스크립트로 만들어야함================= -->
+                                                            <input id="quantity" name="quantity_name" value="1" type="text" /> 
+                                                            <a href="#none"><img src="images/img//skin/btn_count_up.gif" alt="수량증가" class="QuantityUp up" /></a>
+                                                            <a href="#none"><img src="images/img//skin/btn_count_down.gif" alt="수량감소" class="QuantityDown down" /></a>
+                                                        </span>
+                                                    </td>
+                                                    <td class="right">
+                                                        <span class="quantity_price">6000원</span> 
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <strong>총 상품금액</strong>(수량) : 
+                                                <!-- =================자바스크립트로 만들어야함================= -->
+                                                        <span class="total"><strong><em>0</em></strong> (0개)
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+				<!-- =================구매정보 넘겨주는 부분================= -->
+                            <div class="xans-product xans-product-action ">
+                                <div class="ec-base-button btns">
+                                    <a href="#none" class="first  allStore-color-btn1" onclick="product_submit(1, '../../../../../../../exec/front/order/basket/index.html', this)"
+                                        style="padding:0; min-width:auto;">
+                                        <span>
+                                            <input type="submit" id="btnBuy" value="구매하기" class="allStore-color-btn1" style="display:inline-block;line-height:50px;height:52px;min-width:150px;padding:0;" />
+                                        </span>
+                                        <span>
+                                            <input type="submit" id="btnReserve" value="예약주문" class="displaynone allStore-color-btn1" style="line-height:50px; height:50px;min-width:150px;padding:0;" />
+                                        </span>
+                                    </a>
+                                    <div style="font-size:0;">
+                                        <a href="#none" id="actionCart" class=" allStore-border-btn1" onclick="product_submit(2, '../../../../../../../exec/front/order/basket/index.html', this)"
+                                            style="display:inline-block;width:calc(49%) !important; margin-right:1%; font-size:14px; line-height:50px;height:50px;min-width:148px;padding:0;">
+                                            장바구니
+                                        </a>
+                                        <a href="#none" id="actionWish" onclick="add_wishlist(this, true);" class=" allStore-border-btn1" style="display:inline-block; width:49% !important;font-size:14px;line-height:50px;height:50px;min-width:148px;padding:0;">
+                                            관심상품
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //참고 -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- //상단 제품 정보 -->
+
+                <div class="xans-product xans-product-additional ">
+                    <!-- 상품상세정보 -->
+                    <div id="prdDetail" class="ec-base-tab grid4">
+                        <ul class="menu">
+                            <li class="selected"><a href="#prdDetail">상세정보</a></li>
+                            <li><a href="#prdReview">상품후기</a></li>
+                            <li><a href="#prdQnA">상품문의</a></li>
+                        </ul>
+                        <div class="cont" style="text-align:center;">
+                            <p align="center">
+                            	<img src="<%=product.getpImageDetailPath()%>" alt="'<%=product.getpImageDetail()%>'">
+                            </p>
+                        </div>
+                    </div>
+                    <!-- //상품상세정보 -->
+
+                    <!-- 상품사용후기 -->
+                    <div id="prdReview" class="ec-base-tab grid4">
+                        <ul class="menu">
+                            <li><a href="#prdDetail">상세정보</a></li>
+                            <li class="selected"><a href="#prdReview">상품후기</a></li>
+                            <li><a href="#prdQnA">상품문의</a></li>
+                        </ul>
+                        <div class="board">
+                            <div class="xans-product xans-product-review"><a name="use_review"></a>   
+                                <div class="ec-base-table typeList">
+                                    <table border="1">
+                                        <caption>상품사용후기</caption>
+                                        <colgroup>
+                                            <col style="width:70px;" />
+                                            <col style="width:auto" />
+                                            <col style="width:100px;" />
+                                            <col style="width:100px;" />
+                                            <col style="width:80px;" />
+                                            <col style="width:80px;" class="displaynone" />
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">번호</th>
+                                                <th scope="col">제목</th>
+                                                <th scope="col">작성자</th>
+                                                <th scope="col">작성일</th>
+                                                <th scope="col">조회</th>
+                                                <th scope="col" class="displaynone">평점</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="center">
+                                            <tr >
+                                                <td>14</td>
+                                                <td class="subject left txtBreak">
+                                                    <a href="../../../../../../../article/%ec%83%81%ed%92%88%ed%9b%84%ea%b8%b0/4/475/indexeab8.html?no=475&amp;board_no=4&amp;spread_flag=T"> 오렌지 블렌드도 괜찮아요!!!</a> 
+                                                    <span class="txtWarn">[1]</span>
+                                                </td>
+                                                <td> k****</td>
+                                                <td class="txtInfo txt11">2020-06-25</td>
+                                                <td class="txtInfo txt11">29</td>
+                                                <td class="displaynone"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <p class="ec-base-button">
+                                <span class="gRight">
+                                    <a href="../../../../../../../board/product/writefd66.html?board_no=4&amp;product_no=32&amp;cate_no=56&amp;display_group=1"
+                                        class="allStore-color-btn1">글쓰기</a>
+                                    <a href="../../../../../../../board/product/list4878.html?board_no=4"
+                                        class="allStore-color-btn2">더보기</a>
+                                </span>
+                            </p>
+
+                            <div style="margin:0;"
+                                class="xans-product xans-product-reviewpaging ec-base-paginate paging">
+                                <a href="#none" class="btn first"><i class="fa fa-angle-double-left"
+                                        aria-hidden="true"></i></a>
+                                <a href="#none" class="btn"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                <ol>
+                                    <li ><a href="index2c2b.html?page_4=1#use_review"
+                                            class="this">1</a></li>
+                                    <li ><a href="indexee11.html?page_4=2#use_review"
+                                            class="other">2</a></li>
+                                </ol>
+                                <a href="indexee11.html?page_4=2#use_review" class="btn"><i
+                                        class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a href="indexee11.html?page_4=2#use_review" class="btn last"><i
+                                        class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //상품사용후기 -->
+                    <!-- 상품 Q&A -->
+                    <div id="prdQnA" class="ec-base-tab grid4">
+                        <ul class="menu">
+                            <li><a href="#prdDetail">상세정보</a></li>
+                            <li><a href="#prdReview">상품후기</a></li>
+                            <li class="selected"><a href="#prdQnA">상품문의</a></li>
+                        </ul>
+                        <div class="board">
+                            <p class="nodata">게시물이 없습니다</p>
+                            <p class="ec-base-button">
+                                <span class="gRight">
+                                    <a href="../../../../../../../board/product/write8cc0.html?board_no=6&amp;product_no=32&amp;cate_no=56&amp;display_group=1"
+                                        class="allStore-color-btn1">글쓰기</a>
+                                    <a href="../../../../../../../board/product/listf946.html?board_no=6"
+                                        class="allStore-color-btn2">더보기</a>
+                                </span>
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <!-- //상품Q&A -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

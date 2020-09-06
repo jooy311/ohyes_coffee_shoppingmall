@@ -1,0 +1,171 @@
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="/coffee/member/login_change.jspf" %>
+<%
+	int pageNum=1;
+	if(request.getParameter("pageNum")!=null) {
+		pageNum=Integer.parseInt(request.getParameter("pageNum"));
+	}
+	String search=request.getParameter("search");
+	if(request.getParameter("search")==null) search="";
+	String keyword=request.getParameter("keyword");
+	if(request.getParameter("keyword")==null) keyword="";
+%>
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            <div>
+                <div class="xans-board xans-board-writepackage-4 xans-board-writepackage xans-board-4 ">
+                    <!--타이틀, 현재위치-->
+                <div class="allStore-board-menupackage">
+                    <div class="title">
+                        <h2>
+                            <font color="#555555">상품후기</font>
+                        </h2>
+                    </div>
+                    <div class="nav-path">
+                        <ol>
+                            <li><a href="#">홈</a></li>
+                            <li title="현재 위치"><strong>상품후기</strong></li>
+                        </ol>
+                    </div>
+                </div>
+                <!--타이틀, 현재위치-->
+                    <form id="boardWriteForm" name="pForm" action="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=board&work=review_write_action" method="post">
+                    	<input type="hidden" name="productNO" value="">
+                        <div class="xans-board xans-board-write-4 xans-board-write xans-board-4">
+                            <!-- 상품정보선택 -->
+                            <div class="ec-base-box typeProduct">
+                                <p class="thumbnail">
+                                	<a class="productLink">
+	                                	<img id="iPrdImg" src="images/75x75.gif">
+                                	</a>
+                               	</p>
+                                <div class="information">
+                                    <span id="sPrdCommonImg"></span> 
+                                    <h3>
+                                        <a class="productLink">
+                                        <span id="sPrdName"></span>
+                                        </a>
+                                    </h3>
+                                    <p class="price">
+                                        <span id="sPrdPrice"></span>
+                                    </p>
+                                    <p class="button">
+                                        <span id="iPrdView" class="displaynone">
+                                            <a class="productLink" target="_blank">
+                                                <img src="images/btn_prd_detail.gif" alt="상품상세보기">
+                                            </a>
+                                        </span>
+                                        <span class="">
+                                            <a id="search_board">
+                                                <img id="search_board" src="images/btn_prd_select.gif" alt="상품정보선택">
+                                            </a>
+                                        </span>
+                                    </p>
+                                    <div id="productMsg" style="display:none; color:red">상품을 선택해주세요</div>
+                                </div>
+                            </div>
+
+                            <div class="ec-base-table typeWrite ">
+                                 <table border="1" summary="">
+                                     <caption>글쓰기 폼</caption>
+                                     <colgroup>
+                                         <col style="width:130px;" />
+                                         <col style="width:auto;" />
+                                     </colgroup>
+                                     <tbody>
+                                         <tr>
+                                             <th scope="row">제목</th>
+                                             <td> 
+                                                 <input id="subject" name="review_title" class="inputTypeText" type="text" class="change"/> 
+                                                 <div id="titleMsg" style="display:none; color:red">제목을 입력해주세요</div>
+                                             </td>
+                                         </tr>
+                                         <tr class="">
+                                             <th scope="row">작성자</th>
+                                             <td>
+                                                 <input id="writer" name="review_memid" class="inputTypeText" value="<%=loginMember.getMemId() %>" type="text" readonly/>
+                                             </td>
+                                         </tr>
+                                         <tr class="">
+                                             <th scope="row" colspan="2">내용</th>
+                                         </tr>
+                                             <tr class="">
+                                                 <td  colspan="2">
+                                                     <textarea rows="15" cols="200" name="review_content" id="review_content" class="change"></textarea>
+                                                     <div id="contentMsg" style="display:none; color:red">내용을 입력해주세요</div>
+                                                 </td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                 </div>
+                                 <div class="ec-base-button ">
+									<span class="gLeft">
+										<a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=<%=pageNum%>">
+										    <img src="images/btn_list.gif" alt="목록" />
+										</a>
+									</span>
+	                                 <span class="gRight">
+	                                     <a class="allStore-color-btn1">
+	                                         등록
+	                                     </a>
+	                                     <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>" class="allStore-color-btn3">
+	                                         취소
+	                                     </a>
+	                                 </span>
+                             </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--allStore_contents-->
+</div>
+<script type="text/javascript">
+
+$("#subject").change(function() {
+	$("#titleMsg").addClass("displaynone");
+});
+$("#review_content").change(function() {
+	$("#contentMsg").addClass("displaynone");
+});
+
+$(".allStore-color-btn1").click(function() {
+	
+	var submitResult=1;
+	
+	if($("#sPrdName").text()==""){
+		$("#productMsg").css("display","block");
+		submitResult=0;
+	} else {
+		$("#productMsg").css("display","none");
+	}
+	if($("#subject").val()==""){
+		$("#titleMsg").css("display","block");
+		submitResult=0;
+	} else {
+		$("#titleMsg").css("display","none");
+	}
+	if($("#review_content").val()==""){
+		$("#contentMsg").css("display","block");
+		submitResult=0;
+	} else {
+		$("#contentMsg").css("display","none");
+	}
+	if(submitResult==1){
+		$("#boardWriteForm").submit();		
+	}
+});
+
+$("#search_board").click(function() {
+	window.open("<%=request.getContextPath()%>/coffee/board/search_board_list.jsp"
+		,"postSearch","width=600,height=580,left=350,top=30");
+});
+</script>

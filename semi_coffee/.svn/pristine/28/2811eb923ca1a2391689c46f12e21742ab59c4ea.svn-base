@@ -1,0 +1,22 @@
+<%@page import="ohyes.coffee.dao.ReviewCommentDAO"%>
+<%@page import="ohyes.coffee.dto.ReviewCommentDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="/coffee/Mypage/login_check.jspf" %>
+<%
+	if(request.getMethod().equals("get")){
+		out.println("<script type='text/javascript'>");
+		out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp';");
+		out.println("</script>");
+	}
+	String pno=request.getParameter("no");
+	String coContent=request.getParameter("coContent").replace("<", "&lt;").replace(">", "&gt;");
+	int coNo=Integer.parseInt(request.getParameter("coNo"));
+	int no=Integer.parseInt(request.getParameter("num"));
+	
+	ReviewCommentDAO.getDAO().updateCommentReview(coNo, coContent, no);
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=board&work=review_detail&num="+no+"&no="+pno+"#comment_modify';");
+	out.println("</script>");
+%>

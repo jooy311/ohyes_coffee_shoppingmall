@@ -1,0 +1,1084 @@
+function NNEditorRange(t, win) {
+	var obj = NN.Browser.MSIE ? new IERange() : new W3Range();
+	obj.NN = t.NN;
+	obj.win = win;
+	obj.doc = win.document;
+	obj.selectionType = {
+		'NONE': 0,
+		'TEXT': 1,
+		'CONTROL': 2
+	};
+	obj.focus = function () {
+		this.win.focus();
+	};
+	obj.getNode = function () {
+		var
+			t = this,
+			r = t.getRng(),
+			s = t.getSel(),
+			e;
+		if (!NN.Browser.MSIE) {
+			if (!r) {
+				return t.doc.body;
+			}
+			e = r.commonAncestorContainer;
+			if (!r.collapsed) {
+				if (NN.Browser.isWebKit && s.anchorNode && s.anchorNode.nodeType == NN.DOM.ELEMENT_NODE) {
+					return s.anchorNode.childNodes[s.anchorOffset];
+				}
+				if (r.startContainer == r.endContainer) {
+					if (r.startOffset - r.endOffset < 2) {
+						if (r.startContainer.hasChildNodes()) {
+							e = r.startContainer.childNodes[r.startOffset];
+						}
+					}
+				}
+			}
+			return NN.DOM.getParent(e, function (n) {
+				return n.nodeType == NN.DOM.ELEMENT_NODE;
+			});
+		}
+		return r.item ? r.item(0) : r.parentElement();
+	};
+	obj.isCollapsed = function () {
+		if (!this.range) {
+			var
+				s = this.getSel(),
+				r = this.getRng();
+			if (!r) {
+				return false;
+			}
+		}
+		else {
+			var
+				s = this.getSel(),
+				r = this.range;
+		}
+		if (NN.Browser.MSIE) {
+			return r.text == '';
+		}
+		else {
+			if (isString(s)) { // Safari
+				return s == "";
+			}
+			else { // Mozilla/W3
+				return s.isCollapsed || s.toString() == '';
+			}
+		}
+	};
+	obj.setRng = function (r) {
+		var
+			s = this.getSel(),
+			r = this.getRng();
+		if (!NN.Browser.MSIE) {
+			if (s) {
+				s.removeAllRanges();
+				s.addRange(r);
+			}
+		}
+		else {
+			try {
+				r.select();
+			}
+			catch (ex) {}
+		}
+	};
+	obj.select = function (n, c) {
+		var
+			t = this,
+			r = t.getRng(),
+			s = t.getSel(),
+			b,
+			fn,
+			ln,
+			d = this.doc;
+		function first(n) {
+			return n ? d.createTreeWalker(n, NodeFilter.SHOW_TEXT, null, false).nextNode() : null;
+		};
+		function last(n) {
+			var c, o, w;
+			if (!n) {
+				return null;
+			}
+			w = d.createTreeWalker(n, NodeFilter.SHOW_TEXT, null, false);
+			while (c = w.nextNode()) {
+				o = c;
+			}
+			return o;
+		};
+		if (NN.Browser.MSIE) {
+			try {
+				b = d.body;
+				if (/^(IMG|TABLE) $/.test(n.nodeName)) {
+					r = b.createControlRange(); // Creates a controlRange collection
+					r.addElement(n); // Adds an element to the controlRange collection
+				}
+				else {
+					r = b.createTextRange();
+					r.moveToElementText(n);
+				}
+				r.select();
+			}
+			catch (ex) {}
+		}
+		else {
+			if (c) {
+				fn = first(n);
+				ln = last(n);
+				if (fn && ln) {
+					r = d.createRange();
+					r.setStart(fn, 0);
+					r.setEnd(ln, ln.nodeValue.length);
+				}
+				else {
+					r.selectNode(n);
+				}
+			}
+			else {
+				r.selectNode(n);
+			}
+			t.setRng(r);
+		}
+		this.setSelection(); // ★★★★★★★★★★★★ IE에서 s.select() 한 후 range를 갱신한다.
+		return n;
+	};
+	obj.setSelection = function () {
+		this.focus();
+		this.range = this.getRng();
+		this.rangeType = this.getType(this.range);
+	};
+	obj.setCurClickObject = function () {
+		var r = this.getRng();
+		if (NN.Browser.MSIE) {
+			try {
+				var o = r.parentElement();
+			}
+			catch (e) {
+				if (typeof console != 'undefined') console.warn('setCurClickObject=', e.description);
+				return;
+			}
+		}
+		else {
+			var o = r.commonAncestorContainer.parentNode;
+		}
+		return typeof o == 'undefined' ? null : o;
+	};
+	obj.getType = function () {
+		var
+			t = this,
+			s = t.getSel(),
+			r = t.getRng();
+		if (NN.Browser.MSIE) {
+			return this.selectionType[s.type.toUpperCase()];
+		}
+		else {
+			var stype = 1;
+			if (r.startContainer == r.endContainer && (r.endOffset - r.startOffset) == 1 && r.startContainer.nodeType != NN.DOM.TEXT_NODE) {
+				stype = this.selectionType.CONTROL;
+			}
+			return stype;
+		}
+	};
+	obj.isBlock = function (n) {
+		return /^(H[1-6]|HR|P|DIV|ADDRESS|PRE|FORM|TABLE|OL|UL|TD|CAPTION|BLOCKQUOTE|CENTER|DL|DT|DD|DIR|FIELDSET|NOSCRIPT|NOFRAMES|MENU|ISINDEX|SAMP)$/.test(n.nodeName);
+	};
+	obj._getSelectedBlocks = function (st, en) {
+		var
+			ed = this.editor,
+			dom = NN.DOM,
+			s = this,
+			sb,
+			eb,
+			n,
+			bl = [];
+		sb = dom.getParent(st || s.getStart(), this.isBlock.bind2(this));
+		eb = dom.getParent(en || s.getEnd(), this.isBlock.bind2(this));
+		if (sb) {
+			bl.push(sb);
+		}
+		if (sb && eb && sb != eb) {
+			n = sb;
+			while ((n = n.nextSibling) && n != eb) {
+				if (this.isBlock(n)) {
+					bl.push(n);
+				}
+			}
+		}
+		if (eb && sb != eb) {
+			bl.push(eb);
+		}
+		return bl;
+	};
+	obj.getStart = function () {
+		var
+			t = this,
+			r = t.getRng(),
+			e;
+		if (NN.Browser.MSIE) {
+			if (r.item) {
+				return r.item(0);
+			}
+			r = r.duplicate();
+			r.collapse(1);
+			e = r.parentElement();
+			if (e && e.nodeName == 'BODY') {
+				return e.firstChild;
+			}
+			return e;
+		}
+		else {
+			e = r.startContainer;
+			if (e.nodeName == 'BODY') {
+				return e.firstChild;
+			}
+			return NN.DOM.getParent(e, function (n) {
+				return n.nodeType == 1;
+			});
+		}
+	};
+	obj.getEnd = function () {
+		var
+			t = this,
+			r = t.getRng(),
+			e;
+		if (NN.Browser.MSIE) {
+			if (r.item) {
+				return r.item(0);
+			}
+			r = r.duplicate();
+			r.collapse(0);
+			e = r.parentElement();
+			if (e && e.nodeName == 'BODY') {
+				return e.lastChild;
+			}
+			return e;
+		}
+		else {
+			e = r.endContainer;
+			if (e.nodeName == 'BODY') {
+				return e.lastChild;
+			}
+			return NN.DOM.getParent(e, function (n) {
+				return n.nodeType == 1;
+			});
+		}
+	};
+	obj.cloneNode = function (node) {
+		if (!NN.DOM.isElm(node)) {
+			return null;
+		}
+		var destNode = this.NN[node.nodeName.toLowerCase()]();
+		var attrName;
+		var attrVal;
+		for (var i = 0; i < node.attributes.length; i++) {
+			attrName = node.attributes[i].nodeName.toLowerCase();
+			attrVal = node.attributes[i].nodeValue;
+			if (attrName.indexOf("_moz") > -1 || attrName.indexOf("contenteditable") > -1) {
+				continue;
+			}
+			if (attrVal == null || attrVal.length == 0 || attrVal == 0) {}
+			else {
+				destNode.setAttribute(attrName, attrVal, 0);
+			}
+		}
+		if (NN.Browser.MSIE && node.style.cssText.trim() != "") {
+			destNode.style.cssText = node.style.cssText;
+		}
+		return destNode;
+	};
+	obj.exec = function (handler, newNode) {
+		var rng = this.getRng();
+		var mk = new NNEditorMK(this.makeMK());
+		try {
+			mk.pasteMK(rng);
+			this.makeParaByMK(mk);
+			handler(mk, newNode);
+		}
+		catch (e) {
+			if (typeof console != 'undefined') console.log(e);
+		}
+		finally {
+			mk.removeMK();
+		}
+	};
+	obj.makeParaByMK = function (mk) {
+		if (mk.hasSel) {
+			var sNode = this.makeParagraph(mk.leftMK);
+			var eNode = this.makeParagraph(mk.rightMK);
+			while (sNode != eNode) {
+				if (NN.DOM.includeNode(sNode, eNode)) {
+					break;
+				}
+				this.makeParagraph(sNode);
+				if (sNode.nextSibling) {
+					sNode = sNode.nextSibling;
+				}
+				else {
+					while (sNode) {
+						if (sNode.nextSibling) {
+							break;
+						}
+						sNode = sNode.parentNode;
+					}
+					if (!sNode) {
+						break;
+					}
+					sNode = sNode.nextSibling;
+				}
+			}
+		}
+		else {
+			this.makeParagraph(mk.pointMK);
+		}
+	};
+	obj.makeParagraph = function (mNode) {
+		var _node = mNode;
+		if (NN.DOM.chkListNode(mNode)) {
+			return mNode;
+		}
+		else if (NN.DOM.insideTable(mNode)) {
+			var wNode = NN.DOM.schParaInTable(mNode);
+			if (wNode) {
+				return wNode;
+			}
+			else {
+				var cNode = NN.DOM.schCellNode(mNode);
+				var nNode = this.NN.p();
+				NN.DOM.moveChild(cNode, nNode);
+				cNode.appendChild(nNode);
+				return nNode;
+			}
+		}
+		else {
+			var wNode = NN.DOM.schParaNode(mNode);
+			if (wNode) {
+				return wNode;
+			}
+		}
+		while (_node.previousSibling) {
+			if (NN.DOM.chkBrNode(_node.previousSibling)) {
+				break;
+			}
+			else if (NN.DOM.chkBlockNode(_node.previousSibling)) {
+				break;
+			}
+			else if (NN.DOM.chkParaNode(_node.previousSibling)) {
+				break;
+			}
+			_node = _node.previousSibling;
+		}
+		var wNode = this.NN.p();
+		NN.DOM.insertAt(wNode, _node);
+		var nextNode;
+		while (_node) {
+			if (NN.DOM.chkBlockNode(_node)) {
+				break;
+			}
+			nextNode = _node.nextSibling;
+			wNode.appendChild(_node);
+			if (NN.DOM.chkBrNode(_node)) {
+				break;
+			}
+			_node = nextNode;
+		}
+		if (NN.Browser.Firefox) {
+			if (!NN.DOM.chkBrNode(wNode.lastChild)) {
+				wNode.appendChild(this.NN.br());
+			}
+		}
+		return wNode;
+	};
+	obj.divNodeByMK = function (mk) {
+		var pNode = NN.DOM.schParaNode(mk);
+		if (!pNode) {
+			var gNode = NN.DOM.schGroupNode(mk) || this.doc.body;
+			pNode = NN.DOM.chkListNode(gNode) ? this.NN.li() : this.NN.p();
+			var cNode = gNode.firstChild;
+			while (cNode) {
+				pNode.appendChild(cNode);
+				cNode = gNode.firstChild;
+			}
+			gNode.appendChild(pNode);
+		}
+		var dvNode;
+		while (mk.previousSibling != pNode) {
+			var cnNode = this.cloneNode(mk.parentNode);
+			if (!cnNode) {
+				break;
+			}
+			if (dvNode) {
+				cnNode.appendChild(dvNode);
+			}
+			var cNode = mk.nextSibling;
+			while (cNode) {
+				cnNode.appendChild(cNode);
+				cNode = mk.nextSibling;
+			}
+			NN.DOM.insertNext(mk, mk.parentNode);
+			dvNode = cnNode;
+		}
+		NN.DOM.insertNext(dvNode, pNode);
+		if (NN.Browser.MSIE) {
+			if (NN.DOM.chkParaNode(pNode)) {
+				this.insNbsp(pNode);
+			}
+			if (NN.DOM.chkParaNode(dvNode)) {
+				this.insNbsp(dvNode);
+			}
+		}
+		else if (NN.Browser.Firefox) {
+			if (NN.DOM.chkParaNode(pNode)) {
+				this.insBr(pNode);
+			}
+			if (NN.DOM.chkParaNode(dvNode)) {
+				this.insBr(dvNode);
+			}
+		}
+		if (mk.previousSibling) {
+			NN.DOM.insertAt(mk, mk.previousSibling);
+		}
+		return dvNode;
+	};
+	obj.insBr = function (node) {
+		if (node.childNodes.length == 0 || node.lastChild.nodeType == 3 || !NN.DOM.chkNode(node.lastChild, 'br')) {
+			if (NN.DOM.hasNodeByTagName(node, 'div')) {
+				return;
+			}
+			if (NN.Browser.MSIE && NN.DOM.schCellNode(node)) {
+				return;
+			}
+			node.appendChild(this.NN.br());
+		}
+	};
+	obj.insNbsp = function (node) {
+		while (node.firstChild) {
+			node = node.firstChild;
+		}
+		if (NN.DOM.chkNode(node, NN.DOM.NOCURSOR_TAGS)) {
+			node = node.parentNode;
+		}
+		if (node.nodeType != 1) {
+			node = node.parentNode;
+		}
+		if (node.childNodes.length == 0) {
+			if (node.childNodes.length < 2) {
+				node.innerHTML = "&nbsp;";
+			}
+		}
+	};
+	obj.pasteContent = function (html, newline) {
+		var newline = false;
+		if (!this.lastRange) {
+			this.focus();
+			this.lastRange = this.getRng();
+		}
+		var rng = this.getRng();
+		rng.collapse(true);
+		this.exec(function (mk) {
+			if (newline) {
+				var dvLNode = this.divNodeByMK(mk.pointMK);
+				NN.DOM.insertAt(mk.pointMK, dvLNode.firstChild);
+				var dvLNode2 = this.divNodeByMK(mk.pointMK);
+				NN.DOM.insertNext(mk.pointMK, dvLNode2.firstChild);
+				dvLNode.innerHTML = html;
+				this.moveCurToNode(dvLNode2);
+			}
+			else {
+				var _tmpNode = this.NN['div'](html);
+				var _node = _tmpNode.firstChild;
+				mk.pasteNodeAtMK(_node);
+				_tmpNode = null;
+				this.moveCurNextToNode(_node);
+			}
+		}.bind2(this));
+	};
+	obj.pasteContent2 = function (html) {
+		if (!this.lastRange) {
+			this.focus();
+			this.lastRange = this.getRng();
+		}
+		var rng = this.getRng();
+		rng.collapse(true);
+		this.exec(function (mk) {
+			try {
+				var dvLNode = this.divNodeByMK(mk.pointMK);
+				NN.DOM.insertAt(mk.pointMK, dvLNode.firstChild);
+				var dvLNode2 = this.divNodeByMK(mk.pointMK);
+				NN.DOM.insertNext(mk.pointMK, dvLNode2.firstChild);
+				dvLNode.innerHTML = html;
+				this.moveCurToNode(dvLNode2);
+			}
+			catch (e) {
+				var _tmpNode = this.NN['div'](html);
+				var _node = _tmpNode.firstChild;
+				mk.pasteNodeAtMK(_node);
+				_tmpNode = null;
+				this.moveCurNextToNode(_node);
+			}
+		}.bind2(this));
+	};
+	obj.resetContent = function () {
+		t.getText().value = '';
+		t.getIFDoc().body.innerHTML = t.getOpt('START_HTML');
+	};
+	obj.pasteOnlyContent = function (html) {
+		if (!this.lastRange) {
+			this.focus();
+			this.lastRange = this.getRng();
+		}
+		var rng = this.getRng();
+		rng.collapse(true);
+		this.exec(function (mk) {
+			var _node = this.doc.createTextNode(html);
+			mk.pasteNodeAtMK(_node);
+			this.moveCurNextToNode(_node);
+		}.bind2(this));
+	};
+	return obj;
+}
+function W3Range() {
+	this.getSel = function () {
+		return this.win.getSelection();
+	};
+	this.getRng = function () {
+		var
+			oSEl = this.getSel(),
+			r;
+		try {
+			if (oSEl) {
+				r = oSEl.rangeCount > 0 ? oSEl.getRangeAt(0) : (oSEl.createRange ? oSEl.createRange() : this.win.document.createRange());
+			}
+		}
+		catch (ex) {
+		}
+		if (!r) {
+			r = NN.Browser.MSIE ? this.win.document.body.createTextRange() : this.win.document.createRange();
+		}
+		return r;
+	};
+	this.init = function () {
+		this.win.focus();
+	};
+	this.insertNode = function (newNode) {
+		var
+			s = this.getSel(),
+			r = this.getRng();
+		r.setStart(s.focusNode, r.startOffset);
+		r.insertNode(newNode);
+		this.node = newNode;
+	};
+	this.hasSel = function () {
+		var sel = this.getSel();
+		return (sel && !sel.isCollapsed);
+	};
+	this.makeMK = function () {
+		if (this.hasSel()) {
+			return {
+				hasSel: true,
+				leftMK: this.NN.span({
+					id: "leftMK"
+				}),
+				rightMK: this.NN.span({
+					id: "rightMK"
+				})
+			};
+		}
+		else {
+			return {
+				hasSel: false,
+				pointMK: this.NN.span({
+					id: "mk"
+				})
+			};
+		}
+	};
+	this.selectRange = function (rng) {
+		var sel = this.getSel();
+		sel.removeAllRanges();
+		sel.addRange(rng);
+	};
+	this.surroundText = function (tag, attributes, text) {
+		if (!this.lastRange) {
+			this.focus();
+			this.lastRange = this.getRng();
+		}
+		if (this.hasSel()) {
+			var rng = this.getRng();
+			var objMK = new NNEditorMK(this.makeMK());
+			objMK.pasteMK(rng);
+			var wrapNode = objMK.getBoundary(tag);
+			if (wrapNode) {
+				var sValue, sName;
+				var oStyles = attributes.style;
+				for (sName in oStyles) {
+					sValue = oStyles[sName];
+					wrapNode.style[sName] = sValue;
+				}
+				rng.selectNode(wrapNode);
+				objMK.removeMK();
+			}
+			else {
+				var textNodes = objMK.cltTextInMK();
+				textNodes.each2(function (textNode) {
+					if (textNode.nodeType && textNode.nodeType == 1) {
+						if (!NN.DOM.chkNode(textNode, 'img')) {
+							return;
+						}
+					}
+					else if (textNode.textContent.length == 0) {
+						return;
+					}
+					var newNode = this.NN[tag](attributes);
+					textNode.parentNode.insertBefore(newNode, textNode);
+					newNode.appendChild(textNode);
+				}.bind2(this));
+				if (textNodes.length == 1) {
+					rng.selectNode(textNodes[0].parentNode);
+				}
+				else {
+					var rng = objMK.getRangeAroundMarker(this.getRng());
+					this.selectRange(rng);
+				}
+				objMK.removeMK();
+			}
+		}
+		else {
+			var anonmyousFunc = function (objMK) {
+				var newNode = this.win.document.createElement('span');
+				var sValue, sName;
+				var oStyles = attributes.style;
+				for (sName in oStyles) {
+					sValue = oStyles[sName];
+					newNode.style[sName] = sValue;
+				}
+				newNode.innerHTML = '\ufeff';
+				objMK.pasteNodeAtMK(newNode);
+				if (text != null) {
+					newNode.innerHTML = text;
+				}
+				this.moveCurToNode(newNode);
+			}.bind2(this);
+			this.exec(anonmyousFunc);
+			anonmyousFunc = null;
+		}
+	};
+	this.moveCurToNode = function (node) {
+		if (!node) {
+			return;
+		}
+		var
+			_rng = this.getRng(),
+			_sel = this.getSel();
+		while (node.firstChild) {
+			node = node.firstChild;
+		}
+		if (NN.DOM.chkNode(node, NN.DOM.NOCURSOR_TAGS)) {
+			node = node.parentNode;
+		}
+		var takenDummy = false;
+		if (node.nodeType == 3 && node.nodeValue == '') {
+			node.nodeValue = '\ufeff';
+			takenDummy = true;
+		}
+		try {
+			_rng.selectNodeContents(node);
+		}
+		catch (e) {
+			_rng = this.doc.createRange();
+			_rng.selectNodeContents(node);
+		}
+		_sel.removeAllRanges();
+		_sel.addRange(_rng);
+		_sel.collapseToStart();
+		this.win.focus();
+		if (takenDummy) {
+			node.nodeValue = '';
+		}
+		return _sel;
+	};
+	this.moveCurNextToNode = function (node) {
+		var rng = this.getRng();
+		rng.selectNode(node);
+		var sel = this.getSel();
+		sel.addRange(rng);
+		sel.collapseToEnd();
+		this.win.focus();
+	};
+	this.ctrlEnter = function (ev) {
+		var rng = this.getRng();
+		rng.collapse(false);
+		this.exec(function (mk) {
+			var pointMK = mk.pointMK;
+			var blockNode = NN.DOM.schNode(pointMK, ['li', 'button', 'td', 'th']);
+			if (blockNode == null) {
+				var dvLNode = this.divNodeByMK(pointMK);
+				if (this.win.innerHeight < this.doc.documentElement.offsetHeight) {
+					var _oldTop = document.documentElement.scrollTop;
+					dvLNode.scrollIntoView(false);
+					document.documentElement.scrollTop = _oldTop;
+				}
+				this.moveCurToNode(dvLNode);
+			}
+			else if (NN.DOM.chkNode(blockNode, 'li')) {
+				var lNode = blockNode;
+				var cNode = lNode.firstChild;
+				var isEmpty = true;
+				while (true) {
+					if (!cNode) {
+						break;
+					}
+					if (cNode.nodeType == 3 && cNode.nodeValue != '') {
+						isEmpty = false;
+						break;
+					}
+					if (cNode.firstChild) {
+						cNode = cNode.firstChild;
+					}
+					else if (cNode.nextSibling) {
+						cNode = cNode.nextSibling;
+					}
+					else {
+						cNode = cNode.parentNode;
+						if (cNode == lNode) {
+							break;
+						}
+						else {
+							cNode = cNode.nextSibling;
+						}
+					}
+				}
+				if (isEmpty) {
+					NN.DOM.insertAt(pointMK, lNode);
+					var isEnd = lNode.nextSibling ? false : true;
+					var grandLgNode = lNode.parentNode.parentNode;
+					NN.DOM.removeNode(lNode);
+					var dvLNode = this.divNodeByMK(pointMK);
+					var _nWNode = NN.DOM.chkNode(grandLgNode, ['ul', 'ol']) ? this.NN.li(this.NN.br()) : this.NN.p(this.NN.br());
+					NN.DOM.insertAt(_nWNode, dvLNode);
+					if (isEnd) {
+						if (_nWNode.nextSibling) {
+							NN.DOM.removeNode(_nWNode.nextSibling);
+						}
+					}
+					this.moveCurToNode(_nWNode);
+				}
+				else {
+					var dvLNode = this.divNodeByMK(pointMK);
+					this.moveCurToNode(dvLNode);
+				}
+			}
+			else if (NN.DOM.chkNode(blockNode, 'button')) {
+				var _nWNode = this.NN.p(this.NN.br());
+				NN.DOM.insertAt(_nWNode, blockNode);
+				this.moveCurToNode(_nWNode);
+			}
+			else if (NN.DOM.chkNode(blockNode, ['td', 'th'])) {
+				var dvLNode = this.divNodeByMK(pointMK);
+				dvLNode.scrollIntoView(false);
+				this.moveCurToNode(dvLNode);
+			}
+		}.bind2(this));
+		NN.Utils.prevent(ev);
+	};
+}
+function IERange() {
+	this.getSel = function () {
+		return this.win.document.selection;
+	};
+	this.getRng = function () {
+		var oSEl = this.getSel();
+		return oSEl.createRange();
+	};
+	this.init = function () {
+		this.win.focus();
+	};
+	this.hasSel = function () {
+		var sel = this.getSel();
+		var type = sel.type.toLowerCase();
+		if (type === 'none') {
+			return false;
+		}
+		else if (type === 'control') {
+			return false;
+		}
+		else if (type === 'text') {
+			var rng = sel.createRange();
+			if (rng && rng.htmlText) {
+				return rng.htmlText.length > 0;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return true;
+		}
+	};
+	this.removeAllRanges = function () {
+		var s = this.getSel();
+		s.empty();
+	};
+	this.addRange = function (r) {
+		var
+			s = this.getSel(),
+			r = this.getRng();
+		nr = this.doc.body.createTextRange();
+		nr.moveToElementText(this.node);
+		nr.moveStart("textedit"); // 커서를 잃지 않는다.
+		nr.select();
+		if (s.type.toUpperCase() != "NONE") {
+			s.clear();
+		}
+	};
+	this.makeMK = function () {
+		if (this.doc.getElementById('leftMK')) {
+			NN.DOM.removeNode(this.doc.getElementById('leftMK'));
+		}
+		if (this.doc.getElementById('rightMK')) {
+			NN.DOM.removeNode(this.doc.getElementById('rightMK'));
+		}
+		if (this.doc.getElementById('mk')) {
+			NN.DOM.removeNode(this.doc.getElementById('mk'));
+		}
+		if (this.hasSel()) {
+			var rng1 = this.getRng();
+			var rng2 = this.getRng();
+			rng1.collapse(true);
+			rng1.pasteHTML('<span id="leftMK"></span>');
+			rng2.collapse(false);
+			rng2.pasteHTML('<span id="rightMK"></span>');
+			return {
+				hasSel: true,
+				leftMK: this.doc.getElementById('leftMK'),
+				rightMK: this.doc.getElementById('rightMK')
+			};
+		}
+		else {
+			var rng = this.getRng();
+			rng.pasteHTML('<span id="mk"></span>');
+			return {
+				hasSel: false,
+				pointMK: this.doc.getElementById('mk')
+			};
+		}
+	};
+	this.surroundText = function (tag, attributes, text) {
+		if (!this.lastRange) {
+			this.focus();
+			this.lastRange = this.getRng();
+		}
+		if (this.hasSel()) {
+			var objMK = new NNEditorMK(this.makeMK());
+			var wrapNode = objMK.getBoundary(tag);
+			if (wrapNode) {
+				var sValue, sName;
+				var oStyles = attributes.style;
+				for (sName in oStyles) {
+					sValue = oStyles[sName];
+					wrapNode.style[sName] = sValue;
+				}
+				objMK.removeMK();
+			}
+			else {
+				var textNodes = objMK.cltTextInMK();
+				textNodes.each2(function (textNode) {
+					if (textNode.nodeType && textNode.nodeType == 1) {
+						if (!NN.DOM.chkNode(textNode, 'img')) {
+							return;
+						}
+					}
+					else if (textNode.nodeValue.length == 0) {
+						return;
+					}
+					var newNode = this.NN[tag](attributes);
+					textNode.parentNode.insertBefore(newNode, textNode);
+					newNode.appendChild(textNode);
+				}.bind2(this));
+				objMK.removeMK();
+			}
+		}
+		else {
+			this.exec(function (objMK, newNode) {
+				objMK.pasteNodeAtMK(newNode);
+				if (text != null) {
+					newNode.innerHTML = text;
+				}
+				this.moveCurToNode(newNode);
+			}.bind2(this), this.NN[tag](attributes, "\ufeff"));
+		}
+	};
+	this.moveCurToNode = function (node) {
+		var rng = this.getRng();
+		var crNode = this.NN.span("\ufeff");
+		while (node.firstChild) {
+			node = node.firstChild;
+		}
+		if (NN.DOM.chkNode(node, NN.DOM.NOCURSOR_TAGS)) {
+			node = node.parentNode;
+		}
+		if (node.nodeType != 1) {
+			node = node.parentNode;
+		}
+		if (node.firstChild) {
+			NN.DOM.insertAt(crNode, node.firstChild);
+		}
+		else {
+			node.appendChild(crNode);
+		}
+		rng.moveToElementText(crNode);
+		rng.collapse(false);
+		rng.select();
+		NN.DOM.removeNode(crNode);
+	};
+	this.moveCurNextToNode = function (node) {
+		var rng = this.getRng();
+		if (!rng.moveToElementText) {
+			return;
+		}
+		var crNode = this.NN.span();
+		NN.DOM.insertNext(crNode, node);
+		rng.moveToElementText(crNode);
+		rng.collapse(false);
+		rng.select();
+		NN.DOM.removeNode(crNode);
+	};
+}
+function NNEditorMK(mk) {
+	var obj = NN.Browser.MSIE ? new IEMK() : new FFMK();
+	obj.init = function (mk) {
+		var _hasSel = this.hasSel = (mk.hasSel || false);
+		if (_hasSel) {
+			this.leftMK = mk.leftMK;
+			this.rightMK = mk.rightMK;
+		}
+		else {
+			this.pointMK = mk.pointMK;
+		}
+	};
+	obj.removeMK = function () {
+		if (this.hasSel) {
+			NN.DOM.removeNode(this.leftMK);
+			NN.DOM.removeNode(this.rightMK);
+		}
+		else {
+			NN.DOM.removeNode(this.pointMK);
+		}
+	};
+	obj.walkBetweenNodes = function (oNode, oEndNode, aNodesBetween) {
+		if (!oNode) return false;
+		if (!this.recurGetChildNodesUntil(oNode, oEndNode, aNodesBetween)) return false;
+		var oNextToChk = oNode.nextSibling;
+		while (!oNextToChk) {
+			if (!NN.DOM.parentNodeFix(oNode)) return false;
+			oNode = NN.DOM.parentNodeFix(oNode);
+			aNodesBetween[aNodesBetween.length] = oNode;
+			if (oNode == oEndNode) return false;
+			oNextToChk = oNode.nextSibling;
+		}
+		return this.walkBetweenNodes(oNextToChk, oEndNode, aNodesBetween);
+	};
+	obj.recurGetChildNodesUntil = function (oNode, oEndNode, aNodesBetween) {
+		if (!oNode) return false;
+		var bEndFound = false;
+		var oCurNode = oNode;
+		if (oCurNode.firstChild) {
+			oCurNode = oCurNode.firstChild;
+			while (oCurNode) {
+				if (!this.recurGetChildNodesUntil(oCurNode, oEndNode, aNodesBetween)) {
+					bEndFound = true;
+					break;
+				}
+				oCurNode = oCurNode.nextSibling;
+			}
+		}
+		aNodesBetween[aNodesBetween.length] = oNode;
+		if (bEndFound) return false;
+		if (oNode == oEndNode) return false;
+		return true;
+	};
+	obj.cltTextInMK = function () {
+		var aNodesBetween = [];
+		cnt = 0;
+		if (!this.leftMK || !this.rightMK) return aNodesBetween;
+		this.walkBetweenNodes(this.leftMK, this.rightMK, aNodesBetween);
+		return aNodesBetween;
+	};
+	obj.pasteNodeAtMK = function (node) {
+		var mk = this.hasSel ? this.leftMK : this.pointMK;
+		NN.DOM.insertAt(node, mk);
+	};
+	obj.getBoundary = function (tag) {
+		if (!this.hasSel) {
+			return false;
+		}
+		var _leftMarker = this.leftMK;
+		var _rightMarker = this.rightMK;
+		var _startNode = _leftMarker.parentNode;
+		var _endNode = _rightMarker.parentNode;
+		var _preLeftNode = _leftMarker.previousSibling;
+		var _nextLeftNode = _leftMarker.nextSibling;
+		var _isPreEmpty = (!_preLeftNode || (_preLeftNode.nodeType == 3 && _preLeftNode.nodeValue == ""));
+		var _preRightNode = _rightMarker.previousSibling;
+		var _nextRightNode = _rightMarker.nextSibling;
+		var _isNextEmpty = (!_nextRightNode || (_nextRightNode.nodeType == 3 && _nextRightNode.nodeValue == ""));
+		if (_isPreEmpty && _isNextEmpty && _startNode == _endNode && NN.DOM.chkNode(_startNode, tag)) {
+			return _startNode;
+		}
+		else if (_nextLeftNode == _preRightNode && _nextLeftNode.nodeType == 1 && NN.DOM.chkNode(_nextLeftNode, tag)) {
+			return _nextLeftNode;
+		}
+		else {
+			return null;
+		}
+	};
+	obj.init(mk);
+	return obj;
+}
+function IEMK() {
+	this.pasteMK = function (rng) {};
+}
+function FFMK() {
+	this.pasteMK = function (rng) {
+		if (this.hasSel) {
+			this.pasteMKBySplitText(rng);
+		}
+		else {
+			this.pasteMKAtPoint(rng);
+		}
+	};
+	this.pasteMKAtPoint = function (rng) {
+		if (this.hasSel) {
+			return;
+		}
+		rng.deleteContents();
+		rng.insertNode(this.pointMK);
+		rng.selectNode(this.pointMK);
+		rng.collapse(false);
+	};
+	this.pasteMKBySplitText = function (rng) {
+		if (!this.hasSel) {
+			return;
+		}
+		if (rng.endContainer.nodeType == 3) {
+			rng.endContainer.splitText(rng.endOffset);
+			rng.endContainer.parentNode.insertBefore(this.rightMK, rng.endContainer.nextSibling);
+		}
+		else {
+			rng.endContainer.insertBefore(this.rightMK, rng.endContainer.childNodes[rng.endOffset]);
+		}
+		if (rng.startContainer.nodeType == 3) {
+			rng.startContainer.splitText(rng.startOffset);
+			rng.startContainer.parentNode.insertBefore(this.leftMK, rng.startContainer.nextSibling);
+		}
+		else {
+			rng.startContainer.insertBefore(this.leftMK, rng.startContainer.childNodes[rng.startOffset]);
+		}
+	};
+	this.getRangeAroundMarker = function (rng) {
+		var leftMarker = this.leftMK;
+		var rightMarker = this.rightMK;
+		rng.setEnd(leftMarker.parentNode, NN.DOM.getIndex(leftMarker) + 1);
+		rng.setEnd(rightMarker.parentNode, NN.DOM.getIndex(rightMarker));
+		return rng;
+	}
+}

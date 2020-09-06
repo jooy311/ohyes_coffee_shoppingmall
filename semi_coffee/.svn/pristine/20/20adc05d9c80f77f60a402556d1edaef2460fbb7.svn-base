@@ -1,0 +1,223 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+
+<body>
+<link rel="stylesheet" type="text/css" href="css/basket.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
+
+    <!--allStore_wrap-->
+    <div id="allStore_wrap">
+<!--allStore_contents-->
+<div id="allStore_contents">
+    <div class="allStore_layout">
+        <div>
+
+            <!--타이틀, 현재위치-->
+            <div class="allStore-board-menupackage">
+                <div class="title">
+                    <h2>장바구니</h2>
+                </div>
+            </div>
+
+            <!--타이틀, 현재위치-->
+
+            <!-- 장바구니 모듈 Package -->
+            <div class="xans-order xans-order-basketpackage">
+
+                <!-- 탭 -->
+                <div class="xans-order xans-order-tabinfo ec-base-tab typeLight">
+                    <ul class="menu">
+                        <li class="selected "><a>상품 (3)</a></li>
+                    </ul>
+                    <p class="right ">장바구니에 담긴 상품은 30일 동안 보관됩니다.</p>
+                </div>
+
+                <!-- 장바구니 비어있을 때 -->
+
+                <!-- 일반상품 -->
+                <div class="orderListArea ec-base-table typeList">
+                    <div class="xans-order xans-order-normtitle title ">
+                        <h3>일반상품 (3)</h3>
+                    </div>
+
+                    <!-- 일반상품 (기본배송) -->
+                    <table border="1" summary="" class="xans-order xans-order-normnormal xans-record-">
+                        <caption>기본배송</caption>
+                        <thead>
+                            <tr>
+                                <th style="width:27px"><input type="checkbox" onclick=""></th>
+                                <th style="width:92px">이미지</th>
+                                <th style="width:auto">상품정보</th>
+                                <th style="width:98px">판매가</th>
+                                <th style="width:98px">수량</th>
+                                <th style="width:85px">합계</th>
+                                <th style="width:98px">삭제</th>
+                            </tr>
+                        </thead>
+                        <tfoot class="right">
+                            <tr>
+                                <td colspan="10">
+                                    <span class="gLeft">[기본배송]</span> 상품구매금액 <strong>6,000 <span
+                                            class="displaynone">()</span></strong>
+                                    <span class="displaynone"> </span> + 배송비 <span class="displaynone"> </span> <span
+                                        class="displaynone">
+                                        - 상품할인금액 0 </span> = 합계 : <strong class="txtEm gIndent10"><span
+                                            class="txt18">6,000</span>원</strong>
+                                    <span class="displaynone"> </span>
+                                </td>
+                            </tr>
+                        </tfoot>
+
+
+                        <tbody class="xans-order xans-order-list center">
+                            <tr class="xans-record-">
+                                <td><input type="checkbox" id="basket_chk_id_0"
+                                        name="basket_product_normal_type_normal"></td>
+                                <td class="thumb"><a href="#">
+                                        <img src="#" onerror="this.src=&#39;http://img.echosting.cafe24.com/thumb/img_product_small.gif&#39;;" alt="브라질 NY2 100g"></a></td>
+                                <td class="left">
+                                    <a href="http://coffeechoi.co.kr/product/detail.html?product_no=24&amp;cate_no=46">
+                                        <strong>브라질 NY2 100g</strong> </a>
+                                </td>
+                                <td class="right">
+                                    <div class="">
+                                        <strong>6,000원</strong>
+                                    </div>
+
+                                </td>
+
+                                <td style="user-select: auto;">
+                                    <span class="" style="user-select: auto;">
+                                        <span class="ec-base-qty" style="user-select: auto;">
+                                            <input id="quantity_id_0" name="quantity_name_0" size="1" value="1"
+                                                type="text" style="user-select: auto;">
+                                            <a href="javascript:;"
+                                                onclick="Basket.addQuantityShortcut('quantity_id_0', 0);"
+                                                style="user-select: auto;">
+                                                <img src="http://img.echosting.cafe24.com/skin/base/common/btn_quantity_up.gif"
+                                                    alt="수량증가" class="up" style="user-select: auto;"></a>
+                                            <a href="javascript:;"
+                                                onclick="Basket.outQuantityShortcut('quantity_id_0', 0);"
+                                                style="user-select: auto;">
+                                                <img src="http://img.echosting.cafe24.com/skin/base/common/btn_quantity_down.gif"
+                                                    alt="수량감소" class="down" style="user-select: auto;"></a>
+                                        </span>
+                                        <a href="javascript:;" class="gBlank5" onclick="Basket.modifyQuantity()"
+                                            style="user-select: auto;">
+                                            <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_modify.gif"
+                                                alt="변경" style="user-select: auto;"></a>
+                                    </span>
+                                    <span class="displaynone" style="user-select: auto;">2</span>
+                                </td>
+
+
+
+                                <td class="right">
+                                    <strong>6,000원</strong>
+                                    <div class="displaynone"></div>
+                                </td>
+                                <td class="button">
+                                    <a href="javascript:;" onclick="Basket.deleteBasketItem(0);"><img
+                                            src="../coffee/basket/image/btn_delete.gif" alt="삭제"></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!-- 선택상품 제어 버튼 -->
+                <div class="xans-order xans-order-selectorder ec-base-button ">
+                    <span class="gRight">
+                        <a href="http://coffeechoi.co.kr/order/basket.html#none" onclick="Basket.emptyBasket()">
+                            <img src="../coffee/basket/image/btn_clear.gif" alt="장바구니비우기"></a>
+                    </span>
+                </div>
+
+                <!-- 주문 버튼 -->
+                <div class="xans-order xans-order-totalorder ec-base-button justify">
+                    <a href="index.jsp?workgroup=pay&work=Pay" onclick="Basket.orderAll(this)"
+                        style="line-height: 40px;" link-order="/order/orderform.html?basket_type=all_buy"
+                        link-login="/member/login.html" class=" allStore-color-btn1 ">
+                        전체상품주문
+                    </a>
+                    <a href="index.jsp?workgroup=pay&work=Pay" onclick="Basket.orderSelectBasket(this)"
+                        style="line-height: 40px;" link-order="/order/orderform.html?basket_type=all_buy"
+                        link-login="/member/login.html" class="allStore-color-btn2 ">
+                        선택상품주문
+                    </a>
+                </div>
+            </div>
+            <!-- //장바구니 모듈 Package -->
+
+
+            <!-- 이용안내 -->
+            <div class="xans-order xans-order-basketguide ec-base-help ">
+                <h3>이용안내</h3>
+                <div class="inner">
+                    <h4>장바구니 이용안내</h4>
+                    <ol>
+                        <li class="item1">선택하신 상품의 수량을 변경하시려면 수량변경 후 [변경] 버튼을 누르시면 됩니다.</li>
+                        <li class="item2">[쇼핑계속하기] 버튼을 누르시면 쇼핑을 계속 하실 수 있습니다.</li>
+                        <li class="item3">장바구니와 관심상품을 이용하여 원하시는 상품만 주문하거나 관심상품으로 등록하실 수 있습니다.</li>
+                        <li class="item4">파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로 교체됩니다.</li>
+                    </ol>
+                    <h4>무이자할부 이용안내</h4>
+                    <ol>
+                        <li class="item1">상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기] 버튼을 눌러 주문/결제 하시면 됩니다.</li>
+                        <li class="item2">[전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에 대한 주문/결제가 이루어집니다.</li>
+                        <li class="item3">단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수 없습니다.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Start Script for IFDO (장바구니 분석) -->
+
+            <div style="display:none;" class="xans-order xans-order-basketpackage ">
+                <div class="orderListArea">
+                    <div id="ifdo_basket_list">
+
+                        <table border="1" summary=""
+                            class="xans-order xans-order-normnormal xans-record-">
+                            <tbody class="xans-order xans-order-list center middle">
+                                <tr class="ifdo_basket_ul xans-record-">
+                                    <td class="ifdo_product_name">브라질 NY2 100g</td>
+                                    <td class="ifdo_product_price">6,000원</td>
+                                    <td class="ifdo_product_no">24</td>
+                                    <td class="ifdo_product_cate"></td>
+                                    <td class="ifdo_product_num"><input id="quantity_id_0" name="quantity_name_0"
+                                            size="2" value="1" type="text"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- //참고 -->
+
+<!-- Start Script for IFDO (회원분석) -->
+
+<div style="display: none;" id="ifdo_login" class="xans-layout xans-layout-statelogon ">
+    <div id="ifdo_login_id"><span class="xans-member-var-id"> </span></div>
+    <div id="ifdo_login_name"><span class="xans-member-var-name"> </span></div>
+    <div id="ifdo_login_grpname"><span class="xans-member-var-group_name"> </span></div>
+    <div id="ifdo_login_mileage"></div>
+    <div id="ifdo_login_deposit"></div>
+    <div id="ifdo_login_email"><span class="xans-member-var-email"> </span></div>
+</div>
+
+<iframe src="./html/saved_resource.html" id="log_realtime" style="display: none;"></iframe>
+
+<div id="modalBackpanel"></div>
+<div id="modalContainer">
+    <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0" src="./html/saved_resource(1).html"></iframe>
+</div>
+</body>
+
+</html>

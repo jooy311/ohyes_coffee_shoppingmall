@@ -1,0 +1,262 @@
+<%@page import="ohyes.coffee.dto.MemberDTO"%>
+<%@page import="ohyes.coffee.dao.MemberAdminDAO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+   
+<%  List<MemberDTO> memberList=MemberAdminDAO.getDAO().selectMemAdminAll();%>
+<style>
+#deleteBtn{
+	margin:0 7px;
+	float: right;
+}
+
+.changeAddress1, .changeAddress2{
+	width: 270px;
+    display: block;
+}
+
+</style> 
+
+
+<!-- content 영역  -->
+<div class="container-fluid">
+	<div>&nbsp;</div>
+	<h4><i class="fa fa-angle-right"></i>고객관리 </h4>
+	<hr>
+
+	<!-- 검색패널 -->
+	<div class="container">
+	
+		<!-- form태그-->
+		<form method = "post">
+				
+			<!--아이디 검색-->
+			<div class="row">
+				<div class="col-25">
+					<label for="id">아이디</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="id" name="id" placeholder="아이디를 입력해주세요.">
+				</div>
+			</div>
+
+			<!--이름 검색-->
+			<div class="row">
+				<div class="col-25">
+					<label for="name">이름</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
+				</div>
+			</div>
+			
+			<!-- 핸드폰번호 검색 -->	
+			<div class="row">
+				<div class="col-25">
+					<label for="phone">핸드폰번호</label>
+				</div>
+				<div class="col-75">
+					<select id="phone1" style="width:21%;">
+						<option>010
+						<option>018
+						<option>011
+					</select>
+					<span style="margin:0 10px;"> - </span>
+					<input type="text" id="phone2" placeholder="중간번호 4자리" style="width:30%;">
+					<span style="margin:0 10px;"> - </span>
+					<input type="text" id="phone3" placeholder="마지막번호 4자리" style="width:30%;">
+				</div>
+			</div>
+			
+			<!-- 회원상태유무 : 임시저장 / 글올린거 -->
+			<div class="row">
+				<div class="col-25">
+					<label for="MemStatus">등급</label>
+				</div>
+				<div class="col-75">
+				    <select id="MemStatus" name="MemStatus">
+				      <option >회원</option>
+				      <option >관리자</option>
+				    </select>
+				</div>
+			</div>
+
+			<!-- 검색버튼 -->	
+			<div class="row">
+				<input type="submit" value="검색">
+			</div>
+		</form>
+	</div>	<!-- 검색패널 End -->
+	
+	<div>&nbsp;</div><div>&nbsp;</div>
+    
+    <!-- 결과패널 -->
+	<div class="content-panel">
+		<div>
+			<h4 style="display:inline;">검색 결과</h4>
+	    	<button class="btn btn-danger btn-xs" id="deleteAllBtn" type="button">회원정보삭제</button>
+	    	<hr>
+	    </div>
+	    
+	    <form id="MemListForm" name="MemListForm" method = "post"> 
+	    	<!-- 처리목적 보내기 -->
+			<input id="fromMem" name="fromMem" type="hidden">
+			
+			
+	    		
+		    <table class="table table-striped table-advance table-hover">
+	                
+	            <!-- 테이블 컬럼명-->
+				<thead>
+					<tr>
+						<th>선택</th>
+	                    <th>이름</th>
+	                    <th>아이디</th>
+	                    <th>핸드폰번호</th>
+	                    <th>주소</th>
+	                    <th>이메일</th>
+	                    <th>등급</th>
+	                    <th>삭제여부</th>
+					</tr>
+				</thead>
+	                
+	            <!-- 테이블 행출력 -->    
+	            <tbody>
+	            	<% for(MemberDTO list:memberList){ %>
+	            	
+	            	<tr>
+	                	<td><input type="checkbox" name="selectedMems" value="<%=list.getMemId()%>"></td>
+	                    <td><%=list.getMemName()%></td>
+	                    <td><%=list.getMemId()%></td>
+	                    <td>
+	                    	<span class="updatePhone" style="color:blue"><%=list.getMemPhone()%>
+	                    		<input type="hidden" class="changePhone" name="<%=list.getMemId() %>" value="<%=list.getMemPhone()%>">
+	                    	</span>
+	                    </td>
+	                    <td>
+	                    	<span class="updateAddress" style="color:blue">
+	                    		<span style="display:block;"><%=list.getMemZip()%>/<%=list.getMemAddress1()%>/<%=list.getMemAddress2()%></span>
+	                    		<input type="hidden" readonly="readonly" class="changeZip" name="<%=list.getMemId() %>" value="<%=list.getMemZip()%>" style="width:150px;">
+	                    		<input type="hidden" class="searchPost" onclick="execDaumPostcode()" value="우편번호 검색">
+	                    		<input type="hidden" readonly="readonly" class="changeAddress1" value="<%=list.getMemAddress1()%>" >
+	                    		<input type="hidden" class="changeAddress2" value="<%=list.getMemAddress2()%>" >
+	                    	</span>
+	                    	
+	                    </td>
+	                    <td><%=list.getMemEmail()%></td>
+	                    <td>
+	                    	<select class="updateStatus" name="<%=list.getMemId() %>" style="color:blue;">
+								<option value="1" <% if(list.getMemStatus()==1) { %> selected="selected" <% } %>>&nbsp;일반회원&nbsp;</option>
+								<option value="9" <% if(list.getMemStatus()==9) { %> selected="selected" <% } %>>&nbsp;관리자&nbsp;</option>
+							</select>
+	                    </td>
+					    <td>
+					    	<button type="submit"  class="deleteOneBtn" name="selectedMem" value="<%=list.getMemId() %>">삭제</button>
+					    </td>
+	                </tr>     
+	                             
+	                <%} %>
+				</tbody>
+			</table>
+		</form>
+		
+	</div> <!-- 결과패널 End -->
+
+</div> <!-- content영역 End -->
+
+<!-- 우편번호 검색 -->
+<SCRIPT src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></SCRIPT>
+
+<script>
+//단일행 삭제
+$(".deleteOneBtn").click(function(){
+	$("#fromMem").attr("value","deleteOne");
+	$("#MemListForm").attr("action", "<%=request.getContextPath()%>/coffee/admin/member/member_action.jsp"); 
+	$("#MemListForm").submit();
+});
+
+//다중행 삭제
+$("#deleteAllBtn").click(function(){
+	$("#fromMem").attr("value","deleteAll");
+	$("#MemListForm").attr("action", "<%=request.getContextPath()%>/coffee/admin/member/member_action.jsp"); 
+	$("#MemListForm").submit();
+});
+
+//번호변경
+$(".updatePhone").dblclick(function(){
+	$(".deleteOneBtn").attr("type", "button");	//삭제버튼 막기
+	$(this).children(".changePhone").attr("type", "text");
+	$(this).children(".changePhone").change(function(){
+		var selectedMem=$(this).attr("name");
+		var changedPhone=$(this).val();
+		location.href="<%=request.getContextPath()%>/coffee/admin/index.jsp?part=member&work=action&fromMem=updatePhone&selectedMem="+selectedMem+"&changedPhone="+changedPhone;
+	})
+})
+
+//주소변경 : 더블클릭시
+$(".updateAddress").dblclick(function(){
+	$(".deleteOneBtn").attr("type", "button");	//삭제버튼 막기
+	$(this).children(".changeZip").attr("type", "text");
+	$(this).children(".searchPost").attr("type", "button");
+	$(this).children(".changeAddress1").attr("type", "text");
+	$(this).children(".changeAddress2").attr("type", "text");
+	
+})
+
+
+//우편번호 검색
+function execDaumPostcode() {
+	new daum.Postcode({
+		oncomplete : function(data) {
+			// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+			var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+			// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+			// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+			if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+				extraRoadAddr += data.bname;
+			}
+			// 건물명이 있고, 공동주택일 경우 추가한다.
+			if (data.buildingName !== '' && data.apartment === 'Y') {
+				extraRoadAddr += (extraRoadAddr !== '' ? ', '
+						+ data.buildingName : data.buildingName);
+			}
+			// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+			if (extraRoadAddr !== '') {
+				extraRoadAddr = ' (' + extraRoadAddr + ')';
+			}
+			// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+			if (fullRoadAddr !== '') {
+				fullRoadAddr += extraRoadAddr;
+			}
+
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			$(".changeZip").attr("value",data.zonecode ); //5자리 새우편번호 사용
+			$(".changeAddress1").attr("value",fullRoadAddr ); 
+			$(".changeAddress2").focus();
+		}
+	}).open();
+}
+
+//주소변경 : 처리
+$(".changeAddress2").change(function(){
+	var selectedMem=$(".changeZip").attr("name");
+	var changeZip=$(".changeZip").val(); //5자리 새우편번호 사용
+	var changeAddress1=$(".changeAddress1").val(); 
+	var changeAddress2=$(".changeAddress2").val();
+	location.href="<%=request.getContextPath()%>/coffee/admin/index.jsp?part=member&work=action&fromMem=updateAddress&selectedMem="+selectedMem+"&changeZip="+changeZip+"&changeAddress1="+changeAddress1+"&changeAddress2="+changeAddress2;
+})
+
+//등급변경
+$(".updateStatus").change(function(){
+	var selectedMem=$(this).attr("name");
+	var changedStatus=$(this).val();
+	location.href="<%=request.getContextPath()%>/coffee/admin/index.jsp?part=member&work=action&fromMem=updateStatus&selectedMem="+selectedMem+"&changedStatus="+changedStatus;
+})
+
+
+</script>
+

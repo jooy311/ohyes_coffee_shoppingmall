@@ -1,0 +1,80 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import ohyes.coffee.dto.PayDTO;
+
+public class PayDAO extends JdbcDAO {
+	private static PayDAO _dao;
+	
+	public PayDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new PayDAO();
+	}
+	
+	public static PayDAO getDAO() {
+		return _dao;
+	}
+	
+	public int insertPay(PayDTO pay) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="insert into pay values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, pay.getORDER_NO());
+			pstmt.setString(2, pay.getORDER_MEM_ID());
+			pstmt.setString(3, pay.getORDER_RECV_NAME());
+			pstmt.setString(4, pay.getORDER_RECV_ADDRESS());
+			pstmt.setString(5, pay.getORDER_RECV_PHONE());
+			pstmt.setString(6, pay.getORDER_DATE());
+			pstmt.setInt(7, pay.getORDER_STATUS());
+			pstmt.setInt(8, pay.getORDER_TOTAL_COST());
+			pstmt.setString(9, pay.getORDER_MESSAGE());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+	public int deletePay(PayDTO pay) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="delete from pay where order_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, pay.getORDER_NO());
+			pstmt.setString(2, pay.getORDER_MEM_ID());
+			pstmt.setString(3, pay.getORDER_RECV_NAME());
+			pstmt.setString(4, pay.getORDER_RECV_ADDRESS());
+			pstmt.setString(5, pay.getORDER_RECV_PHONE());
+			pstmt.setString(6, pay.getORDER_DATE());
+			pstmt.setInt(7, pay.getORDER_STATUS());
+			pstmt.setInt(8, pay.getORDER_TOTAL_COST());
+			pstmt.setString(9, pay.getORDER_MESSAGE());
+				
+		} catch (SQLException e) {
+			System.out.println("[에러]updateProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} 
+		return rows;
+	}
+	
+	
+}

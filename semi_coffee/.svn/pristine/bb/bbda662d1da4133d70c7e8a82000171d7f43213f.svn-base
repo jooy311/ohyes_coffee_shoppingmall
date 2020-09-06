@@ -1,0 +1,1564 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" type="text/css" href="./php/optimizer(30).php">
+<link rel="stylesheet" type="text/css" href="./php/optimizer(31).php">
+
+<!--allStore_wrap-->
+<div id="allStore_wrap">                
+    
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            
+            <div>
+    <!--타이틀, 현재위치-->
+    <div class="allStore-board-menupackage">
+        
+        <div class="title">
+            <h2>주문서작성</h2>
+        </div>
+    </div>
+ <!--타이틀, 현재위치-->
+
+
+<form id="frm_order_act" name="frm_order_act" action="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A" 
+method="post" target="_self" enctype="multipart/form-data">
+<input id="move_order_after" name="move_order_after" value="/order/order_result.html" type="hidden">
+<input id="is_crowd_funding" name="is_crowd_funding" value="F" type="hidden">
+<input id="member_group_price" name="member_group_price" value="0" type="hidden">
+<input id="mileage_generate3" name="mileage_generate3" value="0" type="hidden">
+<input id="total_group_dc" name="total_group_dc" value="0" type="hidden">
+<input id="total_plusapp_mileage_price" name="total_plusapp_mileage_price" value="" type="hidden">
+<input id="basket_type" name="basket_type" value="all_buy" type="hidden">
+<input id="productPeriod" name="productPeriod" value="" type="hidden">
+<input id="member_id" name="member_id" value=" " type="hidden">
+<input id="delvType" name="delvType" value="A" type="hidden">
+<input id="isUpdateMemberEmailOrder" name="isUpdateMemberEmailOrder" value="F" type="hidden">
+<input id="isSimplyOrderForm" name="isSimplyOrderForm" value="F" type="hidden">
+<input id="__ocountry" name="__ocountry" value="   " type="hidden">
+<input id="__oaddr1" name="__oaddr1" value=" " type="hidden">
+<input id="__ocity" name="__ocity" value="" type="hidden">
+<input id="__ostate" name="__ostate" value="" type="hidden">
+<input id="sSinameZhAreaWord" name="sSinameZhAreaWord" value="省/市" type="hidden">
+<input id="sSinameTwAreaWord" name="sSinameTwAreaWord" value="市/縣" type="hidden">
+<input id="sGunameZhAreaWord" name="sGunameZhAreaWord" value="区" type="hidden">
+<input id="sGunameTwAreaWord" name="sGunameTwAreaWord" value="區/市" type="hidden">
+<input id="__faddress" name="__faddress" value="" type="hidden">
+<input id="__si_gun_dosi" name="__si_gun_dosi" value="" type="hidden">
+<input id="__ju_do" name="__ju_do" value="" type="hidden">
+<input id="message_autosave" name="message_autosave" value="F" type="hidden">
+<input id="hope_date" name="hope_date" value="" type="hidden">
+<input id="hope_ship_begin_time" name="hope_ship_begin_time" value="" type="hidden">
+<input id="hope_ship_end_time" name="hope_ship_end_time" value="" type="hidden">
+<input id="is_fast_shipping_time" name="is_fast_shipping_time" value="" type="hidden">
+<input id="eguarantee_id" name="eguarantee_id" value="F" type="hidden">
+<input id="is_hope_shipping" name="is_hope_shipping" value="F" type="hidden">
+<input id="is_fast_shipping" name="is_fast_shipping" value="" type="hidden">
+<input id="fCountryCd" name="fCountryCd" value="" type="hidden">
+<input id="sCpnPrd" name="sCpnPrd" value="0" type="hidden">
+<input id="sCpnOrd" name="sCpnOrd" value="0" type="hidden">
+<input id="is_used_with_mileage" name="is_used_with_mileage" value="F" type="hidden">
+<input id="is_used_with_member_discount" name="is_used_with_member_discount" value="F" type="hidden">
+<input id="is_used_with_coupon" name="is_used_with_coupon" value="F" type="hidden">
+<input id="is_no_ozipcode" name="is_no_ozipcode" value="F" type="hidden">
+<input id="is_no_rzipcode" name="is_no_rzipcode" value="F" type="hidden">
+<input id="is_cashreceipt_displayed_on_screen" name="is_cashreceipt_displayed_on_screen" value="F" type="hidden">
+<input id="is_taxrequest_displayed_on_screen" name="is_taxrequest_displayed_on_screen" value="F" type="hidden">
+<input id="app_scheme" name="app_scheme" value="" type="hidden">
+<input id="is_store" name="is_store" value="" type="hidden">
+<input id="defer_commission" name="defer_commission" value="0" type="hidden">
+<input id="order_form_simple_type" name="order_form_simple_type" value="T" type="hidden">
+<input id="information_agreement_check_val" name="information_agreement_check_val" value="F" type="hidden">
+<input id="consignment_agreement_check_val" name="consignment_agreement_check_val" value="F" type="hidden">
+<input id="basket_sync_flag" name="basket_sync_flag" value="F" type="hidden">
+<input id="app_discount_data" name="app_discount_data" value="" type="hidden">
+<input id="is_shipping_address_readonly_by_app" name="is_shipping_address_readonly_by_app" value="" type="hidden">
+<input id="is_app_shipfee" name="is_app_shipfee" value="F" type="hidden">
+<input id="app_shipfee_data" name="app_shipfee_data" value="" type="hidden">
+<input id="is_available_shipping_company_by_app" name="is_available_shipping_company_by_app" value="" type="hidden">
+<input id="is_direct_buy" name="is_direct_buy" value="F" type="hidden">
+<input id="is_subscription_invoice" name="is_subscription_invoice" value="F" type="hidden">
+<input id="order_enable" name="order_enable" value="" type="hidden">
+<input id="sEleID" name="sEleID" value="total_price||productPeriod||ophone1_1||ophone1_2||ophone1_3||ophone2_1||ophone2_2||ophone2_3|
+|ophone1_ex1||ophone1_ex2||ophone2_ex1||ophone2_ex2||basket_type||oname||oname2||english_oname||english_name||english_name2|
+|input_mile||input_deposit||hope_date||hope_ship_begin_time||hope_ship_end_time||is_fast_shipping_time||fname||fname2||paymethod|
+|eguarantee_flag||eguarantee_ssn1||eguarantee_ssn2||eguarantee_year||eguarantee_month||eguarantee_day||eguarantee_user_gender||eguarantee_personal_agreement|
+|question||question_passwd||delvType||f_country||fzipcode||faddress||fphone1_1||fphone1_2||fphone1_3||fphone1_4||fphone1_ex1||fphone1_ex2||fphone2_ex1||fphone2_ex2|
+|fphone2||fmessage||fmessage_select||rname||rzipcode1||rzipcode2||raddr1||raddr2||rphone1_1||rphone1_2||rphone1_3||rphone2_1||rphone2_2||rphone2_3|
+|omessage||omessage_select||ozipcode1||ozipcode2||oaddr1||oaddr2||oemail||oemail1||oemail2||ocity||ostate||ozipcode||eguarantee_id||coupon_discount||coupon_saving|
+|order_password||is_fast_shipping||fCountryCd||message_autosave||oa_content||gift_use_flag||pname||bankaccount||regno1||regno2||escrow_agreement0||addr_paymethod|
+|member_group_price||chk_purchase_agreement||total_plusapp_mileage_price||mileage_generate3||is_hope_shipping||sCpnPrd||sCpnOrd||coupon_shipfee|
+|np_req_tx_id||np_save_rate||np_save_rate_add||np_use_amt||np_mileage_use_amount||np_cash_use_amount||np_total_use_amount||np_balance_amt||np_use||np_sig|
+|flagEscrowUse||flagEscrowIcashUse||add_ship_fee||total_group_dc||pron_name||pron_name2||pron_oname||faddress2||si_gun_dosi||ju_do||is_set_product||basket_prd_no|
+|move_order_after||is_no_ozipcode||is_no_rzipcode||__ocountry||__oaddr1||__ocity||__ostate||__faddress||__si_gun_dosi||__ju_do|
+|sSinameZhAreaWord||sSinameTwAreaWord||sGunameZhAreaWord||sGunameTwAreaWord||delivcompany||is_store||cashreceipt_user_type||cashreceipt_user_type2|
+|cashreceipt_regist||cashreceipt_user_mobile1||cashreceipt_user_mobile2||cashreceipt_user_mobile3||cashreceipt_reg_no||is_cashreceipt_displayed_on_screen|
+|tax_request_regist||tax_request_name||tax_request_phone1||tax_request_phone2||tax_request_phone3||tax_request_email1||tax_request_email2||tax_request_company_type|
+|tax_request_company_regno||tax_request_company_name||tax_request_president_name||tax_request_zipcode||tax_request_address1||tax_request_address2|
+|tax_request_company_condition||tax_request_company_line||is_taxrequest_displayed_on_screen||isSimplyOrderForm||use_safe_phone||app_scheme||isUpdateMemberEmailOrder|
+|defer_commission||defer_p_name||order_form_simple_type||gmo_order_id||gmo_transaction_id||receiver_id_card_key||receiver_id_card_type||simple_join_is_check|
+|simple_join_agree_use_info||etc_subparam_member_id||etc_subparam_email1||etc_subparam_passwd||etc_subparam_user_passwd_confirm||etc_subparam_passwd_type|
+|etc_subparam_is_sms||etc_subparam_is_news_mail||information_agreement_check_val||consignment_agreement_check_val||remind_id||remind_code||shipping_additional_fee_show|
+|shipping_additional_fee_hide||shipping_additional_fee_name_show||save_paymethod||allat_account_nm||basket_sync_flag||member_id||input_pointfy||set_main_address0|
+|app_discount_data||is_shipping_address_readonly_by_app||is_app_shipfee||app_shipfee_data||is_available_shipping_company_by_app||is_direct_buy||is_subscription_invoice|
+|subscription_start_date||order_enable||is_crowd_funding||is_used_with_mileage||is_used_with_member_discount||is_used_with_coupon" type="hidden">
+
+<div class="xans-element- xans-order xans-order-form xans-record-">
+
+<!-- 이값은 지우면 안되는 값입니다. ($move_order_after 주문완료페이지 주소 / $move_basket 장바구니페이지 주소)
+        $move_order_after=/order/order_result.html
+        $move_basket=/order/basket.html
+    -->
+<p class="orderStep"><img src="../coffee/pay/image/img_order_step2.gif" alt="02 주문서작성"></p>
+
+<ul class="ec-base-help controlInfo">
+<li class="txtWarn txt11">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</li>
+</ul>
+<!-- 배송상품 주문내역 -->
+<div class="orderListArea ">
+<div class="title">
+<h3>배송상품 주문내역</h3>
+</div>
+
+<!-- 기본배송 -->
+<div class="ec-base-table typeList ">
+
+<table border="1" summary="">
+<caption>기본배송</caption>
+<colgroup>
+<col style="width:27px" class="">
+<col style="width:92px">
+<col style="width:auto">
+<col style="width:98px">
+<col style="width:75px">
+<col style="width:98px">
+<col style="width:98px">
+<col style="width:85px">
+<col style="width:98px">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class=""><input type="checkbox" onclick="EC_SHOP_FRONT_ORDERFORM_PRODUCT.proc.setCheckOrderList(&#39;chk_order_cancel_list_basic&#39;,
+this);"></th>
+<th scope="col">이미지</th>
+<th scope="col">상품정보</th>
+<th scope="col">판매가</th>
+<th scope="col">수량</th>
+<th scope="col">배송구분</th>
+<th scope="col">배송비</th>
+<th scope="col">합계</th>
+</tr>
+</thead>
+
+<tbody class="xans-element- xans-order xans-order-normallist center">
+<tr class="xans-record-">
+	<td class=""><input id="chk_order_cancel_list0" name="chk_order_cancel_list_basic0" value="32:R0000000021:F:896" type="checkbox"></td>
+	<td class="thumb"><a href="http://coffeechoi.co.kr/product/detail.html?product_no=32&amp;cate_no=43">
+	<img src="./image/1da821e07e3009c3b6e7ea4d2618b864.jpg" onerror="this.src=&#39;http://img.echosting.cafe24.com/thumb/img_product_small.gif&#39;;" 
+	alt=""></a></td>
+	<td class="left">
+	<a href="http://coffeechoi.co.kr/product/detail.html?product_no=32&amp;cate_no=43"><strong>오렌지 블렌드 100g</strong></a>
+	<div class="option ">[옵션: 원두 100g/핸드드립/커피메이커]</div>
+	<p class="gBlank5 displaynone">무이자할부 상품</p>
+	<p class="gBlank5 displaynone">유효기간 : </p>
+	</td>
+	<td class="right">
+	<div class="">
+	<strong>6,000원</strong><p class="displaynone"></p>
+	</div>
+	<div class="displaynone">
+	<strong>6,000원</strong><p class="displaynone"></p>
+	</div>
+	</td>
+	<td>1</td>
+	
+	<td><div class="txtInfo">기본배송<div class="displaynone"></div>
+	</div></td>
+	<td>[조건]</td>
+	<td class="right">
+	<strong>6,000원</strong><div class="displaynone"></div>
+	</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- 업체기본배송 -->
+<div class="ec-base-table typeList displaynone">
+<table border="1" summary="">
+<caption>업체기본배송</caption>
+<colgroup>
+<col style="width:27px" class="">
+<col style="width:92px">
+<col style="width:auto">
+<col style="width:98px">
+<col style="width:75px">
+<col style="width:98px">
+<col style="width:98px">
+<col style="width:85px">
+<col style="width:98px">
+</colgroup>
+<thead>
+<tr>
+	<th scope="col" class=""><input type="checkbox" onclick="" disabled=""></th>
+    <th scope="col">이미지</th>
+    <th scope="col">상품정보</th>
+    <th scope="col">판매가</th>
+    <th scope="col">수량</th>
+    <th scope="col">배송구분</th>
+    <th scope="col">배송비</th>
+    <th scope="col">합계</th>
+</tr>
+</thead>
+<tfoot class="right">
+<tr>
+	<td class=""></td>
+	<td colspan="8">
+<span class="gLeft">[업체기본배송]</span> 상품구매금액 <strong><span class="displaynone"> ()</span></strong> + 배송비 
+ </span> = 합계 : <strong class="txtEm gIndent10"><span class="txt18"></span></strong> <span class="displaynone"></span>
+	</td>
+</tr>
+</tfoot>
+</table>
+</div>
+    </div>
+
+<ul class="ec-base-help controlInfo typeBtm">
+	<li class="txtWarn txt11">상품의 옵션 및 수량 변경은 상품상세 페이지에서 가능합니다.</li>
+</ul>
+
+<!-- 선택상품 제어 버튼 -->
+<div class="ec-base-button">
+	<span class="gLeft ">
+	<strong class="text">선택상품을</strong>
+	<a href=" # " id="btn_product_delete">
+	<img src="../coffee/pay/image/btn_delete2.gif" alt="삭제하기"></a>
+	</span>
+</div>
+
+<!-- 배송 정보 -->
+<div class="orderArea">
+	<div class="title">
+	<h3>배송 정보</h3>
+	<p class="required"><img src="../coffee/pay/image/ico_required.gif" alt="필수"> 필수입력사항</p>
+	</div>
+	<div class="ec-base-table typeWrite">
+	<table border="1" summary="">
+<caption>배송 정보 입력</caption>
+	<colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+
+
+<!-- 배송지 정보 -->
+<tbody class="">
+<tr class="">
+<th scope="row">배송지 선택</th>
+	<td>
+		<div class="address">
+		<input id="sameaddr0" name="sameaddr" fw-filter="" fw-label="1" fw-msg="" value="M" type="radio"><label for="sameaddr0">회원 정보와 동일</label>
+		<input id="sameaddr1" name="sameaddr" fw-filter="" fw-label="1" fw-msg="" value="F" type="radio"><label for="sameaddr1">새로운배송지</label>
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">받으시는 분 <img src="../coffee/pay/image/ico_required.gif" alt="필수"></th>
+	<td>
+	<input id="rname" name="rname" fw-filter="isFill" fw-label="수취자 성명" fw-msg="" class="inputTypeText" placeholder="" size="15" 
+	value="" type="text">
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">주소 <img src="../coffee/pay/image/ico_required.gif" alt="필수"></th>
+	<td>
+		<input id="zipcode1" name="zipcode1" fw-filter="isFill" fw-label="수취자 우편번호1" fw-msg="" class="inputTypeText" 
+		placeholder="" size="10" maxlength="6" readonly="1" value="" type="text">
+		<a href=" # " onclick="" id="btn_search_zipcode">
+		<img src="../coffee/pay/image/btn_zipcode.gif" alt="우편번호" onclick="execDaumPostcode()"></a>
+		<br>
+		<input id="raddr1" name="raddr1" fw-filter="isFill" fw-label="수취자 주소1" fw-msg="" class="inputTypeText" placeholder="" 
+		size="40" readonly="1" value="" type="text"> <span class="grid">기본주소</span><br>
+		<input id="raddr2" name="raddr2" fw-filter="" fw-label="수취자 주소2" fw-msg="" class="inputTypeText" placeholder="" size="40" 
+		value="" type="text"> <span class="grid">나머지주소</span><span class="grid ">(선택입력가능)</span>
+		</td>
+			
+	<!-- 우편번호 zipcode   -->
+<SCRIPT src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></SCRIPT>
+<script>
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+ 
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+ 
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+ 
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('zipcode1').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('raddr1').value = fullRoadAddr;
+                document.getElementById('raddr2').focus();
+            }
+        }).open();
+    }
+	</script>
+</tr>
+
+<tr class="">
+	<th scope="row">일반전화 <span class="displaynone"><img src="../coffee/pay/image/ico_required.gif" alt="필수"></span></th>
+	<td>
+		<select id="rphone1_1" name="rphone1_[]" fw-filter="isNumber" fw-label="수취자 전화번호" fw-alone="N" fw-msg="">
+		<option value="02">02</option>
+		<option value="031">031</option>
+		<option value="032">032</option>
+		<option value="033">033</option>
+		<option value="041">041</option>
+		<option value="042">042</option>
+		<option value="043">043</option>
+		<option value="044">044</option>
+		<option value="051">051</option>
+		<option value="052">052</option>
+		<option value="053">053</option>
+		<option value="054">054</option>
+		<option value="055">055</option>
+		<option value="061">061</option>
+		<option value="062">062</option>
+		<option value="063">063</option>
+		<option value="064">064</option>
+		<option value="0502">0502</option>
+		<option value="0503">0503</option>
+		<option value="0504">0504</option>
+		<option value="0505">0505</option>
+		<option value="0506">0506</option>
+		<option value="0507">0507</option>
+		<option value="070">070</option>
+		<option value="010">010</option>
+		<option value="011">011</option>
+		<option value="016">016</option>
+		<option value="017">017</option>
+		<option value="018">018</option>
+		<option value="019">019</option>
+		<option value="0508">0508</option>
+		</select>-<input id="rphone1_2" name="rphone1_[]" maxlength="4" fw-filter="isNumber" fw-label="수취자 전화번호" fw-alone="N" fw-msg="" 
+		size="4" value="" type="text">
+		-<input id="rphone1_3" name="rphone1_[]" maxlength="4" fw-filter="isNumber" fw-label="수취자 전화번호" fw-alone="N" fw-msg="" 
+		size="4" value="" type="text">
+		</td>
+</tr>
+
+<tr class="">
+	<th scope="row">휴대전화 <span class=""><img src="../coffee/pay/image/ico_required.gif" alt="필수"></span></th>
+	<td>010 -<input id="rphone2_2" name="rphone2_[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호" fw-alone="N" 
+	fw-msg="" size="4" value="" type="text">
+	-<input id="rphone2_3" name="rphone2_[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호" fw-alone="N" 
+	fw-msg="" size="4" value="" type="text">
+	</td>
+</tr>
+</tbody>
+
+<!-- 이메일 국내 -->
+<tbody class="email ec-shop-deliverySimpleForm">
+<tr>
+<th scope="row">이메일 <img src="../coffee/pay/image/ico_required.gif" alt="필수"></th>
+	<td>
+	<input id="oemail1" name="oemail1" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailId" value="" type="text">
+	@<input id="oemail2" name="oemail2" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailAddress" 
+	readonly="readonly" value="" type="text">
+	<select id="oemail3" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="">
+	<option value="" selected="selected">- 이메일 선택 -</option>
+	<option value="naver.com">naver.com</option>
+	<option value="daum.net">daum.net</option>
+	<option value="nate.com">nate.com</option>
+	<option value="hotmail.com">hotmail.com</option>
+	<option value="yahoo.com">yahoo.com</option>
+	<option value="empas.com">empas.com</option>
+	<option value="korea.com">korea.com</option>
+	<option value="dreamwiz.com">dreamwiz.com</option>
+	<option value="gmail.com">gmail.com</option>
+	<option value="etc">직접입력</option>
+	</select> <p class="gBlank5">이메일을 통해 주문처리과정을 보내드립니다.<br>이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해 주세요.</p>
+	</td>
+</tr>
+</tbody>
+
+<!-- 국내 배송관련 정보 -->
+<tbody class="delivery ">
+<tr class="">
+<th scope="row">배송메시지 <span class="displaynone"><img src="../coffee/pay/image/ico_required.gif" alt="필수"></span></th>
+	<td>
+	<textarea id="omessage" name="omessage" fw-filter="" fw-label="배송 메세지" fw-msg="" maxlength="255" cols="70"></textarea>
+	<div class="devMessage displaynone">
+	<label><input id="omessage_autosave0" name="omessage_autosave[]" fw-filter="" fw-label="배송 메세지 저장" fw-msg="" value="T" 
+	type="checkbox" disabled="">
+	<label for="omessage_autosave0"></label> 자동저장</label>
+	<ul class="gIndent5">
+	<li>배송메시지란에는 배송시 참고할 사항이 있으면 적어주십시오.</li>
+	<li>게시글은 비밀글로 저장되며 비밀번호는 주문번호 뒷자리로 자동 저장됩니다.</li>
+	</ul>
+	</div>
+	</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+    </div>
+    
+<!-- 추가 정보 -->
+<div class="orderArea displaynone">
+        <div class="title">
+            <h3>추가 정보</h3>
+        </div>
+        <div class="ec-base-table typeWrite">
+            <table border="1" summary="">
+<caption>추가 정보 입력</caption>
+            <colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup><tbody class="xans-element- xans-order xans-order-ordadd"><tr class="">
+<th scope="row"></th>
+                    <td></td>
+                </tr>
+</tbody>
+</table>
+</div>
+    </div>
+<!-- 기타 문의사항 -->
+<div class="orderArea displaynone">
+        <div class="title">
+            <h3>기타 문의사항</h3>
+        </div>
+        <div class="ec-base-table typeWrite">
+            <table border="1" summary="">
+<caption>기타 문의사항</caption>
+<colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+
+<tbody>
+
+<tr>
+<th scope="row">기타 문의사항</th>
+ <td><textarea id="question" name="question" fw-filter="" fw-label="기타문의사항" fw-msg="" maxlength="255" cols="70"></textarea></td>
+</tr>
+
+<tr>
+<th scope="row">비밀번호</th>
+<td><input id="question_passwd" name="question_passwd" fw-filter="" fw-label="기타문의사항 비밀번호" fw-msg="" value="" type="password" 
+disabled=""></td>
+</tr>
+</tbody>
+</table>
+</div>
+        <ul class="list">
+<li>해당 문의 사항은 <a href="http://coffeechoi.co.kr/board/product/list.html?board_no=6" target="_blank"><strong>[상품문의]</strong></a> 
+에 자동 등록됩니다.</li>
+            <li>운영자에 문의할 내용이나 요청할 내용이 있는 경우 기재하여 주세요.</li>
+            <li>비밀번호는 작성하신 문의글을 게시판에서 내용 확인 할 때 사용됩니다.</li>
+        </ul>
+</div>
+
+
+<!-- 약관 동의 -->
+<div class="termArea displaynone">
+<div class="check displaynone">
+</div>
+<div class="inner">
+<div class="box displaynone">
+<h4>쇼핑몰 이용약관</h4>
+</div>
+<div class="box displaynone">
+<h4>비회원 구매 시 개인정보수집 이용동의</h4>
+</div>
+<div class="box displaynone">
+<h4>배송정보 제공방침</h4>
+</div>
+<div id="ec-shop-privacy_agreement_for_identification" class="box displaynone">
+<h4>고유식별정보수집 동의</h4>
+<textarea id="privacy_agreement_for_identification" name="privacy_agreement_for_identification"
+fw-filter="" fw-label="고유식별정보수집" fw-msg="" maxlength="250" cols="70" readonly="1">[고유식별정보 처리에 대한 안내]
+회사는 회원이 주문한 상품의 배송 시 배송 국가의 통관을 위하여 고유식별정보(신분증 ID, 여권번호)를 수집하여 배송 처리 완료 후 1달까지 
+보유 및 이용합니다.
+수집한 고유식별정보는 통관 처리를 위해 아래 수탁업체에 제공될 수 있습니다.
+
+- 수탁업체 :  우체국 택배
+- 위탁업무 : 해외배송 시 통관 처리
+- 보유 및 이용기간 : 배송완료 후 1달
+
+※ 고유식별정보 제공에 동의하지 않으시면, 해당 국가로의 배송이 불가합니다.</textarea>
+<input id="privacy_agreement_for_identification_checkbox0" name="privacy_agreement_for_identification_checkbox[]"
+	fw-filter="" fw-label="고유식별정보수집 동의" fw-msg="" value="T" type="checkbox" disabled="">
+<label for="privacy_agreement_for_identification_checkbox0">동의</label>
+</div>
+        </div>
+    </div>
+
+
+<!-- 결제수단 -->
+
+<div class="title">
+	<h3>결제수단</h3>
+</div>
+
+<div class="payArea">
+<div class="payment">
+
+<!-- 카드결제 -->
+<div class="method"><span class="ec-base-label"><input id="addr_paymethod0" name="addr_paymethod" fw-filter="isFill" fw-label="결제방식"
+	fw-msg="" value="card" type="radio" checked="checked"><label for="addr_paymethod0">카드 결제</label></span>
+	
+
+	<div id="pg_paymethod_info" class="payHelp" style="display: block;">
+		<p id="pg_paymethod_info_shipfee" class="ec-base-help" style="display: none;">최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
+		<p id="pg_paymethod_info_pg" class="ec-base-help">소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+	</div>
+</div>
+
+ <!-- 증명서류 발급 -->
+<div class="agree">
+<table border="1" summary="">
+<caption>증명서류 발급</caption>
+                <tbody class="receipt">
+<tr id="cashreceipt_display_area" class="" style="display: none;">
+<th scope="row">현금영수증 신청</th>
+  <td>
+ <div class="methods">
+<input id="cashreceipt_regist0" name="cashreceipt_regist" fw-filter="" fw-label="현금영수증 신청 여부" fw-msg="" value="1" type="radio">
+<label for="cashreceipt_regist0">현금영수증 신청</label>
+<input id="cashreceipt_regist1" name="cashreceipt_regist" fw-filter="" fw-label="현금영수증 신청 여부" fw-msg="" value="99" type="radio" 
+checked="checked"
+><label for="cashreceipt_regist1">신청안함</label></div>
+
+<div id="cashreceipt_form_area" class="ec-base-table cash">
+   <table border="1" summary="">
+<caption>현금영수증 발급 정보 입력</caption>
+  <colgroup>
+<col style="width:129px">
+<col style="width:auto">
+</colgroup>
+<tbody>
+<tr>
+<th scope="row">구분</th>
+ <td><input id="cashreceipt_user_type20" name="cashreceipt_user_type2" fw-filter="" fw-label="현금영수증 신청자 종류-신청여부라디오버튼과 함께" 
+ fw-msg="" value="0" type="radio"><label for="cashreceipt_user_type20">개인</label>
+<input id="cashreceipt_user_type21" name="cashreceipt_user_type2" fw-filter="" fw-label="현금영수증 신청자 종류-신청여부라디오버튼과 함께" 
+fw-msg="" value="1" type="radio"><label for="cashreceipt_user_type21">사업자</label></td>
+ </tr>
+<tr class="mobile" id="cashreceipt_mobile_display_area">
+<th scope="row">핸드폰 번호</th>
+  <td><select id="cashreceipt_user_mobile1" name="cashreceipt_user_mobile[]" fw-filter="" fw-label="현금영수증 개인-핸드폰 번호" 
+  fw-alone="N" fw-msg="">
+<option value="010">010</option>
+<option value="011">011</option>
+<option value="016">016</option>
+<option value="017">017</option>
+<option value="018">018</option>
+<option value="019">019</option>
+</select>-<input id="cashreceipt_user_mobile2" name="cashreceipt_user_mobile[]" maxlength="4" fw-filter="" 
+fw-label="현금영수증 개인-핸드폰 번호" fw-alone="N" fw-msg="" value="" type="text">
+-<input id="cashreceipt_user_mobile3" name="cashreceipt_user_mobile[]" maxlength="4" fw-filter="" fw-label="현금영수증 개인-핸드폰 번호" 
+fw-alone="N" fw-msg="" value="" type="text"></td>
+ </tr>
+<tr class="regno" id="cashreceipt_regno_display_area">
+<th scope="row">사업자 번호</th>
+ <td><input id="cashreceipt_reg_no" name="cashreceipt_reg_no" fw-filter="" fw-label="현금영수증 사업자 번호" fw-msg="" placeholder="사업자번호" 
+ value="" type="text"></td>
+	</tr>
+</tbody>
+</table>
+</div>
+	</td>
+	</tr>
+</tbody>
+
+<!-- 청약철회방침 -->
+<tbody class=""><tr>
+<th scope="row">청약철회방침</th>
+ <td>
+ <div class="textArea">
+ <textarea id="subscription_terms" name="subscription_terms" fw-filter="" fw-label="청약철회방침" fw-msg="" maxlength="250" cols="70" readonly="1">
+①“오예스 커피”와 재화등의 구매에 관한 계약을 체결한 이용자는 수신확인의 통지를 받은 날부터 7일 이내에는 청약의 철회를 할 수 있습니다.
+② 이용자는 재화등을 배송받은 경우 다음 각호의 1에 해당하는 경우에는 반품 및 교환을 할 수 없습니다.
+1. 이용자에게 책임 있는 사유로 재화 등이 멸실 또는 훼손된 경우(다만, 재화 등의 내용을 확인하기 위하여 포장 등을 훼손한 경우에는 청약철회를 
+할 수 있습니다)
+2. 이용자의 사용 또는 일부 소비에 의하여 재화 등의 가치가 현저히 감소한 경우
+3. 시간의 경과에 의하여 재판매가 곤란할 정도로 재화등의 가치가 현저히 감소한 경우
+4. 같은 성능을 지닌 재화등으로 복제가 가능한 경우 그 원본인 재화 등의 포장을 훼손한 경우
+
+③ 제2항제2호 내지 제4호의 경우에 “몰”이 사전에 청약철회 등이 제한되는 사실을 소비자가 쉽게 알 수 있는 곳에 명기하거나 시용상품을 제공하는 
+등의 조치를 하지 않았다면 이용자의 청약철회등이 제한되지 않습니다.
+
+④ 이용자는 제1항 및 제2항의 규정에 불구하고 재화등의 내용이 표시·광고 내용과 다르거나 계약내용과 다르게 이행된 때에는 당해 재화등을 
+공급받은 날부터 3월이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 청약철회 등을 할 수 있습니다.
+
+제16조(청약철회 등의 효과)
+
+① “최준영 커피”는 이용자로부터 재화 등을 반환받은 경우 3영업일 이내에 이미 지급받은 재화등의 대금을 환급합니다. 이 경우 “몰”이 이용자에게 
+재화등의 환급을 지연한 때에는 그 지연기간에 대하여 공정거래위원회가 정하여 고시하는 지연이자율을 곱하여 산정한 지연이자를 지급합니다.
+
+② “최준영 커피”는 위 대금을 환급함에 있어서 이용자가 신용카드 또는 전자화폐 등의 결제수단으로 재화등의 대금을 지급한 때에는 지체없이 당해 
+결제수단을 제공한 사업자로 하여금 재화등의 대금의 청구를 정지 또는 취소하도록 요청합니다.
+
+③ 청약철회등의 경우 공급받은 재화등의 반환에 필요한 비용은 이용자가 부담합니다. “몰”은 이용자에게 청약철회등을 이유로 위약금 또는 손해배상을 
+청구하지 않습니다. 다만 재화등의 내용이 표시·광고 내용과 다르거나 계약내용과 다르게 이행되어 청약철회등을 하는 경우 재화등의 반환에 필요한 
+비용은 “최준영 커피”이 부담합니다.
+
+④ 이용자가 재화등을 제공받을때 발송비를 부담한 경우에 “몰”은 청약 철회시 그 비용을 누가 부담하는지를 이용자가 알기 쉽도록 명확하게 표시합니다.</textarea>
+<a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none" 
+onclick="winPop(&#39;/order/agreement/subscription.html&#39;)">
+<img src="../coffee/pay/image/btn_more.gif" alt="전체보기"></a>
+</div>
+<p><input id="subscription_agreement_chk0" name="subscription_agreement_chk" fw-filter="" fw-label="" fw-msg="" value="T" type="checkbox">
+<label for="subscription_agreement_chk0"></label><label for="subscription_agreement_chk0"><strong>동의함</strong></label></p>
+</td>
+</tr></tbody>
+<!-- 전자보증보험--><tbody class="guarantee displaynone" style="display: none;"><tr>
+<th scope="row">전자보증보험</th>
+<td>
+<div>
+<p>전자보증보험 발급 여부 : <input id="eguarantee_flag0" name="eguarantee_flag" fw-filter="" fw-label="전자보증보험 발급여부" fw-msg="" 
+value="T" type="radio" disabled=""><label for="eguarantee_flag0">발급</label>
+<input id="eguarantee_flag1" name="eguarantee_flag" fw-filter="" fw-label="전자보증보험 발급여부" fw-msg="" value="F" type="radio" 
+checked="checked" disabled=""><label for="eguarantee_flag1">미발급</label></p>
+<p>전자보증보험 안내(100% 매매보호 안전결제) <a href="http://coffeechoi.co.kr/common/usafe_notice.php" target="_blank" 
+onclick="window.open(this.href,&#39;new&#39;,&#39;height=500 width=550 toolbar=no location=no directory=no status=no resizable=no&#39;);
+ return false;">[자세히보기]</a></p>
+<p>물품대금결제시 구매자의 피해보호를 위해 '(주)서울보증보험'의 보증보험증권이 발급됩니다.</p>
+<p>증권이 발급되는 것의 의미는, 물품대금 결제시에 소비자에게 서울보증보험의 쇼핑몰보증보험 계약체결서를 인터넷상으로 자동 발급하여, 
+피해발생시 쇼핑몰보증보험으로써 완벽하게 보호받을 수 있습니다.</p>
+<p>또한, 입력하신 개인정보는 증권발급을 위해 필요한 정보이며 다른 용도로 사용되지 않습니다. </p>
+<p>전자보증보험 발생시 별도의 수수료가 부과되지 않습니다.</p>
+</div>
+<div id="eguarantee_personal">
+<p>생년월일 : <input id="eguarantee_year" name="eguarantee_year" fw-filter="" fw-label="전자보증보험 생년월일1" fw-msg="" class="inputTypeText" 
+placeholder="" size="4" maxlength="4" value="" type="text" disabled="">
+년 <input id="eguarantee_month" name="eguarantee_month" fw-filter="" fw-label="전자보증보험 생년월일2" fw-msg="" class="inputTypeText"
+ placeholder="" size="2" maxlength="2" value="" type="text" disabled=""> 월 <input id="eguarantee_day" name="eguarantee_day" fw-filter="" 
+ fw-label="전자보증보험 생년월일3" fw-msg="" class="inputTypeText" placeholder="" size="2" maxlength="2" value="" type="text" disabled=""> 일</p>
+<p>성별 : <input id="eguarantee_user_gender0" name="eguarantee_user_gender" fw-filter="" fw-label="전자보증보험 성별" fw-msg="" value="1" 
+type="radio" disabled=""><label for="eguarantee_user_gender0">남자</label>
+<input id="eguarantee_user_gender1" name="eguarantee_user_gender" fw-filter="" fw-label="전자보증보험 성별" fw-msg="" value="2" type="radio" 
+disabled=""><label for="eguarantee_user_gender1">여자</label></p>
+<p>개인정보 이용동의 : <input id="eguarantee_personal_agreement0" name="eguarantee_personal_agreement" fw-filter="" 
+fw-label="전자보증보험 개인정보 이용동의" fw-msg="" value="T" type="radio" disabled=""><label for="eguarantee_personal_agreement0">동의함</label>
+<input id="eguarantee_personal_agreement1" name="eguarantee_personal_agreement" fw-filter="" fw-label="전자보증보험 개인정보 이용동의" 
+fw-msg="" value="F" type="radio" checked="checked" disabled=""><label for="eguarantee_personal_agreement1">동의안함</label></p>
+</div>
+</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+
+<!-- 최종결제금액 -->
+<div class="total">
+<h4>
+<strong id="current_pay_name">카드 결제</strong>
+<span>최종결제 금액</span>
+</h4>
+<p class="price"><span></span>
+<input id="total_price" name="total_price" fw-filter="isFill" fw-label="결제금액" fw-msg="" class="inputTypeText"
+	placeholder="" style="text-align:right;ime-mode:disabled;clear:none;border:0px;float:none;" size="10" readonly="1" value="8500" type="text">
+	<span>원</span></p>
+<p class="paymentAgree" id="chk_purchase_agreement" style="display: none;">
+<input id="chk_purchase_agreement0" name="chk_purchase_agreement"
+	fw-filter="" fw-label="구매진행 동의" fw-msg="" value="T" type="checkbox" style="display: none;">
+	<label for="chk_purchase_agreement0">결제정보를 확인하였으며, 구매진행에 동의합니다.</label></p>
+<div class="button">
+<a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none">
+<input type="button" id="btn_payment" class="allStore-color-btn1" style="width:80%; line-height:45px;" value="결제하기"></a>
+</div>
+        </div>
+    </div>
+
+<!-- 총 주문금액 상세내역 레이어 -->
+<div id="order_layer_detail" class="totalDetail ec-base-layer">
+        <div class="header">
+            <h3>총 주문금액 상세내역</h3>
+        </div>
+        <div class="content">
+            <p id="total_order_price_id" class="txtEm txt16">8,500원</p>
+            <ul class="ec-base-desc typeDot gLarge rightDD">
+<li>
+<strong class="term">상품금액</strong><span class="desc">6,000원</span>
+</li>
+                <li class="displaynone">
+<strong class="term">부가세</strong><span class="desc">원</span>
+</li>
+                <li>
+<strong class="term">배송비</strong><span id="total_ship_price_id" class="desc">2,500원</span>
+</li>
+                <li>
+<strong class="term">지역별 배송비</strong><span id="total_local_ship_price_id" class="desc">0원</span>
+</li>
+            </ul>
+</div>
+<a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none" class="close" 
+onclick="EC_SHOP_FRONT_ORDERFORM_DISPLAY.offDiv(&#39;order_layer_detail&#39;);">
+<img src="../coffee/pay/image/btn_close.gif" alt="닫기"></a>
+    </div>
+
+<div id="ec-shop_orderConfirmLayer" class="orderConfirmLayer">
+    
+    
+    <div class="dimmed"></div>
+    <div class="orderConfirmLayer ec-base-layer">
+        <div class="header">
+            <h3>주문 정보 확인</h3>
+        </div>
+        <div class="content">
+            <p class="desc">아직 주문이 완료되지 않았으니, 작성하신 내용을 확인하신 후에 주문 완료해 주세요.</p>
+            <div class="confirm">
+                <!-- 주문 상품 정보 -->
+                <div class="title">
+                    <h4>주문 상품 정보</h4>
+                </div>
+                <!-- 국내배송상품 주문내역 -->
+                <div class="orderListArea ec-base-table typeList ">
+                    <!-- 기본배송 -->
+                    <table border="1" summary="" class="" nspace="normal">
+<caption>기본배송</caption>
+                        <colgroup>
+<col style="width:92px">
+<col style="width:auto">
+<col style="width:98px">
+<col style="width:60px">
+<col style="width:98px">
+<col style="width:98px">
+<col style="width:80px">
+<col style="width:98px">
+</colgroup>
+<thead>
+<tr>
+	<th scope="col">이미지</th>
+	<th scope="col">상품정보</th>
+	<th scope="col">판매가</th>
+	<th scope="col">수량</th>
+	<th scope="col">배송구분</th>
+	<th scope="col">배송비</th>
+	<th scope="col">합계</th>
+</tr></thead>
+<tfoot class="right"><tr>
+<td colspan="8">
+<span class="gLeft">[기본배송]</span> 상품구매금액 <strong>6,000<span class="displaynone"> (0)</span></strong> + 배송비 
+<span id="ec-shop-confirm_domestic_ship_fee">2,500</span> = 합계 : <strong class="txtEm gIndent10">
+<span id="ec-shop-confirm_domestic_ship_fee_sum" class="txt18">8,500</span>원</strong> <span class="displaynone"></span>
+</td>
+</tr></tfoot>
+
+<tbody class="xans-element- xans-order xans-order-normallist center">
+<tr class="xans-record-">
+<td class="thumb"><a href="http://coffeechoi.co.kr/product/detail.html?product_no=32&amp;cate_no=43">
+<img src="../coffee/pay/image/1da821e07e3009c3b6e7ea4d2618b864.jpg" onerror="this.src=&#39;http://img.echosting.cafe24.com/
+thumb/img_product_small.gif&#39;;" alt=""></a></td>
+<td class="left">
+<a href="http://coffeechoi.co.kr/product/detail.html?product_no=32&amp;cate_no=43"><strong>오렌지 블렌드 100g</strong></a>
+<div class="option ">[옵션: 원두 100g/핸드드립/커피메이커]</div>
+<p class="txtInfo displaynone">무이자할부 상품</p>
+<p class="txtInfo displaynone">유효기간 : </p>
+</td>
+<td class="right">
+<div class="">
+<strong>6,000원</strong><p class="displaynone"></p>
+</div>
+<div class="displaynone">
+<strong>6,000원</strong><p class="displaynone"></p>
+</div>
+</td>
+<td>1</td>
+<td>
+<div class="txtInfo">기본배송<div class="displaynone"></div>
+</div>
+</td>
+<td>[조건]</td>
+<td class="right">
+<strong>6,000원</strong><div class="displaynone"></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- 업체기본배송 -->
+<table border="1" summary="" class="displaynone" nspace="supplier">
+<caption>업체기본배송</caption>
+                        <colgroup>
+<col style="width:92px">
+<col style="width:auto">
+<col style="width:98px">
+<col style="width:60px">
+<col style="width:98px">
+<col style="width:98px">
+<col style="width:80px">
+<col style="width:98px">
+</colgroup>
+<thead><tr>
+<th scope="col">이미지</th>
+	<th scope="col">상품정보</th>
+	<th scope="col">판매가</th>
+	<th scope="col">수량</th>
+	<th scope="col">배송구분</th>
+	<th scope="col">배송비</th>
+	<th scope="col">합계</th>
+</tr></thead>
+<tfoot class="right"><tr>
+<td colspan="8">
+<span class="gLeft">[업체기본배송]</span> 상품구매금액 <strong><span class="displaynone"> 
+()</span></strong> + 배송비  = 합계 : <strong class="txtEm gIndent10">
+<span class="txt23"></span></strong> <span class="displaynone"></span>
+</td>
+	</tr>
+	</tfoot>
+	</table>
+<!-- 개별배송 -->
+<table border="1" summary="" class="displaynone" nspace="individual">
+<caption>개별배송</caption>
+	<colgroup>
+		<col style="width:92px">
+		<col style="width:auto">
+		<col style="width:98px">
+		<col style="width:60px">
+		<col style="width:98px">
+		<col style="width:98px">
+		<col style="width:80px">
+		<col style="width:98px">
+</colgroup>
+<thead>
+<tr>
+	<th scope="col">이미지</th>
+	<th scope="col">상품정보</th>
+	<th scope="col">판매가</th>
+	<th scope="col">수량</th>
+	<th scope="col">배송구분</th>
+	<th scope="col">배송비</th>
+	<th scope="col">합계</th>
+</tr></thead>
+<tfoot class="right"><tr>
+<td colspan="8">
+<span class="gLeft">[개별배송]</span> 상품구매금액 <strong><span class="displaynone"> ()</span></strong> 
++ 배송비  = 합계 : <strong class="txtEm gIndent10">
+<span class="txt23"></span></strong> <span class="displaynone"></span>
+</td>
+	</tr></tfoot></table>
+</div>
+
+<!-- 주문 정보 -->
+<div class="orderArea displaynone">
+<div class="title">
+                        <h4>주문 정보</h4>
+                    </div>
+                    <div class="ec-base-table">
+                        <table border="1" summary="">
+<caption>주문 정보</caption>
+                            <colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+<!-- 국내 쇼핑몰 -->
+<tbody class="address_form ">
+<tr>
+<th scope="row">주문하시는 분</th>
+                                    <td><span class="ec-shop-confirm_oname"></span></td>
+                                </tr>
+<tr class="displaynone">
+<th scope="row">주소</th>
+                                    <td><span class="ec-shop-confirm_oaddr1"></span></td>
+                                </tr>
+<tr class="displaynone">
+<th scope="row">일반전화</th>
+                                    <td><span class="ec-shop-confirm_ophone"></span></td>
+                                </tr>
+<tr class="displaynone">
+<th scope="row">휴대전화</th>
+                                    <td><span class="ec-shop-confirm_ocell"></span></td>
+                                </tr>
+<tr>
+<th scope="row">이메일</th>
+                                    <td><span class="ec-shop-confirm_oemail"></span></td>
+                                </tr>
+</tbody>
+
+</table>
+</div>
+                </div>
+                <!-- 배송 정보 -->
+                <div class="orderArea">
+                    <div class="title">
+                        <h4>배송 정보</h4>
+                    </div>
+                    <div class="ec-base-table">
+                        <table border="1" summary="">
+<caption>배송 정보</caption>
+                            <colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+<!-- 국내 배송 정보 -->
+<tbody class="">
+<tr>
+<th scope="row">받으시는 분</th>
+                                    <td><span class="ec-shop-confirm_rname"></span></td>
+                                </tr>
+<tr>
+<th scope="row">주소</th>
+                                    <td><span class="ec-shop-confirm_raddr1"></span></td>
+                                </tr>
+<tr class="">
+<th scope="row">일반전화</th>
+                                    <td><span class="ec-shop-confirm_rphone"></span></td>
+                                </tr>
+<tr class="">
+<th scope="row">휴대전화</th>
+                                    <td><span class="ec-shop-confirm_rcell"></span></td>
+                                </tr>
+<tr class="">
+<th scope="row">이메일</th>
+                                    <td><span class="ec-shop-confirm_oemail"></span></td>
+                                </tr>
+<tr class="">
+<th scope="row">배송메시지</th>
+                                    <td><span class="ec-shop-confirm_delivery_msg"></span></td>
+                                </tr>
+<tr class="displaynone">
+<th scope="row">희망배송일</th>
+                                    <td><span class="ec-shop-confirm_hope_date"></span></td>
+                                </tr>
+<tr class="displaynone">
+<th scope="row">희망배송시간</th>
+                                    <td><span class="ec-shop-confirm_hope_time"></span></td>
+                                </tr>
+<tr class="displaynone ec-shop-confirm_shipcompany_area">
+<th scope="row">배송업체(방식) 선택</th>
+                                    <td><span class="ec-shop-confirm_shipcompany"></span></td>
+                                </tr>
+</tbody>
+
+</table>
+</div>
+	</div>
+
+<!-- 추가 정보 -->
+	<div class="orderArea displaynone">
+	<div class="title">
+	<h4>추가 정보</h4>
+	</div>
+	<div class="ec-base-table">
+	<table border="1" summary="">
+<caption>추가 정보</caption>
+	<colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+<tbody id="ec-shop-confirm_ord_add"></tbody>
+</table>
+</div>
+		</div>
+	
+	<!-- 결제금액 -->
+	<div class="totalArea">
+	<div class="title">
+	<h4>결제 / 부가결제 예정 금액</h4>
+	</div>
+	<div class="ec-base-table typeList total">
+	<table border="1" summary="">
+<caption>결제 예정 금액</caption>
+<colgroup>
+	<col style="width:33.33%">
+	<col style="width:33.33%" class="">
+	<col style="width:auto">
+</colgroup>
+<thead><tr>
+<th scope="col">
+<span>총 주문 금액</span><a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none"
+	onclick="EC_SHOP_FRONT_ORDERFORM_DISPLAY.onDiv(&#39;order_layer_detail&#39;, event);" class="more">
+	<img src="../coffee/pay/image/btn_list.gif" alt="내역보기"></a>
+</th>
+<th scope="col" id="ec-shop-confirm_total_sale_area1" class="">
+<span>총 </span><span id="plus_mark" class=""> + </span><span id="total_addpay_text" class="">부가결제</span><span> 금액</span>
+</th>
+<th scope="col">총 결제예정 금액</th>
+</tr></thead>
+<tbody class="center"><tr>
+<td class="price">
+<div class="box txt16">
+<strong><strong id="ec-shop-confirm_total_price_view" class="txt23"></strong>원</strong> <span class="displaynone">
+<span id="ec-shop-confirm_total_price_ref_view"></span></span>
+</div>
+</td>
+<td class="option " id="ec-shop-confirm_total_sale_area2">
+<div class="box txt16">
+<strong>- <strong id="ec-shop-confirm_total_sale_price_view" class="txt23 txtDel"></strong>원</strong>
+<span class="txtDel displaynone"><span id="ec-shop-confirm_total_sale_price_ref_view"></span></span>
+</div>
+</td>
+<td>
+<div class="box txtEm txt16">
+<strong>= <strong id="ec-shop-confirm_total_order_price_view" class="txt23"></strong>원</strong>
+<span class="displaynone"><span id="ec-shop-confirm_total_order_price_ref_view"></span></span>
+</div>
+</td>
+</tr></tbody>
+</table>
+</div>
+<div class="detail">
+<div class="ec-base-table gMerge" id="ec-shop-confirm_total_addpay_summary_area">
+ <table border="1" summary="">
+<caption>부가결제 내역</caption>
+ <colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+<tbody>
+<tr class="sum txt14">
+<th scope="row">총 부가결제금액</th>
+   <td><strong id="ec-shop-confirm_used_total_addpay"></strong>원</td>
+   </tr>
+</tbody>
+</table>
+		</div>
+	</div>
+</div>
+ <!-- 결제수단 -->
+  <div class="title">
+   <h4>결제수단</h4>
+ </div>
+<div class="ec-base-table">
+  <table border="1" summary="">
+<caption>결제수단</caption>
+  <colgroup>
+<col style="width:139px;">
+<col style="width:auto;">
+</colgroup>
+<tbody id="ec-shop-confirm_paymethod"></tbody>
+</table>
+</div>
+  </div>
+ </div>
+<div class="ec-base-button">
+ <a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none">
+ <img src="../coffee/pay/image/btn_popup_payment.gif" alt="결제하기" id="ec-shop_btn_layer_payment"></a>
+ <a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none">
+ <img src="../coffee/pay/image/btn_popup_close.gif" alt="닫기" onclick="EC_SHOP_FRONT_ORDERFORM_DISPLAY.form.showConfirmOrderLayer();"></a>
+ </div>
+ <a href="http://coffeechoi.co.kr/order/orderform.html?basket_type=all_buy&amp;delvtype=A#none" class="close">
+ <img src="../coffee/pay/image/btn_close.gif" alt="닫기" onclick="EC_SHOP_FRONT_ORDERFORM_DISPLAY.form.showConfirmOrderLayer();"></a>
+    </div>
+</div>
+<!-- 결제진행바 -->
+<iframe id="h_payment" name="h_payment" width="0" height="0" frameborder="0" src="./html/saved_resource.html"></iframe>
+<!-- //결제진행바 -->
+</div>
+</form>
+</div>
+        </div>
+    </div>
+
+
+ <!-- 참고: 결제를 위한 필수 영역 -->
+<div id="progressPaybar" style="display:none;">
+  <div id="progressPaybarBackground" class="layerProgress"></div>
+  <div id="progressPaybarView">
+    <div class="box">
+      <p class="graph">
+        <span><img src="../coffee/pay/image/txt_progress.gif" alt="현재 결제가 진행중입니다."></span>
+        <span><img src="../coffee/pay/image/img_loading.gif" alt=""></span>
+        
+      </p>
+      <p class="txt">
+        본 결제 창은 결제완료 후 자동으로 닫히며,결제 진행 중에 본 결제 창을 닫으시면<br>
+        주문이 되지 않으니 결제 완료 될 때 까지 닫지 마시기 바랍니다.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- //참고 -->
+
+
+</div>
+
+
+<style type="text/css">
+   .eximbayInfo { width:330px; margin:0 auto; padding:20px 0 40px; }
+   .eximbayInfo h4 { color:#000; font-size:22px; font-family:gulim, sans-serif; text-align:center; }
+   .eximbayInfo ul { margin:15px 0 0; color:#747474; font-size:11px; line-height:1.5; }
+   .eximbayInfo li { margin:6px 0 0; padding:0 0 0 10px; background:url('//img.echosting.cafe24.com/design/skin/default/common/ico_list.gif') 
+   no-repeat 0 5px; }
+   .axesInfo { display:none; overflow:hidden; position:absolute; z-index:100; width:380px; border:1px solid #7f8186; color:#000; }
+   .axesInfo h3 { height:39px; padding:0 35px 0 19px; color:#fefefe; font-size:14px; line-height:39px; background-color:#666; }
+   .axesInfo .content { padding:20px; background-color:#fff; }
+   .axesInfo .close { position:absolute; right:14px; top:12px; }
+   .axesInfo .close img { cursor:pointer; }
+   .axesInfo .btnArea { margin:0; padding:10px 0; border-top:1px solid #c7ccd2; text-align:center; background:#e5e5e5; }
+   .axesInfo h4 { padding:10px 0 0; color:#000; font-size:22px; font-family:gulim, sans-serif; text-align:center; }
+   .axesInfo ul { margin:15px 0 0; padding:0 0 10px; border:0; color:#747474; font-size:11px; line-height:1.5; }
+   .axesInfo li { margin:6px 0 0; padding:0 0 0 10px; background:url('//img.echosting.cafe24.com/design/skin/default/common/ico_list.gif') 
+   no-repeat 0 5px; }
+</style>
+
+<div id="CELL_PAYMENTWINDOW" style="display:none">
+    <div id="CELL_PAYMENTWINDOWBackground" style="position:absolute; z-index:9994; left:0px; top:0px; width:100%; height:100%;" class="layerProgress">
+    </div>
+    <div id="CELL_PAYMENTWINDOW_IFRAME_parent" style="z-index:9995;top:160px;left:160px;background-color:white;position:absolute;
+    border:2px solid #3e3e3e">
+        <table id="CELL_PAYMENTWINDOW_IFRAME_parent_title" border="0" cellpadding="0" cellspacing="0" style="margin:2px;width:505px;">
+            <tbody><tr>
+                <td align="right">
+                    <a href=" # " onclick="paymentOrder.toggleCellLayer(false);EC_SHOP_FRONT_ORDERFORM_FORM.proc.processPayResult(false);
+                    return false;">
+                        <img src="../coffee/pay/image/btn_layer_close.gif" width="40" height="18" border="0" alt="닫기">
+                    </a>
+                </td>
+            </tr>
+            <tr id="eximbay_tr" style="display:none;">
+                <td>
+                    <div class="eximbayInfo">
+                        <h4>'결제가 진행중 입니다.'</h4>
+                        <ul>
+                            <li>고객님의 안전한 전자상거래를 위한 결제 서비스 안내입니다.</li>
+                            <li>결제 진행 없이 결제창을 닫으신 경우 본 팝업창의 닫기 버튼을 클릭해 주세요.</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        <iframe id="CELL_PAYMENTWINDOW_IFRAME" name="CELL_PAYMENTWINDOW_IFRAME" scrolling="no" frameborder="0" style="width:505px;
+        height:540px;margin:5px" src="./html/saved_resource(1).html"></iframe>
+    </div>
+</div>
+
+            <div id="paymentFormWrap">
+            <form id="payForm" name="payForm" method="post"></form>
+            </div>
+
+            <form id="payReqForm" name="payReqForm" method="post" action=" # " target="h_payment">
+            <input type="hidden" name="reqType" value="">
+            <input type="hidden" name="pgName" value="">
+            <input type="hidden" name="CAFE24EncData" value="">
+            <input type="hidden" name="cafe24SubMallInfo" value="">
+            </form>
+
+            <form id="paySSLForm" name="paySSLForm" method="post" action=" # " target="h_payment">
+            <input type="hidden" name="encrypted_str" value="">
+        <input type="hidden" id="address_delvetype" name="address_delvetype" value="">
+<input type="hidden" id="app_mode" name="app_mode" value="new_design">
+</form>
+<script type="text/javascript" language="javascript" charset="UTF-8" src="./js/INIStdPay.js"></script>
+<script type="text/javascript" language="javascript" charset="UTF-8" src="./js/inicis_std.js"></script>
+<script type="text/javascript" language="javascript" charset="UTF-8" src="./js/pg_std_common.js"></script>
+<script type="text/javascript" language="javascript" charset="UTF-8" src="./js/mobilians_common.js"></script>
+<div id="MOBILIANS_PAYMENTWINDOW" style="position:absolute; display:none; width:100%;height:100%;min-height:650px; z-index:1000;
+	background-color:#D3D3D3;top:0px;left:0px;">
+	<iframe id="MOBILIANS_PAYMENT_IFRAME" name="MOBILIANS_PAYMENT_IFRAME"
+	style="width:100%;height:100%;min-height:650px;" scrolling="no" frameborder="0" src="./html/saved_resource(3).html"></iframe>
+	<input type="hidden" id="PGMODULE_MOBILIANS_ENCDATA" value=""></div>
+<script type="text/javascript" language="javascript" charset="UTF-8" src="./js/pg_easypay_common.js"></script>
+<iframe id="KAKAOKAKAOPAY_PAYMENT_IFRAME" style="display: none; position: absolute; z-index: 100001; width: 426px; height: 550px; left: 50%; 
+top: 50%;
+	margin-left:-213px; background:#ffffff;" scrolling="no" frameborder="0" src="./html/saved_resource(4).html"></iframe>
+	<div id="KAKAOKAKAOPAY_OVERLAY" style="display: none;position: fixed; _position:absolute; top: 0px; left: 0px; width: 100%; height: 100%; 
+	z-index: 100000;
+	margin: 0px; box-sizing: border-box;background:#000; opacity:0.4; filter:alpha(opacity:40); -ms-filter:&quot;
+	progid:DXImageTransform.Microsoft.Alpha(Opacity=50);&quot;"></div>
+
+
+<script type="text/javascript">
+var EC_MOBILE = false;
+var EC_MOBILE_DEVICE = false;
+var EC_MOBILE_USE = true;
+localStorage.setItem('EC_JQUERY_VERSION','1.4.4');
+var mobileWeb = false;
+var bUseElastic = false;
+var sSearchBannerUseFlag = 'F';
+var sOrderTypeSaleShipfeeSale = null; 
+var onlyAlipay = 'F';
+var aBasketProductOrderData = [];
+aBasketProductOrderData[0] = {"quantity" :1,"product_qty" :1,"product_sum_price" :6000,"option_add" :"F","option_type" :"E","set_product_no" :0,
+		"basket_prd_no" :896,"product_no" :32,"item_code" :"P00000BG000A","product_price" :6000,"opt_price" :0,"product_sale_price" :6000,
+		"is_set_product" :"F","product_weight" :100,"main_cate_no" :43,"add_sale_related_qty" :0,"add_sale_not_related_qty" :0};
+var isOrderForm = 'T';
+var bUseCountryNumber = 'T';
+$(document).ready(function() {
+ZipcodeFinder.Opener.setLanguage({"apply":"","close":""});
+ZipcodeFinder.Opener.bind('btn_search_ozipcode', 'ozipcode1', 'ozipcode2', 'oaddr1', 'layer',  '' , '', 'ko_KR', 'oaddr2', 'frm_order_act', '');
+});
+$(document).ready(function() {
+ZipcodeFinder.Opener.setLanguage({"apply":"","close":""});
+ZipcodeFinder.Opener.bind('btn_search_rzipcode', 'rzipcode1', 'rzipcode2', 'raddr1', 'layer',  '' , '', 'ko_KR', 'raddr2', 'frm_order_act', '');
+});
+$(document).ready(function() {
+ZipcodeFinder.Opener.setLanguage({"apply":"","close":""});
+ZipcodeFinder.Opener.bind('btn_search_tzipcode', 'tax_request_zipcode', '', 'tax_request_address1', 'layer',  '' , '', 'ko_KR', 
+		'tax_request_address2', '', '');
+});
+var aCouponPaymethod = ["R","E","C","A","H","M","K","P","N","O","S","V","B","D"];
+var aCouponPaymethodExceptMileage = ["R","E","C","A","H","K","P","N","O","S","V","B","D"];
+var aCouponPaymethodNameList = {"R":{"coupon_name":"\ubb34\ud1b5\uc7a5\uc785\uae08","display_text_key":"cash_display_text"},
+	"E":{"coupon_name":"\uac00\uc0c1\uacc4\uc88c","display_text_key":"icash_display_text"},"C":{"coupon_name":"\uc2e0\uc6a9\uce74\ub4dc",
+		"display_text_key":"card_display_text"},"A":{"coupon_name":"\uacc4\uc88c\uc774\uccb4","display_text_key":"tcash_display_text"},
+		"H":{"coupon_name":"\ud734\ub300\ud3f0","display_text_key":"cell_display_text"},"M":{"coupon_name":"\uc801\ub9bd\uae08",
+			"display_text_key":""},"K":{"coupon_name":"\ucf00\uc774\ud398\uc774","display_text_key":"kpay_display_text"},
+			"P":{"coupon_name":"\ud398\uc774\ub098\uc6b0","display_text_key":"paynow_display_text"},"N":{"coupon_name":"\ud398\uc774\ucf54",
+				"display_text_key":"payco_display_text"},"O":{"coupon_name":"\uce74\uce74\uc624\ud398\uc774","display_text_key":"kakaopay_display_text"},
+				"S":{"coupon_name":"\uc2a4\ub9c8\uc77c\ud398\uc774","display_text_key":"smilepay_display_text"},
+				"V":{"coupon_name":"\ub124\uc774\ubc84\ud398\uc774","display_text_key":"naverpay_display_text"},"B":{"coupon_name":"\ud3b8\uc758\uc810",
+					"display_text_key":"cvs_display_text"},"D":{"coupon_name":"\ud1a0\uc2a4","display_text_key":"toss_display_text"}};
+EC_SHOP_FRONT_ORDERFORM_COUPON.event.eventClickCouponSelect('btn_coupon_select');
+var sJsIsJapanKoreaFlag = "F"
+$('#btn_shipp_addr').bind('click', function() {
+if ($('#is_discount_shipfee_add').val() == 'T' || (typeof(EC_SHOP_FRONT_ORDERFORM_DATA) =='object' && 
+		EC_SHOP_FRONT_ORDERFORM_DATA.benefit.sIsDiscountShipFee =='T') ) {
+alert('배송비 무료쿠폰을 사용한 경우 배송지정보를 변경할 수 없습니다.');
+return false;
+}
+myshopAddr.openWindow();
+});
+var sJsIsJapanKoreaFlag = "F"
+$('#btn_address_oversea').bind('click', function() {
+if ($('#is_discount_shipfee_add').val() == 'T' || (typeof(EC_SHOP_FRONT_ORDERFORM_DATA) =='object' && 
+		EC_SHOP_FRONT_ORDERFORM_DATA.benefit.sIsDiscountShipFee =='T') ) {
+alert('배송비 무료쿠폰을 사용한 경우 배송지정보를 변경할 수 없습니다.');
+return false;
+}
+myshopAddr.openWindow();
+});
+var aShippingCompanyInfo = [];
+var aShippingCompanyOptionInfo = [];
+aShippingCompanyInfo = [];
+aShippingCompanyOptionInfo = [];
+var sAllowedDiscountType = 'A';
+var aDiscountcodeConfig = {"is_use":"F","is_used_with_coupon":"F","is_used_with_member_discount":"F","is_used_with_mileage":"F"};
+var aDeferCommissionGroupInfo = [];
+var EC_ORDER_FORM_ASSIGN_DATA = {};
+EC_ORDER_FORM_ASSIGN_DATA.move_order_after = "/order/order_result.html";
+EC_ORDER_FORM_ASSIGN_DATA.move_basket = "/order/basket.html";
+EC_ORDER_FORM_ASSIGN_DATA.total_vat_price_raw = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_crowd_funding = "F";
+EC_ORDER_FORM_ASSIGN_DATA.basic_product_price_sum_for_shipfee = "8500";
+EC_ORDER_FORM_ASSIGN_DATA.normal_total_benefit_price_for_js = "0";
+EC_ORDER_FORM_ASSIGN_DATA.normal_collect_ship_fee = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_ship_fee_supplier = "";
+EC_ORDER_FORM_ASSIGN_DATA.Individual_product_price_sum_for_shipfee = "";
+EC_ORDER_FORM_ASSIGN_DATA.Individual_total_benefit_price_for_js = "";
+EC_ORDER_FORM_ASSIGN_DATA.supplier_product_price_sum_for_shipfee = "";
+EC_ORDER_FORM_ASSIGN_DATA.supplier_total_benefit_price_for_js = "";
+EC_ORDER_FORM_ASSIGN_DATA.add_sale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.member_group_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.mileage_generate3 = "0";
+EC_ORDER_FORM_ASSIGN_DATA.membergroup_mile_order = "6000";
+EC_ORDER_FORM_ASSIGN_DATA.product_exception_membergroup = "";
+EC_ORDER_FORM_ASSIGN_DATA.default_product_mileage = "300";
+EC_ORDER_FORM_ASSIGN_DATA.dc_paymethod = "A";
+EC_ORDER_FORM_ASSIGN_DATA.dc_target_type = "";
+EC_ORDER_FORM_ASSIGN_DATA.mil_group_dc = "0";
+EC_ORDER_FORM_ASSIGN_DATA.cash_group_dc = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_group_dc = "0";
+EC_ORDER_FORM_ASSIGN_DATA.dc_apply_type = "A";
+EC_ORDER_FORM_ASSIGN_DATA.dc_mileage_type = "";
+EC_ORDER_FORM_ASSIGN_DATA.dc_mileage = "";
+EC_ORDER_FORM_ASSIGN_DATA.dc_mileage_unit = "";
+EC_ORDER_FORM_ASSIGN_DATA.use_group_mileage = "F";
+EC_ORDER_FORM_ASSIGN_DATA.mobile_mileage_price = "";
+EC_ORDER_FORM_ASSIGN_DATA.dc_min_mileage = "";
+EC_ORDER_FORM_ASSIGN_DATA.mobile_dc_min_mileage = "";
+EC_ORDER_FORM_ASSIGN_DATA.mobile_mileage_type = "";
+EC_ORDER_FORM_ASSIGN_DATA.mobile_dc_mileage_unit = "";
+EC_ORDER_FORM_ASSIGN_DATA.mobile_mileage_max_percent = "";
+EC_ORDER_FORM_ASSIGN_DATA.dc_max_percent = "";
+EC_ORDER_FORM_ASSIGN_DATA.total_plusapp_mileage_price = "";
+EC_ORDER_FORM_ASSIGN_DATA.total_product_sale = "0";
+EC_ORDER_FORM_ASSIGN_DATA.num_of_prod = "1";
+EC_ORDER_FORM_ASSIGN_DATA.num_of_no_tax_prod = "0";
+EC_ORDER_FORM_ASSIGN_DATA.basket_type = "all_buy";
+EC_ORDER_FORM_ASSIGN_DATA.r_total_price = "8500";
+EC_ORDER_FORM_ASSIGN_DATA.r_total_price_ori = "8500";
+EC_ORDER_FORM_ASSIGN_DATA.ship_fee = "2500";
+EC_ORDER_FORM_ASSIGN_DATA.individual_ship_fee = "0";
+EC_ORDER_FORM_ASSIGN_DATA.ori_ship_fee = "2500";
+EC_ORDER_FORM_ASSIGN_DATA.productPeriod = "";
+EC_ORDER_FORM_ASSIGN_DATA.ori_basic_ship_fee = "2500";
+EC_ORDER_FORM_ASSIGN_DATA.member_id = "jjoon912";
+EC_ORDER_FORM_ASSIGN_DATA.product_total_price = "6000";
+EC_ORDER_FORM_ASSIGN_DATA.delvType = "A";
+EC_ORDER_FORM_ASSIGN_DATA.free_buy_flag = "T";
+EC_ORDER_FORM_ASSIGN_DATA.total_benefit_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_rebuysale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_bulksale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_livelinkonsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_periodsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_membersale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_newproductsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_setproductsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_subscriptionpayseqsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_shipfeesale_price = "";
+EC_ORDER_FORM_ASSIGN_DATA.total_subscriptionshipfeesale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_pbpsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_mobilesale = "";
+EC_ORDER_FORM_ASSIGN_DATA.total_membergroupsale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_app_product_sale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.total_app_order_sale_price = "0";
+EC_ORDER_FORM_ASSIGN_DATA.display_free_text_BasicList = "F";
+EC_ORDER_FORM_ASSIGN_DATA.display_defer_text_BasicList = "F";
+EC_ORDER_FORM_ASSIGN_DATA.display_free_text_SupplierList = "T";
+EC_ORDER_FORM_ASSIGN_DATA.display_defer_text_SupplierList = "F";
+EC_ORDER_FORM_ASSIGN_DATA.display_free_text_IndividualList = "T";
+EC_ORDER_FORM_ASSIGN_DATA.display_defer_text_IndividualList = "F";
+EC_ORDER_FORM_ASSIGN_DATA.total_not_used_store_pickup = "1";
+EC_ORDER_FORM_ASSIGN_DATA.total_product_base_price_raw = "6000";
+EC_ORDER_FORM_ASSIGN_DATA.avail_mileage = "3000.00";
+EC_ORDER_FORM_ASSIGN_DATA.mileage_buyamt_limit = "5000.00";
+EC_ORDER_FORM_ASSIGN_DATA.min_pay_mileage = "0.00";
+EC_ORDER_FORM_ASSIGN_DATA.member_avail_mileage = "3000.00";
+EC_ORDER_FORM_ASSIGN_DATA.max_mileage_type = "T";
+EC_ORDER_FORM_ASSIGN_DATA.is_use_except_settle = "F";
+EC_ORDER_FORM_ASSIGN_DATA.use_except_limit = "F";
+EC_ORDER_FORM_ASSIGN_DATA.oMileageException = {};
+EC_ORDER_FORM_ASSIGN_DATA.oMileageException.sProductCoupon = "F";
+EC_ORDER_FORM_ASSIGN_DATA.oMileageException.sOrderCoupon = "F";
+EC_ORDER_FORM_ASSIGN_DATA.oMileageException.sDiscount = "F";
+EC_ORDER_FORM_ASSIGN_DATA.isUpdateMemberEmailOrder = "F";
+EC_ORDER_FORM_ASSIGN_DATA.isSimplyOrderForm = "F";
+EC_ORDER_FORM_ASSIGN_DATA.isSmartDesign = "T";
+EC_ORDER_FORM_ASSIGN_DATA.__ocountry = "   ";
+EC_ORDER_FORM_ASSIGN_DATA.__oaddr1 = "";
+EC_ORDER_FORM_ASSIGN_DATA.__ocity = "";
+EC_ORDER_FORM_ASSIGN_DATA.__ostate = "";
+EC_ORDER_FORM_ASSIGN_DATA.sSinameZhAreaWord = "省/市";
+EC_ORDER_FORM_ASSIGN_DATA.sSinameTwAreaWord = "市/縣";
+EC_ORDER_FORM_ASSIGN_DATA.sGunameZhAreaWord = "区";
+EC_ORDER_FORM_ASSIGN_DATA.sGunameTwAreaWord = "區/市";
+EC_ORDER_FORM_ASSIGN_DATA.__faddress = "";
+EC_ORDER_FORM_ASSIGN_DATA.__si_gun_dosi = "";
+EC_ORDER_FORM_ASSIGN_DATA.__ju_do = "";
+EC_ORDER_FORM_ASSIGN_DATA.__si_name_addr = "";
+EC_ORDER_FORM_ASSIGN_DATA.__ci_name_addr = "";
+EC_ORDER_FORM_ASSIGN_DATA.__gu_name_addr = "";
+EC_ORDER_FORM_ASSIGN_DATA.ophone1 = "";
+EC_ORDER_FORM_ASSIGN_DATA.ophone2 = "";
+EC_ORDER_FORM_ASSIGN_DATA.rphone1 = "";
+EC_ORDER_FORM_ASSIGN_DATA.rphone2 = "";
+EC_ORDER_FORM_ASSIGN_DATA.message_autosave = "F";
+EC_ORDER_FORM_ASSIGN_DATA.hope_date = "";
+EC_ORDER_FORM_ASSIGN_DATA.hope_start_date = "";
+EC_ORDER_FORM_ASSIGN_DATA.hope_end_date = "";
+EC_ORDER_FORM_ASSIGN_DATA.hope_shipping_default_date = "";
+EC_ORDER_FORM_ASSIGN_DATA.hope_ship_begin_time = "";
+EC_ORDER_FORM_ASSIGN_DATA.hope_ship_end_time = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_fast_shipping_time = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_hope_shipping_time = "F";
+EC_ORDER_FORM_ASSIGN_DATA.use_coupon_discount_in_shipping_fee = "F";
+EC_ORDER_FORM_ASSIGN_DATA.use_real_payamount_in_shipping_fee = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_except_real_payamount_in_shipping_fee = "F";
+EC_ORDER_FORM_ASSIGN_DATA.total_deposit = "0";
+EC_ORDER_FORM_ASSIGN_DATA.oDepositUsedExcept = {};
+EC_ORDER_FORM_ASSIGN_DATA.oDepositUsedExcept.sMileage = "F";
+EC_ORDER_FORM_ASSIGN_DATA.oDepositUsedExcept.sCoupon = "F";
+EC_ORDER_FORM_ASSIGN_DATA.oDepositUsedExcept.sMemberGrade = "F";
+EC_ORDER_FORM_ASSIGN_DATA.sIsComplexTaxCashReceipt = "T";
+EC_ORDER_FORM_ASSIGN_DATA.use_eguarantee = "F";
+EC_ORDER_FORM_ASSIGN_DATA.eguarantee_type = "B";
+EC_ORDER_FORM_ASSIGN_DATA.eguarantee_id = "F";
+EC_ORDER_FORM_ASSIGN_DATA.min_icash_price = "330";
+EC_ORDER_FORM_ASSIGN_DATA.is_hope_shipping = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_fast_shipping = "";
+EC_ORDER_FORM_ASSIGN_DATA.usafe_flag = " ";
+EC_ORDER_FORM_ASSIGN_DATA.protection_amount = "0";
+EC_ORDER_FORM_ASSIGN_DATA.f_ship_fee = "0";
+EC_ORDER_FORM_ASSIGN_DATA.f_insurance = "0";
+EC_ORDER_FORM_ASSIGN_DATA.fCountryCd = "";
+EC_ORDER_FORM_ASSIGN_DATA.subscription_required = "T";
+EC_ORDER_FORM_ASSIGN_DATA.subscription_use_flag = "T";
+EC_ORDER_FORM_ASSIGN_DATA.ship_agreement_use_flag = "F";
+EC_ORDER_FORM_ASSIGN_DATA.bank_url_hidden = "";
+EC_ORDER_FORM_ASSIGN_DATA.sCpnPrd = "0";
+EC_ORDER_FORM_ASSIGN_DATA.sCpnOrd = "0";
+EC_ORDER_FORM_ASSIGN_DATA.coupon_saving = "0";
+EC_ORDER_FORM_ASSIGN_DATA.coupon_discount = "0";
+EC_ORDER_FORM_ASSIGN_DATA.coupon_product_discount = "0";
+EC_ORDER_FORM_ASSIGN_DATA.coupon_shipfee = "0";
+EC_ORDER_FORM_ASSIGN_DATA.fAllowWithMileage = "T";
+EC_ORDER_FORM_ASSIGN_DATA.is_discount_shipfee_add = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_used_with_mileage = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_used_with_member_discount = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_used_with_coupon = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_minus_mileage = "F";
+EC_ORDER_FORM_ASSIGN_DATA.mileage_use_standard = "T";
+EC_ORDER_FORM_ASSIGN_DATA.oMileageGradeConfig = {};
+EC_ORDER_FORM_ASSIGN_DATA.oMileageGradeConfig.fDisit = "10.000";
+EC_ORDER_FORM_ASSIGN_DATA.oMileageGradeConfig.sSetType = "A";
+EC_ORDER_FORM_ASSIGN_DATA.oMileagePayConfig = {};
+EC_ORDER_FORM_ASSIGN_DATA.oMileagePayConfig.fDisit = "10.000";
+EC_ORDER_FORM_ASSIGN_DATA.oMileagePayConfig.sSetType = "A";
+EC_ORDER_FORM_ASSIGN_DATA.sEleID = "total_price||productPeriod||ophone1_1||ophone1_2||ophone1_3||ophone2_1||ophone2_2||ophone2_3||
+ophone1_ex1||ophone1_ex2||ophone2_ex1||ophone2_ex2||basket_type||oname||oname2||english_oname||english_name||english_name2||input_mile||
+input_deposit||hope_date||hope_ship_begin_time||hope_ship_end_time||is_fast_shipping_time||fname||fname2||paymethod||eguarantee_flag||
+eguarantee_ssn1||eguarantee_ssn2||eguarantee_year||eguarantee_month||eguarantee_day||eguarantee_user_gender||eguarantee_personal_agreement||
+question||question_passwd||delvType||f_country||fzipcode||faddress||fphone1_1||fphone1_2||fphone1_3||fphone1_4||fphone1_ex1||fphone1_ex2||
+fphone2_ex1||fphone2_ex2||fphone2||fmessage||fmessage_select||rname||rzipcode1||rzipcode2||raddr1||raddr2||rphone1_1||rphone1_2||rphone1_3||
+rphone2_1||rphone2_2||rphone2_3||omessage||omessage_select||ozipcode1||ozipcode2||oaddr1||oaddr2||oemail||oemail1||oemail2||ocity||ostate||
+ozipcode||eguarantee_id||coupon_discount||coupon_saving||order_password||is_fast_shipping||fCountryCd||message_autosave||oa_content||
+gift_use_flag||pname||bankaccount||regno1||regno2||escrow_agreement0||addr_paymethod||member_group_price||chk_purchase_agreement||
+total_plusapp_mileage_price||mileage_generate3||is_hope_shipping||sCpnPrd||sCpnOrd||coupon_shipfee||np_req_tx_id||np_save_rate||
+np_save_rate_add||np_use_amt||np_mileage_use_amount||np_cash_use_amount||np_total_use_amount||np_balance_amt||np_use||np_sig||flagEscrowUse||
+flagEscrowIcashUse||add_ship_fee||total_group_dc||pron_name||pron_name2||pron_oname||faddress2||si_gun_dosi||ju_do||is_set_product||
+basket_prd_no||move_order_after||is_no_ozipcode||is_no_rzipcode||__ocountry||__oaddr1||__ocity||__ostate||__faddress||__si_gun_dosi||
+__ju_do||sSinameZhAreaWord||sSinameTwAreaWord||sGunameZhAreaWord||sGunameTwAreaWord||delivcompany||is_store||cashreceipt_user_type||
+cashreceipt_user_type2||cashreceipt_regist||cashreceipt_user_mobile1||cashreceipt_user_mobile2||cashreceipt_user_mobile3||cashreceipt_reg_no||
+is_cashreceipt_displayed_on_screen||tax_request_regist||tax_request_name||tax_request_phone1||tax_request_phone2||tax_request_phone3||
+tax_request_email1||tax_request_email2||tax_request_company_type||tax_request_company_regno||tax_request_company_name||
+tax_request_president_name||tax_request_zipcode||tax_request_address1||tax_request_address2||tax_request_company_condition||
+tax_request_company_line||is_taxrequest_displayed_on_screen||isSimplyOrderForm||use_safe_phone||app_scheme||isUpdateMemberEmailOrder||
+defer_commission||defer_p_name||order_form_simple_type||gmo_order_id||gmo_transaction_id||receiver_id_card_key||receiver_id_card_type||
+simple_join_is_check||simple_join_agree_use_info||etc_subparam_member_id||etc_subparam_email1||etc_subparam_passwd||
+etc_subparam_user_passwd_confirm||etc_subparam_passwd_type||etc_subparam_is_sms||etc_subparam_is_news_mail||information_agreement_check_val||
+consignment_agreement_check_val||remind_id||remind_code||shipping_additional_fee_show||shipping_additional_fee_hide||
+shipping_additional_fee_name_show||save_paymethod||allat_account_nm||basket_sync_flag||member_id||input_pointfy||set_main_address0||
+app_discount_data||is_shipping_address_readonly_by_app||is_app_shipfee||app_shipfee_data||is_available_shipping_company_by_app||is_direct_buy||
+is_subscription_invoice||subscription_start_date||order_enable||is_crowd_funding||is_used_with_mileage||is_used_with_member_discount||
+is_used_with_coupon";
+EC_ORDER_FORM_ASSIGN_DATA.useEscrow = "T";
+EC_ORDER_FORM_ASSIGN_DATA.useEscrowIcash = "F";
+EC_ORDER_FORM_ASSIGN_DATA.price_unit_head = "";
+EC_ORDER_FORM_ASSIGN_DATA.price_unit_tail = "원";
+EC_ORDER_FORM_ASSIGN_DATA.use_limit_addr_length = "F";
+EC_ORDER_FORM_ASSIGN_DATA.limit_addr_length = "0";
+EC_ORDER_FORM_ASSIGN_DATA.use_confirm_order_input = "T";
+EC_ORDER_FORM_ASSIGN_DATA.is_oversea_flag = "F";
+EC_ORDER_FORM_ASSIGN_DATA.oversea_shipping_flag = "E";
+EC_ORDER_FORM_ASSIGN_DATA.is_no_ozipcode = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_no_rzipcode = "F";
+EC_ORDER_FORM_ASSIGN_DATA.foreign_country_default = "";
+EC_ORDER_FORM_ASSIGN_DATA.use_receiver_id_card_key = "F";
+EC_ORDER_FORM_ASSIGN_DATA.receiver_id_card_key_use_flag = "F";
+EC_ORDER_FORM_ASSIGN_DATA.nm_display = "F";
+EC_ORDER_FORM_ASSIGN_DATA.without_ship_fee = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_cashreceipt_displayed_on_screen = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_taxrequest_displayed_on_screen = "F";
+EC_ORDER_FORM_ASSIGN_DATA.cashreceipt_use_deposit_exception_flag = "F";
+EC_ORDER_FORM_ASSIGN_DATA.app_scheme = "";
+EC_ORDER_FORM_ASSIGN_DATA.use_overwriting_paypal_address = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_store = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_custom_ship_area = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_custom_ship_time = "";
+EC_ORDER_FORM_ASSIGN_DATA.defer_commission = "0";
+EC_ORDER_FORM_ASSIGN_DATA.order_form_simple_type = "T";
+EC_ORDER_FORM_ASSIGN_DATA.use_simple_join_by_order = "F";
+EC_ORDER_FORM_ASSIGN_DATA.information_agreement_check_val = "F";
+EC_ORDER_FORM_ASSIGN_DATA.consignment_agreement_check_val = "F";
+EC_ORDER_FORM_ASSIGN_DATA.use_store_pickup_by_product = "F";
+EC_ORDER_FORM_ASSIGN_DATA.enable_board_password_rule = "F";
+EC_ORDER_FORM_ASSIGN_DATA.basket_sync_flag = "F";
+EC_ORDER_FORM_ASSIGN_DATA.gift_selected_item = "";
+EC_ORDER_FORM_ASSIGN_DATA.app_discount_data = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_shipping_address_readonly_by_app = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_app_shipfee = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_free_shipfee_member = "F";
+EC_ORDER_FORM_ASSIGN_DATA.app_shipfee_data = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_available_shipping_company_by_app = "";
+EC_ORDER_FORM_ASSIGN_DATA.is_direct_buy = "F";
+EC_ORDER_FORM_ASSIGN_DATA.is_subscription_invoice = "F";
+EC_ORDER_FORM_ASSIGN_DATA.show_mileage_limit = "F";
+EC_ORDER_FORM_ASSIGN_DATA.order_enable = "";
+var sMobileDeliveryInfoValue = '652'
+var bPaypalFlag = false;
+var sCardPaymethod = 'false';
+var sCardIconFlag = 'true';
+var aSubpaymethodForInfo = []
+$(document).ready(function() {
+var elmSelect = $('#oemail3');
+var elmTarget = $('#oemail2');
+elmSelect.bind('change', null, function() {
+var host = this.value;
+if (host != 'etc' && host != '') {
+elmTarget.attr('readonly', true);
+elmTarget.val(host).change();
+} else if (host == 'etc') {
+elmTarget.attr('readonly', false);
+elmTarget.val('').change();
+elmTarget.focus();
+} else {
+elmTarget.attr('readonly', true);
+elmTarget.val('').change();
+}
+});
+});
+var bSubscriptionInvoice = false;
+var bIsCrowdfunding = false;
+var SHOP_CURRENCY_INFO = {"1":{"aShopCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":
+	"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"aShopSubCurrencyInfo":null,
+	"aBaseCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":
+		"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"fExchangeRate":1,"fExchangeSubRate":null,"aFrontCurrencyFormat":{
+			"head":"","tail":"\uc6d0"},"aFrontSubCurrencyFormat":{"head":"","tail":""}}};
+var aDeferPaymethod = []
+var aPaymentOnDelivery = []
+var aPaymentFixShippingCompany = []
+var aProductInfo = null
+var aCommissionPaymethod = []
+var bIsUseRemoteShipfeeSetting =false;
+var aForeignPaymethod = ['alipay','axes','npdefer','gmodefer','daibiki','huodaofukuan','cod','ecpay','eximbay','paypal','softbank','vnptepay',
+	'zeus','nganluong','PM001','PM012','PM011','PM010','PM015','PM007','PM013','PM020','PM017','PM002','PM014','PM003','PM101','PM102','PM103',
+	'PM104','PM024','PM032','PM023','PM025','PM026','PM027','PM028','PM029','PM030','PM006','PM007_BANK','PM021','PM022'];
+var isMultishop = false;
+var isNewProduct = true;
+var mallId = 'boogie111111';
+var sDepositUnit = '원';
+var aPriceDisplayModeInfo = {"mode":3,"desc":"\uc804\uccb4 \uc0c1\ud488\ud560\uc778\uac00 \ubaa8\ub4dc\uc785\ub2c8\ub2e4. \ubaa8\ub4e0 
+		\uc0c1\ud488\uae08\uc561 \ubc0f \ud569\uacc4\uac00 \uc0c1\ud488\ud560\uc778\uac00 \uae30\uc900\uc73c\ub85c \ubcf4\uc5ec\uc9d1\ub2c8\ub2e4."};
+var aCouponPaymethodCodeList = [];
+var sIsDirectDeliveryChoiceUse = 'F';
+var isCountryOfLanguage = 'F'
+if (typeof PGMODULE_LANGUAGE_PLUGIN == "obejct" && typeof PGMODULE_LANGUAGE_PLUGIN._init == "function") {PGMODULE_LANGUAGE_PLUGIN._init('ko_KR');}
+var sPage = "ORDER_ORDERFORM";
+EC_SHOP_FRONT_NEW_OPTION_COMMON.initObject();
+EC_SHOP_FRONT_NEW_OPTION_BIND.initChooseBox();
+EC_SHOP_FRONT_NEW_OPTION_DATA.initData();
+var sBasketDelvType = 'A';
+var bIsNewProduct = true;
+var sUseBasketConfirm = 'T';
+var sUsePaymentMethodPerProduct = 'F';
+var aLogData = {"log_server1":"eclog2-222.cafe24.com","log_server2":"eclog2-222.cafe24.com","mid":"boogie111111","stype":"e","domain":"",
+		"shop_no":"1","lang":"ko_KR","ver":2,"etc":""};
+var sDepositUnit = '원';
+var EC_ASYNC_LIVELINKON_ID = '';
+if ($('[async_section=before]').length > 0) {
+$('[async_section=before]').addClass('displaynone');
+}
+var EC_FRONT_JS_CONFIG_MANAGE = {"sSmartBannerScriptUrl":"https:\/\/app4you.cafe24.com\/SmartBanner\/tunnel\/scriptTags?vs=1563164396689206",
+		"sMallId":"boogie111111","sDefaultAppDomain":"https:\/\/app4you.cafe24.com","sWebLogOffFlag":"F"};
+var EC_FRONT_JS_CONFIG_SHOP = {"bDirectBuyOrderForm":false,"aSubpaymethodForInfoNoDisplay":[],"aStandardPgNameList":["allat","dacom","galaxiacoms",
+	"inicis","kcp","kicc","ksnet","nicepay","settlebank","smartro","toss","naverpay"]};
+</script>
+
+
+<iframe src="./html/saved_resource(5).html" id="log_realtime" style="display: none;"></iframe>
+<script src="./html/weblog_ubp.html"></script>
+<script type="text/javascript" src="./js/weblog.js" id="log_script"></script>
+<div id="modalBackpanel"></div>
+<div id="modalContainer">
+<iframe id="modalContent" scroll="0" scrolling=
+"no" frameborder="0" src="./html/saved_resource(6).html"></iframe>
+</div>
+
+
+</html>

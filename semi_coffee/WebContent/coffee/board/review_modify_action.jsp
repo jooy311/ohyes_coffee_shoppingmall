@@ -1,0 +1,34 @@
+<%@page import="ohyes.coffee.dao.ReviewDAO"%>
+<%@page import="ohyes.coffee.dto.ReviewDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//비정상 접근
+	if (request.getMethod().equals("get")){
+		out.println("<script type='text/javascript'>");
+		out.println("location href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=error&work=error400'");
+		out.println("</script>");
+	}
+	
+	int num=Integer.parseInt(request.getParameter("num"));
+	int pageNum=Integer.parseInt(request.getParameter("pageNum"));
+	String no=request.getParameter("no");
+	String search=request.getParameter("search");
+	String keyword=request.getParameter("keyword");
+	String reviewTitle=request.getParameter("reviewTitle").replace("<", "&lt;").replace(">", "&gt;");
+	String reviewContent=request.getParameter("reviewContent").replace("<", "&lt;").replace(">", "&gt;");
+	
+	ReviewDTO review=new ReviewDTO();
+	review.setReviewNo(num);
+	review.setReviewPNo(no);
+	review.setReviewTitle(reviewTitle);
+	review.setReviewContent(reviewContent);
+	
+	ReviewDAO.getDAO().updateReview(review);
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()
+		+"/coffee/index.jsp?workgroup=board&work=review_detail&num="+num+"&no="+no
+		+"&pageNum="+pageNum+"&search="+search+"&keyword="+keyword+"';");
+	out.println("</script>");
+%>

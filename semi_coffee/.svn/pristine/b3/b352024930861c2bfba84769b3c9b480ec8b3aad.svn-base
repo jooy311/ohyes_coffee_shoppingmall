@@ -1,0 +1,112 @@
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	List<ProductDTO> productList=null;
+	if(request.getParameter("category")==null) {
+		String no="";
+		productList=ProductDAO.getProductDAO().selectProduct(no);
+	} else {
+		String no=request.getParameter("category");
+		productList=ProductDAO.getProductDAO().selectProduct(no);
+	}
+%>
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            <div>
+                <!--카테고리 타이틀, 현재위치, 메뉴표시-->
+                <div class="allStore-prd-menupackage">
+                    <div>
+                        <ul class="menuCategory">
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product">전체 상품</a></li>
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product&category=1">커피용품</a></li>
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product&category=2">블렌드 원두</a></li>
+                            <li><a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product&category=3">싱글오리진 원두</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!--카테고리 타이틀, 현재위치, 메뉴표시-->
+
+                <!--상품카운트, 조건검색-->
+                <div class="xans-product-normalmenu allStore-product-normalmenu ">
+                    <div class="function">
+                        <ul id="type" class="xans-product-orderby">
+                            <li ><a href="#">상품명</a></li>
+                            <li ><a href="#">낮은가격</a></li>
+                            <li ><a href="#">높은가격</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--상품카운트, 조건검색-->
+
+                <div class="xans-product-normalpackage allStore-new ">
+                    <div class="xans-product-listnormal best_product">
+                    
+                        <!-- 상품목록 -->
+                        <ul class="new-items grid4">
+                        	<% for(ProductDTO product:productList) {%>
+                            <li id="'<%= product.getpNo()%>'" class="prdItem ">
+                                <div class="itemLay">
+                                    <div class="thumbnail">
+                                        <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=product.getpNo()%>">
+                                            <img src="<%=product.getpImagePath()%>" id="'<%=product.getpImage()%>'" alt="'<%=product.getpName()%>'"/>
+                                        </a>
+                                    </div>
+                                    <div class="description">
+                                        <strong class="name">
+                                            <a href="#상품페이지">
+                                                <span style="font-size:13px;color:#000000;font-weight:bold;"><%=product.getpName()%></span>
+                                            </a>
+                                        </strong>
+                                        <ul class="xans-product-listitem spec">
+                                            <li>
+                                                <span style="font-size:15px;color:#000000;font-weight:bold;"><%=product.getpCost()%></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <% } %>
+                        </ul>
+                        <!-- /상품목록 -->
+                        
+                    </div>
+                </div>
+
+                <!--페이징-->
+                <div class="xans-product-normalpaging ec-base-paginate paging">
+                    <a href="#none" class="btn first">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    </a>
+                    <a href="#none" class="btn">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </a>
+                    <ol>
+                        <li >
+                            <a href="listf575.html?cate_no=56&amp;page=1" class="this">1</a>
+                        </li>
+                        <li >
+                            <a href="listbf9a.html?cate_no=56&amp;page=2" class="other">2</a>
+                        </li>
+                    </ol>
+                    <a href="listbf9a.html?cate_no=56&amp;page=2" class="btn">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="listbf9a.html?cate_no=56&amp;page=2" class="btn last">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <!--페이징-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--allStore_wrap-->

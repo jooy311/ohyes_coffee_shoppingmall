@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	String workgroup=request.getParameter("workgroup");
+	if(workgroup==null) workgroup="main";
+	
+	String work=request.getParameter("work");
+	if(work==null) work="main";
+	
+	String contentPath=workgroup+"/"+work+".jsp";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>OHYES 인덱스</title>
+
+<!--CSS-->
+<link rel="stylesheet" type="text/css"  href="css/mainCSS.css" />
+<link rel="stylesheet" type="text/css" href="css/optimizer.php" />
+<link rel="stylesheet" type="text/css" href="css/optimizer(1).php" />
+<link rel="stylesheet" type="text/css" href="css/optimizercaff.css" />
+<link rel="stylesheet" type="text/css" href="css/optimizere357.css" />
+<link rel="stylesheet" type="text/css" href="css/product.css" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/optimizer(10).php" />
+<link rel="stylesheet" type="text/css" href="css/optimizer(20).php" />
+<link rel="stylesheet" type="text/css" href="css/optimizer(21).php" />
+<link rel="stylesheet" type="text/css" href="css/optimizer(30).php" />
+<link rel="stylesheet" type="text/css" href="css/optimizer(31).php" />
+<link rel="stylesheet" type="text/css" href="css/board.css" />
+<link rel="stylesheet" type="text/css" href="css/optimizerf714.css"/>
+<link rel="stylesheet" type="text/css" href="css/optimizerb082.css" />
+<link rel="stylesheet" type="text/css" href="css/optimizer47d3.css" />
+
+
+<!-- JS -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="css/optimizer(5).php"></script>
+
+
+</head>
+<body> 
+<% if(workgroup=="main"){%>
+		<div class="main-header">
+			<jsp:include page="header.jsp" />
+		</div>
+<%} else { %>
+<!-- header 영역 -->
+	<jsp:include page="header.jsp" />
+<% } %>
+
+<!-- content 영역 -->
+<jsp:include page="<%=contentPath %>" />
+
+
+<!-- footer 영역 -->
+<jsp:include page="footer.jsp" />
+
+</body>
+</html>

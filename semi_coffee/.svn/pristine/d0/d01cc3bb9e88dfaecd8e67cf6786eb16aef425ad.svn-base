@@ -1,0 +1,151 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import ohyes.coffee.dto.ReviewCommentDTO;
+
+public class ReviewCommentDAO extends JdbcDAO {
+	private static ReviewCommentDAO _dao;
+	
+	public ReviewCommentDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new ReviewCommentDAO();
+	}
+	
+	public static ReviewCommentDAO getDAO() {
+		return _dao;
+	}
+	
+	public List<ReviewCommentDTO> selectNoComment(int num, int startRow, int endRow) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<ReviewCommentDTO> commentList=new ArrayList<ReviewCommentDTO>();
+		try {
+			con=getConnection();
+			
+			String sql="select * from (select rownum rn,temp.* from (select * from review_comment where review_no=? order by review_co_no desc)temp) where rn between ? and ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewCommentDTO comment=new ReviewCommentDTO();
+				comment.setReviewCoNo(rs.getInt("review_co_no"));
+				comment.setReviewNo(rs.getInt("review_no"));
+				comment.setReviewCoDate(rs.getString("review_co_date"));
+				comment.setReviewCoContent(rs.getString("review_co_content"));
+				comment.setReviewCoId(rs.getString("review_co_id"));
+				commentList.add(comment);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]selectNoComment() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return commentList;
+	}
+	
+	public int countCommentReview(int no) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			con=getConnection();
+			
+			String sql="select count(*) from review_comment";
+			pstmt=con.prepareCall(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				count=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]countCommentReview() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return count;
+	}
+	
+	public int updateCommentReview(int coNo, String coContent) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update review_comment set review_co_date=sysdate, review_co_content=? where review_co_no=?";
+			pstmt=con.prepareCall(sql);
+			pstmt.setString(1, coContent);
+			pstmt.setInt(2, coNo);
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateCommentReview() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+	public int selectNextNum() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int nextNum=0;
+		try {
+			con=getConnection();
+			
+			String sql="select review_comment_seq.nextval from dual";
+			pstmt=con.prepareCall(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				nextNum=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectNextNum() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return nextNum;
+	}
+	
+	public int insertComment(ReviewCommentDTO comment){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="insert into review_comment values(?,?,sysdate,?,?)";
+			pstmt=con.prepareCall(sql);
+			pstmt.setInt(1, comment.getReviewCoNo());
+			pstmt.setInt(2, comment.getReviewNo());
+			pstmt.setString(3, comment.getReviewCoContent());
+			pstmt.setString(4, comment.getReviewCoId());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]insertComment() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+}

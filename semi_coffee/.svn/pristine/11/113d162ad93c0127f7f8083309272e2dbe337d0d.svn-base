@@ -1,0 +1,61 @@
+<%@page import="ohyes.coffee.dao.boardNoticeDAO"%>
+<%@page import="ohyes.coffee.dto.NoticeDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+//전달값을 반환받아 저장
+	int noticeNo=Integer.parseInt(request.getParameter("noticeNo"));
+	String pageNum=request.getParameter("pageNum");
+	String search=request.getParameter("search");
+	String keyword=request.getParameter("keyword");
+
+	//게시글 번호를 전달받아 BOARD 테이블에 저장된 게시글을 검색하여
+	//반환하는 DAO 클래스의 메소드 호출
+	NoticeDTO board=boardNoticeDAO.getDAO().selectNumBoard(noticeNo);
+	
+	boardNoticeDAO.getDAO().updateReadCount(noticeNo);
+%>
+<link rel="stylesheet" type="text/css" href="./viewnotice/optimizer.php">
+<link rel="stylesheet" type="text/css" href="./viewnotice/optimizer(1).php">
+    <!--allStore_contents-->
+<div id="allStore_contents">
+<div class="allStore_layout">
+            
+<div>
+<div class="xans-element- xans-board xans-board-readpackage-1002 xans-board-readpackage xans-board-1002 "><!--타이틀, 현재위치-->
+<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 allStore-board-menupackage "><div class="title">
+<h2><font color="#555555">공지사항</font></h2>
+        </div>
+<div class="nav-path">
+            <ol>
+<li><a href="http://coffeechoi.co.kr/">홈</a></li>
+            <li title="현재 위치"><strong>공지사항</strong></li>
+            </ol>
+</div>
+</div>
+<!--타이틀, 현재위치-->
+<div class="ec-base-table typeWrite ">
+            <table border="1" summary="">
+<caption>게시판 상세<%=board.getNoticeReadcount()+1 %></caption>
+            <colgroup>
+<col style="width:130px;">
+<col style="width:auto;">
+</colgroup>
+<tbody>
+<tr>
+<th scope="row">제목</th>
+                    <td><%=board.getNoticeTitle() %></td>
+                </tr>
+<tr>
+ <tr class="">
+<td  colspan="2">
+<textarea style="width: 1200px;" rows="15" cols="200" name="contents" readonly="readonly" ><%=board.getNoticeContents() %> </textarea>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="ec-base-button ">
+<a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=board&work=boardNotice"><img src="./board/viewnotice/btn_list.gif" alt="목록"></a>
+</div>
+</div></div></div></div></div>

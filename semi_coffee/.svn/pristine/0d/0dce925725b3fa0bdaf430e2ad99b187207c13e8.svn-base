@@ -1,0 +1,191 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%
+    
+    
+    %>
+
+	<div class="container-fluid">
+	<div>&nbsp;</div>
+	  <h4><i class="fa fa-angle-right"></i> 상품검색 </h4><hr>
+		<div class="container">
+			<form action = "" method = "post">
+				<div class="row">
+					<div class="col-25">
+						<label for="fname">검색 분류</label>
+					</div>
+					<div class="col-75">
+						<!--상품명인지 상품코드인지 선택-->
+						<select id="select_classification" name="classification"
+							style="width: 30%">
+							<option value="order_status">주문자</option>
+							<option value="order_status">주문번호</option>
+						</select> <input type="text" id="product" name="search_product"
+							placeholder="입력.." style="width: 30%">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-25">
+						<label for="country">기간</label>
+					</div>
+					<div class="col-75">
+						<select id="country" name="country">
+							<option value="australia">전체</option>
+							<option value="australia">7일</option>
+							<option value="canada">1개월</option>
+							<option value="usa">3개월</option>
+							<option value="usa">전체</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-25">
+						<label for="lname">상품</label>
+					</div>
+					<div class="col-75">
+						<select id="select_category" name="category">
+							<option value="goods" >상품이름</option>
+							<option value="blend_beans">상품번호(코드)</option>
+						
+						</select>
+					</div>
+				</div>
+				
+				
+				<div class="row checkList">
+					<div class="col-25">
+						<label for="lname">주문상태</label>
+					</div>
+					<div style = "border:1px #eee; padding-top :15px;">
+						<input type="checkbox" name="order_status" value="주문완료">주문완료&nbsp;&nbsp;
+						<input type="checkbox" name="order_status" value="주문취소">주문취소&nbsp;&nbsp;
+					</div>
+				</div>
+
+				<div class="row">
+					<input type="submit" value="검색">
+				</div>
+			</form>
+		</div>
+		
+			<div class="col-md-12">
+		<div>&nbsp;</div><div>&nbsp;</div>
+            <div class="content-panel">
+              <h4><i class="fa fa-angle-right"></i> 상품목록 </h4>
+              <p>
+					(검색된 상품 갯수 : <%=pagination.getCount()%>)
+			  </p>
+              <table class="table table-striped table-advance table-hover">
+
+                <thead>
+                  <tr>
+                    <th><i class="fa fa-bullhorn"></i>상품번호</th>
+                    <th class="hidden-phone"><i class="fa fa-question-circle"></i> 상품명</th>
+                    <th><i class="fa fa-bookmark"></i> 상품 옵션</th>
+                    <th><i class="fa fa-bookmark"></i> 상품이미지</th>
+                    <th><i class=" fa fa-edit"></i> 판매가</th>
+                    <th><i class=" fa fa-edit"></i> 수량</th>
+                    <th><i class=" fa fa-edit"></i> 판매횟수</th>
+                    <th><i class=" fa fa-edit"></i> 상품등록일</th>
+                    <th><i class=" fa fa-edit"></i> 수정/삭제</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <%
+                	for(ProductAdminDTO product : productList){
+                                	String productOption = "";//커피용품
+                                	
+                                	//원두일경우
+                                	if(product.getpNo().substring(1, 2).equals("1")){//
+                                		productOption = "100g";
+                                	}else if(product.getpNo().substring(1, 2).equals("2")){
+                                		productOption = "200g";
+                                	}else if(product.getpNo().substring(1, 2).equals("5")){
+                                		productOption = "500g";
+                                	}
+                %>
+                  <tr>
+                    <td id = "productNo"><%=product.getpNo()%></td>
+					<td id = "productName"><%=product.getpName()%></td>
+					<td id = "productOption"><%=productOption%></td>
+					<td id = "productImage"><%=product.getpImage()%> </td>
+					<td id = "productCost"><span><%=product.getpCost()%></span></td>
+					<td id = "productStock"><%=product.getpStock()%></td>
+					<td id = "productSalesCount"><%=product.getpSalesCount()%></td>
+					<td id = "productDate"><%=product.getpDate().substring(0, 10)%></td>
+ 					<td>
+                      <button id = "editBtn" class="btn btn-primary btn-xs"
+							onclick="javascript:location.href = 'product/product_edit_action.jsp?productNo=<%=product.getpNo()%>'">수정</button>
+                      <button  id = "deleteBtn" class="btn btn-danger btn-xs"
+                      		onclick="javascript:location.href = '<%=request.getContextPath() %>/coffee/admin/index.jsp?part=product&work=delete_action?productNo=<%=product.getpNo()%>'">삭제</button>
+                    </td>
+                  </tr>
+                <%} %>
+                 
+                </tbody>
+              </table>
+            </div>
+            <!-- /content-panel -->
+          </div>
+	</div>
+	
+	<div style="text-align: center;">
+		<% if(pagination.getStartPageNum() > pagination.getPageNumCnt()) { //첫번째 블럭이 아닌경우 %>
+		<%--페이지 넘길때에도 검색값을 넘겨 다음페이지에서도 검색값이 나올 수 있도록 한다 --%>
+		<%--
+		<a href="<%=request.getContextPath()%>/coffee/admin/index.jsp?part=product&work=list&pageNum=1&
+			select_classification=<%=select_classification%>&search_product=<%=search_product%>&categoryCode=<%=categoryCode
+		%>&productDate=<%=productDate%>">[처음]</a>--%>
+		<a href = "<%=request.getContextPath()%>/coffee/admin/index.jsp?part=product&work=list&pageNum=<%=pagination.getStartPageNum()-pagination.getPageNumCnt() %>&
+			select_classification=<%=select_classification%>&search_product=<%=search_product%>&categoryCode=<%=categoryCode
+		%>&productDate=<%=productDate%>">[이전]</a>
+		<%}else { %>
+		[이전]
+		<%} %>
+	
+	<% for(int i=pagination.getStartPageNum(); i<= pagination.getEndPageNum(); i++) { %>
+		<% if(pageNum != i){ %>
+			<a href="<%=request.getContextPath()%>/coffee/admin/index.jsp?part=product&work=list&pageNum=<%=i%>&
+			select_classification=<%=select_classification%>&search_product=<%=search_product%>&categoryCode=<%=categoryCode
+		%>&productDate=<%=productDate%>">[<%=i %>]</a>
+		<%}else{ %>
+			<span style="font-size: 18px; font-weight: bold;">[<%=i %>]</span>
+		<% } %>
+	<% } %>
+	
+	<% if(pagination.getStartPageNum() != pagination.getPageNum()) { //첫번째 블럭이 아닌경우 %>
+		<a href = "<%=request.getContextPath()%>/coffee/admin/index.jsp?part=product&work=list&pageNum=<%=pagination.getStartPageNum() + pagination.getPageNumCnt()%>&
+			select_classification=<%=select_classification%>&search_product=<%=search_product%>&categoryCode=<%=categoryCode
+		%>&productDate=<%=productDate%>">[다음]</a>
+		<%--
+		<a href = "<%=request.getContextPath()%>/coffee/admin/index.jsp?part=product&work=list&pageNum=<%=pagination.getPageNum() %>&
+			select_classification=<%=select_classification%>&search_product=<%=search_product%>&categoryCode=<%=categoryCode
+		%>&productDate=<%=productDate%>">[마지막]</a>--%>
+		<%}else { %>
+		[마지막]
+		<%} %>
+	
+	
+	</div>
+	<div><p><p></div>
+
+	<!-- -------------------------------------스크립트 시작----------------------------------- -->
+	<!--script type="text/javascript">
+		//각각의 show_detail을 누르면 상세정보가 보일 수 있도록 한다
+		var $list = $(".show_detail"); //생기는 리스트만큼의 요소가 list객체에 저장된다.
+		//해당 주문번호를 클릭하면 새창이 작게 열린다
+		$(".show_detail").click(function() {
+			window.open("","주문  상세페이지", width = "100px");
+		});
+		
+		var currentPosition = parseInt($("#sidebox").css("top"));
+		$(window).scroll(function() { 
+			var position = $(window).scrollTop(); 
+			$("#sidebox").stop().animate({
+				"top":position+currentPosition+"px"},1000); 
+		});		
+		
+	</script-->
+

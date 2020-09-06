@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="./board_pd_files/optimizer.php">
+<link rel="stylesheet" type="text/css" href="./board_pd_files/optimizer(1).php">
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            
+            <div>
+<div class="xans-element- xans-board xans-board-listpackage-4 xans-board-listpackage xans-board-4 "><!--타이틀, 현재위치-->
+<div class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4 allStore-board-menupackage "><div class="title">
+            <h2><font color="333333">상품문의</font></h2>
+        </div>
+<div class="nav-path">
+            <ol>
+<li><a href="http://coffeechoi.co.kr/">홈</a></li>
+            <li title="현재 위치"><strong>상품문의</strong></li>
+            </ol>
+</div>
+</div>
+<!--타이틀, 현재위치-->
+<!--이미지-->
+<div class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4 top-title-img "></div>
+
+<div class="ec-base-table typeList gBorder">
+        <table border="1" summary="">
+<caption>상품 게시판 목록</caption>
+        <colgroup class="xans-element- xans-board xans-board-listheader-4 xans-board-listheader xans-board-4 ">
+<col style="width:80px;">
+<col style="width:150px;">
+<col style="width:auto;">
+<col style="width:150px;">
+<col style="width:150px;">
+<col style="width:150px;">
+</colgroup>
+<thead class="xans-element- xans-board xans-board-listheader-4 xans-board-listheader xans-board-4 ">
+	<tr style=" ">
+		<th scope="col"> 번호</th>
+		<th scope="col">카테고리</th>
+		<th scope="col">제목</th>
+		<th scope="col">작성자</th>
+		<th scope="col">작성일</th>
+		<th scope="col">조회수</th>
+	</tr>
+</thead>
+</table>
+<p class="xans-element- xans-board xans-board-empty-4 xans-board-empty xans-board-4 message displaynone "></p>
+</div>
+<div class="xans-element- xans-board xans-board-buttonlist-4 xans-board-buttonlist xans-board-4  ec-base-button ">
+<span class="gRight">
+<a href="wirte_pd.html" class=" allStore-color-btn1">글쓰기</a>
+</span>
+</div>
+</div>
+
+    

@@ -1,0 +1,102 @@
+if (typeof mi_chat_adkey == "undefined" || mi_chat_adkey == "" ) {
+	mi_chat_adkey = "";
+}
+
+(function() {
+	window.mi_chat_adkey = window.mi_chat_adkey || "" ;
+	window.mi_is_chat = ( typeof window.mi_is_chat == 'boolean' ? window.mi_is_chat : false ) || false ;
+	function getKey() {
+		var scripts = document.getElementsByTagName('script');
+		var queries = {} , query; 
+		for( k in scripts ){
+			var script = scripts[k];
+			if ( typeof script.src !== 'undefined' && script.src.indexOf("//log1.toup.net/mirae_log_chat_common.js") > -1){
+				script = script.src
+					.replace(/^[^\?]+\?/, '')
+					.replace(/#.+$/, '')
+					.split('&');
+				while(script.length){
+					query = script.shift().split('=');    
+					queries["adkey"] = query[query.length-1];   
+				}
+				if ( mi_objectCnt(queries.adkey) ){
+					window.mi_chat_adkey = queries.adkey;
+				}
+			}
+		}
+	}
+
+	function ischat(){
+		return !window.mi_is_chat;
+	}
+	function isInIframe() {
+		try {
+			return window.location !== window.parent.location
+		} catch (e) {
+			return !1
+		}
+	}
+
+	function availableBrowser() {
+		var e = window.navigator.userAgent,
+			n = e.indexOf("MSIE ");
+		return !(0 < n) || 9 <= parseInt(e.substring(n + 5, e.indexOf(".", n)), 10)
+	}
+
+	function isPopup() {
+		return !(!document || !document.location || 0 !== document.location.pathname.lastIndexOf("/popup", 0))
+	}
+
+	(function() {
+		var u = "//log1.toup.net/mirae_log_chat_act.js";
+		if ( isInIframe() && availableBrowser() && ischat()) {
+			console.log('iframe or ie9 under');
+			return;
+		}
+		getKey();
+		if ( !window.mi_chat_adkey.length ) {
+			console.log(window.mi_chat_adkey , 'no adkey');
+			return;
+		}
+		var ae = [];
+
+
+		(function() {
+			var params = {};
+			window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+			if (mi_objectCnt(params.mi_js_dev) ){
+				n = params.mi_js_dev.indexOf("js");
+				var h = "//log1.toup.net/";
+				u = h + "mirae_log_chat_dev.js";
+				if ( -1 < n )  u = h + params.mi_js_dev;
+			}
+		})();
+		
+
+		var mi_dt=new Date(),mi_y=mi_dt.getFullYear(),mi_m=mi_dt.getMonth()+1,mi_d=mi_dt.getDate(),mi_h=mi_dt.getHours(),mi_i=mi_dt.getMinutes();
+		var mi_date=""+mi_y+(mi_m<=9?"0":"")+mi_m+(mi_d<=9?"0":"")+mi_d+(mi_h<=9?"0":"")+mi_h+(mi_i<=9?"0":"")+mi_i;
+		ae.push("?t=" + mi_date);
+		var url = ae.join("");
+		var e = document.createElement("script");
+		e.type = "text/javascript", e.async = !0, e.src = u + url , e.charset = "UTF-8";
+		var n = document.getElementsByTagName("script")[0];
+		n.parentNode.insertBefore(e, n);
+	})();
+}) ();
+	
+function mi_objectCnt(obj) {
+	var flag = false;
+	for(var prop in obj){
+		if(obj.hasOwnProperty(prop)) flag = true;
+	}
+	return flag;
+}
+
+
+function mi_isInIframe() {
+	try {
+		return window.location !== window.parent.location
+	} catch (e) {
+		return !1
+	}
+}

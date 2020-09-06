@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://miraetalk.com/chatClient_v2 -->
+<html class="csstransforms csstransforms3d csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+                <title>mitalk</title>
+				<link href="./bootstrap.css" rel="stylesheet">
+                <link rel="stylesheet" href="./style2.css">
+                <style>
+                    a{color:#111; font-weight:bold}
+                    a:link {text-decoration: none; }
+                    a:visited { text-decoration: none; }
+                    a:hover { text-decoration: none; }
+                    a:active { background-color: none; }	
+                    .hide {  display: none !important; }
+                    .show {  display: block !important;}
+
+                    #mask {  
+                        position:absolute;  
+                        left:0;
+                        top:0;
+                        z-index:9000;  
+                        background-color:#000;  
+                        display:none;  
+                    }
+
+                    .company_img_icon {width:22px; height:22px;}
+                    .img_box { width:width:100%; }
+                    .chat_attend_img { width:100% !important;}
+                    .emoji{width:16px;}
+
+					.botWrap { padding-left:32px; } 
+                    .botBtn1 { display:block; font-size:13px; font-weight:bold; border: 1px solid #e1e1e1; text-align:left; border-left:5px solid #7f51f3; color:#7f51f3; padding: 7px 10px; padding-left:15px; margin-bottom:10px; width:100%; max-width:180px;
+                               box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);-webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);-moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);}
+                    .botBtn1:hover{background:#7f51f3; border-color:#7f51f3}
+                    .botBtn2 {  display:block; font-size:13px; font-weight:bold; border: 1px solid #e1e1e1; text-align:left; border-left:5px solid #28a745; color:#28a745; padding: 7px 10px; padding-left:15px; margin-bottom:10px; float:left; margin-right:15px;
+                                box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);-webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);-moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);}
+                    .botBtn2:hover{background:#28a745; border-color:#28a745}
+                    .botBtn3 {  display:block; font-size:13px; font-weight:bold; border: 1px solid #e1e1e1; text-align:left; border-left:5px solid #17a2b8; color:#17a2b8; padding: 7px 10px; padding-left:15px; margin-bottom:10px;  float:left;
+                                box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);-webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);-moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);}
+                    .botBtn3:hover{background:#17a2b8; border-color:#17a2b8}
+					img.emoji {height: 1rem; width: 1rem; margin: 0 .05em 0 .1em;vertical-align: -0.1em; padding-top: 0px !important}
+                </style>
+                <script src="./jquery-3.3.1.min.js.다운로드"></script>
+                <script src="./jquery-ui.min.js.다운로드"></script>
+                <script src="./socket.io.js.다운로드"></script>
+                <script src="./common.js(1).다운로드"></script>
+
+                <!-- owl.carousel.slide -->
+                <link href="./owl.carousel.css" rel="stylesheet">
+                <script src="./owl.carousel.js.다운로드"></script>
+
+                <!-- ================== File Upload Js BEGIN ================== -->
+                <link href="./jquery.fileupload.css" rel="stylesheet">
+                <script src="./jquery.iframe-transport.js.다운로드"></script>
+                <script src="./jquery.fileupload.js.다운로드"></script>
+                <!-- ================== File Upload Js END ================== -->          
+
+                <!-- ================== loading CSS ================== -->
+                <script src="./loadingoverlay.min.js.다운로드"></script>
+                <script src="./loadingoverlay_progress.min.js.다운로드"></script>
+                <!-- ================== loading CSS ================== -->
+
+                <!-- ================== gallery Js BEGIN ================== -->
+                <link href="./isotope.css" rel="stylesheet">
+                <link href="./lightbox.css" rel="stylesheet">
+                <script src="./jquery.isotope.min.js.다운로드"></script>
+                <script src="./lightbox.js.다운로드"></script>                    
+                <script src="./gallery.demo.js.다운로드"></script>
+                <!-- ================== gallery Js END ================== -->          
+					
+            </head>
+            <body>
+                <div id="main">
+                    <div id="mask"></div>
+                    <div class="chat_m" style="background: rgb(240, 181, 72);">
+                        <div class="chat_close"><img src="./chat_close_btn.png" onclick="chat_close();"></div>
+                        <div class="chat_con11">
+                        <div class="chat_company"><img src="./alang33_naver_1593581149772.png" onerror="this.src=&#39;/assets/img/user/user-13.jpg&#39;"></div>
+                        <div class="chat_scon">
+                            <div class="chat_m_tit" id="board_title">안녕하세요 최준영커피입니다 :)<br>궁금하신점 문의해주세요.<br>9시~14시 생산중에는<br>답변이 늦을수도 있으니<br>양해부탁드립니다.</div>
+                            <div class="chat_time">
+                                <div class="chat_time_tit">상담운영시간</div>
+                                <div class="chat_week" id="board_counsel">
+                                    <ul><li>일</li><li>월</li><li>화</li><li>수</li><li>목</li><li>금</li><li>토</li></ul>
+                                </div>
+                                <div class="ch_time">
+                                    자세히보기
+                                    <div><p>일요일 09:00~18:00</p><p>월요일 09:00~18:00</p><p>화요일 09:00~18:00</p><p>수요일 09:00~18:00</p><p>목요일 09:00~18:00</p><p>금요일 09:00~18:00</p><p>토요일 09:00~18:00</p><p>휴계시간 00:00~00:00</p><p>공휴일 휴무</p></div>
+                                </div>
+                            </div>
+                            <div class="chat_m_btn" id="btn_mirae" onclick="btn_mirae();"><img src="./chat_btn_icon.jpg"> 대화 시작하기</div>
+                            <div id="btn_phone" class="text3 hide" onclick="callPhone()">
+                                <img src="./phone_icon.png" alt="전화아이콘">
+                                <b id="phone_tel"></b>
+                            </div>
+                        </div>
+                        <div class="chat_link">
+                            <ul>
+                                <li id="btn_naver" class="hide" onclick="btn_naver();"><img src="./chat_icon03.png"></li>
+                                <li id="btn_kakao" class="hide" onclick="btn_kakao();"><img src="./chat_icon02.png"></li>
+                                <li id="btn_sms" class="hide" onclick="btn_sms();"><img src="./chat_icon01.png"></li>
+                                <div id="sms_box" class="sms_box" style="display:none;">
+                                <div class="sms_top">
+                                    <p>SMS 상담 요청 주시면<br>상담가능 시간내에 빠른 연락드리겠습니다.</p>
+                                    <a href="javascript:;" onclick="btn_sms();"><img src="./close_pcbtn.png" alt="닫기버튼"></a>
+                                </div>	
+                                <div class="sms_post">
+                                    <p class="writerInfo">
+                                        고객명 or E-mail <input type="text" name="sms_name" id="sms_name" maxlength="50" value="">
+                                    </p>
+                                    <p class="writerInfo1">
+                                        핸드폰번호
+                                        <input type="tel" name="sms_phone1" id="sms_phone1" onkeyup="phonecheck(this);" maxlength="4">-
+                                        <input type="tel" name="sms_phone2" id="sms_phone2" onkeyup="phonecheck(this);" maxlength="4">-
+                                        <input type="tel" name="sms_phone3" id="sms_phone3" onkeyup="phonecheck(this);" maxlength="4">
+                                    </p>
+                                    <p class="clear">
+                                        <textarea name="sms_comment" id="sms_comment"></textarea>
+                                    </p>
+                                    <p class="checkbox1">
+                                        <input type="checkbox" name="sms_privacy" id="sms_privacy">
+                                        개인정보보호정책<a href="javascript:;" onclick="privacyView()">[보기]</a>
+                                        <textarea name="sms_comment_privacy" id="sms_comment_privacy" class="hide" readonly="">미래아이엔씨는 고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.
+    회사는 개인정보취급방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
+    ■ 수집하는 개인정보 항목 및 수집방법
+    가. 수집하는 개인정보의 항목
+    o 회사는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.
+    - 회원가입시 : 이름 , 생년월일 , 성별 , 로그인ID , 비밀번호 , 자택 전화번호 , 휴대전화번호 , 이메일 , 14세미만 가입자의 경우 법정대리인의 정보
+    - 서비스 신청시 : 주소, 결제 정보
+    o 서비스 이용 과정이나 사업 처리 과정에서 서비스이용기록, 접속로그, 쿠키, 접속 IP, 결제 기록, 불량이용 기록이 생성되어 수집될 수 있습니다.
+    나. 수집방법
+    - 홈페이지, 서면양식, 게시판, 이메일, 이벤트 응모, 배송요청, 전화, 팩스, 생성 정보 수집 툴을 통한 수집
+    ■ 개인정보의 수집 및 이용목적
+    회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.
+    o 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산
+    콘텐츠 제공 , 구매 및 요금 결제 , 물품배송 또는 청구지 등 발송 , 금융거래 본인 인증 및 금융 서비스
+    o 회원 관리
+    회원제 서비스 이용에 따른 본인확인 , 개인 식별 , 불량회원의 부정 이용 방지와 비인가 사용 방지 , 가입 의사 확인 , 연령확인 , 만14세 미만 아동 개인정보 수집 시 법정 대리인 동의여부 확인, 불만처리 등 민원처리 , 고지사항 전달
+    o 마케팅 및 광고에 활용
+    이벤트 등 광고성 정보 전달 , 접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계
+    ■ 개인정보의 보유 및 이용기간
+    원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.
+    가. 회사 내부방침에 의한 정보보유 사유
+    회원이 탈퇴한 경우에도 불량회원의 부정한 이용의 재발을 방지, 분쟁해결 및 수사기관의 요청에 따른 협조를 위하여, 이용계약 해지일로부터 oo년간 회원의 정보를 보유할 수 있습니다.
+    나. 관련 법령에 의한 정보 보유 사유
+    전자상거래등에서의소비자보호에관한법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다.
+    o 계약 또는 청약철회 등에 관한 기록
+    -보존이유 : 전자상거래등에서의소비자보호에관한법률
+    -보존기간 : 5년
+    o 대금 결제 및 재화 등의 공급에 관한 기록
+    -보존이유: 전자상거래등에서의소비자보호에관한법률
+    -보존기간 : 5년
+    o 소비자 불만 또는 분쟁처리에 관한 기록
+    -보존이유 : 전자상거래등에서의소비자보호에관한법률
+    -보존기간 : 3년
+    o 로그 기록
+    -보존이유: 통신비밀보호법
+    -보존기간 : 3개월
+    ■ 개인정보의 파기절차 및 방법
+    회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체없이 파기합니다. 파기절차 및 방법은 다음과 같습니다.
+    o 파기절차
+    회원님이 회원가입 등을 위해 입력하신 정보는 목적이 달성된 후 별도의 DB로 옮겨져(종이의 경우 별도의 서류함) 내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라(보유 및 이용기간 참) 일정 기간 저장된 후 파기되어집니다.
+    별도 DB로 옮겨진 개인정보는 법률에 의한 경우가 아니고서는 보유되어지는 이외의 다른 목적으로 이용되지 않습니다.
+    o 파기방법
+    전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.
+    
+    ■ 개인정보 제공
+    회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.
+    o 이용자들이 사전에 동의한 경우
+    o 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우
+    
+    ■ 수집한 개인정보의 위탁
+    회사는 서비스 이행을 위해 아래와 같이 외부 전문업체에 위탁하여 운영하고 있습니다.
+    o 위탁 대상자 : [로젠택배]
+    o 위탁업무 내용 : [배송]
+    o 위탁 대상자 : 이니시스]
+    o 위탁업무 내용 : [결제]
+    ■ 이용자 및 법정대리인의 권리와 그 행사방법
+    o 이용자는 언제든지 등록되어 있는 자신의 개인정보를 조회하거나 수정할 수 있으며 가입해지를 요청할 수도 있습니다.
+    o 이용자들의 개인정보 조회,수정을 위해서는 "개인정보변경"(또는 "회원정보수정" 등)을 가입해지(동의철회)를 위해서는 "회원탈퇴"를 클릭하여 본인 확인 절차를 거치신 후 직접 열람, 정정 또는 탈퇴가 가능합니다.
+    o 혹은 개인정보관리책임자에게 서면, 전화 또는 이메일로 연락하시면 지체없이 조치하겠습니다.
+    o 귀하가 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. 또한 잘못된 개인정보를 제3자에게 이미 제공한 경우에는 정정 처리결과를 제3자에게 지체없이 통지하여 정정이 이루어지도록 하겠습니다.
+    o 회사는 이용자의 요청에 의해 해지 또는 삭제된 개인정보는 "회사가 수집하는 개인정보의 보유 및 이용기간"에 명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.
+    ■ 개인정보 자동수집 장치의 설치, 운영 및 그 거부에 관한 사항
+    회사는 귀하의 정보를 수시로 저장하고 찾아내는 "쿠키(cookie)" 등을 운용합니다. 쿠키란 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에 저장됩니다.
+    회사은(는) 다음과 같은 목적을 위해 쿠키를 사용합니다.
+    o 쿠키 등 사용 목적
+    1. 회원과 비회원의 접속 빈도나 방문 시간 등을 분석, 이용자의 취향과 관심분야를 파악 및 자취 추적, 각종 이벤트 참여 정도 및 방문 회수 파악 등을 통한 타겟 마케팅 및 개인 맞춤 서비스 제공
+    2. 귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 귀하는 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다.
+    o 쿠키 설정 거부 방법
+    1. 쿠키 설정을 거부하는 방법으로는 회원님이 사용하시는 웹 브라우저의 옵션을 선택함으로써 모든 쿠키를 허용하거나 쿠키를 저장할 때마다 확인을 거치거나, 모든 쿠키의 저장을 거부할 수 있습니다.
+    2. 설정방법 예(인터넷 익스플로어의 경우) : 웹 브라우저 상단의 도구 &gt; 인터넷 옵션 &gt; 개인정보
+    3. 단, 귀하께서 쿠키 설치를 거부하였을 경우 서비스 제공에 어려움이 있을 수 있습니다.
+    
+    ■ 개인정보에 관한 민원서비스	
+    회사는 고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 아래와 같이 관련 부서 및 개인정보관리책임자를 지정하고 있습니다.
+    o 개인정보관리담당자
+    성명 : 박승운
+    소속 : 온라인마케팅
+    전화번호 : 02-6233-4700
+    이메일 : km.kyung@toup.net
+    
+    o 개인정보관리책임자
+    성명 : 박승운
+    소속 : 온라인마케팅
+    전화번호 : 02-6233-4700
+    이메일 : km.kyung@toup.net
+    
+    o 귀하께서는 회사의 서비스를 이용하시며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자 혹은 담당부서로 신고하실 수 있습니다.
+    o 회사는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 드릴 것입니다.
+    o 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.
+    개인정보침해신고센터 (privacy.kisa.or.kr / 국번 없이 118)
+    대검찰청 사이버범죄수사단 (www.spo.go.kr / 02-3480-2000)
+    경찰청 사이버안전국 (www.ctrc.go.kr/ 국번 없이 182)	
+                                        </textarea> 
+                                    </p>
+                                </div>	
+                                <a href="javascript:;" onclick="smsSend();" class="sms_B">
+                                    <div class="sendB"><img src="./pcsend_btn.png" alt="문의내용 접수하기"></div>
+                                </a>
+                            </div>
+                            </ul>
+                        </div>
+                        <div class="chat_foot_logo">
+                            <a href="https://miraetalk.com/home" target="_blank">
+                                <img src="./chat_logo.png">
+                                <span>
+                                    powered by Mirae I&amp;C 
+                                </span>
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="main_chat">
+                        <div class="chat_top" style="background: rgb(240, 181, 72);">
+                            <div class="chatback">
+                                <a href="javascript:;" onclick="btn_mirae();"><img src="./chatback.png" alt="뒤로가기"></a>
+                            </div>
+                            <div class="top_t">
+                                <h3 id="companyName">(주)미래아이엔씨 </h3>
+                                <p id="nickName">카페24고객191205144911b </p>
+                                <a id="companyCall" class="hide" href="javascript:;" onclick="callPhoneChat()"><img src="./call.png" alt="전화번호"></a>
+                            </div>
+                            <div class="chatclose">
+                                <a href="javascript:;" onclick="chat_close();"><img src="./chatclose.png" alt="닫기버튼"></a>
+                            </div>	
+                        </div>
+                        <div id="chatBody" class="chat_con">
+                        </div>
+                        <div id="chatFoot" class="t_box">
+                            <div class="arrow_down" onclick="remarket_down()" style="display:none;"><img src="./remarket_arrow.png"></div>
+                            <div class="owl-carousel sub_slide owl-theme" style="display:none">
+                                <div class="item"><div class="sub_menu" onclick="remarketbot(&#39;〃최근본상품〃&#39;)" data-remarket-target="최근본상품">최근본상품</div></div>
+                                <div class="item"><div class="sub_menu" onclick="remarketbot(&#39;〃구매한상품〃&#39;)" data-remarket-target="구매한상품">구매한상품</div></div>
+                                <div class="item"><div class="sub_menu" onclick="remarketbot(&#39;〃장바구니〃&#39;)" data-remarket-target="장바구니">장바구니</div></div>
+                            </div>
+                            <form id="chatform" name="chatform" action="https://miraetalk.com/chatClient_v2" method="POST" enctype="multipart/form-data">
+                                <div class="t_b">
+                                    <div class="file">
+                                        <div class="fileinput-button p-0">
+                                            <a href="javascript:;" class="p-0">
+                                                <img src="./file_upload_btn.png" alt="파일첨부">
+                                            </a>
+                                            <input class="fileupload m-t-5" type="file" name="memberPic" multiple=""> 
+                                        </div>
+                                    </div>
+                                    <textarea id="msg" name="msg" cols="30" rows="1" style="border: 0; resize: none; outline: none;" placeholder="문의내용을 입력해주세요." autocomplete="off"></textarea>
+                                    <a href="javascript:;" onclick="send();"><div class="t_S" style="background: rgb(240, 181, 72);"><img src="./chat_send_btn.png"></div></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>                           
+                </div>
+                
+            <script>
+                var config = {};
+                var chat_config     		= {"width":240,"height":184};
+				var agent_type				= 'P';
+                var init_param      		= {};
+                var is_on           		= false;
+                var typingNotice    		= 'is typing..';
+                var fontColor       		= 'black';
+                var roomID          		= "fGm8Eqpl_77f0iv-oxyAiD_DNP_s_y1X";
+                var chatAdkey       		= "";
+                var nickName        		= "";
+                var companyName				= "";
+                var memberPic       		= "";
+                var socket_url      		= '';
+                var socket          		= '';
+				var phone_tel				= '';
+                var is_first        		= false;
+                var bot 					= {}
+                var remarketbot_chk         = true;
+				var autobot_chk				= false;
+                
+                $(document).ready(function(){
+                    callInfo();
+                    $('#mask').click(function () {  
+                        btn_sms();
+                    })
+                });
+
+                function chat_close(){
+                    // window.parent.postMessage({ childData : 'test data' }, 'miraetalk.com');
+                    var sendData = JSON.stringify({fn:'mi_chat_handledre.click'});
+                    sendPostMessage(sendData);
+                }
+
+
+                function callInfo(){
+                    var sendData = JSON.stringify({fn:'mi_chat_handledre.iframeInfo'});
+                    sendPostMessage(sendData);
+                }
+
+                function sendPostMessage(obj){
+                    window.parent.postMessage(obj, '*' );
+                }
+
+                function btn_naver(){
+                    // window.open('http://talk.naver.com/' + config.btn.naver.key , 'naver_talktalk', 'scrollbars=1, resizable=1, width=486, height=745');                        
+                    var sendData = JSON.stringify({fn:'mi_chat_handledre.click_naver'});
+                    sendPostMessage(sendData);
+                }
+
+                function btn_kakao(){
+                    // window.open(config.btn.kakao.key , 'kakao_talktalk', 'scrollbars=1, resizable=1, width=486, height=745');
+                    var sendData = JSON.stringify({fn:'mi_chat_handledre.click_kakao'});
+                    sendPostMessage(sendData);
+                }
+
+                function btn_mirae(){
+                    $(".main_chat").animate({
+                        width: "toggle"
+                    },function(){
+                        if ( $(".main_chat").css("display") == 'block' ) scrollBottom();
+                        if ( !is_on ) chatMiraeInit();
+
+						$.getJSON("/bot/autobot/chk", {adkey:chatAdkey}, function(row, textStatus) {
+							if(row.cnt>0){
+								$("#chatBody").addClass("autobot_active");
+								//console.log(1);
+							}else{
+								$("#chatFoot").show();
+								remarketChk();
+							}
+						});
+                        startslide2();
+                    });
+                }
+
+                function btn_sms(){
+                    var maskHeight = "100%" , maskWidth = "100%" , top = "0px" , left = "0px" , border_radius = "0px";
+                    var maskWidth = $(".container").width();                      
+
+                    if (  !is_mobile() ) {
+                        //화면의 높이와 너비를 구한다.
+                        maskHeight = $(".container").height();  
+                        maskWidth = $(".container").width();  
+                        top = "10px" , left = "10px" , border_radius = "16px";
+                    }
+
+                    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+                    $('#mask').css({'width':maskWidth,'height':maskHeight , 'top':top,'left':left , 'border-radius':border_radius});  
+                    // border-radius: 16px 
+                    
+                    //애니메이션 효과
+                    if ( $('#mask').css("display") == 'block' ){
+                        $('#mask').fadeOut("slow");
+                        $('#sms_box').fadeOut("slow");
+                    } else{
+                        $('#mask').fadeTo("slow",0.5);
+                        $('#sms_box').fadeIn("slow");
+                    }                        
+                }
+                function smsReset(){
+                    $("#sms_privacy").prop('checked', false);
+                    $("#sms_name").val('');
+                    $("#sms_comment").val('');
+                    $("#sms_phone1").val('');
+                    $("#sms_phone2").val('');
+                    $("#sms_phone3").val('');
+                                    
+                }
+
+                function phonecheck(obj){	
+                    obj.value = obj.value.replace(/[^0-9]/g,'');
+                }
+
+                function smsSend(){
+                    var chk_box = $("#sms_privacy").is(":checked");
+                    var sms_name = $("#sms_name").val();
+                    var sms01_txt = $("#sms_comment").val();
+                    var tel_01 = $("#sms_phone1").val();
+                    var tel_02 = $("#sms_phone2").val();
+                    var tel_03 = $("#sms_phone3").val();
+                
+                    if( sms01_txt == ""){
+                        alert("문의하실 내용을 입력해주시기 바랍니다.");
+                        $("#sms_comment").focus();
+                    }else if( chk_box != true ) alert("개인정보보호정책 동의하여 주시기 바랍니다.");
+                    else if( tel_01 == "" || tel_02 == "" || tel_03 == "" ) alert("핸드폰번호를 입력해주시기 바랍니다.");
+                    else if( isNaN(tel_01) == true || isNaN(tel_02) == true || isNaN(tel_03) == true ) alert("핸드폰번호를 숫자로만 입력해주시기 바랍니다.");
+                    else { 
+                        var ajax_data2 = { 
+                            "mi_adkey" : config.adkey,
+                            "sms01_txt" : sms01_txt,
+                            "tel_num" : tel_01 + '-' + tel_02 + '-' + tel_03,
+                            "pMode" : "SMSNEW",
+                            "sms_name" : sms_name ,
+                            "agent_type" : agent_type
+                        };
+                
+                        $.ajax({
+                            method: "POST",
+                            url: "//map.toup.net/sms/smsDataDto_v2.php",
+                            data: ajax_data2,
+                            success:function(data, html){
+                                Djson = JSON.parse(data);	
+                                if( Djson.result == "ok" ){
+                                    alert("문의내용이 접수되었습니다.");
+                                    smsReset();
+                                    btn_sms();
+                                }else{
+                                    alert("문의내용 접수 실패하였습니다.");
+                                }				
+                            },
+                            error: function(x, o, e){
+                                alert(x.status + " : "+ o +" : "+e);
+                            }
+                        });
+                    }
+                }
+
+                function privacyView(){
+                    $("#sms_comment_privacy").toggleClass("hide");
+
+                }
+
+                function callPhone(){
+                    var phone = config.btn.phone.tel;
+                    top.location.href = "tel:" + phone;
+                }
+
+                function callPhoneChat(){
+                    top.location.href = "tel:" + phone_tel;
+                }
+
+                function returnIframeInfo(data){
+                    info = data.mi_chat_return;
+					console.log(info);
+                    $("#board_title").html(data.title);
+                    //회사 이미지
+                    $(".chat_company").html('<img src="'+info.counsel.acc.memberPic+'" onerror="this.src=\'/assets/img/user/user-13.jpg\'">')
+                    //상담 운영시간
+                    board_counsel = "";
+                    board_counsel_text = "";
+					var i = "";
+                    for(var i in info.counsel.week){
+                        if(info.counsel.week[i] != "00:00~00:00"){
+                            board_counsel+='<li>'+info.counsel.default_msg.week[i]+'</li>'
+                            board_counsel_text+='<p>'+info.counsel.default_msg.week[i]+'요일 '+info.counsel.week[i]+'</p>'
+                        }
+                    }
+                    if(info.counsel.resttime != null && info.counsel.resttime != "00:00 ~ 00:00" ){
+                        board_counsel_text+='<p>휴계시간 '+info.counsel.resttime+'</p>'
+                    }
+                    if(info.counsel.hollyday == "Y"){
+                        board_counsel_text+='<p>공휴일 휴무</p>'
+                    }
+
+                    $("#board_counsel>ul").html(board_counsel);
+                    $(".ch_time>div").html(board_counsel_text);
+                    //테마 색상 적용
+                    if(info.counsel.design.theme_select == "direct"){
+						if(!is_mobile()){
+							$(".chat_m").css("background",info.counsel.design.theme_color);
+						}else{
+							$(".body").css("background",info.counsel.design.theme_color);
+						}
+                        
+                        $(".chat_top").css("background",info.counsel.design.theme_color);
+                        $(".t_S").css("background",info.counsel.design.theme_color);
+					
+                    }
+                    if ( checkNull(typeof data.visit_id) ) roomID = data.visit_id;
+                    if ( objectCnt(data.btn) ){
+                        var btn = data.btn;
+                        if(btn.hasOwnProperty('phone')){
+                            $("#btn_phone").removeClass("hide");
+                            $("#phone_tel").html(btn.phone.tel);
+                        }
+                        
+                        if(btn.hasOwnProperty('sms')){
+                            $("#btn_sms").removeClass("hide");
+                        }
+
+                        if(btn.hasOwnProperty('mirae')){
+                            $("#btn_mirae").removeClass("hide");
+                            $(".chat_time").removeClass("hide");
+                        }
+
+                        if(btn.hasOwnProperty('naver')){
+                            $("#btn_naver").removeClass("hide");
+                        }                            
+
+                        if(btn.hasOwnProperty('kakao')){
+                            $("#btn_kakao").removeClass("hide");
+                        }    
+						bot.nudge(data);
+                    }
+                }
+                
+                window.addEventListener('message', function(e) {
+                    var receiveData = JSON.parse(e.data);
+                    if ( receiveData.fn == 'returnIframeInfo'){
+                        config = receiveData.data;
+                        returnIframeInfo(receiveData.data);
+                    }
+                });
+                
+                function objectCnt(obj) {
+                    var flag = false;
+                    for(var prop in obj){
+                        if(obj.hasOwnProperty(prop)) flag = true;
+                    }
+                    return flag;
+                }   
+                                
+                function chatMiraeInit(){
+                    is_on = true;
+                    var from = config.btn.mirae.key.from;
+                    var referer = config.btn.mirae.key.referer
+					var logdata = config.log;
+                    from = decodeURIComponent(from);
+                    init_param      = {from : from , referer : referer }
+                    chatAdkey       = config.btn.mirae.key.adkey;
+                    socket_url      = 'miraetalk.com?roomID=' + roomID + '&chatAdkey=' + chatAdkey ;
+                    socket          = io.connect(socket_url); 
+                    socket.on('selfData', function(obj){
+                        if ( typeof obj.flag !== 'undefined' ){
+                            alert('죄송합니다 지금은 채팅 상담을 할수가 없습니다.');
+                            is_on = false;
+                        }else{
+                            companyName     = obj.company_name;
+                            nickName        = obj.nickname;
+                            memberPic       = obj.memberPic;
+                            if ( obj.show_acc_tel_yn == 'Y' && obj.acc_tel_number != '' && is_mobile() ) {
+                                $("#companyCall").removeClass("hide");
+                                $(".top_t").css({"padding-top":"15px"});
+								phone_tel = obj.acc_tel_number
+                            }
+
+                            if ( memberPic == '' ) memberPic = '/assets/img/user/user-13.jpg';
+                            $("#companyName").html(companyName);
+                            $("#nickName").html(nickName);
+
+                            // 방입장
+                            var roomdata = {
+                                roomID      : roomID,
+                                chatAdkey   : chatAdkey,
+                                init_param  : init_param ,
+								logdata		: logdata,
+                                nickName	: obj.nickname ,
+                                type       	: 'user'                        
+                            };
+                            socket.emit('joinRoom', roomdata);
+                            //닉네임 세팅
+                            checkNickName();
+                        }
+                    });
+                  
+
+                    // 채팅 메세지 출력
+                    socket.on('chat message', function(data) { 
+						if(data.is_group!='team'){
+                            $('#chatBody').append(setChatRow(data));
+							is_first = false;
+							scrollBottom();
+						}
+                    });
+                    
+        			socket.on('bot message',function(data){
+        				bot.onMessage(data);				
+        			});
+
+                    // 안읽음 처리
+                    socket.on('is_readCheck', function(data){
+                        if ( roomID  == data.roomID ) $("." + data.type + "_read").html('');
+                        is_first = data.is_first;
+                    });
+
+                    socket.on('typing', function(data){
+                        if ( data.type == 'user' ) {
+                            $('#msg').attr('placeholder', data.val + ( data.val != '' ? typingNotice : '') );
+                        }
+                    });                  
+                    //시스템 메세지 출력
+                    socket.on('user_system_msg', function(data) { 
+                        messageTemplate_msg = "";
+                        if ( roomID  == data.rid ){
+                            messageTemplate_msg += '<div>'
+                            messageTemplate_msg += "<p class='d'>" +data.message+"</p>";
+                            messageTemplate_msg += '<div class="chat_clear"></div>'; 
+                            messageTemplate_msg += '</div>' 
+                        }
+                        $('#chatBody').append(messageTemplate_msg);
+                        scrollBottom();
+                    });
+                }
+                
+                $("#msg").keypress(function (e) {
+                    if (e.which == 13){
+                        if (!e.shiftKey && !is_mobile() ){
+                            e.preventDefault();
+                            send();
+                        }else{
+                            if ( !is_mobile() ) {
+                                $(".t_b textarea").css({"bottom" : "12px","height":"32px"}).attr("rows" , 2);
+                            }else{
+                                $(".t_b textarea").css({"bottom" : "20px"}).attr("rows" , 2);
+                            }
+                        }                                
+                        
+                    }
+                });
+
+
+                $('#msg').on("propertychange change keyup paste " , function(event){
+                    var length = $(this).val().length;
+                    var typeInfo = {nickName:nickName,roomID:roomID,type:'user' ,length : length};
+                    if ( is_on ){
+                        socket.emit('typing',typeInfo);
+                    }
+                });
+                                    
+
+
+                // 이미지 첨부 파일 등록
+                $(function () {
+                    'use strict';
+                    var url = '/image';
+                    $('.fileupload').fileupload({
+                        autoUpload: true,
+                        add : function ( e, data ){
+                            var uploadFile = data.files[0];
+                            var isValid = true;
+                            if (!(/jpg|jpeg|png|gif/i).test(uploadFile.name)) {
+                                alert('이미지 파일 jpg, jpeg, png, gif 만 등록 가능합니다.');
+                                isValid = false;
+                            }
+                            if ( !is_on ) isValid = false;
+                            if (isValid) data.submit();
+                        },
+                        url: url,
+                        dataType: 'json',
+                        beforeSend : function(){
+                            $(".t_box").LoadingOverlay("show");
+                        },
+                        done: function (e, data) {
+                            var json = data.result;
+                            if( json.rtnValue ){ 
+                                var msg = json.msg;
+                                var filePath = json.filePath;
+                                var img_w = json.img_w;
+                                var img_h = json.img_h;
+                                var msgdata = {
+                                    adkey       		: chatAdkey,
+                                    writer      		: 'user',
+                                    room_name			: roomID,
+                                    inputType   		: 'imageContent',
+                                    msg         		: msg,
+                                    filePath    		: filePath,
+                                    img_w       		: img_w,
+                                    img_h       		: img_h
+                                };
+                                sendSocket(msgdata);
+                            }
+                            $(".t_box").LoadingOverlay("hide");
+                        },
+                        fail : function ( e, data ){
+                            alert("개발실에 문의해주세요");
+                            $(".t_box").LoadingOverlay("hide");
+                        }
+                    }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+                });
+
+                function send(){
+                    $('#chatform').submit();
+                    if ( !is_mobile() ){
+                        $(".t_b textarea").css({"bottom" : "20px" , "height":"17px"}).attr("rows" , 1);
+                    }else{
+                        $(".t_b textarea").css({"bottom" : "42px"}).attr("rows" , 1);
+                    }
+                    return false;
+                }
+
+                $('#chatform').submit(function(){
+                    if($('#msg').val()!="" && is_on ){
+                        $('#msg').val(nl2br($('#msg').val()))  ;
+                        var msgdata = {
+                            adkey : chatAdkey,
+                            writer : 'user',
+                            room_name : roomID,
+                            inputType : 'typing',
+                            is_first : is_first,
+                            msg : $('#msg').val()
+                        };
+                        sendSocket(msgdata);
+                    }
+                    return false;
+                });
+
+                function remarketbot(msg){
+                    if(remarketbot_chk){
+                        var msgdata = {
+                            adkey : chatAdkey,
+                            writer : 'user',
+                            room_name : roomID,
+                            inputType : 'typing',
+                            is_first : is_first,
+                            msg : msg
+                        };
+                        sendSocket(msgdata);
+                        remarketbot_chk = false;
+                    }
+                }
+
+                function remarket_down(){
+                   $(".sub_slide").toggle();
+				   $(".autobot_active").removeClass("autobot_active ");
+                   $("#chatBody").toggleClass("remarket_active remarket_noactive");
+                   $(".arrow_down img").toggleClass("reserve");
+                   scrollBottom();
+                }
+
+                function sendSocket(msgdata){
+					bot.checkin(msgdata);
+                    socket.emit('say', msgdata);
+                    socket.emit('userchat_message_alert', msgdata);
+                    $('#msg').val('').change();
+                    socket.emit('quitTyping')
+                }
+
+                    
+                function checkNickName(){
+                    $.ajaxSetup({cache:false});
+                    $.getJSON("/getMiraeChattingDetail", {adkey:chatAdkey, roomID:roomID}, function(roomData, textStatus) {                    
+                        var messageTemplate = '';
+                        $('#chatBody').empty();
+                        $.each(roomData, function(index, subdata) { 
+                            messageTemplate += setChatRow(subdata);
+                        });
+                        $('#chatBody').append(messageTemplate);
+                        scrollBottom();
+                        setTimeout(function() {
+                            scrollBottom();
+                        }, 500);      
+                        var roomdata = {
+                            roomID      : roomID,
+                            chatAdkey   : chatAdkey,
+                            init_param  : init_param ,
+                        };
+                        socket.emit('roomInitSay', roomdata);                                     
+                    });
+                }
+				
+
+                function remarketChk(){
+                    $.getJSON("/bot/remarket/chk", {adkey:chatAdkey}, function(row, textStatus) {
+						$(".autobot_active").removeClass("autobot_active");
+                        if(row.length > 0){
+                            if(row[0].use_yn == "N"){
+                                $(".arrow_down").hide();
+                                $(".sub_slide").hide();
+                                $("#chatBody").removeClass('remarket_active');
+                            }else{
+                                $(".arrow_down").show();
+                                $(".sub_slide").show();
+                                $("#chatBody").addClass('remarket_active');
+                                menu = row[0].menu.split("||");
+                                $(".sub_menu").hide();
+                                menu.forEach(function(val){
+                                    $('[data-remarket-target="'+val+'"]').show();
+                                })
+                            }
+                        }else{
+                            $(".arrow_down").hide();
+                            $(".sub_slide").hide();
+                            $("#chatBody").removeClass('remarket_active');
+                        }
+                    });
+                }
+
+		
+
+                 function setChatRow(data){
+                    var messageTemplate = '';
+                    var msg             = data.msg;
+                    var is_referer      = false;
+                    var is_read         = '<p class="state_off_r user_read">' + ( data.is_read > 0 ? '안읽음' : '' )  + '</p>' ;
+                    var is_img          = false;
+					var writer_nick		= data.writer_nick;
+					var writer_pic		= data.writer_pic;
+                
+                    if ( typeof data.reqdate == 'undefined' ){
+                        data.reqdate = formatAMPM(""); 
+                    } else{
+                        data.reqdate = formatAMPM(data.reqdate); 
+                    }
+                    
+                    if ( data.inputType == 'imageContent' ) {
+                        msg = makeImgTag(data.room_name , data.filePath, data.img_w , data.img_h);
+                        is_img = true;
+                    } else if ( data.inputType == 'referer' ) {
+                        return '';
+                        msg = makeReferer(data.filePath ,data.msg , data.referer )
+                        data.writer = 'user';
+                    } else if ( data.inputType == 'hello_msg' || data.inputType == 'other_msg' || data.inputType == 'absent_msg' ) {
+                        data.writer = 'customer';
+						writer_nick = companyName;
+						writer_pic  = memberPic;
+					}
+					
+					if( data.writer == "customer" && data.inputType == 'bot_msg'){
+                        writer_nick = companyName;
+						writer_pic  = memberPic;
+                    }
+					
+					if(data.writer == "bot" && data.inputType == 'remarket'){
+						writer_nick = companyName;
+						writer_pic  = memberPic;
+						data.writer = "customer";
+					}
+
+					
+					if((data.writer =='system')){
+						writer_nick = companyName;
+						writer_pic  = memberPic;
+					}
+                    messageTemplate += '<div>'
+                    if(data.writer == 'user' ){
+                        messageTemplate = messageTemplate + '<div class="con_r">';                        
+                        messageTemplate = messageTemplate + '    <div class="tt_R">';                        
+                        messageTemplate = messageTemplate + '        ' + is_read ;
+                        messageTemplate = messageTemplate + '        <span>'+data.reqdate+'</span>';                        
+                        messageTemplate = messageTemplate + '    </div>';                   
+                        
+                        var msg_class = 'con_tr';
+                        if ( is_img )  msg_class = msg_class + "02";
+                        messageTemplate = messageTemplate + '    <div class="'+msg_class+'">'+msg+'</div>';                             
+                        messageTemplate = messageTemplate + '</div>';                        
+
+                    } else if ( data.writer == 'customer' ){
+                        messageTemplate = messageTemplate + '<div class="intro">';                             
+                        messageTemplate = messageTemplate + '    <div class="tt">';                             
+                        messageTemplate = messageTemplate + '        <img src="'+writer_pic+'" onerror="this.src=\'/assets/img/user/user-13.jpg\'" alt="'+writer_nick+'" class="company_img_icon">';                             
+                        messageTemplate = messageTemplate + '        <p class="name_m">'+writer_nick+'</p>';                             
+                        messageTemplate = messageTemplate + '        <span>'+data.reqdate+'</span>';                             
+                        messageTemplate = messageTemplate + '    </div>';                             
+
+                        var msg_class = 'con_t';
+                        //if ( is_img )  msg_class = msg_class + "2";
+
+                        messageTemplate = messageTemplate + '</div>';                
+                        messageTemplate = messageTemplate + '    <div class="'+msg_class+'">'+msg+'</div>';                             
+
+                    } else if ( data.writer == 'system' ){
+                        messageTemplate += "<p class='d'>" + msg+"</p>";
+                        
+                    } 
+
+                    messageTemplate = messageTemplate + '<div class="chat_clear"></div>'; 
+                    messageTemplate += '</div>'                            
+                    
+                    
+                    return messageTemplate ;
+
+                }     
+                        
+                
+                // 레퍼러 정보
+                function makeReferer(img_url, title_desc , link){
+                    var html = '';
+                    var title_arr = title_desc.split("|@|");
+                    var title = '';
+                    var desc = '';
+                    title = title_arr[0];
+                    if ( title_arr.length > 1){
+                        desc = title_arr[1];
+                    }
+                                        
+                    var getDomain = url_parse(link);
+                    link_domain = getDomain.scheme + "//" + getDomain.host;
+
+                    if ( title != '' )      title = "<h4>"+title+"</h4>";
+                    if ( desc != '' )       desc = "<b>"+desc+"</b>";
+                    if ( img_url != '' )    img_url = "<a href='"+link+"' target='_blank' ><img class='chat_attend_img' src='"+img_url+"'></a>";
+
+                    html += title;
+                    html += img_url;
+                    html += "<div class='u01'>";                            
+                    html += "	<a href='"+link+"' target='_blank'>";                            
+                    html += desc;
+                    html += "	</a>";                            
+                    html += "</div>";                        
+                    html += "<div class='u02'>";                            
+                    html += "	<a href='"+link+"' target='_blank'>";                            
+                    html += link_domain;
+                    html += "	</a>";                            
+                    html += "</div>";                                                
+                    return html;
+                }
+
+                // 이미지 테그 생성
+                function makeImgTag(room_name , src , w , h ){
+                    var img_style = "";
+                    img_style += chat_config.height < parseInt(h) ? "" : "height:" + h + "px;"  ;
+                    img_style += chat_config.width < parseInt(w) ? "" : "width:" + w + "px;" ;
+                    if ( img_style != '' ) img_style = "style='" + img_style + "'" ;
+                    var html = "";
+                    html += "<div id='gallery' class='gallery row row-space-2 m-t-5 m-b-3'>";
+                    html += "    <div class='" + room_name + "'>";
+                    html += "        <div class=\"image-INNER card img_box  \">";
+                    html += "            <a href=\""+src+"\" data-lightbox='" + room_name + "'> ";
+                    html += "                <img class='chat_attend_img ' src=\""+src+"\" "+img_style+" alt=\"\" />";
+                    html += "            </a>";
+                    html += "        </div>";
+                    html += "	</div>";
+                    html += "</div>";
+                    html += "";
+                    return html;
+                }
+
+                 function scrollBottom(){
+                    document.getElementById("chatBody").scrollTop = document.getElementById("chatBody").scrollHeight;
+                    $("#chatBody img").on('load',function(){
+                        document.getElementById("chatBody").scrollTop = document.getElementById("chatBody").scrollHeight;
+                    });
+                }
+
+            	//######################## 챗봇 ########################// 
+            	bot.is_first = true;
+				bot.is_on = false;
+            	bot['history'] = [];
+                bot.onMessage = function(data){ 
+					if(typeof(data.bot)!=='undefined' && data.bot.length){
+                        bot.is_on = true;
+                        $("#chatFoot").hide();
+					}else{
+                        //리마케팅봇 설정에 따른 노출
+                        remarketChk();
+                        $("#chatFoot").show();
+                        $("#chatBody").addClass("remarket_active");
+					}
+					var ord = 0;
+                	if(typeof data.user !== 'undefined'){
+                        bot.putMessageno(bot.Template(data.user,'user'),ord,250);
+					}
+					if(typeof data.customer !== 'undefined'){
+						var template = {}
+						template = bot.Template(data.customer,'customer'); 
+						ord = 0;
+                        bot.putMessageno(template.first,ord,250);
+						for(var i in data.customer){
+							var row = data.customer[i];
+							var is_img = false;
+							var msg_class = 'con_t';
+							var slidechk = "";
+							if ( is_img )  msg_class = msg_class + "2";
+							if (row.slide) slidechk = "slide_chk_box"
+							if(row.type=='I'){
+        						row.msg = makeImgTag(roomID,row.filePath,230,230);
+							}
+							template.Message = '<div><div class="'+msg_class+' '+slidechk+'" style="margin-bottom:10px;">'+row.msg+'</div></div>';    
+							ord = eval(ord+1);
+                            bot.putMessage(template.Message,ord,250,row.slide);
+                        }
+                        
+						//ord = eval(ord+1);
+                		//bot.putMessage(template.end,ord,250);
+                    }
+					if(typeof data.bot !== 'undefined'){
+                        if(data.bot[0].actiontype == "Y"){
+						    bot.putMessage(bot.Template(data.bot,'bot'),eval(ord+1),250);                    	
+                        }else{
+                            bot.putMessageno(bot.Template(data.bot,'bot'),eval(ord+1),250);  
+                        }
+        			}
+					bot.is_first = false;	                	
+                }
+                bot.putMessageno =  function(template,ord,sec){
+                    $('#chatBody').append(template);
+                    scrollBottom();
+                }
+                bot.putMessage = function(template,ord,sec,slide){
+    				setTimeout(function () {
+                        html = "";
+                        html += "<div class='loader_box'><span></span><span></span><span></span></div>";
+                        $('#chatBody').append(html);
+				    	scrollBottom();
+                    }, ((ord) * 1500) - 1400);
+                    setTimeout(function () {
+                        $(".loader_box").remove();
+                        $('#chatBody').append(template);
+                        if(slide == true){
+                            startslide();
+                            remarketbot_chk = true;
+                            $(".proc_slide img").on('load',function(){
+                                scrollBottom();
+                            });
+                        }else{
+                            scrollBottom();
+                        }
+                    }, (ord) * 1500);
+                }                    
+        		bot.supportResponse = function(suid,msg){     
+					if(msg.indexOf('시작단계') != -1) bot.is_first = true;
+        			bot.history.push({suid:suid});   
+					$(".botWrap").fadeOut('slow');
+        			socket.emit('botSupportResponse', { bot_support_suid:suid, msg:msg,roomid:roomID, adkey:config.adkey } );        	
+        		}                    
+                bot.Template = function(data,target){
+					var messageTemplate = '';
+					var regdate = formatAMPM(""); 
+					var is_img = false;
+					switch(target){
+						case 'customer':
+							var template = {}
+							messageTemplate += '	<div class="intro">';                             
+							messageTemplate += '		<div class="tt">';                             
+							messageTemplate += '     		<img src="' + memberPic + '" onerror="this.src=\'/assets/img/user/user-13.jpg\'" alt="'+companyName+'" class="company_img_icon">';                             
+							messageTemplate += '        	<p class="name_m">'+companyName+'</p>';                             
+							messageTemplate += '        	<span>'+regdate+'</span>';                             
+							messageTemplate += '		</div>';
+							messageTemplate += '	</div>';
+							messageTemplate += '	<div style="clear:both"></div>';
+							template.first = messageTemplate;
+							template.end = '</div><div class="chat_clear"></div>';
+							return template;
+						break;
+						case 'bot':
+							var before = '';
+							if(bot.history.length>1){
+								before = bot.history[eval(bot.history.length-2)].suid;
+							}else{
+								before = data[0].startno;
+							}
+
+							messageTemplate+= '<div class="botWrap">';
+							for(var i in data){
+								var row = data[i];
+								if (row.title.indexOf('처음') != -1) {
+								  continue;
+								}
+								if(row.actiontype=='E'){
+									return;
+								}
+								if(row.actiontype=='N'){
+									remarketChk();
+                                    $("#chatFoot").fadeIn('slow');
+                                    $("#chatBody").addClass("remarket_active");
+									return;
+								}
+								if(row.title!=''){
+									messageTemplate+= '<button type="button" class="btn btn-outline-primary botBtn1" onclick="bot.supportResponse(\''+row.suid+'\',\''+row.title+'\')">'+row.title+'</button>';							
+								}							
+							}
+
+							if(bot.is_first===false){
+								messageTemplate+= '<button type="button" class="btn btn-outline-success botBtn2" onclick="bot.supportResponse(\''+data[0].startno+'\',\'시작단계\')">시작단계</button>';
+							}	
+
+							if(bot.history.length){
+								messageTemplate+= '<button type="button" class="btn btn-outline-info botBtn3" onclick="bot.supportResponse(\''+before+'\',\'이전단계\')">이전단계</button>';
+							}
+
+							if(bot.is_first===false || bot.history.length){
+								messageTemplate+= '<div style="clear:both"></div>';
+							}
+
+							messageTemplate+='</div>';
+						break;
+						case 'user':
+							for(var i in data){
+								var row = data[i];
+								messageTemplate+= '	<div class="con_r">';                        
+								messageTemplate+= '    	<div class="tt_R">';                        
+								messageTemplate+= '			<p class="state_off_r user_read"></p>' ;
+								messageTemplate+= '			<span>'+regdate+'</span>';                        
+								messageTemplate+= '    	</div>';                   
+								
+								var msg_class = 'con_tr';
+								if ( is_img )  msg_class = msg_class + "02";
+								messageTemplate+= '    	<div class="'+msg_class+'">'+row.msg+'</div>';                             
+								messageTemplate+= '	</div>';
+							}
+						break;
+					}
+					messageTemplate += '<div class="chat_clear" ></div>';       
+					return messageTemplate;                    
+                }    
+				
+				bot.checkin = function(data){
+                    var response = {}
+					response.customer = new Array();
+					data.url_domain = config.log.url_domain;
+                    data.ip			= config.log.ip;
+                    var remarket = 0;
+					if(data.msg.indexOf('〃최근본상품〃')>=0){
+                        data.checkin = 'product_view';
+                        remarket++;
+					}else if(data.msg.indexOf('〃구매한상품〃')>=0){
+                        data.checkin = 'product_order';
+                        remarket ++;
+                    }else if(data.msg.indexOf('〃장바구니〃')>=0){
+                        data.checkin = 'product_cart';
+                        remarket ++;
+                    }
+                    if(remarket > 0){
+                        $.getJSON("/bot/nudge/checkin", {data:data}, function(result, textStatus) { 
+                            var content = '';
+                            if(result.length>0){
+                                content += '<div class="owl-carousel proc_slide owl-theme">';
+                                for(var i in result){
+                                    var parseData = JSON.parse(result[i]);
+                                    if(typeof(parseData)==='object'){
+                                        content		+=  '<div class="item">';
+                                        content		+=	'   <a href="'+parseData.url+'" target="_blank"><img src="'+parseData.image+'" style="width:100%"></a>';
+                                        content		+=	'   <span class="product_name">'+parseData.name+'</span>';
+                                        content		+=	'   <span class="product_price"> '+comma(parseData.amount)+'<span>원</span></span>';
+                                        content		+=	'   <div onclick="bot.prodQNA(\''+parseData.image+'\',\''+parseData.name+'\',\''+parseData.amount+'\')"><span class="product_qna_btn">상품문의</span></div>';
+                                        //content		+=	'   <span style="color:black">확인시각 ( '+parseData.date+' )</span>';
+                                        content     +=  '</div>';
+                                    }
+                                }
+                                content += '</div>';
+                            }else{
+                                content = "<div>등록된 정보가 없습니다.</div>"
+                            }
+						
+                            response.customer[0] = { is_img:false, msg:content, slide:true }
+							bot.onMessage(response);
+						});						 
+                    }
+                }
+
+				bot.nudge = function(data){
+					var obj			= {}
+					obj.adkey		= data.adkey;
+					obj.log			= data.log;
+					obj.visit_id	= data.visit_id;
+					$.getJSON("/bot/nudge", {data:obj}, function(result, textStatus) {  
+						if(result.flagnudge){
+                            setTimeout(function() {
+                                var sendData = JSON.stringify({fn:'mi_push_data.set()'});
+                                window.parent.postMessage(sendData, '*' );
+                            }, result.template_viewpoint*1000);
+						}
+					});
+                }
+
+
+                
+                //상품 문의 클릭시 
+                bot.prodQNA = function(image,name,amount){
+                    html = "";
+                    html += '<div class="qna_action_img"><img src="'+image+'" style="width:100%"></div>';
+                    html += '<div class="qna_action_cont"><div>'+name+' 상품에 대해 궁금한게 있으신군요!</div><div>문의하실 내용을 입력해주세요.</div></div>';
+                    var msgdata = {
+                        adkey : chatAdkey,
+						writer : 'bot',
+                        room_name : roomID,
+                        inputType : 'remarket',
+                        is_first : is_first,
+                        msg : html
+                    };
+                    sendSocket(msgdata);
+                }
+
+                
+                //콤마 찍기
+                function comma(num){
+                    var len, point, str; 
+                       
+                    num = num + ""; 
+                    point = num.length % 3 ;
+                    len = num.length; 
+                   
+                    str = num.substring(0, point); 
+                    while (point < len) { 
+                        if (str != "") str += ","; 
+                        str += num.substring(point, point + 3); 
+                        point += 3; 
+                    } 
+                    return str;
+                }
+
+                //슬라이드 실행
+                function startslide(){
+                    $('.proc_slide').owlCarousel({
+                        items:1,
+                        margin:10,
+                        center:true,
+                        stagePadding: 40,
+                        smartSpeed: 1000,
+                        dots:false,
+                        nav:true
+                    });
+                }
+                function startslide2(){
+                    $('.sub_slide').owlCarousel({
+                        autoWidth:true,
+                        items:3,
+                        loop:false,
+                        stagePadding :100,
+                        dots:false
+                    });
+                }
+				$(".sub_slide").on("touchstart mousedown", function(e) {
+					// Prevent carousel swipe
+					e.stopPropagation();
+				})
+            </script>        
+        
+            
+            
+        <div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="><div class="lb-nav"><a class="lb-prev" href="https://miraetalk.com/chatClient_v2"></a><a class="lb-next" href="https://miraetalk.com/chatClient_v2"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>

@@ -1,0 +1,38 @@
+<%@page import="ohyes.coffee.dto.MemberDTO"%>
+<%@page import="ohyes.coffee.dto.CartDTO"%>
+<%@page import="ohyes.coffee.dao.CartDAO"%>
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="/coffee/Mypage/login_check.jspf" %>
+<%
+	//get 방식일때 에러페이지출력
+	
+	//멤버정보 받아와서 유효성검사
+	
+	int amount=0;
+	if(request.getParameter("quantityNum")!=null){
+		amount=Integer.parseInt(request.getParameter("quantityNum"));
+	}
+	
+	String pNo=request.getParameter("pNo");
+	if(request.getParameter("pNo")==null) pNo="";
+	
+	String memId=loginMember.getMemId();
+	if(loginMember.getMemId()==null) memId="";
+	
+	int no=CartDAO.getDAO().cartNextNum();
+	
+	CartDTO cart=new CartDTO();
+	cart.setCartNo(no);
+	cart.setCartMemId(memId);
+	cart.setCartPNo(pNo);
+	cart.setCartAmount(amount);
+	
+	CartDAO.getDAO().insertCart(cart);
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=basket&work=basket'");
+	out.println("</script");
+%>

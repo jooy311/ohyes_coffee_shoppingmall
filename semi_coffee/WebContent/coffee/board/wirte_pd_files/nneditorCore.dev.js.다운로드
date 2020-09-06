@@ -1,0 +1,3824 @@
+function NNEditor() {
+	this.arrayBT = [];
+	this.NN = {};
+	this.Events = {};
+	this.Config = {
+		'instanceID': 'content',
+		'path': './',
+		'uploadPath': '',
+		'uploadURL': '',
+		'cssPATH': NN.urlCore + 'css/',
+		'imgPATH': NN.urlCore + 'images/',
+		'toolbarType': 'all',
+		'toolbar': [
+			['mode', 'fonttype', 'fontsize'],
+			['docunew', 'undo', 'redo'],
+			['fontcolor', 'fontbgcolor'],
+			['bold', 'underline', 'italic', 'strikethrough', 'superscript', 'subscript'],
+			['justifyleft', 'justifycenter', 'justifyright', 'justifyfull'],
+			['insertorderedlist', 'insertunorderedlist', 'outdent', 'indent', 'inserthorizontalrule'],
+			['link', 'unlink'],
+			['table', 'tableModify', '/', 'cellProp', 'rowProp', '/', 'insertrow_before', 'insertrow_after', 'deleterow', '/', 'insertcell_before', 'insertcell_after', 'deletecell', '/', 'merge', 'mergeRecover'],
+			// ['image', 'movie', 'html', 'full', 'help']
+			['image', 'html', 'full', 'help']
+		],
+		'toolbarSimple': [
+			['mode', 'fonttype', 'fontsize'],
+			['undo', 'redo'],
+			['fontcolor', 'fontbgcolor'],
+			['bold', 'underline', 'italic', 'strikethrough', 'superscript', 'subscript'],
+			['justifyleft', 'justifycenter', 'justifyright', 'justifyfull'],
+			['insertorderedlist', 'insertunorderedlist', 'outdent', 'indent', 'inserthorizontalrule'],
+			['link', 'unlink'],
+			['table']
+		],
+		'addToolbarBtn': {},
+		'rmBtn': [],
+		'fonttype': {
+			'Dotum': '돋움,dotum',
+			'Gulim': '굴림,Gulim',
+			'Batang': '바탕,batang',
+			'Gungsuh': '궁서,Gungsuh',
+			'Arial': 'Arial',
+			'Tahoma': 'Tahoma',
+			'Verdana': 'Verdana',
+			'Fixedsys': 'Fixedsys',
+			'times': 'times',
+			'helvetica': 'helvetica',
+			'sans-serif': 'sans-serif',
+			'palatino': 'palatino',
+			'Comic Sans MS': 'Comic Sans MS',
+			'sand': 'sand',
+			'Courier New': 'Courier New',
+			'courier': 'courier',
+			'monospace': 'monospace',
+			'Georgia': 'Georgia',
+			'SimSun': 'SimSun',
+			'SimHei': 'SimHei',
+			'MS PGothic': 'MS PGothic',
+			'MS PMincho': 'MS PMincho',
+			'MS UI PGothic': 'MS UI PGothic',
+			'Meiryo': 'Meiryo'
+		},
+		'fontmap': ['8', '9', '10', '12', '14', '16', '18', '20', '22', '24', '26', '28', '30'],
+		'height': 300,
+		'bbcodeUseFlag': true,
+		'bbcodeTag': ['img'],
+		'XSS': false,
+		'allowedTag': ['media', '<a', '</a>', '<b>', '</b>', '<strong>', '</strong>', '<table', 'table>', '<tbody', 'tbody>', '<tr', '</tr>', '<td', '</td>', '<th', '/th>', '<br>', '<br/>', '<br />', '<font', '</font>', '<p', '</p>', '<div', '</div>', '<span', '</span>', '<u', '</u>', '<EM', '</EM>', '<strike', '</strike>', '<sup', '</sup>', '<sub', '</sub>', '<h1', '</h1>', '<h2', '</h2>', '<h3', '</h3>', '<h4', '</h4>', 'pre', 'caption', '<code', '</code>', '<ol', '</ol>', '<li', '</li>', '<ul', '</ul>', '<hr', '<blockquote', '</blockquote>', '<ins', '</ins>', '<del', '</del>'],
+		'mode': 'design',
+		'id': {
+			'prefix': 'SE',
+			'container': '',
+			'iframe': '',
+			'textarea': ''
+		},
+		'temp': ['javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'iframe', 'frame', 'frameset', 'bgsound'],
+		'temp2': ['onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onpaste', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onsubmit', 'onunload'],
+		'BlockTagNames': /^(?:P|DIV|H1|H2|H3|H4|H5|H6|ADDRESS|PRE|OL|UL|LI|DT|DE)$/,
+		'indent': '4em',
+		'eventClosureDestroy': true,
+		'START_HTML': NN.Browser.MSIE ? '<p></p>' : '<p><br></p>',
+		'value': ''
+	};
+	this.build = function (options) {
+		Object.extend(this.NN, NN);
+		Object.extend(this.Config, NN.Config);
+		this.NN.DOM.oSelf = this;
+		this.Config.value = NN.Utils.stripslashes(this.getOpt('value'));
+		try {
+			if (this.getOpt('addToolbarBtn') != null) {
+				var arrTmp = this.getOpt('addToolbarBtn');
+				for (funcName in arrTmp) {
+					if (typeof arrTmp[funcName]['position'] == 'undefined') continue;
+					var arrTmp2 = arrTmp[funcName]['position'].split(',');
+					if (this.Config.toolbar[arrTmp2[0]]) this.Config.toolbar[arrTmp2[0]].splice(arrTmp2[1], 0, funcName);
+					if (this.Config.toolbarSimple[arrTmp2[0]]) {
+						this.Config.toolbarSimple[arrTmp2[0]].splice(arrTmp2[1], 0, funcName);
+					}
+				}
+			}
+		}
+		catch (e) {
+			if (typeof console != 'undefined') console.warn(e);
+			return;
+		}
+		this.oEvent = new NNEvent();
+		this.oEvent.add(document, 'mousedown', function (event) {
+			this.e = event;
+		}.bind2(this));
+		this.oEvent.add(window, 'unload', function () {
+			this.oEvent.destroy();
+			this.oEvent.destroy('static');
+			this.oEvent.purge.destroy();
+		}.bind2(this));
+		Object.extend(this.Config.id, {
+			'container': this.Config.instanceID + '_CONTAINER',
+			'toolbar': this.Config.instanceID + '_TOOLBAR',
+			'iframe': this.Config.instanceID + '_IFRAME',
+			'textarea': this.Config.instanceID + '_TEXTAREA'
+		});
+		this.layout.build();
+		installHyperscript(this.NN, this.getIFDoc());
+		this.oSelection = new NNEditorRange(this, this.getIFW());
+	};
+	this.layout = {
+		'oSelf': this,
+		'c': function (func) {
+			var oBtn = document.createElement('button');
+			var id = this.oSelf.Config.instanceID + '_BUTTON_' + func;
+			this.oSelf.arrayBT.push(id);
+			oBtn.setAttribute('id', id);
+			oBtn.setAttribute('type', 'button');
+			oBtn.setAttribute('title', NNEditor_Lang[func] || '');
+			try {
+				return oBtn;
+			}
+			finally {
+				oBtn = null;
+			}
+		},
+		'build': function () {
+			var
+				self = this,
+				ed = this.oSelf,
+				idCon = ed.getID('container');
+			var layout = '\
+			<div id="' + idCon + '" class="nneditor-container">\
+			<table class="seLayout">\
+				<tr>\
+					<td id="' + this.oSelf.Config.instanceID + '_toolbar_container" class="nneditor-toolbar-container"><div id="' + this.oSelf.Config.instanceID + '_TOOLBAR" class="SE_TOOLBAR"></div></td>\
+				</tr>\
+				<tr>\
+					<td id="' + this.oSelf.Config.instanceID + '_iframe_container" class="nneditor-iframe-container"></td>\
+				</tr>\
+				<tr>\
+					<td><button type="button" id="' + this.oSelf.Config.instanceID + '_seResize" class="seResize2" type="button" onfocus="this.blur()" tabindex="100000"><span>입력창 크기 조절</span></button></td>\
+				</tr>\
+			</table>\
+			</div>';
+			if (NN.Utils.g(this.oSelf.Config.instanceID + '_layout')) {
+				NN.Utils.g(this.oSelf.Config.instanceID + '_layout').innerHTML = layout;
+			}
+			else {
+				document.write(layout);
+			}
+			var oContainer = this.oSelf.getCon();
+			ed.oEvent.add(NN.Utils.g(this.oSelf.Config.instanceID + '_TOOLBAR'), 'click', function (e, objExtend) {
+				var objEvent = e.srcElement || e.target;
+				if (!objEvent.getAttribute('rel')) return;
+				self.makeContent();
+				if (typeof objExtend[objEvent.getAttribute('argv1')] == 'object') {
+					if (typeof objExtend[objEvent.getAttribute('argv1')]['method'] == 'function') {
+						this.exec[objEvent.getAttribute('argv1')] = objExtend[objEvent.getAttribute('argv1')]['method'].bind2(this, e, (objExtend[objEvent.getAttribute('argv1')]['param'] || ''));
+					}
+					else if (typeof objExtend[objEvent.getAttribute('argv1')]['method'] == 'string') {
+						if (objExtend[objEvent.getAttribute('argv1')]['method'] == 'defined') { }
+						else {
+							if (typeof console != "undefined") console.warn('error plugin: not defined function');
+							return;
+						} // method필드함수가 정의되어 있지 않고, 에디터소스에도 정의되지 않았을 시
+					}
+				}
+				switch (objEvent.getAttribute('rel')) {
+					case 'default':
+						try {
+							eval('this.exec.' + objEvent.getAttribute('argv1') + '(e)');
+						}
+						catch (e) {
+							if (typeof console != 'undefined') {
+								console.warn('undefined toolbar function', e);
+							}
+						}
+						break;
+					case 'basic':
+						this.exec.basic(objEvent.getAttribute('argv1'), null);
+						switch (objEvent.getAttribute('argv1')) {
+							case 'bold':
+							case 'underline':
+							case 'cut':
+							case 'copy':
+							case 'paste':
+							case 'italic':
+							case 'strikethrough':
+							case 'superscript':
+							case 'subscript':
+							case 'removeformat':
+							case 'justifyleft':
+							case 'justifycenter':
+							case 'justifyright':
+							case 'justifyfull':
+							case 'insertorderedlist':
+							case 'insertunorderedlist':
+							case 'inserthorizontalrule':
+								this.Events.toolbarOver(e);
+								break;
+						}
+						NN.Utils.prevent(e);
+						break;
+					case 'viewSrc':
+						this.view.source();
+						NN.Utils.prevent(e);
+						break;
+					case 'fonttypePanel':
+						this.exec.fonttype(e);
+						NN.Utils.prevent(e);
+						break;
+					case 'fontsizePanel':
+						this.exec.fontsize(e);
+						NN.Utils.prevent(e);
+						break;
+					case 'fontcolorPanel':
+						this.exec.fontcolor(e);
+						NN.Utils.prevent(e);
+						break;
+					case 'fontbgcolorPanel':
+						this.exec.fontbgcolor(e);
+						NN.Utils.prevent(e);
+						break;
+					case 'evtPickColorDirect':
+						this.exec.evtPickColorDirect();
+						break;
+					case 'evtBgColorDirect':
+						this.exec.evtBgColorDirect();
+						break;
+					case 'full':
+						this.view.full();
+						break;
+					case 'html':
+						this.view.html();
+						break;
+					case 'table':
+						this.table.popup(e);
+						break;
+					case 'undo':
+						this.save.undo();
+						break;
+					case 'redo':
+						this.save.redo();
+						break;
+					case 'docunew':
+						this.save.docuNew();
+						break;
+				}
+			}.bind2Event(ed, ed.getOpt('addToolbarBtn')));
+			ed.Events.ctrlToobar = function (target, evtName, mode) {
+				if (typeof evtName == 'undefined') return;
+				var obj = typeof target == 'object' ? target : NN.Utils.g(target);
+				if (obj == null) return;
+				mode = mode || 'enable';
+				switch (mode) {
+					case 'enable':
+						if (NN.Browser.MSIE) obj.style.filter = 'alpha(opacity=100)';
+						else obj.style.opacity = 1;
+						this.oEvent.add(obj, 'click', evtName);
+						break;
+					case 'disable':
+						if (NN.Browser.MSIE) obj.style.filter = 'alpha(opacity=20)';
+						else obj.style.opacity = 0.3;
+						removeEvent(obj, 'click', evtName, true);
+						break;
+				}
+			}.bind2(ed);
+			ed.Events.toolbarOver = function (e) {
+				var oTarget = e.target || e.srcElement;
+				switch (e.type) {
+					case 'click':
+						if (oTarget.className.match('actived') != null) {
+							oTarget.className = oTarget.className.replace(new RegExp("actived"), "");
+						}
+						else {
+							oTarget.className += ' actived';
+						}
+						break;
+					case 'mouseover':
+						oTarget.className += ' hover';
+						break;
+					case 'mouseout':
+						oTarget.className = oTarget.className.replace(new RegExp("hover"), "");
+						break;
+				}
+				NN.Utils.prevent(e);
+			};
+			ed.Events.toolbarOverCTRL = function (e) {
+				var objEvent = e.srcElement || e.target;
+				if (objEvent.getAttribute('rel2') != 'm') return;
+				switch (e.type) {
+					case 'mouseover':
+						this.Events.toolbarOver(e);
+						break;
+					case 'mouseout':
+						this.Events.toolbarOver(e);
+						break;
+				}
+			}.bind2Event(ed);
+			ed.oEvent.add(NN.Utils.g(ed.Config.instanceID + '_TOOLBAR'), 'mouseover', ed.Events.toolbarOverCTRL);
+			ed.oEvent.add(NN.Utils.g(ed.Config.instanceID + '_TOOLBAR'), 'mouseout', ed.Events.toolbarOverCTRL);
+			ed.Events.tableGroupBT = ['tableModify', 'insertrow_before', 'insertrow_after', 'deleterow', 'insertcell_before', 'insertcell_after', 'deletecell', 'cellProp', 'rowProp', 'merge', 'mergeRecover'];
+			ed.Events.tableModify = function (evt) {
+				if (this.table.getInfo() == true) {
+					this.table.popupModify(evt);
+				}
+			}.bind2Event(this.oSelf);
+			ed.Events.insertrow_before = function () {
+				if (this.table.getInfo() == true) {
+					this.table.insertRow('before');
+				}
+			}.bind2Event(this.oSelf);
+			ed.Events.insertrow_after = function () {
+				if (this.table.getInfo() == true) {
+					this.table.insertRow('after');
+				}
+			}.bind2(this.oSelf);
+			ed.Events.deleterow = function () {
+				if (this.table.getInfo() == true) {
+					this.table.deleteRow();
+				}
+			}.bind2(this.oSelf);
+			ed.Events.insertcell_before = function () {
+				if (oThis.table.getInfo() == true) {
+					oThis.table.insertCell('before');
+				}
+			}.bind2(this.oSelf);
+			ed.Events.insertcell_after = function () {
+				if (this.table.getInfo() == true) {
+					this.table.insertCell('after');
+				}
+			}.bind2(this.oSelf);
+			ed.Events.deletecell = function () {
+				if (this.table.getInfo() == true) {
+					this.table.deleteCol();
+				}
+			}.bind2(this.oSelf);
+			ed.Events.cellProp = function (evt) {
+				if (this.table.getInfo() == true) {
+					this.table.cellProp(evt);
+				}
+			}.bind2Event(this.oSelf);
+			ed.Events.rowProp = function (evt) {
+				if (this.table.getInfo() == true) {
+					this.table.rowProp(evt);
+				}
+			}.bind2Event(this.oSelf);
+			ed.Events.merge = function (evt) {
+				if (this.table.getInfo() == true) {
+					this.table.merge(evt);
+				}
+			}.bind2Event(this.oSelf);
+			ed.Events.mergeRecover = function () {
+				if (this.table.getInfo() == true) {
+					this.table.mergeRecover();
+				}
+			}.bind2(this.oSelf);
+			ed.Events.unlink = this.oSelf.exec.unlink.bind2(this.oSelf.exec);
+			ed.Events.contextMouse = function (e) {
+				var obj = (e.srcElement || e.target);
+				switch (e.type) {
+					case 'mouseover':
+						if (obj.nodeName.toUpperCase() == 'LI') {
+							obj.className = 'iehover';
+							obj.style.backgroundColor = '#FBEEF1';
+						}
+						else {
+							obj.parentNode.className = 'iehover';
+							obj.parentNode.style.backgroundColor = '#FBEEF1';
+						}
+						break;
+					case 'mouseout':
+						if (obj.nodeName.toUpperCase() == 'LI') {
+							obj.className = '';
+							obj.style.backgroundColor = '';
+						}
+						else {
+							obj.parentNode.className = '';
+							obj.parentNode.style.backgroundColor = '';
+						}
+						break;
+				}
+			}.bind2Event(this.oSelf);
+			ed.Events.close = function () {
+				removeEvent(this, 'click', arguments.callee, true);
+				ed.exec.close();
+			};
+			ed.Events.evtFonttype = ed.exec.evtFonttype.bind2Event(ed);
+			ed.Events.evtFontsize = ed.exec.evtFontsize.bind2Event(ed);
+			ed.Events.evtPickColor = ed.exec.evtPickColor.bind2Event(ed);
+			ed.Events.evtBgColor = ed.exec.evtBgColor.bind2Event(ed);
+			ed.Events.evtPickColor2 = ed.exec.evtPickColor2.bind2Event(ed);
+			ed.Events.evtLink = ed.exec.evtLink.bind2Event(ed);
+			ed.Events.evtMovie = ed.exec.evtMovie.bind2(ed);
+			ed.Events.evtImage = ed.exec.evtImage.bind2(ed);
+			ed.Events.evtPresentExcel = ed.exec.evtPresentExcel.bind2(ed);
+			ed.Events.evtTable = ed.table.evtTable.bind2(ed);
+			ed.Events.evtTableModify = ed.table.evtTableModify.bind2(ed);
+			ed.Events.evtCellProp = ed.table.evtCellProp.bind2Event(ed);
+			ed.Events.evtRowProp = ed.table.evtRowProp.bind2Event(ed);
+			ed.Events.imageAttri = ed.exec.imageAttri.bind2Event(ed.exec);
+			ed.Events.evtImageAttri = ed.exec.evtImageAttri.bind2Event(ed);
+			var
+				oUL = document.createElement('ul'),
+				objExtend = this.oSelf.getOpt('addToolbarBtn'),
+				objRmBtn = this.oSelf.getOpt('rmBtn');
+			var arrayTool = this.oSelf.getOpt('toolbarType') == 'all' ? this.oSelf.getOpt('toolbar') : this.oSelf.getOpt('toolbarSimple');
+			for (var grpCnt = 0, groupTotal = arrayTool.length; grpCnt < groupTotal; grpCnt++) {
+				var oUL = document.createElement('UL');
+				oUL.className = NN.Browser.MSIE ? 'se_toolbar_left' : 'se_toolbar_left2';
+				var oLI = document.createElement('li');
+				oLI.innerHTML = '<div class="divide"></div>';
+				oUL.appendChild(oLI);
+				var objSubGroup = arrayTool[grpCnt];
+				for (var subGrpCnt = 0, subGrpTotal = objSubGroup.length; subGrpCnt < subGrpTotal; subGrpCnt++) {
+					var func = objSubGroup[subGrpCnt];
+					if (objRmBtn.search(func) != -1) continue;
+					var _title = NNEditor_Lang[func] || '';
+					var oLI = document.createElement('li');
+					oLI.className = func;
+					if (!func) continue;
+					var id = ed.Config.instanceID + '_BUTTON_' + func;
+					switch (func) {
+						case 'mode':
+							oLI.innerHTML = '<table class="nneditor-table"><tbody><tr><td><div style="cursor: pointer" rel="viewSrc" class="img_button mode"></div></td><td><div style="cursor: pointer" rel="viewSrc">' + NNEditor_Lang['src'] + '</div></td></tr></tbody></table>';
+							oUL.appendChild(oLI);
+							break;
+						case 'bold':
+						case 'underline':
+						case 'cut':
+						case 'copy':
+						case 'paste':
+						case 'italic':
+						case 'strikethrough':
+						case 'superscript':
+						case 'subscript':
+						case 'removeformat':
+						case 'justifyleft':
+						case 'justifycenter':
+						case 'justifyright':
+						case 'justifyfull':
+						case 'insertorderedlist':
+						case 'insertunorderedlist':
+						case 'inserthorizontalrule':
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', 'basic');
+							oBtn.setAttribute('argv1', func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+						case '/':
+							oLI.innerHTML = '<div class="divide"></div>';
+							oUL.appendChild(oLI);
+							break;
+						case '//':
+							var o = document.createElement('br');
+							o.className = 'clear';
+							oUL.appendChild(o);
+							oLI.innerHTML = '<div class="divide"></div>';
+							oUL.appendChild(oLI);
+							break;
+						case 'fonttype':
+							oLI.innerHTML = '<table class="nneditor-table"><tr><td><button type="button" class="nneditor-fonttype" title="' + NNEditor_Lang[func] + '" rel="fonttypePanel" id="fonttypePanel">' + NNEditor_Lang['font'] + '</button></td><td><a href="#" rel="fonttypePanel" class="fieldButton"></a></td></tr></table>';
+							oUL.appendChild(oLI);
+							break;
+						case 'fontsize':
+							oLI.innerHTML = '<table class="nneditor-table"><tr><td><button type="button" type="button" class="nneditor-fontsize" title="' + NNEditor_Lang[func] + '" rel="fontsizePanel" id="fontsizePanel">' + NNEditor_Lang['size'] + '</button></td><td><a href="#" rel="fontsizePanel" class="fieldButton"></a></td></tr></table>';
+							oUL.appendChild(oLI);
+							break;
+						case 'fontcolor':
+							oLI.innerHTML = '<table class="nneditor-table"><tr><td><span class="simpleIcon forecolor" title="' + NNEditor_Lang[func] + '" rel="evtPickColorDirect"></span><div id="' + NN.Config.instanceID + '_content_forecolor_preview" class="content-forecolor-preview"/></a></td><td><a href="#" class="nneditor-da" rel="fontcolorPanel"></a></td></tr></table>';
+							oUL.appendChild(oLI);
+							break;
+						case 'fontbgcolor':
+							oLI.innerHTML = '<table class="nneditor-table"><tr><td><span class="simpleIcon bgcolor" title="' + NNEditor_Lang[func] + '" rel="evtBgColorDirect"></span><div id="' + NN.Config.instanceID + '_content_bgcolor_preview" class="content-bgcolor-preview"/></a></td><td><a href="#" class="nneditor-da" rel="fontbgcolorPanel"></a></td></tr></table>';
+							oUL.appendChild(oLI);
+							break;
+						case 'html':
+						case 'full':
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+						case 'table':
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', 'table');
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+						case 'tableModify':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'cellProp':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'rowProp':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'insertrow_before':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'insertrow_after':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							var oThis = this.oSelf;
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'deleterow':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'insertcell_before':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'insertcell_after':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'deletecell':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'merge':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'mergeRecover':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'unlink':
+							var oBtn = this.c(func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							ed.Events.ctrlToobar(oBtn, eval('ed.Events.' + func), 'disable');
+							break;
+						case 'undo':
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', 'undo');
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+						case 'redo':
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', 'redo');
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+						case 'docunew':
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', 'docunew');
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+						case 'indent':
+						case 'outdent':
+						default:
+							var oBtn = this.c(func);
+							oBtn.setAttribute('rel', 'default');
+							oBtn.setAttribute('argv1', func);
+							oLI.appendChild(oBtn);
+							oUL.appendChild(oLI);
+							break;
+					}
+					if (typeof oBtn != 'undefined') {
+						if (typeof objExtend[func] == 'object') {
+							oBtn.style.cssText = objExtend[func]['cssText'];
+						}
+						oBtn.setAttribute('rel2', 'm');
+					}
+				}
+				NN.Utils.g(ed.Config.instanceID + '_TOOLBAR').appendChild(oUL);
+				oUL = null;
+			}
+			var oIFrame = document.createElement('iframe');
+			with (oIFrame) {
+				id = this.oSelf.getID('iframe');
+				frameBorder = 'no';
+				tabindex = 0;
+				style.width = '100%';
+				style.height = this.oSelf.getOpt('height') + 'px';
+				style.display = 'block';
+			}
+			oIFrame.setAttribute("tabIndex", 0);
+			NN.Utils.g(ed.Config.instanceID + '_iframe_container').appendChild(oIFrame);
+			var oText = document.createElement('textarea');
+			with (oText) {
+				id = this.oSelf.getID('textarea');
+				name = this.oSelf.getOpt('instanceID');
+				style.display = 'none';
+				style.width = '100%';
+				style.height = this.oSelf.getOpt('height') + 'px';
+				style.border = '0px none';
+				style.clear = 'both';
+				style.fontSize = '9pt';
+				style.fontFamily = 'gulim';
+				style.margin = 0;
+				style.padding = 0;
+				style.resize = 'none';
+				value = '<p>';
+			}
+			NN.Utils.g(ed.Config.instanceID + '_iframe_container').appendChild(oText);
+			this.initSet();
+		},
+		'useCss': function (s) {
+			if (NN.Browser.MSIE) return;
+			var oIFDoc = this.oSelf.getIFDoc();
+			oIFDoc.execCommand("styleWithCSS", 0, s);
+		},
+		'initSet': function () {
+			var
+				t = this,
+				ed = this.oSelf,
+				oIFDoc = ed.getIFDoc();
+			isNewTypingForUndo = false;
+			if (ed.getOpt('divideTagStyle')) {
+				var _START_HTML = ed.getOpt('START_HTML').replace('<p>', '<p style="' + ed.getOpt('divideTagStyle') + '">');
+			}
+			else {
+				var _START_HTML = ed.getOpt('START_HTML');
+			}
+			var defaultHTML = ed.getOpt('value') == '' ? _START_HTML : ed.getOpt('value');
+			defaultHTML = this.oSelf.view.text2html(defaultHTML);
+			this.oSelf.getText().value = ed.view.bbcode(defaultHTML, 'encode');
+			// var initHTML = '\
+			// <html>\
+			// 	<head>\
+			// 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\
+			// 		<style type="text/css">\
+			// 			@import "' + NN.urlCore + 'css/iframe.css?ver=' + NN.version + '";\
+			// 		</style>\
+			// 	</head>\
+			// 	<body>' + defaultHTML + '</body>\
+			// </html>';
+			var initHTML = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><style type="text/css">@import "' + NN.urlCore + 'css/iframe.css?ver=' + NN.version + '";</style></head><body>' + defaultHTML + '</body></html>';
+			oIFDoc.open();
+			oIFDoc.write(initHTML);
+			oIFDoc.close();
+			if (NN.Browser.MSIEVer) {
+				try {
+					//var MSIE_VERSION = /(msie) ([\w.]+)/.exec(navigator.userAgent.toLowerCase());
+					//if (MSIE_VERSION[2] == '9.0') {
+					if (9 <= NN.Browser.MSIEVer) {
+						oIFDoc.body.setAttribute('contentEditable', 'true'); // focus가 자동으로 유도됨 9.0은 focus 유도안됨, iframe 스크롤바 발생시킴.
+					}
+					else {
+						oIFDoc.designMode = 'On';
+					}
+				}
+				catch (e) {
+					oIFDoc.designMode = 'On';
+				}
+			}
+			else {
+				oIFDoc.designMode = 'On';
+				setTimeout(function () {
+					try {
+						if (NN.Browser.Firefox) oIFDoc.execCommand('enableInlineTableEditing', false, false);
+					}
+					catch (e) { }
+				}, 100);
+			}
+			ed.Events.mouseoverBGcolor = (function () {
+				return function (event) {
+					(event.srcElement || event.target).style.backgroundColor = '#FBEEF1';
+				}
+			})();
+			ed.Events.mouseoutBGcolor = (function () {
+				return function (event) {
+					(event.srcElement || event.target).style.backgroundColor = '#ffffff';
+				}
+			})();
+			ed.Events.editor = t.evtHandler.bind2Event(ed);
+			ed.Events.table = ed.table.contextmenu.bind2Event(ed);
+			ed.Events.resize = t.resizeInit.bind2Event(t);
+			ed.save.undoArray = [{
+				content: ed.Config.START_HTML,
+				scrollTop: 0
+			}
+			];
+			ed.Events.undo = ed.save.undo.bind2(ed.save);
+			ed.Events.redo = ed.save.redo.bind2(ed.save);
+			ed.keyInfo = {
+				'cache': null,
+				'curTime': new Date().getTime(),
+				'lastTime': new Date().getTime()
+			};
+			ed.oEvent.add(ed.getIFDoc(), 'click', ed.Events.editor);
+			ed.oEvent.add(ed.getIFDoc(), 'keydown', ed.Events.editor);
+			ed.oEvent.add(ed.getIFDoc(), 'keyup', ed.Events.editor);
+			if (NN.Browser.MSIE) {
+				ed.oEvent.add(ed.getIFDoc(), 'beforedeactivate', this.saveRange.bind2Event(this));
+				ed.oEvent.add(ed.getText(), 'beforedeactivate', this.saveRange.bind2Event(this));
+				ed.oEvent.add(ed.getIFDoc(), 'activate', this.restoreRange.bind2Event(this));
+			}
+			else {
+				ed.oEvent.add(ed.getIFDoc(), 'blur', this.saveRange.bind2Event(this));
+				ed.oEvent.add(ed.getText(), 'blur', this.makeContent.bind2(this));
+			}
+			ed.oEvent.add(NN.Utils.g(ed.Config.instanceID + '_seResize'), 'mousedown', ed.Events.resize);
+			ed.oEvent.add(ed.getIFDoc(), 'dblclick', ed.Events.imageAttri);
+			ed.Events.bold = function () {
+				var oTarget = NN.Utils.g(this.Config.instanceID + '_BUTTON_bold');
+				if (oTarget.className.match('actived') != null) {
+					oTarget.className = oTarget.className.replace(new RegExp("actived"), "");
+				}
+				else {
+					oTarget.className += ' actived';
+				}
+				this.exec.basic('bold', null);
+			}.bind2(ed);
+			shortcut("ctrl+b", ed.Events.bold, {
+				'target': ed.getIFDoc()
+			}, ed);
+			ed.Events.underline = function () {
+				var oTarget = NN.Utils.g(this.Config.instanceID + '_BUTTON_underline');
+				if (oTarget.className.match('actived') != null) {
+					oTarget.className = oTarget.className.replace(new RegExp("actived"), "");
+				}
+				else {
+					oTarget.className += ' actived';
+				}
+				this.exec.basic('underline', null);
+			}.bind2(ed);
+			shortcut("ctrl+u", ed.Events.underline, {
+				'target': ed.getIFDoc()
+			}, ed);
+			ed.Events.justifyleft = function () {
+				var oTarget = NN.Utils.g(this.Config.instanceID + '_BUTTON_justifyleft');
+				if (oTarget.className.match('actived') != null) {
+					oTarget.className = oTarget.className.replace(new RegExp("actived"), "");
+				}
+				else {
+					oTarget.className += ' actived';
+				}
+				this.exec.basic('justifyleft', null);
+			}.bind2(ed);
+			shortcut("ctrl+l", ed.Events.justifyleft, {
+				'target': ed.getIFDoc()
+			}, ed);
+			ed.Events.justifycenter = function () {
+				var oTarget = NN.Utils.g(this.Config.instanceID + '_BUTTON_justifycenter');
+				if (oTarget.className.match('actived') != null) {
+					oTarget.className = oTarget.className.replace(new RegExp("actived"), "");
+				}
+				else {
+					oTarget.className += ' actived';
+				}
+				this.exec.basic('justifycenter', null);
+			}.bind2(ed);
+			shortcut("ctrl+e", ed.Events.justifycenter, {
+				'target': ed.getIFDoc()
+			}, ed);
+			ed.Events.justifyright = function () {
+				var oTarget = NN.Utils.g(this.Config.instanceID + '_BUTTON_justifyright');
+				if (oTarget.className.match('actived') != null) {
+					oTarget.className = oTarget.className.replace(new RegExp("actived"), "");
+				}
+				else {
+					oTarget.className += ' actived';
+				}
+				this.exec.basic('justifyright', null);
+			}.bind2(ed);
+			shortcut("ctrl+r", ed.Events.justifyright, {
+				'target': ed.getIFDoc()
+			}, ed);
+			shortcut("ctrl+z", ed.Events.undo, {
+				'target': ed.getIFDoc()
+			}, ed);
+			shortcut("ctrl+y", ed.Events.redo, {
+				'target': ed.getIFDoc()
+			}, ed);
+		},
+		'saveRange': function (evt) {
+			var s = this.oSelf.oSelection;
+			s.lastRange = s.getRng();
+			this.makeContent();
+		},
+		'restoreRange': function (evt) {
+			var s = this.oSelf.oSelection;
+			if (s.lastRange) {
+				try {
+					s.lastRange.select();
+				}
+				catch (e) {
+					var sel = s.getSel();
+					var type = sel.type.toLowerCase();
+					if (type === "control") {
+						sel.empty();
+						var rng = sel.createRange();
+						rng.collapse(false);
+						rng.select();
+					}
+				}
+			}
+			else {
+				this.saveRange();
+			}
+		},
+		'makeContent': function () {
+			var t = this.oSelf;
+			switch (t.getOpt('mode')) {
+				case 'design':
+					NN.Utils.debug('[layout.makeContent]', 'html -> text');
+					html = t.view.bbcode(t.getIFDoc().body.innerHTML, 'encode');
+					html = t.view.makeCorrectTag(html);
+					break;
+				case 'source':
+					NN.Utils.debug('[layout.makeContent]', 'text -> html');
+					html = t.view.bbcode(t.getText().value, 'encode');
+					html = t.view.makeCorrectTag(html);
+					break;
+			}
+			if (t.getOpt('XSS') == true) {
+				html = html.replace(/<script([^>]+|)>([\s\S]*?)<\/script>/ig, '');
+				html = html.replace(/<style([^>]+|)>([\s\S]*?)<\/style>/ig, '');
+				html = html.replace(/<object([^>]+|)>([\s\S]*?)<\/object>/ig, '');
+				html = html.replace(/<embed([^>]+|)>([\s\S]*?)<\/embed>/ig, '');
+				html = html.replace(/<link[^>]*>/ig, '');
+				html = html.replace(/<head([^>]+|)>([\s\S]*?)<\/head>/ig, '');
+				html = html.replace(/<meta[^>]*>/ig, '');
+				html = html.replace(/<body[^>]*>|<\/body>/ig, '');
+				html = html.replace(/<html[^>]*>|<\/html>/ig, '');
+				html = html.replace(new RegExp('(' + t.getOpt('temp').join('|') + '|' + t.getOpt('temp2').join('|') + ')', 'gi'), '**$1**');
+			} //@FIX SINSEKI@2012.05.30.0#3.3.1
+			html = html.replace(/<br[^>]*><\/td>/ig, '<\/td>');
+			if (html == '<br />' || html == '<P>&nbsp;</P>') {
+				html = '';
+			}
+			t.getText().value = html.replace(/\ufeff/g, "");
+		},
+		'evtHandler': function (evt) {
+			var
+				s = this.oSelection,
+				r = s.getRng(),
+				l = this.layout,
+				u = this.u,
+				e = this.exec;
+			switch (evt.type) {
+				case 'click':
+					this.layout.query(evt);
+					this.layer.closeAll();
+					break;
+				case 'keydown':
+					if (NN.Browser.Firefox) {
+						if (!evt.shiftKey && evt.keyCode == 13) {
+							s.ctrlEnter(evt);
+						}
+					}
+					if ([13, 46, 8, 32].include(evt.keyCode) == true) {
+						this.save.saveHistory(true);
+						if (evt.keyCode == 8) {
+							if (r.item) {
+								r.item(0).removeNode();
+								return NN.Utils.prevent(evt);
+							}
+						}
+					}
+					else if (evt.ctrlKey && (evt.keyCode == 86 || evt.keyCode == 88)) {
+						this.save.saveHistory(true);
+					}
+					else if (!evt.ctrlKey && !evt.altKey) {
+						isNewTypingForUndo = true;
+					}
+					break;
+				case 'keyup':
+					this.keyInfo['curTime'] = new Date().getTime();
+					if (this.keyInfo['lastTime'] + 100 < this.keyInfo['curTime']) {
+						if ([37, 38, 39, 40].include(evt.keyCode) == true) {
+							this.layout.query(evt);
+						}
+						this.keyInfo['lastTime'] = this.keyInfo['curTime'];
+						this.keyInfo['cache'] = evt.keyCode;
+					}
+					break;
+			}
+		},
+		'query': function (evt) {
+			this.oSelf.objModify = this.oSelf.oSelection.getNode();
+			this.getTags();
+			this.setActiveToolbar();
+		},
+		'resizeInit': function (e) {
+			this.drag = {
+				'moveCounter': 0,
+				'initEventX': e.clientX,
+				'initEventY': e.clientY,
+				'window_width': this.oSelf.getIF().offsetWidth,
+				'window_height': this.oSelf.getIF().offsetHeight || this.oSelf.getText().offsetHeight,
+				'size': NN.Utils.getPageSize()
+			};
+			this.editAreaDisplay(1);
+			var oHolder = NN.Utils.g(this.oSelf.Config.instanceID + '_holder');
+			if (oHolder == null) {
+				this.oHolder = document.createElement('div');
+				this.oHolder.setAttribute('id', this.oSelf.Config.instanceID + '_holder');
+				with (this.oHolder) {
+					style.border = '0px none';
+					style.backgroundColor = '#ffffff';
+					style.width = this.drag.window_width + 'px';
+					style.height = this.drag.window_height + 'px';
+				}
+				this.oSelf.getText().parentNode.insertBefore(this.oHolder, this.oSelf.getText());
+			}
+			this.startMove();
+			if (NN.Browser.MSIE) {
+				window.document.onmousemove = this.mouseMove.bind2Event(this);
+				window.document.onmouseup = this.mouseUP.bind2(this);
+			}
+			else {
+				window.onmousemove = this.mouseMove.bind2Event(this);
+				window.onmouseup = this.mouseUP.bind2(this);
+			}
+			NN.Utils.disableSelect();
+		},
+		'startMove': function () {
+			if (this.drag.moveCounter >= 0 && this.drag.moveCounter <= 10) {
+				this.drag.moveCounter++;
+				setTimeout(this.startMove.bind2(this), 10);
+			}
+		},
+		'mouseMove': function (e) {
+			if (this.drag.moveCounter < 10) return;
+			var height = this.drag.window_height + e.clientY - this.drag.initEventY;
+			if (height <= 10) {
+				height = 10;
+				this.mouseUP();
+			}
+			this.oHolder.style.height = height + 'px';
+			this.oSelf.getIF().style.height = height + 'px';
+			this.oSelf.getText().style.height = height + 'px';
+		},
+		'mouseUP': function () {
+			var oHolder = NN.Utils.g(this.oSelf.Config.instanceID + '_holder');
+			if (oHolder) {
+				this.oSelf.getText().parentNode.removeChild(oHolder);
+				this.oHolder = null;
+			}
+			this.editAreaDisplay(2);
+			this.drag.moveCounter = 0;
+			if (NN.Browser.MSIE) {
+				window.document.onmousemove = null;
+				window.document.onmouseup = null;
+			}
+			else {
+				window.onmousemove = null;
+				window.onmouseup = null;
+			}
+			this.drag.moveCounter = 0;
+			NN.Utils.restoreSelect();
+			setTimeout(function () {
+				if (this.getOpt('mode') == 'design') {
+					this.getIFW().focus();
+				}
+				else if (this.getOpt('mode') == 'source') {
+					this.getText().focus();
+				}
+			}.bind2(this.oSelf), 10);
+		},
+		'editAreaDisplay': function (mode) {
+			switch (mode) {
+				case 1:
+					if (this.oSelf.getOpt('mode') == 'design') {
+						this.oSelf.getIF().style.display = 'none';
+					}
+					else if (this.oSelf.getOpt('mode') == 'source') {
+						this.oSelf.getText().style.display = 'none';
+					}
+					break;
+				case 2:
+					if (this.oSelf.getOpt('mode') == 'design') {
+						this.oSelf.getIF().style.display = 'block';
+					}
+					else if (this.oSelf.getOpt('mode') == 'source') {
+						this.oSelf.getText().style.display = 'block';
+					}
+					break;
+			}
+		},
+		'getTags': function () {
+			var
+				ge_notag = false,
+				_parent = null,
+				ancestors = [],
+				s = this.oSelf.oSelection;
+			_parent = s.getNode();
+			while (_parent && (_parent.nodeType == NN.DOM.ELEMENT_NODE) && (_parent.tagName.toLowerCase() != 'body')) {
+				ancestors.push(_parent);
+				_parent = _parent.parentNode;
+			}
+			this.oSelf.ancestors = ancestors;
+		},
+		'setActiveToolbar': function () {
+			if (this.oSelf.objModify == null) return;
+			if (typeof this.oSelf.objModify == 'undefined') return;
+			if (this.oSelf.table.getInfo() == true) {
+				this.oSelf.oEvent.add(this.oSelf.getIFDoc(), 'contextmenu', this.oSelf.Events.table);
+			}
+			else {
+				this.oSelf.oEvent.remove(this.oSelf.getIFDoc(), 'contextmenu', this.oSelf.Events.table);
+			}
+			for (var i = 0, t = this.oSelf.arrayBT.length; i < t; i++) {
+				NN.Utils.g(this.oSelf.arrayBT[i]).className = '';
+			}
+			var _cellNode = NN.DOM.schCellNode(this.oSelf.objModify);
+			if (_cellNode != null) {
+				this.oSelf.Events.tableGroupBT.each2(function (id) {
+					this.oSelf.Events.ctrlToobar(NN.Utils.g(this.oSelf.Config.instanceID + '_BUTTON_' + id), eval('this.oSelf.Events.' + id), 'disable');
+					this.oSelf.Events.ctrlToobar(NN.Utils.g(this.oSelf.Config.instanceID + '_BUTTON_' + id), eval('this.oSelf.Events.' + id), 'enable');
+				}.bind2(this));
+			}
+			else {
+				this.oSelf.Events.tableGroupBT.each2(function (id) {
+					this.oSelf.Events.ctrlToobar(NN.Utils.g(this.oSelf.Config.instanceID + '_BUTTON_' + id), eval('this.oSelf.Events.' + id), 'disable');
+				}.bind2(this));
+			}
+			if (this.oSelf.objModify.tagName.toLowerCase() == 'a') {
+				this.oSelf.Events.ctrlToobar(NN.Utils.g(this.oSelf.Config.instanceID + '_BUTTON_unlink'), this.oSelf.Events.unlink, 'disable');
+				this.oSelf.Events.ctrlToobar(NN.Utils.g(this.oSelf.Config.instanceID + '_BUTTON_unlink'), this.oSelf.Events.unlink, 'enable');
+			}
+			else {
+				this.oSelf.Events.ctrlToobar(NN.Utils.g(this.oSelf.Config.instanceID + '_BUTTON_unlink'), this.oSelf.Events.unlink, 'disable');
+			}
+			var hash = {
+				'B': this.oSelf.Config.instanceID + '_BUTTON_bold',
+				'STRONG': this.oSelf.Config.instanceID + '_BUTTON_bold',
+				'U': this.oSelf.Config.instanceID + '_BUTTON_underline',
+				'SUB': this.oSelf.Config.instanceID + '_BUTTON_subscript',
+				'SUP': this.oSelf.Config.instanceID + '_BUTTON_superscript',
+				'I': this.oSelf.Config.instanceID + '_BUTTON_italic',
+				'EM': this.oSelf.Config.instanceID + '_BUTTON_italic',
+				'STRIKE': this.oSelf.Config.instanceID + '_BUTTON_strikethrough',
+				'LEFT': this.oSelf.Config.instanceID + '_BUTTON_justifyleft',
+				'CENTER': this.oSelf.Config.instanceID + '_BUTTON_justifycenter',
+				'RIGHT': this.oSelf.Config.instanceID + '_BUTTON_justifyright',
+				'JUSTIFY': this.oSelf.Config.instanceID + '_BUTTON_justifyfull',
+				'A': this.oSelf.Config.instanceID + '_BUTTON_link',
+				'A2': this.oSelf.Config.instanceID + '_BUTTON_unlink',
+				'OL': this.oSelf.Config.instanceID + '_BUTTON_insertorderedlist',
+				'UL': this.oSelf.Config.instanceID + '_BUTTON_insertunorderedlist',
+				'TD': this.oSelf.Config.instanceID + '_BUTTON_table'
+			};
+			for (var i = 0, flag1 = false, flag2 = false, flag3 = false, t = this.oSelf.ancestors.length; i < t; i++) {
+				var obj = this.oSelf.ancestors[i];
+				var tagName = obj.tagName.toUpperCase();
+				if (tagName == 'BODY' || tagName == 'LI') continue;
+				if (tagName == 'P' || tagName == 'DIV') {
+					if (NN.Browser.MSIE) {
+						var vAlign = obj.getAttribute('align') && obj.getAttribute('align').toUpperCase();
+					}
+					else {
+						var vAlign = obj.style.textAlign && obj.style.textAlign.toUpperCase();
+					}
+					if (NN.Utils.g(hash[vAlign]) != null) {
+						NN.Utils.g(hash[vAlign]).className = 'actived';
+					}
+				}
+				if (obj.style.fontWeight && obj.style.fontWeight == 'bold') NN.Utils.g(hash['B']).className = 'actived';
+				if (obj.style.textDecoration && /underline/.test(obj.style.textDecoration)) NN.Utils.g(hash['U']).className = 'actived';
+				if (obj.style.textDecoration && /line-through/.test(obj.style.textDecoration)) NN.Utils.g(hash['STRIKE']).className = 'actived';
+				if (obj.style.fontStyle && obj.style.fontStyle == 'italic') NN.Utils.g(hash['I']).className = 'actived';
+				if (NN.Utils.g('fontsizePanel')) {
+					if (obj.style.fontSize) {
+						NN.Utils.g('fontsizePanel').firstChild.nodeValue = obj.style.fontSize;
+						flag1 = true;
+					}
+					else {
+						if (flag1 == false) NN.Utils.g('fontsizePanel').firstChild.nodeValue = NNEditor_Lang['size'];
+					}
+				}
+				if (NN.Utils.g('fonttypePanel')) {
+					if (obj.style.fontFamily) {
+						NN.Utils.g('fonttypePanel').firstChild.nodeValue = obj.style.fontFamily.split(',')[0].substr(0, 4);
+						flag2 = true;
+					}
+					else {
+						if (flag2 == false) NN.Utils.g('fonttypePanel').firstChild.nodeValue = NNEditor_Lang['font'];
+					}
+				}
+				if (tagName == 'A' && NN.Utils.g(hash[tagName])) {
+					NN.Utils.g(hash[tagName]).className = 'actived';
+					NN.Utils.g(hash[tagName + '2']).className = 'actived';
+				}
+				if (NN.Utils.g(hash[tagName]) != null) {
+					NN.Utils.g(hash[tagName]).className = 'actived';
+				}
+			}
+		}
+	};
+	this.layer = {
+		oSelf: this,
+		options: {},
+		queue: [],
+		resetOptions: function () {
+			this.options = {
+				'__TARGET_ID__': '_target_id_nullLayerPage',
+				'__TITLE__': '제목없음',
+				'__CONTENTS_ID__': '_contents_id_nullLayerPage',
+				'width': '300',
+				'e': false,
+				'e2': false,
+				'notDestroy': false,
+				'align': false
+			};
+		},
+		empty: function (param) {
+			this.resetOptions();
+			var html = '\
+			<div class="nnContents">\
+				<div id="__CONTENTS_ID__"></div>\
+				<div class="nnTitleBarRight"><div id="' + this.oSelf.Config.instanceID + '_nneditorClose" class="nneditor-close" rel="_layer_close" argv1="__TARGET_ID__"></div></div>\
+			</div>';
+			Object.extend(this.options, param || {});
+			var layerID = this.options['__TARGET_ID__'];
+			this.close(layerID, param['notDestroy']);
+			this.queue.push(layerID);
+			if (!this.options.e && !this.options.e2) {
+				var evt = this.oSelf.e;
+				var oPos = NN.Utils.getAbsolutePosition(evt.target || evt.srcElement);
+			}
+			if (this.options.e) {
+				var oPos = NN.Utils.getAbsolutePosition(this.oSelf.getIF());
+				oPos = {
+					'x': oPos.x + this.options.e.clientX,
+					'y': oPos.y + this.options.e.clientY
+				};
+			}
+			if (this.options.e2) {
+				oPos = {
+					'x': this.options.e2.clientX,
+					'y': this.options.e2.clientY + NN.Utils.getPageScroll()
+				};
+			}
+			var ret = html.replace(/__TARGET_ID__/g, this.options.__TARGET_ID__);
+			var ret = ret.replace(/__TITLE__/g, this.options.__TITLE__);
+			var ret = ret.replace(/__CONTENTS_ID__/g, this.options.__CONTENTS_ID__);
+			if (typeof this.oSelf.zIndex == 'undefined') {
+				this.oSelf.zIndex = 10000000;
+			}
+			else {
+				this.oSelf.zIndex++;
+			}
+			var oCon = document.createElement('div');
+			with (oCon) {
+				var size = NN.Utils.getPageSize();
+				setAttribute('id', layerID);
+				style.position = 'absolute';
+				style.width = this.options['width'] + 'px';
+				if (this.options['align'] == 'center') {
+					style.left = (size[2] / 2 - this.options['width'] / 2) + 'px';
+				}
+				else {
+					if (parseInt(oPos.x) + parseInt(this.options['width']) > size[2]) {
+						style.right = '50px';
+					}
+					else {
+						style.left = oPos.x + 'px';
+					}
+				}
+				style.top = oPos.y + 20 + 'px';
+				style.zIndex = this.oSelf.zIndex;
+				style.border = '5px solid #cacaca';
+				style.backgroundColor = '#ffffff';
+				style.padding = 0;
+				style.margin = 0;
+				innerHTML = ret;
+			}
+			var objBody = document.getElementsByTagName('body')[0];
+			objBody.insertBefore(oCon, objBody.firstChild);
+			if (NN.Browser.MSIE) {
+				setTimeout(function () {
+					NN.Utils.g(layerID).style.display = 'block';
+					NN.Utils.g(this.oSelf.Config.instanceID + '_nneditorClose').style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.oSelf.Config.imgPATH + "close.png', sizingMethod='crop')";
+				}.bind2(this), 10);
+			}
+			var funcNameForRemove = function (e, layerID) {
+				var objEvent = e.target || e.srcElement;
+				if (objEvent.getAttribute('rel') != '_layer_close') return;
+				removeEvent(NN.Utils.g(layerID), 'click', funcNameForRemove, true);
+				this.close(layerID, param['notDestroy']);
+			}.bind2Event(this, layerID);
+			this.oSelf.oEvent.add(NN.Utils.g(layerID), 'click', funcNameForRemove, 'static');
+			if (typeof this.options.callback == 'function') {
+				this.options.callback();
+			}
+		},
+		close: function (layerID, modeDestroy) {
+			var modeDestroy = typeof modeDestroy == 'undefined' ? 'enable' : 'disable';
+			if (modeDestroy == 'enable') {
+				if (NN.Utils.g('_table_picColor_title') == null) {
+					this.oSelf.oEvent.destroy('static');
+				}
+				else {
+					document.body.removeChild(NN.Utils.g('_table_picColor_title'));
+				}
+			}
+			if (NN.Utils.g(layerID) != null) {
+				document.body.removeChild(NN.Utils.g(layerID));
+			}
+			this.queue.remove(this.queue.search(layerID));
+		},
+		closeAll: function () {
+			eachjQuery(this.queue, function (layerID) {
+				if (NN.Utils.g(layerID) != null) {
+					document.body.removeChild(NN.Utils.g(layerID));
+				}
+			});
+			this.queue = [];
+		}
+	};
+	this.view = {
+		oSelf: this,
+		parsing: function (mode) {
+			var
+				t = this,
+				ed = this.oSelf;
+			switch (mode) {
+				case 1:
+					var html = ed.getIFDoc().body.innerHTML;
+					html = t.html2text(html);
+					break;
+				case 2:
+					var html = ed.getText().value;
+					html = t.text2html(html);
+					if (html.trim() == '' || html.trim() == '<br />') {
+						html = ed.getOpt('START_HTML');
+					}
+					break;
+			}
+			return html;
+		},
+		preview: function (html) {
+			html = html || this.oSelf.getIFDoc().body.innerHTML;
+			var m = html.match(/<img[^>]*>/gi);
+			if (m == null) return html;
+			var _replace = function (_html, divide, new_html) {
+				var _split = _html.split(divide);
+				_html = _split.join(new_html);
+				return _html;
+			};
+			for (var i = 0, t = m.length; i < t; i++) {
+				if (m[i].toUpperCase().indexOf('MEDIA') == -1) continue;
+				var m2 = m[i].match(/movietype="([^"]+)"/i);
+				if (m2 == null) continue;
+				var movieType = m2[1];
+				NN.Utils.debug('[view.preview]', 'movieType: ', movieType);
+				var m2 = m[i].match(/media="([^"]+)"/i);
+				if (m2 == null) continue;
+				var URL = m2[1];
+				if (movieType == 'custom') {
+					var new_html = decodeURIComponent(URL);
+					html = _replace(html, m[i], new_html);
+				}
+				else {
+					var m2 = m[i].match(/width:\s?([0-9]+)px/i);
+					if (m2 == null) var W = '';
+					else var W = m2[1];
+					var m2 = m[i].match(/height:\s?([0-9]+)px/i);
+					if (m2 == null) var H = '';
+					else var H = m2[1];
+					var new_html = NN.Utils.displayMultimedia(URL, W, H, {
+						'movieType': movieType
+					});
+					html = _replace(html, m[i], new_html);
+				}
+			}
+			html = this.toggleRegExp.file(html, 'decode');
+			return html;
+		},
+		toggleRegExp: {
+			oSelf: this,
+			file: function (html, type) {
+				if (type == 'decode') {
+					var ptn = /<button([^>]+)>(.*?)<\/button>/gim;
+					_html = html.replace(ptn, function ($0, $1) {
+						if ($0.indexOf('data-type') == -1) return $0;
+						var _data_url = /data-url="([^"]+)"/i.exec($0);
+						var _data_type = /data-type="([^"]+)"/i.exec($0);
+						var _data_filename = /data-filename="([^"]+)"/i.exec($0);
+						var _html = '<a data-type="' + _data_type[1] + '" data-filename="' + _data_filename[1] + '" href="' + _data_url[1] + '" target="_blank"><img src="http://i1.daumcdn.net/icon/editor/p_jpg_s.gif?rv=1.0.1"> ' + _data_filename[1] + '</a>';
+						return _html;
+					});
+				}
+				else if (type == 'encode') {
+					var ptn = /<a([^>]+)>(.*?)<\/a>/gim;
+					_html = html.replace(ptn, function ($0, $1) {
+						if ($0.indexOf('data-type') == -1) return $0;
+						var _data_url = /href="([^"]+)"/i.exec($0);
+						var _data_type = /data-type="([^"]+)"/i.exec($0);
+						var _data_filename = /data-filename="([^"]+)"/i.exec($0);
+						var _html = '<button type="button" data-type="' + _data_type[1] + '" data-filename="' + _data_filename[1] + '" data-url="' + _data_url[1] + '"><img src="http://i1.daumcdn.net/icon/editor/p_jpg_s.gif?rv=1.0.1">' + _data_filename[1] + '</button>';
+						return _html;
+					});
+				}
+				return _html;
+			},
+			embedByClient: function (html, type) {
+				var oSelf = this.oSelf;
+				if (type == 'encode') { }
+				else if (type == 'decode') {
+					var ptn = /<object([^>]+|)>([\s\S]*?)<\/object>/gim;
+					html = html.replace(ptn, function ($0, $1) {
+						$_0 = $0.replace(/"|'/g, '');
+						var mWidth = /width=\b(\S+?)\b/.exec($_0);
+						var W = mWidth == null ? 300 : mWidth[1];
+						var mHeight = /height=\b(\S+?)\b/.exec($_0);
+						var H = mHeight == null ? 300 : mHeight[1];
+						var _html = '<img movieType="custom" media="' + encodeURIComponent($0) + '" src="' + oSelf.Config.imgPATH + 'spacer.gif" class="SE_flash" style="width:' + W + 'px;height: ' + H + 'px;" />';
+						return _html;
+					}.bind2(this));
+					var ptn = /<embed([^>]+|)>([\s\S]*?)<\/embed>/gim;
+					html = html.replace(ptn, function ($0, $1) {
+						$_0 = $0.replace(/"|'/g, '');
+						var mWidth = /width=\b(\S+?)\b/.exec($_0);
+						var W = mWidth == null ? 300 : mWidth[1];
+						var mHeight = /height=\b(\S+?)\b/.exec($_0);
+						var H = mHeight == null ? 300 : mHeight[1];
+						var _html = '<img movieType="custom" media="' + encodeURIComponent($0) + '" src="' + oSelf.Config.imgPATH + 'spacer.gif" class="SE_flash" style="width:' + W + 'px;height: ' + H + 'px;" />';
+						NN.Utils.debug('[layout.toggleRegExp.embedClient]', _html);
+						return _html;
+					}.bind2(this));
+				}
+				return html;
+			},
+			embed: function (html, type) {
+				if (type == 'encode') {
+					html = html.replace(/<img[^>]*>/gi, function ($0) {
+						if ($0.toUpperCase().indexOf('MEDIA') == -1) return $0;
+						var m = $0.match(/movietype="([^"]+)"/i);
+						var T = m[1] || '';
+						var m = $0.match(/media="([^"]+)"/i);
+						var URL = m[1] || '';
+						if (T == 'custom') {
+							var new_html = decodeURIComponent(URL);
+						}
+						else {
+							var m3 = $0.match(/width:\s?(\S+)px/i);
+							if (m3 == null) var m3 = m[i].match(/width="([^"]+)"/i);
+							var W = m3 && m3[1] || '';
+							var m4 = $0.match(/height:\s?(\S+)px/i);
+							if (m4 == null) var m4 = m[i].match(/height="([^"]+)"/i);
+							var H = m4 && m4[1] || '';
+							var new_html = '[MEDIA]' + URL + '|' + W + '|' + H + '|' + T + '[/MEDIA]';
+						}
+						return new_html;
+					});
+				}
+				else if (type == 'decode') {
+					var ptn = /\[MEDIA\]([^\]]+)\[\/MEDIA\]/gim;
+					html = html.replace(ptn, function ($0, $1) {
+						var a = $1.split('|');
+						return '<img movieType="' + a[3] + '" media="' + a[0] + '" src="' + this.oSelf.Config.imgPATH + 'spacer.gif" class="SE_flash" style="width: ' + a[1] + 'px; height: ' + a[2] + 'px;" />';
+					}.bind2(this));
+				}
+				return html;
+			}
+		},
+		html2text: function (html, opt) {
+			opt = opt || {
+				'bbcode': true
+			};
+			html = this.makeCorrectTag(html);
+			if (opt.bbcode == true) {
+				html = this.bbcode(html, 'encode');
+			}
+			return html;
+		},
+		makeCorrectTag: function (html) {
+			html = html.replace(/<body[^>]*>|<\/body>/g, "");
+			html = html.replace(/<html[^>]*>|<\/html>/g, "");
+			html = html.replace(/<head[^>]*>|<\/head>/g, "");
+			html = html.replace(new RegExp("<br>", "gi"), "<br />");
+			html = html.replace(/class="Apple-style-span"/gi, '');
+			html = html.replace(/class="webkit-block-placeholder"/g, '');
+			html = html.replace(/br class="webkit-block-placeholder"/g, 'br /');
+			html = html.replace(/<(div|p)><br \/><\/(div|p)>/g, '<$1><br></$1>');
+			html = html.replace(/<(div|p)([^>]+)><br \/><\/(div|p)>/g, '<$1$2><br></$1>');
+			html = html.replace(new RegExp("([^> ])&nbsp;([^ ])", "gi"), "$1 $2");
+			html = html.replace(new RegExp("<i( [^>]*?)?>(.*?)</i>", "gi"), "<em$1>$2</em>");
+			html = html.replace(new RegExp("<u( [^>]*?)?>(.*?)</u>", "gi"), "<ins$1>$2</ins>");
+			html = html.replace(new RegExp("<strike( [^>]*?)?>(.*?)</strike>", "gi"), "<del$1>$2</del>");
+			html = html.replace(new RegExp("<o:p([^>]*?)>(.*?)</o:p>", "gi"), "<p>$2</p>");
+			html = html.replace(new RegExp("<v:([^>]*?)>(.*?)</v:([^>]*?)>", "gi"), "");
+			html = html.replace(new RegExp("<o:([^>]*?)>(.*?)</o:([^>]*?)>", "gi"), "");
+			html = html.replace(new RegExp("(<br\\s*/>)+\\s*(</(p|div|li|blockquote)(|\\s+[^>]+))", "gi"), "$2");
+			var filterList = [
+				[new RegExp("&amp;", "g"), '&']
+			];
+			var tmp = html;
+			for (i = 0; i < filterList.length; i++) {
+				tmp = tmp.replace(filterList[i][0], filterList[i][1]);
+			}
+			return tmp;
+		},
+		text2html: function (html) {
+			var
+				t = this,
+				ed = this.oSelf;
+			html = this.bbcode(html, 'decode');
+			if (html.search(/<style/i) > -1) {
+				html = "\ufeff" + html;
+			}
+			if (html.search(/<script/i) > -1) {
+				html = "\ufeff" + html;
+			}
+			return html;
+		},
+		bbcode: function (html, mode) {
+			try {
+				NN.Utils.debug('[view.bbcode]', mode);
+				if (this.oSelf.getOpt('bbcodeUseFlag') == false) return html;
+				switch (mode) {
+					default:
+					case 'encode':
+						html = this.toggleRegExp.embed(html, 'encode');
+						html = this.toggleRegExp.file(html, 'decode');
+						break;
+					case 'decode':
+						var ptn = /\[img\]([^\]]+)\[\/img\]/gim;
+						html = html.replace(ptn, function ($0, $1) {
+							var a = $1.split('|');
+							return '<img hspace="5" vspace="0" src="' + a[0] + '" style="width: ' + a[1] + 'px; height: ' + a[2] + 'px;" alt="" />';
+						});
+						html = this.toggleRegExp.embed(html, 'decode');
+						html = this.toggleRegExp.embedByClient(html, 'decode');
+						html = this.toggleRegExp.file(html, 'encode');
+						break;
+				}
+			}
+			catch (e) {
+				NN.Utils.debug('[view.bbcode]', 'bbcode error: ', e);
+			}
+			return html;
+		},
+		checkAllowedTag: function (html) {
+			return html;
+			html = html.replace(/(<[^>]+>)/gi, function ($0) {
+				var a = this.oSelf.Config.allowedTag;
+				for (var i = 0, v = $0.toLowerCase(), t = a.length; i < t; i++) {
+					if (v.indexOf(a[i].toLowerCase()) != -1) {
+						return $0;
+					}
+				}
+				return '[사용할 수 없습니다.]';
+			}.bind2(this));
+			return html;
+		},
+		design: function () {
+			if (this.oSelf.getOpt('mode') == 'design') return;
+			this.oSelf.setOpt('mode', 'design');
+			this.oSelf.getIF().style.display = 'block';
+			this.oSelf.getText().style.display = 'none';
+			this.oSelf.getIFDoc().body.innerHTML = this.parsing(2);
+			this.oSelf.oSelection.focus();
+		},
+		source: function () {
+			if (this.oSelf.getOpt('mode') == 'source') return;
+			this.oSelf.setOpt('mode', 'source');
+			this.oSelf.getIF().style.display = 'none';
+			this.oSelf.getText().style.width = NN.Utils.g(this.oSelf.Config.instanceID + '_toolbar_container').offsetWidth + 'px';
+			this.oSelf.getText().style.height = NN.Utils.getStyle(this.oSelf.getIF(), 'height');
+			this.oSelf.getText().style.display = 'block';
+			this.oSelf.getText().focus();
+			var o = document.createElement('div');
+			with (o) {
+				id = this.oSelf.Config.instanceID + '_TOOLBAR_HOLDER';
+				style.top = 0;
+				if (NN.Browser.MSIE) style.left = 0;
+				style.width = NN.Utils.g(this.oSelf.Config.instanceID + '_toolbar_container').offsetWidth + 'px';
+				style.height = NN.Utils.g(this.oSelf.Config.instanceID + '_toolbar_container').offsetHeight + 'px';
+				style.backgroundColor = '#ffffff';
+				style.opacity = 0.8;
+				style.filter = "alpha(opacity=80)";
+				style.position = 'absolute';
+				style.zIndex = 2;
+			}
+			NN.Utils.g(this.oSelf.Config.instanceID + '_toolbar_container').appendChild(o);
+			var objRmBtn = this.oSelf.getOpt('rmBtn');
+			if (objRmBtn.search('mode') == -1) {
+				var o = document.createElement('div');
+				with (o) {
+					id = this.oSelf.Config.instanceID + '_TOOLBAR_RECOVER';
+					className = 'nneditor-toolbar-recover';
+					innerHTML = '<table align="center" border="0" cellpadding="0" cellspacing="0"><tr><td><img src="' + this.oSelf.Config.imgPATH + 'spacer.gif" class="img_button mode"/></td><td>Source</td></tr></table>';
+				}
+				var func = this.evtRecoverMode.bind2(this);
+				this.oSelf.oEvent.add(o, 'click', func);
+				NN.Utils.g(this.oSelf.Config.instanceID + '_toolbar_container').appendChild(o);
+			}
+		},
+		evtRecoverMode: function () {
+			var oHolder, oRecover;
+			oHolder = NN.Utils.g(this.oSelf.Config.instanceID + '_TOOLBAR_HOLDER');
+			oRecover = NN.Utils.g(this.oSelf.Config.instanceID + '_TOOLBAR_RECOVER');
+			if (oHolder != null) oHolder.parentNode.removeChild(NN.Utils.g(this.oSelf.Config.instanceID + '_TOOLBAR_HOLDER'));
+			if (oRecover != null) oRecover.parentNode.removeChild(NN.Utils.g(this.oSelf.Config.instanceID + '_TOOLBAR_RECOVER'));
+			setTimeout(function () {
+				if (NN.Browser.Firefox) this.getIFDoc().execCommand('enableInlineTableEditing', false, false);
+			}.bind2(this.oSelf), 50);
+			this.design();
+		},
+		html: function () {
+			if (this.oSelf.getOpt('mode') == 'source') return;
+			var html = this.preview();
+			var initHTML = '\
+			<html>\
+				<head>\
+					<meta http-equiv="content-type" content="text/html; charset=utf-8" />\
+					<title>' + NNEditor_Lang['html'] + '</title>\
+					<!--[if ie]>\
+					<style type="text/css">\
+					html {\
+						overflow: scroll;\
+						overflow-x: hidden;\
+					}\
+					</style>\
+					<![endif]-->\
+					<style type="text/css">\
+						@import "' + NN.urlCore + 'css/iframe.css";\
+					</style>\
+				</head>\
+				<body>' + html + '</body>\
+			</html>';
+			myWin = window.open("", "_", "width=800, height=600, left=0 top=0, scrollbars=1, resizable=1, statusbar=1");
+			if (myWin) {
+				myWin.document.open();
+				myWin.document.write(initHTML);
+				myWin.document.close();
+				myWin.focus();
+			}
+		},
+		full: function () {
+			var oCon = this.oSelf.getCon();
+			var oIF = this.oSelf.getIF();
+			if (typeof this.fullMode == 'undefined') {
+				var scrollTop = NN.Utils.getPageScroll();
+				this.oConSave = {
+					'position': NN.Utils.getStyle(oCon, 'position'),
+					'top': NN.Utils.getStyle(oCon, 'top') + scrollTop,
+					'left': NN.Utils.getStyle(oCon, 'left'),
+					'width': NN.Utils.getStyle(oCon, 'width'),
+					'height': NN.Utils.getStyle(oCon, 'height'),
+					'zIndex': NN.Utils.getStyle(oCon, 'zIndex')
+				};
+				this.oConSave2 = {
+					'width': NN.Utils.getStyle(oIF, 'width'),
+					'height': NN.Utils.getStyle(oIF, 'height')
+				};
+				try {
+					var left = oCon.offsetParent.offsetLeft;
+					var top = oCon.offsetParent.offsetTop;
+					var top = scrollTop - top;
+					if (top == scrollTop) {
+						top = scrollTop;
+					}
+					else {
+						top = -(scrollTop - top);
+					}
+				}
+				catch (e) {
+					var left = 0;
+					var top = 0;
+				}
+				var size = NN.Utils.getPageSize();
+				with (oCon) {
+					style.position = 'absolute';
+					style.top = top + 'px';
+					style.left = -(left) + 'px';
+					style.width = size[2] + 'px';
+					style.height = size[3] + 'px';
+					style.zIndex = 20000;
+				}
+				with (oIF) {
+					style.width = size[2] + 'px';
+					style.height = size[3] - 80 + 'px';
+				}
+				var oConBak = document.createElement('div');
+				oConBak.setAttribute('id', 'nneditorDivBak');
+				oConBak.style.height = NN.Utils.getStyle(oCon, 'height');
+				this.oConBakParentNode = oCon.parentNode;
+				this.oConBakParentNode.appendChild(oConBak);
+				this.fullMode = true;
+			}
+			else {
+				with (oCon) {
+					style.position = this.oConSave.position;
+					style.top = '';
+					style.left = '';
+					style.width = this.oConSave.width;
+					style.height = '';
+					style.zIndex = '';
+				}
+				with (oIF) {
+					style.width = this.oConSave2.width;
+					style.height = this.oConSave2.height;
+				}
+				if (NN.Utils.g('nneditorDivBak')) this.oConBakParentNode.removeChild(NN.Utils.g('nneditorDivBak'));
+				delete this.fullMode;
+				delete this.oConBakParentNode;
+			}
+		},
+		toggleEditorMode: function (type) {
+			if (type == 'w') {
+				this.evtRecoverMode();
+			}
+			else if (type == 't') {
+				this.source();
+			}
+		}
+	};
+	this.exec = {
+		'oSelf': this,
+		'close': function () {
+			var layerID = this.oSelf.layer.options['__TARGET_ID__'];
+			this.oSelf.layer.close(layerID);
+		},
+		'basic': function (command, value) {
+			var
+				t = this,
+				ed = this.oSelf,
+				s = ed.oSelection,
+				r = s.getRng();
+			ed.save.saveHistory(true);
+			s.focus();
+			value = value || false;
+			if (!NN.Browser.MSIE && (command == 'cut' || command == 'copy' || command == 'paste')) {
+				try {
+					ed.getIFDoc().execCommand(command, false, '');
+				}
+				catch (e) {
+					var keyboard = '';
+					var command = '';
+					switch (command) {
+						case 'cut':
+							keyboard = 'x';
+							command = '자르기';
+							break;
+						case 'copy':
+							keyboard = 'c';
+							command = '복사';
+							break;
+						case 'Paste':
+							keyboard = 'v';
+							command = '붙이기';
+							break;
+					}
+					alert('사용하고 계신 브라우저에서는 \'' + command + '\' 명령을 사용하실 수 없습니다. \n' + '키보드 단축키를 이용하여 주세요. \(윈도 사용자: Ctrl + ' + keyboard + ', 맥킨토시 사용자: Apple + ' + keyboard + '\)');
+				}
+				return;
+			}
+			ed.getIFDoc().execCommand(command, false, value);
+		},
+		'indent': function () {
+			this.oSelf.save.saveHistory(true);
+			var
+				t = this.oSelf,
+				s = t.oSelection,
+				iv = t.getOpt('indent'),
+				iu;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			var objTarget = this.oSelf.oSelection.getNode();
+			if (typeof objTarget == 'undefined') return;
+			iu = /[a-z%]+$/i.exec(iv);
+			iv = parseInt(iv);
+			eachjQuery(s._getSelectedBlocks(), function (e) {
+				e.style.paddingLeft = (parseInt(e.style.paddingLeft || 0) + iv) + iu;
+			});
+			s.focus();
+		},
+		'outdent': function () {
+			this.oSelf.save.saveHistory(true);
+			var
+				t = this.oSelf,
+				s = t.oSelection,
+				iv = t.getOpt('indent'),
+				iu,
+				v;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			var objTarget = this.oSelf.oSelection.getNode();
+			if (typeof objTarget == 'undefined') return;
+			iu = /[a-z%]+$/i.exec(iv);
+			iv = parseInt(iv);
+			eachjQuery(s._getSelectedBlocks(), function (e) {
+				v = Math.max(0, parseInt(e.style.paddingLeft || 0) - iv);
+				e.style.paddingLeft = v ? v + iu : '';
+			});
+			s.focus();
+		},
+		'fonttype': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '글자 종류',
+				'width': '255',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					var
+						arrayF = this.oSelf.oSelf.getOpt('fonttype'),
+						oCon = NN.Utils.g('_contents_id_nullLayerPage');
+					for (i in arrayF) {
+						if (arrayF.hasOwnProperty(i) == false) continue;
+						var o = document.createElement('div');
+						with (o.style) {
+							cursor = 'pointer';
+							fontFamily = i;
+							fontSize = '12pt';
+							padding = '2px';
+						};
+						o.title = arrayF[i];
+						o.innerHTML = i + ' (' + NNEditor_Lang['fontex'] + ')';
+						oCon.appendChild(o);
+					}
+					this.oSelf.oSelf.oEvent.add(oCon, 'mouseover', this.oSelf.oSelf.Events.mouseoverBGcolor, 'static');
+					this.oSelf.oSelf.oEvent.add(oCon, 'mouseout', this.oSelf.oSelf.Events.mouseoutBGcolor, 'static');
+					this.oSelf.oSelf.oEvent.add(oCon, 'click', this.oSelf.oSelf.Events.evtFonttype, 'static');
+				}
+			});
+		},
+		'evtFonttype': function (e) {
+			this.save.saveHistory(true);
+			var
+				s = this.oSelection,
+				oCon = NN.Utils.g('_contents_id_nullLayerPage');
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			var o = e.target || e.srcElement;
+			NN.Utils.g('fonttypePanel').firstChild.nodeValue = o.getAttribute('title').split(',')[0].substr(0, 4);
+			s.surroundText('span', {
+				'style': {
+					'fontFamily': o.getAttribute('title')
+				}
+			});
+			removeEvent(oCon, 'mouseover', this.Events.mouseoverBGcolor, true);
+			removeEvent(oCon, 'mouseout', this.Events.mouseoutBGcolor, true);
+			removeEvent(oCon, 'click', this.Events.evtFonttype, true);
+			this.exec.close();
+		},
+		'fontsize': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '글자크기',
+				'width': '355',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					var
+						arrayF = this.oSelf.oSelf.getOpt('fontmap'),
+						oCon = NN.Utils.g('_contents_id_nullLayerPage');
+					for (var i = 0, t = arrayF.length; i < t; i++) {
+						var v = arrayF[i];
+						var o = document.createElement('div');
+						with (o) {
+							style.fontFamily = 'gulim';
+							style.fontSize = v + 'pt';
+							style.lineHeight = 1.0;
+							style.cursor = 'pointer';
+						};
+						o.innerHTML = '<div style="font-size: ' + v + 'pt" rel="' + v + '">' + NNEditor_Lang['fontex2'] + ' (' + v + 'pt)</div>';
+						oCon.appendChild(o);
+					}
+					this.oSelf.oSelf.oEvent.add(oCon, 'mouseover', this.oSelf.oSelf.Events.mouseoverBGcolor, 'static');
+					this.oSelf.oSelf.oEvent.add(oCon, 'mouseout', this.oSelf.oSelf.Events.mouseoutBGcolor, 'static');
+					this.oSelf.oSelf.oEvent.add(oCon, 'click', this.oSelf.oSelf.Events.evtFontsize, 'static');
+				}
+			});
+		},
+		'evtFontsize': function (e) {
+			this.save.saveHistory(true);
+			var
+				s = this.oSelection,
+				oCon = NN.Utils.g('_contents_id_nullLayerPage');
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			var o = e.target || e.srcElement;
+			NN.Utils.g('fontsizePanel').firstChild.nodeValue = o.getAttribute('rel') + 'pt';
+			s.surroundText('span', {
+				'style': {
+					'fontSize': o.getAttribute('rel') + 'pt'
+				}
+			});
+			removeEvent(oCon, 'mouseover', this.Events.mouseoverBGcolor, true);
+			removeEvent(oCon, 'mouseout', this.Events.mouseoutBGcolor, true);
+			removeEvent(oCon, 'click', this.Events.evtFontsize, true);
+			this.exec.close();
+		},
+		'fontcolor': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '글자색상',
+				'width': '240',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.color;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_colorPanel'), 'click', this.oSelf.oSelf.Events.evtPickColor, 'static');
+				}
+			});
+		},
+		'evtPickColor': function (e, mode) {
+			this.save.saveHistory(true);
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			if (typeof mode == 'undefined') {
+				var o = e.target || e.srcElement;
+				NN.Utils.g(this.Config.instanceID + '_content_forecolor_preview').style.backgroundColor = o.getAttribute('bgcolor');
+				s.surroundText('span', {
+					'style': {
+						'color': o.getAttribute('bgColor')
+					}
+				});
+			}
+			else if (mode == 'direct') {
+				s.surroundText('span', {
+					'style': {
+						'color': NN.Utils.g(this.Config.instanceID + '_content_forecolor_preview').style.backgroundColor
+					}
+				});
+			}
+			removeEvent(NN.Utils.g('_colorPanel'), 'click', this.Events.evtPickColor, true);
+			this.exec.close();
+		},
+		'evtPickColorDirect': function () {
+			this.oSelf.save.saveHistory(true);
+			var s = this.oSelf.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			s.surroundText('span', {
+				'style': {
+					'color': NN.Utils.getStyle(NN.Utils.g(this.oSelf.Config.instanceID + '_content_forecolor_preview'), NN.Browser.MSIE ? 'backgroundColor' : 'background-color')
+				}
+			});
+		},
+		'fontbgcolor': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '글자배경색상',
+				'width': '240',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.colorAddOn + '<div class="clear"/>' + this.oSelf.oSelf.panel.color;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_colorPanel'), 'click', this.oSelf.oSelf.Events.evtBgColor, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_colorAddOnPanel'), 'click', this.oSelf.oSelf.Events.evtPickColor2, 'static');
+				}
+			});
+		},
+		'evtBgColor': function (e) {
+			this.save.saveHistory(true);
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			var o = e.target || e.srcElement;
+			NN.Utils.g(this.Config.instanceID + '_content_bgcolor_preview').style.backgroundColor = o.getAttribute('bgcolor');
+			s.surroundText('span', {
+				'style': {
+					'backgroundColor': o.getAttribute('bgcolor')
+				}
+			});
+			removeEvent(NN.Utils.g('_colorPanel'), 'click', this.Events.evtBgColor, true);
+			removeEvent(NN.Utils.g('_colorAddOnPanel'), 'click', this.Events.evtPickColor2, true);
+			this.exec.close();
+		},
+		'evtBgColorDirect': function () {
+			this.oSelf.save.saveHistory(true);
+			var s = this.oSelf.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			s.surroundText('span', {
+				'style': {
+					'backgroundColor': NN.Utils.getStyle(NN.Utils.g(this.oSelf.Config.instanceID + '_content_bgcolor_preview'), NN.Browser.MSIE ? 'backgroundColor' : 'background-color')
+				}
+			});
+		},
+		'evtPickColor2': function (e, bgcolor, forecolor) {
+			this.save.saveHistory(true);
+			var o = e.target || e.srcElement;
+			var o = NN.DOM.schNode(o, 'button'); // webkit에서 span 반환
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			s.surroundText('span', {
+				'style': {
+					'backgroundColor': o.getAttribute('argv1'),
+					'color': o.getAttribute('argv2')
+				}
+			});
+			removeEvent(NN.Utils.g('_colorPanel'), 'click', this.Events.evtBgColor, true);
+			removeEvent(NN.Utils.g('_colorAddOnPanel'), 'click', this.Events.evtPickColor2, true);
+			this.exec.close();
+		},
+		'link': function () {
+			var s = this.oSelf.oSelection;
+			if (s.isCollapsed()) s.select(s.getNode());
+			this.oSelf.layer.empty({
+				'__TITLE__': '하이퍼링크',
+				'width': '290',
+				'oSelf': this,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.link;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtLink, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', this.oSelf.oSelf.Events.close, 'static');
+					NN.Utils.g('_link_url').focus();
+					this.oSelf.oSelf.modify.link();
+				}
+			});
+		},
+		'evtLink': function () {
+			this.save.saveHistory(true);
+			var
+				s = this.oSelection,
+				url = NN.Utils.g('_link_url').value,
+				target = NN.Utils.g('_link_target').value;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			var e = NN.DOM.getParent(s.getNode(), 'A');
+			if (url.indexOf('//') == -1) url = 'http://' + url;
+			var v = {
+				href: url,
+				'target': target
+			};
+			function set(e) {
+				eachjQuery(v, function (v, k) {
+					e.setAttribute(k, v);
+				});
+			};
+			if (!e && v.href.replace('http://', '')) {
+				this.exec.basic('CreateLink', 'javascript:setmp(0);');
+				eachjQuery(this.getIFDoc().getElementsByTagName('a'), function (e) {
+					if (e.href == 'javascript:setmp(0);') {
+						set(e);
+					}
+				});
+			}
+			else {
+				if (v.href.replace('http://', '')) {
+					set(e);
+				}
+				else {
+					NN.DOM.remove(e, 1);
+				}
+			}
+			removeEvent(NN.Utils.g('_insert'), 'click', this.Events.evtLink, true);
+			this.exec.close();
+		},
+		'unlink': function () {
+			this.oSelf.save.saveHistory(true);
+			var
+				t = this.oSelf,
+				s = t.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			if (s.isCollapsed()) s.select(s.getNode());
+			t.getIFDoc().execCommand('unlink', false, null);
+		},
+		'movie': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '플래쉬 삽입',
+				'width': '390',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.movie;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtMovie, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', this.oSelf.oSelf.Events.close, 'static');
+					var foo = function () {
+						switch (NN.Utils.chkbox({
+							'name': 'movieType',
+							'mode': 'val'
+						})) {
+							case 'src':
+								NN.Utils.g('_movieURL').style.backgroundColor = '#778899';
+								NN.Utils.g('_movieWidth').style.backgroundColor = '#778899';
+								NN.Utils.g('_movieHeight').style.backgroundColor = '#778899';
+								NN.Utils.g('_movieSRC').style.backgroundColor = '#ffffff';
+								NN.Utils.g('_movieSRC').focus();
+								break;
+							case 'url':
+								NN.Utils.g('_movieURL').style.backgroundColor = '#ffffff';
+								NN.Utils.g('_movieWidth').style.backgroundColor = '#ffffff';
+								NN.Utils.g('_movieHeight').style.backgroundColor = '#ffffff';
+								NN.Utils.g('_movieSRC').style.backgroundColor = '#778899';
+								NN.Utils.g('_movieURL').focus();
+								break;
+						}
+					}.bind2(this.oSelf);
+					foo();
+					var o = document.getElementsByName('movieType');
+					for (var i = 0, t = o.length; i < t; i++) {
+						this.oSelf.oSelf.oEvent.add(o[i], 'click', foo, 'static');
+					}
+				}
+			});
+		},
+		'evtMovie': function () {
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			this.save.saveHistory(true);
+			var movieType = NN.Utils.chkbox({
+				'name': 'movieType',
+				'mode': 'val'
+			});
+			switch (movieType) {
+				case 'src':
+					if (!NN.Utils.g('_movieSRC').value) {
+						alert(NNEditor_Lang['evtMovie_1']);
+						NN.Utils.g('_movieSRC').focus();
+						return;
+					}
+					var mWidth = /width=['"]?([0-9]{1,5})['"]?/.exec(NN.Utils.g('_movieSRC').value);
+					if (mWidth == null) {
+						alert(NNEditor_Lang['evtMovie_2']);
+						return;
+					}
+					var mHeight = /height=['"]?([0-9]{1,5})['"]?/.exec(NN.Utils.g('_movieSRC').value);
+					if (mHeight == null) {
+						alert(NNEditor_Lang['evtMovie_3']);
+						return;
+					}
+					var val = NN.Utils.g('_movieSRC').value.replace(/<img[^>]*>/gi, '');
+					var
+						W = mWidth[1].replace(/'|"|px/g, ''),
+						H = mHeight[1].replace(/'|"|px/g, '');
+					var movie = '<img movieType="' + movieType + '" media="' + encodeURIComponent(val) + '" src="' + this.Config.imgPATH + 'spacer.gif" class="SE_flash" style="width:' + W + 'px;height: ' + H + 'px;" />';
+					break;
+				case 'url':
+					if (!NN.Utils.g('_movieURL').value) {
+						alert(NNEditor_Lang['evtMovie_4']);
+						NN.Utils.g('_movieURL').focus();
+						return;
+					}
+					var movie = '<img movieType="' + movieType + '" media="' + NN.Utils.g('_movieURL').value + '" src="' + this.Config.imgPATH + 'spacer.gif" class="SE_flash" style="width:' + NN.Utils.g('_movieWidth').value + 'px;height: ' + NN.Utils.g('_movieHeight').value + 'px;" />';
+					break;
+			}
+			s.pasteContent(movie, true);
+			this.layout.makeContent();
+			removeEvent(NN.Utils.g('_insert'), 'click', this.Events.evtMovie, true);
+			this.exec.close();
+		},
+		'image': function (evt) {
+			if (this.oSelf.getOpt('uploadPath') == null) {
+				alert(NNEditor_Lang['image_1']);
+				return;
+			}
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '이미지설정',
+				'width': '250',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.image;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtImage, 'static');
+				}
+			});
+		},
+		'evtImage': function () {
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			this.save.saveHistory(true);
+			var todayDate = new Date();
+			var ty = todayDate.getFullYear();
+			var tm = todayDate.getMonth() + 1;
+			var td = todayDate.getDate();
+			if (tm < 10) tm = '0' + tm;
+			if (td < 10) td = '0' + td;
+			var d = ty.toString() + tm.toString() + td.toString();
+			var oIFDoc = this.$(NN.Utils.g('_uploadIFrame'));
+			var oFile = oIFDoc.getElementsByName('uploaded');
+			if (oFile.length == 0) {
+				s.focus();
+				this.exec.close();
+				return;
+			}
+			var imgURL = this.Config.uploadURL == '' ? this.Config.path + 'filemanager2/data/' : this.Config.uploadURL;
+			for (var i = 0, str = '', html = [], t = oFile.length; i < t; i++) {
+				var arr = oFile[i].value.split('|');
+				var URL = arr[0];
+				if (!arr[1]) continue;
+				var arr2 = arr[1].split('/');
+				var W = parseInt(arr2[0]);
+				var H = parseInt(arr2[1]);
+				if (NN.Utils.g('_chk').checked == true && W > this.getIF().offsetWidth) {
+					var ratio = W / this.getIF().offsetWidth;
+					W = this.getIF().offsetWidth - 45;
+					H = Math.round(H / ratio);
+				}
+				str = '<img hspace="5" vspace="0" src="' + imgURL + d + '/' + URL + '" style="width: ' + W + 'px; height: ' + H + 'px;" />';
+				html.push(str);
+				var chk = true;
+			}
+			if (chk == true) s.pasteContent2(html.join(''));
+			s.focus();
+			this.getText().value = this.getIFDoc().body.innerHTML;
+			removeEvent(NN.Utils.g('_insert'), 'click', this.Events.evtImage, true);
+			this.exec.close();
+		},
+		'imageAttri': function (evt) {
+			var oTarget = evt.target || evt.srcElement;
+			this.targetImage = oTarget;
+			if (!(oTarget.tagName && oTarget.tagName.toUpperCase() == 'IMG')) {
+				return;
+			}
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '이미지설정',
+				'width': '250',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.imageAttri;
+					var align = oTarget.style.cssFloat ? oTarget.style.cssFloat : oTarget.style.styleFloat;
+					if (!align) align = oTarget.style.verticalAlign ? oTarget.style.verticalAlign : oTarget.getAttribute('align');
+					var border = oTarget.style.borderWidth ? oTarget.style.borderWidth.match("[0-9]+") : oTarget.getAttribute("border");
+					switch (align) {
+						case 'left':
+							NN.Utils.g("align_left").checked = true;
+							break;
+						case 'right':
+							NN.Utils.g("align_right").checked = true;
+							break;
+						default:
+							NN.Utils.g("align_normal").checked = true;
+							break;
+					}
+					if (border) {
+						NN.Utils.g('image_border').value = border;
+					}
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtImageAttri, 'static');
+				}
+			});
+		},
+		'evtImageAttri': function () {
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			this.save.saveHistory(true);
+			var html = [];
+			var align = '';
+			if (NN.Utils.g('align_normal').checked == true) {
+				align = 'clear: both';
+				this.exec.targetImage.setAttribute('align', '');
+			}
+			else if (NN.Utils.g('align_left').checked == true) {
+				align = 'clear: left';
+				this.exec.targetImage.setAttribute('align', 'left');
+			}
+			else if (NN.Utils.g('align_right').checked == true) {
+				align = 'clear: right';
+				this.exec.targetImage.setAttribute('align', 'right');
+			}
+			if (align) {
+				html.push(align);
+			}
+			var border = parseInt(NN.Utils.g('image_border').value, 10);
+			if (border) {
+				html.push('border-color: rgb(255, 255, 255); border-width: ' + border + 'px; border-style: solid');
+				this.exec.targetImage.setAttribute('border', border);
+			}
+			this.exec.targetImage.style.cssText = html.join(';');
+			this.exec.close();
+		},
+		'presentExcel': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': '엑셀파일내용(HTML) 넣기',
+				'width': '250',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.excel;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtPresentExcel, 'static');
+				}
+			});
+		},
+		'evtPresentExcel': function () {
+			var s = this.oSelection;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			this.save.saveHistory(true);
+			var html = NN.Utils.g('resultHTML').innerHTML;
+			s.pasteContent2(html);
+			removeEvent(NN.Utils.g('_insert'), 'click', this.Events.evtImage, true);
+			this.exec.close();
+		},
+		'help': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer;
+			l.empty({
+				'__TITLE__': 'help',
+				'width': '150',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.help;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', this.oSelf.oSelf.Events.close, 'static');
+				}
+			});
+		}
+	};
+	this.table = {
+		'oSelf': this,
+		'allowTag': ['th', 'td', 'tbody', 'table'],
+		'cur': {},
+		'getInfo': function () {
+			this.oSelf.oSelection.focus();
+			this.el = NN.DOM.schCellNode(this.oSelf.objModify);
+			try {
+				if (typeof this.el == 'undefined') throw 'this.el undefined';
+				if (this.allow(this.el) == false) throw 'allow this.el undefined';
+				if (typeof this.oSelf.objModify == 'undefined') throw 'this.oSelf.objModify undefined';
+				if (this.oSelf.objModify.parentNode == null) throw 'this.oSelf.objModify.parentNode undefined';
+				if (this.el.parentNode == null) throw 'this.oRow undefined';
+				if (typeof this.el.parentNode.rowIndex == 'undefined') throw 'this.oRow rowIndex undefined';
+				if (this.el.parentNode.parentNode == null) throw 'this.el.parentNode.parentNode undefined';
+			}
+			catch (e) {
+				return;
+			}
+			this.oTable = this.el.offsetParent;
+			this.oTbody = this.el.parentNode.parentNode;
+			this.oRow = this.el.parentNode;
+			this.oCell = this.el;
+			this.cssText = this.oCell.style.cssText || '';
+			this.cellbgcolor = this.oCell.getAttribute('bgcolor') || '#ffffff';
+			this.rowbgcolor = this.oRow.getAttribute('bgcolor') || '#ffffff';
+			this.oTarget = this.oTbody.rows[this.oRow.rowIndex].cells[this.oCell.cellIndex];
+			this.cur.colSpan = this.oTarget.getAttribute('colSpan') || 1;
+			this.cur.rowSpan = this.oTarget.getAttribute('rowSpan') || 1;
+			return true;
+		},
+		'allow': function (obj) {
+			var tname = obj.tagName.toLowerCase();
+			if (this.allowTag.search(tname) == -1) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		},
+		'contextmenu': function (e) {
+			this.objModify = this.oSelection.setCurClickObject();
+			NN.Utils.prevent(e);
+			if (e.button != 1) {
+				this.table.el = e.target || e.srcElement;
+				if (this.table.getInfo() == true) {
+					this.table.oSelf.layer.empty({
+						'__TITLE__': '메뉴',
+						'width': '160',
+						'oSelf': this.table,
+						'e': e,
+						'callback': function () {
+							NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.tableContext;
+							var lis = NN.Utils.g('_navmenu-h').getElementsByTagName('LI');
+							for (var i = 0; i < lis.length; i++) {
+								this.oSelf.oSelf.oEvent.add(lis[i], 'mouseover', this.oSelf.oSelf.Events.contextMouse);
+								this.oSelf.oSelf.oEvent.add(lis[i], 'mouseout', this.oSelf.oSelf.Events.contextMouse);
+							}
+							var func = function (e) {
+								var objEvent = e.srcElement || e.target;
+								if (!objEvent.getAttribute('rel')) return;
+								switch (objEvent.getAttribute('rel')) {
+									case 'table.popup':
+										this.oSelf.table.popup(e);
+										break;
+									case 'table.popupModify':
+										this.oSelf.table.popupModify(e);
+										break;
+									case 'table.delTable':
+										this.oSelf.table.delTable();
+										break;
+									case 'table.cellProp':
+										this.oSelf.table.cellProp(e);
+										break;
+									case 'table.merge':
+										this.oSelf.table.merge(e);
+										break;
+									case 'table.mergeRecover':
+										this.oSelf.table.mergeRecover(e);
+										break;
+									case 'table.rowProp':
+										this.oSelf.table.rowProp(e);
+										break;
+									case 'table.insertRow':
+										this.oSelf.table.insertRow(objEvent.getAttribute('argv1'));
+										break;
+									case 'table.deleteRow':
+										this.oSelf.table.deleteRow();
+										break;
+									case 'table.insertCell':
+										this.oSelf.table.insertCell(objEvent.getAttribute('argv1'));
+										break;
+									case 'table.deleteCol':
+										this.oSelf.table.deleteCol();
+										break;
+								}
+								NN.Utils.prevent(e);
+							}.bind2Event(this.oSelf);
+							this.oSelf.oSelf.oEvent.add(NN.Utils.g('_contents_id_nullLayerPage'), 'click', func, 'static');
+						}
+					});
+					returnValue = false;
+				}
+				else {
+					returnValue = true;
+				}
+			}
+			return returnValue;
+		},
+		'popup': function (evt) {
+			var
+				s = this.oSelf.oSelection,
+				l = this.oSelf.layer,
+				e = this.oSelf.exec;
+			l.empty({
+				'__TITLE__': '테이블',
+				'width': '240',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.table;
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtTable, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', function (e) {
+						removeEvent(this, 'click', arguments.callee, true);
+						this.oSelf.layer.close('_target_id_nullLayerPage');
+					}.bind2(this.oSelf), 'static');
+					var func = function (e) {
+						var objEvent = e.srcElement || e.target;
+						if (!objEvent.getAttribute('rel')) return;
+						switch (objEvent.getAttribute('rel')) {
+							case '_rowup':
+								this.oSelf.table.up('_table_row');
+								break;
+							case '_rowdown':
+								this.oSelf.table.down('_table_row');
+								break;
+							case '_colup':
+								this.oSelf.table.up('_table_col');
+								break;
+							case '_coldown':
+								this.oSelf.table.down('_table_col');
+								break;
+							case '_cellspacingup':
+								this.oSelf.table.up('_cellspacing');
+								break;
+							case '_cellspacingdown':
+								this.oSelf.table.down('_cellspacing');
+								break;
+							case 'picColor1':
+								this.oSelf.table.picColor(e, '_tablebgcolor', true);
+								break;
+							case 'picColor2':
+								this.oSelf.table.picColor(e, '_cellbgcolor', true);
+								break;
+						}
+						NN.Utils.prevent(e);
+					}.bind2Event(this.oSelf);
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_contents_id_nullLayerPage'), 'click', func, 'static');
+					NN.Utils.g('_tablePreview').innerHTML = this.oSelf.makeTableHTML('preview');
+					NN.Utils.g('_tablebgcolorPreview').style.backgroundColor = NN.Utils.g('_tablebgcolor').value;
+					NN.Utils.g('_cellbgcolorPreview').style.backgroundColor = NN.Utils.g('_cellbgcolor').value;
+				}
+			});
+		},
+		'evtTable': function (e) {
+			var
+				s = this.oSelection,
+				l = this.layer;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			this.save.saveHistory(true);
+			var tmpHtml = this.table.makeTableHTML('submit');
+			s.pasteContent(tmpHtml, true);
+			s.focus();
+			removeEvent(NN.Utils.g('_insert'), 'click', this.Events.evtTable, true);
+			l.close('_target_id_nullLayerPage');
+		},
+		'popupModify': function (evt) {
+			var
+				t = this,
+				ed = this.oSelf,
+				s = ed.oSelection,
+				l = ed.layer;
+			l.empty({
+				'width': '215',
+				'oSelf': this,
+				'e2': evt,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.tableModify;
+					var func = function (e) {
+						var objEvent = e.srcElement || e.target;
+						if (!objEvent.getAttribute('rel')) return;
+						switch (objEvent.getAttribute('rel')) {
+							case '_cellspacingup':
+								this.oSelf.table.up('_cellspacing');
+								break;
+							case '_cellspacingdown':
+								this.oSelf.table.down('_cellspacing');
+								break;
+							case 'picColor1':
+								this.oSelf.table.picColor(e, '_tablebgcolor', true);
+								break;
+							case 'picColor2':
+								this.oSelf.table.picColor(e, '_cellbgcolor', true);
+								break;
+						}
+						NN.Utils.prevent(e);
+					}.bind2Event(this.oSelf);
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_contents_id_nullLayerPage'), 'click', func, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtTableModify, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', function (e) {
+						removeEvent(this, 'click', arguments.callee, true);
+						this.oSelf.layer.close('_target_id_nullLayerPage');
+					}.bind2(this.oSelf), 'static');
+					this.oSelf.oSelf.modify.table();
+				}
+			});
+		},
+		'evtTableModify': function (e) {
+			var
+				s = this.oSelection,
+				l = this.layer,
+				t = this.table;
+			if (NN.Browser.MSIE && s.lastRange) s.focus();
+			this.save.saveHistory(true);
+			var W;
+			if (NN.Utils.g('_selWidthType').value == 'per') {
+				W = NN.Utils.g('_table_width').value + '%';
+			}
+			else {
+				W = NN.Utils.g('_table_width').value;
+			}
+			t.oTable.setAttribute('width', W);
+			t.oTable.setAttribute('bgColor', NN.Utils.g('_tablebgcolor').value);
+			t.oTable.setAttribute('cellSpacing', NN.Utils.g('_cellspacing').value);
+			t.oTable.style.borderSpacing = NN.Utils.g('_cellspacing').value + 'px';
+			t.oTable.style.borderCollapse = 'separate';
+			for (var i = 0, it = t.oTable.rows.length; i < it; i++) {
+				for (var j = 0, jt = t.oTable.rows[i].cells.length; j < jt; j++) {
+					t.oTable.rows[i].cells[j].setAttribute('bgColor', NN.Utils.g('_cellbgcolor').value);
+				}
+			}
+			removeEvent(NN.Utils.g('_insert'), 'click', this.Events.evtTableModify, true);
+			l.close('_target_id_nullLayerPage');
+		},
+		'makeTableHTML': function (mode) {
+			var html = '<table width="__width__" cellspacing="__cellspacing__" cellpadding="0" border="0" bgcolor="__tablebgcolor__" _moz_resizing="true" style="word-break: break-all;border-collapse:separate; border-spacing: __cellspacing__px;">\n<tbody>\n';
+			for (var row = 0, rowT = NN.Utils.g('_table_row').value; row < rowT; row++) {
+				html += '<tr bgcolor="__cellbgcolor__">\n';
+				for (var cell = 0, cellT = NN.Utils.g('_table_col').value; cell < cellT; cell++) {
+					html += '<td bgcolor="__cellbgcolor__" valign="top">&nbsp;</td>\n';
+				}
+				html += '</tr>\n';
+			}
+			var W;
+			if (NN.Utils.g('_selWidthType').value == 'per') {
+				W = NN.Utils.g('_table_width').value + '%';
+			}
+			else {
+				W = NN.Utils.g('_table_width').value;
+			}
+			if (mode == 'preview') {
+				W = '100%';
+			}
+			html += '</tbody>\n</table>\n';
+			html = html.replace(/__width__/gi, W);
+			html = html.replace(/__cellspacing__/gi, NN.Utils.g('_cellspacing').value);
+			html = html.replace(/__tablebgcolor__/gi, NN.Utils.g('_tablebgcolor').value);
+			html = html.replace(/__cellbgcolor__/gi, NN.Utils.g('_cellbgcolor').value);
+			return html;
+		},
+		'up': function (idTarget) {
+			var o = NN.Utils.g(idTarget);
+			o.value = parseInt((o.value || 0)) + 1;
+			if (NN.Utils.g('_tablePreview') != null) {
+				NN.Utils.g('_tablePreview').innerHTML = this.makeTableHTML('preview');
+			}
+		},
+		'down': function (idTarget) {
+			var o = NN.Utils.g(idTarget);
+			if (o.value == 1) return;
+			o.value = parseInt((o.value || 0)) - 1;
+			if (NN.Utils.g('_tablePreview') != null) {
+				NN.Utils.g('_tablePreview').innerHTML = this.makeTableHTML('preview');
+			}
+		},
+		'picColor': function (e, idTarget, notDestroy) {
+			this.oSelf.layer.empty({
+				'__TARGET_ID__': '_table_picColor_title',
+				'__CONTENTS_ID__': '_table_picColor',
+				'width': '198',
+				'oSelf': this,
+				'e2': e,
+				'notDestroy': notDestroy,
+				'callback': function () {
+					NN.Utils.g('_table_picColor').innerHTML = this.oSelf.oSelf.panel.color;
+					this.oSelf.oSelf.Events.table_evtPickColor = this.oSelf.evtPickColor.bind2Event(this.oSelf, idTarget, this.notDestroy);
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_colorPanel'), 'click', this.oSelf.oSelf.Events.table_evtPickColor, 'static');
+				}
+			});
+		},
+		'evtPickColor': function (e, idTarget, notDestroy) {
+			var o = e.target || e.srcElement;
+			var color = o.getAttribute('bgcolor');
+			NN.Utils.g(idTarget).value = color;
+			NN.Utils.g(idTarget + 'Preview').style.backgroundColor = color;
+			if (NN.Utils.g('_tablePreview') != null) {
+				NN.Utils.g('_tablePreview').innerHTML = this.makeTableHTML('preview');
+			}
+			removeEvent(NN.Utils.g('_colorPanel'), 'click', this.oSelf.Events.table_evtPickColor, true);
+			this.oSelf.layer.close('_table_picColor_title', notDestroy);
+		},
+		'merge': function (e) {
+			this.oSelf.layer.empty({
+				'__TITLE__': '셀합치기',
+				'width': '187',
+				'oSelf': this,
+				'e2': e,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.merge;
+					NN.Utils.g('_col').value = this.oSelf.oTarget.getAttribute('colSpan') || 1;
+					NN.Utils.g('_row').value = this.oSelf.oTarget.getAttribute('rowSpan') || 1;
+					this.oSelf.oSelf.Events.evtMergeCol = this.oSelf.evtMergeCol.bind2(this.oSelf);
+					this.oSelf.oSelf.Events.evtMergeRow = this.oSelf.evtMergeRow.bind2(this.oSelf);
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtMergeCol, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert2'), 'click', this.oSelf.oSelf.Events.evtMergeRow, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', function (e) {
+						removeEvent(this, 'click', arguments.callee, true);
+						this.oSelf.layer.close('_target_id_nullLayerPage');
+					}.bind2(this.oSelf), 'static');
+				}
+			});
+		},
+		'evtMergeCol': function () {
+			if (typeof this.el == 'undefined') return;
+			this.oSelf.save.saveHistory(true);
+			var numCol = NN.Utils.g('_col').value;
+			for (var i = 1; i < numCol; i++) {
+				var oTmp = this.oTbody.rows[this.el.parentNode.rowIndex].cells[this.el.cellIndex + i];
+				if (oTmp == null) {
+					var val = this.oRow.cells.length - this.el.cellIndex;
+					alert(NNEditor_Lang['evtMergeCol_1'] + '\n' + val + ' ' + NNEditor_Lang['evtMergeCol_2']);
+					NN.Utils.g('_col').value = val;
+					NN.Utils.g('_col').focus();
+					return;
+				}
+				if (this.cur.rowSpan != oTmp.rowSpan) {
+					alert('invalid');
+					return;
+				}
+			}
+			for (var i = 1, p = [], realColNum = this.el.colSpan, oTmp = this.el; i < numCol; i++) {
+				// for (var i = 1, p = [], oTmp = this.el; i < numCol; i++) {
+				while (oTmp) {
+					if (oTmp.nextSibling.tagName && oTmp.nextSibling.tagName.toUpperCase() == 'TD') {
+						realColNum += oTmp.nextSibling.colSpan;
+						break;
+					}
+					oTmp = oTmp.nextSibling;
+				}
+				p.push(oTmp.nextSibling);
+				oTmp = oTmp.nextSibling;
+			}
+			p.each2(function (o) {
+				o.parentNode.removeChild(o);
+			});
+			// this.oTarget.colSpan = numCol;
+			this.oTarget.colSpan = realColNum;
+			this.oSelf.exec.close();
+		},
+		'evtMergeRow': function () {
+			if (typeof this.el == 'undefined') return;
+			this.oSelf.save.saveHistory(true);
+			var numRow = NN.Utils.g('_row').value;
+			for (var i = 1; i < numRow; i++) {
+				var oTmp = this.oTbody.rows[this.oRow.rowIndex + i];
+				if (oTmp == null) {
+					var val = this.oTbody.rows.length - this.oRow.rowIndex;
+					alert(NNEditor_Lang['evtMergeRow_1'] + '\n' + val + ' ' + NNEditor_Lang['evtMergeRow_2']);
+					NN.Utils.g('_row').value = val;
+					NN.Utils.g('_row').focus();
+					return;
+				}
+				var oTmp = this.oTbody.rows[this.oRow.rowIndex + i].cells[this.oCell.cellIndex];
+				if (typeof oTmp == 'undefined') {
+					var oTmp = this.oTbody.rows[this.oRow.rowIndex + i].cells[this.oCell.cellIndex - 1];
+				}
+				var ci = 0;
+				var oTmp = this.oTbody.rows[this.oRow.rowIndex + i].cells[ci];
+				while (oTmp && oTmp.offsetLeft != this.oCell.offsetLeft && ++ci) {
+					oTmp = this.oTbody.rows[this.oRow.rowIndex + i].cells[ci];
+				}
+				if (!oTmp || this.cur.colSpan != oTmp.colSpan) {
+					alert('invalid');
+					return;
+				}
+			}
+			for (var i = 1; i < numRow; i++) {
+				var o = this.oTbody.rows[this.oRow.rowIndex + i].cells[this.el.cellIndex];
+				if (o) {
+					var idx = this.el.cellIndex;
+				}
+				else {
+					var idx = this.el.cellIndex - 1;
+				}
+				var idx = 0;
+				var oTmp = this.oTbody.rows[this.oRow.rowIndex + i].cells[idx];
+				while (oTmp && oTmp.offsetLeft != this.oCell.offsetLeft && ++idx) {
+					oTmp = this.oTbody.rows[this.oRow.rowIndex + i].cells[idx];
+				}
+				this.oTbody.rows[this.oRow.rowIndex + i].deleteCell(idx);
+				//if (this.oTbody.rows[this.oRow.rowIndex + i].cells.length == 0) {
+				//	this.oTbody.deleteRow(this.oRow.rowIndex + i);
+				//}
+			}
+			this.oTarget.rowSpan = numRow;
+			this.oSelf.exec.close();
+		},
+		'mergeRecover': function () {
+			if (typeof this.el == 'undefined') return;
+			if (this.cur.colSpan == 1 && this.cur.rowSpan == 1) {
+				this.oSelf.exec.close();
+				return;
+			}
+			this.oSelf.save.saveHistory(true);
+			var curCellIndex = this.oCell.cellIndex;
+			var curRowIndex = this.oRow.rowIndex;
+			this.oCell.colSpan = 1;
+			for (var i = 1; i < this.cur.colSpan; i++) {
+				var oCell = this.oRow.insertCell(curCellIndex + i);
+				oCell.setAttribute('bgColor', this.cellbgcolor);
+				oCell.innerHTML = '&nbsp;';
+			}
+			this.oCell.rowSpan = 1;
+			for (var i = 1; i < this.cur.rowSpan; i++) {
+				var oCell = this.oTbody.rows[curRowIndex + i].insertCell(this.el.cellIndex);
+				oCell.setAttribute('bgColor', this.cellbgcolor);
+				oCell.innerHTML = '&nbsp;';
+			}
+			this.oSelf.exec.close();
+		},
+		'cellProp': function (e) {
+			this.oSelf.layer.empty({
+				'width': '270',
+				'oSelf': this,
+				'e2': e,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.cellProp;
+					NN.Utils.modifyElement({
+						'targetID': '_Cell_align',
+						'mode': 'selectbox',
+						'val': this.oSelf.oTarget.getAttribute('align') || ''
+					});
+					NN.Utils.modifyElement({
+						'targetID': '_Cell_valign',
+						'mode': 'selectbox',
+						'val': this.oSelf.oTarget.getAttribute('valign') || ''
+					});
+					NN.Utils.g('_Cell_width').value = this.oSelf.oTarget.getAttribute('width') || '';
+					NN.Utils.g('_Cell_height').value = this.oSelf.oTarget.getAttribute('height') || '';
+					var func = function (e) {
+						var objEvent = e.srcElement || e.target;
+						if (!objEvent.getAttribute('rel')) return;
+						switch (objEvent.getAttribute('rel')) {
+							case 'picColor2':
+								this.oSelf.table.picColor(e, '_cellbgcolor', true);
+								break;
+						}
+					}.bind2Event(this.oSelf);
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_contents_id_nullLayerPage'), 'click', func, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtCellProp, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', function () {
+						removeEvent(this, 'click', arguments.callee, true);
+						this.oSelf.layer.close('_target_id_nullLayerPage');
+					}.bind2(this.oSelf), 'static');
+					var _cellNode = NN.DOM.schCellNode(this.oSelf.oSelf.objModify);
+					var oCell = _cellNode;
+					NN.Utils.g('_cellbgcolor').value = oCell.getAttribute('bgColor');
+					NN.Utils.g('_cellbgcolorPreview').style.backgroundColor = oCell.getAttribute('bgcolor');
+				}
+			});
+		},
+		'evtCellProp': function () {
+			var
+				t = this.table,
+				l = this.layer;
+			if (typeof t.el == 'undefined') return;
+			this.save.saveHistory(true);
+			t.oCell.setAttribute('align', NN.Utils.g('_Cell_align').value);
+			t.oCell.setAttribute('vAlign', NN.Utils.g('_Cell_valign').value);
+			t.oCell.setAttribute('width', NN.Utils.g('_Cell_width').value);
+			t.oCell.setAttribute('height', NN.Utils.g('_Cell_height').value);
+			t.oCell.setAttribute('bgColor', NN.Utils.g('_cellbgcolor').value);
+			l.close('_target_id_nullLayerPage');
+		},
+		'rowProp': function (e) {
+			this.oSelf.layer.empty({
+				'width': '193',
+				'oSelf': this,
+				'e2': e,
+				'callback': function () {
+					NN.Utils.g('_contents_id_nullLayerPage').innerHTML = this.oSelf.oSelf.panel.rowProp;
+					NN.Utils.modifyElement({
+						'targetID': '_Row_align',
+						'mode': 'selectbox',
+						'val': this.oSelf.oRow.getAttribute('align') || ''
+					});
+					NN.Utils.modifyElement({
+						'targetID': '_Row_valign',
+						'mode': 'selectbox',
+						'val': this.oSelf.oRow.getAttribute('valign') || ''
+					});
+					NN.Utils.g('_Row_height').value = this.oSelf.oRow.getAttribute('height') || '';
+					var func = function (e) {
+						var objEvent = e.srcElement || e.target;
+						if (!objEvent.getAttribute('rel')) return;
+						switch (objEvent.getAttribute('rel')) {
+							case 'picColor2':
+								this.oSelf.table.picColor(e, '_cellbgcolor', true);
+								break;
+						}
+					}.bind2Event(this.oSelf);
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_contents_id_nullLayerPage'), 'click', func, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_insert'), 'click', this.oSelf.oSelf.Events.evtRowProp, 'static');
+					this.oSelf.oSelf.oEvent.add(NN.Utils.g('_cancel'), 'click', this.oSelf.oSelf.Events.close, 'static');
+					var _cellNode = NN.DOM.schCellNode(this.oSelf.oSelf.objModify);
+					var oCell = _cellNode;
+					var oRow = oCell.parentNode;
+					NN.Utils.g('_cellbgcolor').value = oRow.getAttribute('bgColor');
+					NN.Utils.g('_cellbgcolorPreview').style.backgroundColor = oRow.getAttribute('bgcolor');
+				}
+			});
+		},
+		'evtRowProp': function () {
+			var
+				t = this.table,
+				l = this.layer;
+			if (typeof t.el == 'undefined') return;
+			this.save.saveHistory(true);
+			for (var i = 0, tot = t.oRow.cells.length; i < tot; i++) {
+				if (NN.Utils.g('_cellbgcolor').value) t.oRow.cells[i].setAttribute('bgColor', NN.Utils.g('_cellbgcolor').value);
+				if (NN.Utils.g('_Row_align').value) t.oRow.cells[i].setAttribute('align', NN.Utils.g('_Row_align').value);
+				if (NN.Utils.g('_Row_valign').value) t.oRow.cells[i].setAttribute('vAlign', NN.Utils.g('_Row_valign').value);
+				if (NN.Utils.g('_Row_height').value) t.oRow.cells[i].setAttribute('height', NN.Utils.g('_Row_height').value);
+			}
+			l.close('_target_id_nullLayerPage');
+		},
+		'insertRow': function (mode) {
+			if (typeof this.el == 'undefined') return;
+			this.oSelf.save.saveHistory(true);
+			for (var i = 0, map = [], t = this.oRow.cells.length; i < t; i++) {
+				var oCell = this.oRow.cells[i];
+				map.push({
+					'tagName': oCell.tagName.toLowerCase(),
+					'colspan': oCell.getAttribute('colSpan'),
+					'bgColor': oCell.getAttribute('bgColor'),
+					'cssText': oCell.style.cssText,
+					'valign': oCell.getAttribute('valign')
+				});
+			}
+			var oRow = this.oSelf.getIFDoc().createElement('tr');
+			if (mode == 'before') {
+				this.oRow.parentNode.insertBefore(oRow, this.oRow);
+			}
+			else if (mode == 'after') {
+				if (this.oRow.nextSibling) {
+					this.oRow.parentNode.insertBefore(oRow, this.oRow.nextSibling);
+				}
+				else {
+					this.oTbody.appendChild(oRow);
+				}
+			}
+			for (i in map) {
+				if (typeof map[i] == 'function') continue;
+				var oCell = this.oSelf.getIFDoc().createElement(map[i]['tagName']);
+				if (map[i]['colspan'] > 0) oCell.colSpan = map[i]['colspan'];
+				oCell.style.cssText = map[i]['cssText'];
+				oCell.setAttribute('vAlign', map[i]['valign']);
+				oCell.setAttribute('bgColor', map[i]['bgColor']);
+				oCell.innerHTML = '&nbsp';
+				oRow.appendChild(oCell);
+			}
+			this.oSelf.exec.close();
+		},
+		'insertCell': function (mode) {
+			if (typeof this.el == 'undefined') return;
+			this.oSelf.save.saveHistory(true);
+			var totalRow = this.oTbody.rows.length;
+			var cellIndex = mode == 'before' ? this.el.cellIndex : this.el.cellIndex + 1;
+			var cellIndex = this.el.cellIndex;
+			for (var i = 0; i < totalRow; i++) {
+				var oCell = this.oSelf.getIFDoc().createElement('td');
+				oCell.setAttribute('bgColor', this.cellbgcolor);
+				if (this.cssText) oCell.style.cssText = this.cssText;
+				oCell.innerHTML = '&nbsp;';
+				if (mode == 'before') {
+					this.oTbody.rows[i].insertBefore(oCell, this.oTbody.rows[i].cells[cellIndex]);
+				}
+				else if (mode == 'after') {
+					if (this.oTbody.rows[i].cells[cellIndex].nextSibling) {
+						this.oTbody.rows[i].insertBefore(oCell, this.oTbody.rows[i].cells[cellIndex].nextSibling);
+					}
+					else {
+						this.oTbody.rows[i].appendChild(oCell);
+					}
+				}
+			}
+			this.oSelf.exec.close();
+		},
+		'deleteRow': function () {
+			if (typeof this.oSelf.objModify == 'undefined' || this.oTbody == null) return;
+			this.oSelf.save.saveHistory(true);
+			if (this.oTbody.rows.length == 1) {
+				this.delTable();
+				return;
+			}
+			this.oTbody.deleteRow(this.oRow.rowIndex);
+			this.closure();
+		},
+		'deleteCol': function () {
+			if (typeof this.oSelf.objModify == 'undefined' || this.oTbody == null) return;
+			this.oSelf.save.saveHistory(true);
+			var totalRow = this.oTbody.rows.length;
+			var curCellIndex = this.oCell.cellIndex;
+			if (this.oRow.cells.length == 1) {
+				this.delTable();
+				return;
+			}
+			for (var i = 0; i < totalRow; i++) {
+				this.oTbody.rows[i].deleteCell(curCellIndex);
+			}
+			this.closure();
+		},
+		'delTable': function () {
+			if (typeof this.oSelf.objModify == 'undefined') return;
+			this.oSelf.save.saveHistory(true);
+			var oTable = this.el.offsetParent;
+			try {
+				oTable.parentNode.removeChild(oTable);
+			}
+			catch (e) {
+				if (typeof console != 'undefined') console.log(e.description);
+				return;
+			}
+			this.closure();
+		},
+		'closure': function () {
+			delete this.oSelf.objModify;
+			this.oSelf.exec.close();
+			this.oSelf.oSelection.focus()
+		}
+	};
+	this.modify = {
+		'oSelf': this,
+		'link': function () {
+			if (typeof this.oSelf.objModify == 'undefined') return;
+			var href = this.oSelf.objModify.getAttribute('href');
+			var target = this.oSelf.objModify.getAttribute('target');
+			if (href != null && href.indexOf('//') == -1) href = 'http://' + href;
+			NN.Utils.g('_link_url').setAttribute('value', href || '');
+			NN.Utils.modifyElement({
+				'targetID': '_link_target',
+				'mode': 'selectbox',
+				'val': target
+			});
+		},
+		'table': function () {
+			if (typeof this.oSelf.objModify == 'undefined') return;
+			var _cellNode = NN.DOM.schCellNode(this.oSelf.objModify);
+			var oCell = _cellNode;
+			var oRow = oCell.parentNode;
+			var oTable = oCell.offsetParent;
+			try {
+				NN.Utils.g('_table_width').value = oTable.getAttribute('width');
+				NN.Utils.g('_cellspacing').value = oTable.getAttribute('cellspacing');
+				NN.Utils.g('_tablebgcolor').value = oTable.getAttribute('bgColor');
+				NN.Utils.g('_cellbgcolor').value = oCell.getAttribute('bgColor');
+				NN.Utils.g('_tablebgcolorPreview').style.backgroundColor = oTable.getAttribute('bgcolor');
+				NN.Utils.g('_cellbgcolorPreview').style.backgroundColor = oCell.getAttribute('bgcolor');
+			}
+			catch (e) {
+				if (typeof console != "undefined") console.warn('table: ' + e);
+			}
+		}
+	};
+	this.panel = {
+		'oSelf': this,
+		'table': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['table_title1'] + '</legend>\
+				<table>\
+					<tbody><tr valign="top">\
+						<td>\
+						<table class="panel">\
+							<tbody><tr>\
+								<td>' + NNEditor_Lang['table_row'] + '</td><td width="60"><input type="text" size="2" value="4" class="size" id="_table_row" readonly /><a href="#" rel="_rowup">▲</a><a href="#" rel="_rowdown">▼</a></td>\
+							</tr>\
+							<tr>\
+								<td height="5" colspan="2"/>\
+							</tr>\
+							<tr>\
+								<td>' + NNEditor_Lang['table_cell'] + '</td><td><input type="text" size="2" value="4" class="size" id="_table_col" readonly /><a href="#" rel="_colup">▲</a><a href="#" rel="_coldown">▼</a>\
+								</td>\
+							</tr>\
+						</tbody></table>\
+						</td>\
+						<td><div id="_tablePreview" style="overflow: hidden; width: 137px;"></div></td>\
+					</tr>\
+				</tbody></table>\
+			</fieldset>\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['table_title2'] + '</legend>\
+				<table>\
+					<col width="211"/>\
+					<col width="100"/>\
+					<col width="100"/>\
+					<col width="80"/>\
+					<tbody>\
+					<tr>\
+						<td>' + NNEditor_Lang['table_width'] + '</td>\
+						<td colspan="3">\
+						<input type="text" size="4" value="200" id="_table_width" />\
+						<select id="_selWidthType">\
+							<option selected="selected" value="px">px</option>\
+							<option value="per">%</option>\
+						</select>\
+						</td>\
+					</tr>\
+					<tr>\
+						<td height="5" colspan="4"/>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['table_border'] + '</td>\
+						<td colspan="3"><input type="text" class="size" size="3" value="1" id="_cellspacing"  readonly /><a href="#" rel="_cellspacingup">▲</a><a href="#" rel="_cellspacingdown">▼</a></td>\
+					</tr>\
+					<tr>\
+						<td height="5" colspan="4"/>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['table_bcolor'] + '</td>\
+						<td><table cellpadding="0" cellspacing="0" border="0"><tr><td><div id="_tablebgcolorPreview" class="colorInner" rel="picColor1"></div></td><td rel="picColor1" class="fieldButton"><input type="hidden" style="width: 50px; cursor: pointer;" value="#B7BBB5" id="_tablebgcolor"/>&nbsp;</td></tr></table>\
+						</td>\
+						<td>' + NNEditor_Lang['table_bgcolor'] + '</td>\
+						<td><table cellpadding="0" cellspacing="0" border="0"><tr><td><div id="_cellbgcolorPreview" class="colorInner" rel="picColor2"></div></td><td rel="picColor2" class="fieldButton"><input type="hidden" style="width: 50px; cursor: pointer;" value="#FFFFFF" id="_cellbgcolor"/>&nbsp;</td></tr></table>\
+						</td>\
+					</tr>\
+				</tbody></table>\
+				<div class="actionPanel">\
+					<div style="float: left;">\
+						<input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+					</div>\
+					<div style="float: right;">\
+						<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+					</div>\
+				</div>\
+			</fieldset>',
+		'tableModify': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['tableModify_title'] + '</legend>\
+				<table>\
+					<col width="110"/>\
+					<col width="53"/>\
+					<col width="60"/>\
+					<col width="53"/>\
+					<tbody>\
+					<tr>\
+						<td>' + NNEditor_Lang['tableModify_vsize'] + '</td>\
+						<td colspan="3">\
+						<input type="text" size="4" class="size" value="200" id="_table_width" />\
+						<select id="_selWidthType">\
+							<option selected="selected" value="px">px</option>\
+							<option value="per">%</option>\
+						</select>\
+						</td>\
+					</tr>\
+					<tr>\
+						<td height="5" colspan="4"/>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['tableModify_border'] + '</td>\
+						<td colspan="3"><input type="text" size="3" class="size" value="1" id="_cellspacing" readonly /><a href="#" rel="_cellspacingup">▲</a><a href="#" rel="_cellspacingdown">▼</a></td>\
+					</tr>\
+					<tr>\
+						<td height="5" colspan="4"/>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['tableModify_bcolor'] + '</td>\
+						<td><table cellpadding="0" cellspacing="0" border="0"><tr><td><div id="_tablebgcolorPreview" class="colorInner" rel="picColor1"></div></td><td rel="picColor1" class="fieldButton"><input type="hidden" style="width: 50px; cursor: pointer;" value="#B7BBB5" id="_tablebgcolor"/>&nbsp;</td></tr></table>\
+						</td>\
+						<td>' + NNEditor_Lang['tableModify_bgcolor'] + '</td>\
+						<td><table cellpadding="0" cellspacing="0" border="0"><tr><td><div id="_cellbgcolorPreview" class="colorInner" rel="picColor2"></div></td><td rel="picColor2" class="fieldButton"><input type="hidden" style="width: 50px; cursor: pointer;" value="#FFFFFF" id="_cellbgcolor"/>&nbsp;</td></tr></table>\
+						</td>\
+					</tr>\
+				</tbody></table>\
+			</fieldset>\
+			<div class="actionPanel">\
+				<div style="float: left;">\
+					<input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+				</div>\
+				<div style="float: right;">\
+					<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+				</div>\
+			</div>',
+		'tableContext': '\
+			<ul id="_navmenu-h" class="navmenu-h">\
+				<li><div class="nnIcon table"></div><a href="#" rel="table.popup">' + NNEditor_Lang['tableContext_1'] + '</a></li>\
+				<li><div class="nnIcon tableModify"></div><a href="#" rel="table.popupModify">' + NNEditor_Lang['tableContext_2'] + '</a></li>\
+				<li><div class="nnIcon delTable"></div><a href="#" rel="table.delTable">' + NNEditor_Lang['tableContext_3'] + '</a></li>\
+				<li>+ <u><b>Cell</b></u></li>\
+				<li><div class="nnIcon cellProp"></div><a href="#" rel="table.cellProp">' + NNEditor_Lang['tableContext_4'] + '</a></li>\
+				<li><div class="nnIcon merge"></div><a href="#" rel="table.merge">' + NNEditor_Lang['tableContext_5'] + '</a></li>\
+				<li><div class="nnIcon mergeRecover"></div><a href="#" rel="table.mergeRecover">' + NNEditor_Lang['tableContext_6'] + '</a></li>\
+				<li>+ <u><b>Row</b></u></li>\
+				<li><div class="nnIcon rowProp"></div><a href="#" rel="table.rowProp">' + NNEditor_Lang['tableContext_7'] + '</a></li>\
+				<li><div class="nnIcon insertRowBefore"></div><a href="#" rel="table.insertRow" argv1="before">' + NNEditor_Lang['tableContext_8'] + '</a></li>\
+				<li><div class="nnIcon insertRowAfter"></div><a href="#" rel="table.insertRow" argv1="after">' + NNEditor_Lang['tableContext_9'] + '</a></li>\
+				<li><div class="nnIcon deleteRow"></div><a href="#" rel="table.deleteRow">' + NNEditor_Lang['tableContext_10'] + '</a></li>\
+				<li>+ <u><b>Column</b></u></li>\
+				<li><div class="nnIcon insertCellBefore"></div><a href="#" rel="table.insertCell" argv1="before">' + NNEditor_Lang['tableContext_11'] + '</a></li>\
+				<li><div class="nnIcon insertCellAfter"></div><a href="#" rel="table.insertCell" argv1="after">' + NNEditor_Lang['tableContext_12'] + '</a></li>\
+				<li><div class="nnIcon deleteCol"></div><a href="#" rel="table.deleteCol">' + NNEditor_Lang['tableContext_10'] + '</a></li>\
+			</ul>',
+		'merge': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['merge_title'] + '</legend>\
+					<table class="panel">\
+						<tbody><tr>\
+						<td>Cell:</td>\
+						<td align="right"><input type="text" class="size" style="width: 30px;" value="" id="_col"/></td>\
+						<td align="right"><input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" /></td>\
+						</tr>\
+						<tr>\
+						<td>Row:</td>\
+						<td align="rigHt"><input type="text" class="size" style="width: 30px;" value="" id="_row"/></td>\
+						<td align="rigHt"><input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert2" class="nneditor-insert" /></td>\
+						</tr>\
+					</tbody></table>\
+			</fieldset>\
+			<div class="actionPanel">\
+				<div style="float: right;">\
+					<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+				</div>\
+			</div>',
+		'cellProp': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['cellProp_title'] + '</legend>\
+				<table>\
+					<tbody>\
+					<tr>\
+						<td><label for="align">' + NNEditor_Lang['cellProp_align'] + '</label></td>\
+						<td>\
+							<select id="_Cell_align">\
+								<option value="">' + NNEditor_Lang['select'] + '</option>\
+								<option value="center">Center</option>\
+								<option value="left">Left</option>\
+								<option value="right">Right</option>\
+							</select>\
+						</td>\
+						<td><label for="valign">' + NNEditor_Lang['cellProp_valign'] + '</label></td>\
+						<td>\
+							<select id="_Cell_valign">\
+								<option value="">' + NNEditor_Lang['select'] + '</option>\
+								<option value="top">Top</option>\
+								<option value="middle">Center</option>\
+								<option value="bottom">Bottom</option>\
+							</select>\
+						</td>\
+					</tr>\
+					<tr>\
+						<td><label for="width">' + NNEditor_Lang['cellProp_width'] + '</label></td>\
+						<td><input type="text" class="size" maxlength="4" size="4" value="" id="_Cell_width"/>px</td>\
+						<td><label for="height">' + NNEditor_Lang['cellProp_height'] + '</label></td>\
+						<td><input type="text" class="size" maxlength="4" size="4" value="" id="_Cell_height"/>px</td>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['cellProp_bgcolor'] + '</td>\
+						<td colspan="3"><table cellpadding="0" cellspacing="0" border="0"><tr><td><div id="_cellbgcolorPreview" class="colorInner" rel="picColor2"></div></td><td rel="picColor2" class="fieldButton"><input type="hidden" style="width: 50px; cursor: pointer;" value="#FFFFFF" id="_cellbgcolor"/>&nbsp;</td></tr></table>\
+						</td>\
+					</tr>\
+				</tbody></table>\
+			</fieldset>\
+			<div class="actionPanel">\
+				<div style="float: left;">\
+					<input type="button" value="' + NNEditor_Lang['apply'] + '" rel="_insert" id="_insert" class="nneditor-insert" />\
+				</div>\
+				<div style="float: right;">\
+					<input type="button" value="' + NNEditor_Lang['close'] + '" rel="_cancel" id="_cancel" class="nneditor-cancel" />\
+				</div>\
+			</div>',
+		'rowProp': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['rowProp_title'] + '</legend>\
+				<table>\
+					<tbody>\
+					<tr>\
+						<td>' + NNEditor_Lang['rowProp_align'] + '</td>\
+						<td>\
+							<select id="_Row_align">\
+								<option value="">' + NNEditor_Lang['select'] + '</option>\
+								<option value="center">Center</option>\
+								<option value="left">Left</option>\
+								<option value="right">Right</option>\
+							</select>\
+						</td>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['rowProp_valign'] + '</td>\
+						<td>\
+							<select id="_Row_valign">\
+								<option value="">' + NNEditor_Lang['select'] + '</option>\
+								<option value="top">Top</option>\
+								<option value="middle">Center</option>\
+								<option value="bottom">Bottom</option>\
+							</select>\
+						</td>\
+					</tr>\
+					<tr>\
+						<td>Height</td>\
+						<td><input type="text" class="size" maxlength="4" size="4" value="" id="_Row_height"/>px</td>\
+					</tr>\
+					<tr>\
+						<td>' + NNEditor_Lang['rowProp_bgcolor'] + '</td>\
+						<td colspan="3"><table cellpadding="0" cellspacing="0" border="0"><tr><td><div id="_cellbgcolorPreview" class="colorInner" rel="picColor2"></div></td><td rel="picColor2" class="fieldButton"><input type="hidden" style="width: 50px; cursor: pointer;" value="#FFFFFF" id="_cellbgcolor"/>&nbsp;</td></tr></table>\
+						</td>\
+					</tr>\
+				</tbody></table>\
+			</fieldset>\
+			<div class="actionPanel">\
+				<div style="float: left;">\
+					<input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+				</div>\
+				<div style="float: right;">\
+					<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+				</div>\
+			</div>',
+		'color': '\
+			<table id="_colorPanel" class="nneditor-colorPanel" cellspacing="0" cellpadding="0" width="100%">\
+				<tbody>\
+				<tr>\
+					<td bgcolor="#ff0000" style="cursor: pointer;"/>\
+					<td bgcolor="#ff6c00" style="cursor: pointer;"/>\
+					<td bgcolor="#ffaa00" style="cursor: pointer;"/>\
+					<td bgcolor="#ffef00" style="cursor: pointer;"/>\
+					<td bgcolor="#a6cf00" style="cursor: pointer;"/>\
+					<td bgcolor="#009e25" style="cursor: pointer;"/>\
+					<td bgcolor="#00b0a2" style="cursor: pointer;"/>\
+					<td bgcolor="#0075c8" style="cursor: pointer;"/>\
+					<td bgcolor="#3a32c3" style="cursor: pointer;"/>\
+					<td bgcolor="#7820b9" style="cursor: pointer;"/>\
+					<td bgcolor="#ef007c" style="cursor: pointer;"/>\
+					<td bgcolor="#000000" style="cursor: pointer;"/>\
+					<td bgcolor="#252525" style="cursor: pointer;"/>\
+					<td bgcolor="#464646" style="cursor: pointer;"/>\
+					<td bgcolor="#636363" style="cursor: pointer;"/>\
+					<td bgcolor="#7d7d7d" style="cursor: pointer;"/>\
+					<td bgcolor="#9a9a9a" style="cursor: pointer;"/>\
+				</tr>\
+				<tr>\
+					<td bgcolor="#ffe8e8" style="cursor: pointer;"/>\
+					<td bgcolor="#f7e2d2" style="cursor: pointer;"/>\
+					<td bgcolor="#f5eddc" style="cursor: pointer;"/>\
+					<td bgcolor="#f5f4e0" style="cursor: pointer;"/>\
+					<td bgcolor="#edf2c2" style="cursor: pointer;"/>\
+					<td bgcolor="#def7e5" style="cursor: pointer;"/>\
+					<td bgcolor="#d9eeec" style="cursor: pointer;"/>\
+					<td bgcolor="#c9e0f0" style="cursor: pointer;"/>\
+					<td bgcolor="#d6d4eb" style="cursor: pointer;"/>\
+					<td bgcolor="#e7dbed" style="cursor: pointer;"/>\
+					<td bgcolor="#f1e2ea" style="cursor: pointer;"/>\
+					<td bgcolor="#acacac" style="cursor: pointer;"/>\
+					<td bgcolor="#c2c2c2" style="cursor: pointer;"/>\
+					<td bgcolor="#cccccc" style="cursor: pointer;"/>\
+					<td bgcolor="#e1e1e1" style="cursor: pointer;"/>\
+					<td bgcolor="#ebebeb" style="cursor: pointer;"/>\
+					<td bgcolor="#ffffff" style="cursor: pointer;"/>\
+				</tr>\
+				<tr>\
+					<td bgcolor="#e97d81" style="cursor: pointer;"/>\
+					<td bgcolor="#e19b73" style="cursor: pointer;"/>\
+					<td bgcolor="#d1b274" style="cursor: pointer;"/>\
+					<td bgcolor="#cfcca2" style="cursor: pointer;"/>\
+					<td bgcolor="#cfcca2" style="cursor: pointer;"/>\
+					<td bgcolor="#61b977" style="cursor: pointer;"/>\
+					<td bgcolor="#53aea8" style="cursor: pointer;"/>\
+					<td bgcolor="#518fbb" style="cursor: pointer;"/>\
+					<td bgcolor="#6a65bb" style="cursor: pointer;"/>\
+					<td bgcolor="#9a54ce" style="cursor: pointer;"/>\
+					<td bgcolor="#e573ae" style="cursor: pointer;"/>\
+					<td bgcolor="#5a504b" style="cursor: pointer;"/>\
+					<td bgcolor="#767b86" style="cursor: pointer;"/>\
+					<td bgcolor="#951015" style="cursor: pointer;"/>\
+					<td bgcolor="#6e391a" style="cursor: pointer;"/>\
+					<td bgcolor="#785c25" style="cursor: pointer;"/>\
+					<td bgcolor="#5f5b25" style="cursor: pointer;"/>\
+				</tr>\
+				<tr>\
+					<td bgcolor="#951015" style="cursor: pointer;"/>\
+					<td bgcolor="#6e391a" style="cursor: pointer;"/>\
+					<td bgcolor="#785c25" style="cursor: pointer;"/>\
+					<td bgcolor="#5f5b25" style="cursor: pointer;"/>\
+					<td bgcolor="#4c511f" style="cursor: pointer;"/>\
+					<td bgcolor="#1c4827" style="cursor: pointer;"/>\
+					<td bgcolor="#0d514c" style="cursor: pointer;"/>\
+					<td bgcolor="#1b496a" style="cursor: pointer;"/>\
+					<td bgcolor="#2b285f" style="cursor: pointer;"/>\
+					<td bgcolor="#45245b" style="cursor: pointer;"/>\
+					<td bgcolor="#721947" style="cursor: pointer;"/>\
+					<td bgcolor="#352e2c" style="cursor: pointer;"/>\
+					<td bgcolor="#3c3f45" style="cursor: pointer;"/>\
+				</tr>\
+				</tbody>\
+			</table>',
+		'colorAddOn': '\
+			<ul id="_colorAddOnPanel" class="background">\
+				<li><button type="button" argv1="#b3e3ef" argv2="#000" style="background-color: #b3e3ef; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#D29CC6" argv2="#000" style="background-color: #D29CC6; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#FFCFE7" argv2="#000" style="background-color: #FFCFE7; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#92B972" argv2="#000" style="background-color: #92B972; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#B5EF86" argv2="#000" style="background-color: #B5EF86; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#EFDA77" argv2="#000" style="background-color: #EFDA77; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#CAB863" argv2="#000" style="background-color: #CAB863; color: #000;" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#D42A1B" argv2="#ffffff" style="background-color: rgb(212, 42, 27); color: rgb(255, 255, 255);" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#BA34A6" argv2="#ffffff" style="background: #BA34A6; color: rgb(255, 255, 255);" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#9334d8" argv2="#ffffff" style="background: rgb(147, 52, 216) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#9334d8" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#ffffff" argv2="#000" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#333333" argv2="#ffffff" style="background: rgb(51, 51, 51) none repeat scroll 0% 0%; color: rgb(255, 255, 0);" title="#333333" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#0000ff" argv2="#ffffff" style="background: rgb(0, 0, 255) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#0000ff" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#ff6600" argv2="#ffffff" style="background: rgb(255, 102, 0) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#ff6600" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#8e8e8e" argv2="#ffffff" style="background: rgb(142, 142, 142) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#8e8e8e" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#009999" argv2="#ffffff" style="background: rgb(0, 153, 153) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#009999" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#ffa700" argv2="#ffffff" style="background: rgb(255, 167, 0) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#ffa700" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#ffdaed" argv2="#000" style="background: rgb(255, 218, 237) none repeat scroll 0% 0%; color: rgb(0, 0, 0);" title="#ffdaed" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#e4ff75" argv2="#000" style="background: rgb(228, 255, 117) none repeat scroll 0% 0%; color: rgb(0, 0, 0);" title="#e4ff75" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#cc9900" argv2="#000" style="background: rgb(204, 153, 0) none repeat scroll 0% 0%; color: rgb(255, 255, 255);" title="#cc9900" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#99dcff" argv2="#000" style="background: rgb(153, 220, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);" title="#99dcff" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+				<li><button type="button" argv1="#a6ff4d" argv2="#000" style="background: rgb(166, 255, 77) none repeat scroll 0% 0%; color: rgb(0, 0, 0);" title="#a6ff4d" type="button"><span>' + NNEditor_Lang['fontex3'] + '</span></button></li>\
+			</ul>',
+		'link': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['link_title'] + '</legend>\
+				<table id="_linkPanel" class="panel">\
+				<tbody>\
+				<tr>\
+				<td width="40">URL</td>\
+				<td>\
+					<input type="text" size="33" value="http://" id="_link_url" />\
+				</td>\
+				</tr>\
+				<tr>\
+				<td>Target</td>\
+				<td>\
+				<select id="_link_target">\
+					<option value="">' + NNEditor_Lang['select'] + '</option>\
+					<option value="_self">_self</option>\
+					<option selected="selected" value="_blank">_blank</option>\
+					<option value="_parent">_parent</option>\
+					<option value="_top">_top</option>\
+				</select>\
+				</td>\
+				</tr>\
+				</tbody>\
+				</table>\
+				<div class="actionPanel">\
+					<div style="float: left;">\
+						<input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+					</div>\
+					<div style="float: right;">\
+						<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+					</div>\
+				</div>\
+			</fieldset>',
+		'movie': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['movie_title'] + '</legend>\
+				<table id="_moviePanel" class="panel">\
+				<tbody>\
+				<tr>\
+					<td>' + NNEditor_Lang['movie_howto'] + '</td>\
+					<td colspan="3">\
+					<input type="radio" name="movieType" value="src" checked="checked" /> ' + NNEditor_Lang['movie_howto_1'] + '\
+					<input type="radio" name="movieType" value="url" /> ' + NNEditor_Lang['movie_howto_2'] + '\
+					</td>\
+				</tr>\
+				<tr>\
+					<td>' + NNEditor_Lang['movie_link'] + '</td>\
+					<td colspan="3">\
+					<textarea id="_movieSRC" class="f9" style="width: 300px; height: 80px;"></textarea>\
+					</td>\
+				</tr>\
+				<tr>\
+					<td>' + NNEditor_Lang['movie_link2'] + '</td>\
+					<td colspan="3">\
+					<input id="_movieURL" type="text" style="width: 300px;" value="" /><!--a href="#" id="_movie_preview_bt">[보기]</a-->\
+					</td>\
+				</tr>\
+				<tr>\
+					<td width="60">' + NNEditor_Lang['movie_width'] + '</td>\
+					<td><input type="text" size="3" id="_movieWidth" value="500" />px</td>\
+					<td width="60">' + NNEditor_Lang['movie_height'] + '</td>\
+					<td><input type="text" size="3" id="_movieHeight" value="400" />px</td>\
+				</tr>\
+				<!--tr>\
+				<td align="right">' + NNEditor_Lang['html'] + '</td>\
+				<td colspan="3"><div id="_movie_preview" class="nneditor-movie-preview"></div></td>\
+				</tr-->\
+				</tbody>\
+				</table>\
+				<div class="actionPanel">\
+					<div style="float: left;">\
+						<input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+					</div>\
+					<div style="float: right;">\
+						<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+					</div>\
+				</div>\
+			</fieldset>',
+		'image': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['image_title'] + '</legend>\
+				<table height="100%" width="100%" cellspacing="1" cellpadding="1" border="0">\
+				<tbody><tr>\
+					<td><iframe id="_uploadIFrame" src="' + NN.Config.path + 'filemanager2/index.html?uploadPath=' + (NN.Config.uploadPath || './data') + '&dummy=' + Math.random(999) + '" frameborder="0" width="100%" height="150" marginwidth="0" marginheight="0"></iframe></td>\
+				</tr>\
+				</tbody>\
+				</table>\
+			</fieldset>\
+			<div id="resultValue" style="display: none"></div>\
+			<div class="actionPanel">\
+				<div style="text-align: center;">\
+					<input type="checkbox" id="_chk" /><label for="_chk" class="f9">' + NNEditor_Lang['image_resize'] + '</label><input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+				</div>\
+			</div>',
+		'imageAttri': '\
+			<fieldset>\
+				<legend>' + (NNEditor_Lang['imageAttri_title'] || '이미지 수정') + '</legend>\
+				<table height="100%" width="100%" cellspacing="1" cellpadding="1" border="0">\
+					<colgroup><col width="100"><col></colgroup>\
+					<tbody>\
+					<tr>\
+						<th>' + (NNEditor_Lang['imageAttri_align_method'] || '정렬 방법') + '</th>\
+						<td>\
+							<div>\
+								<input type="radio" checked="checked" id="align_normal" value="" name="align">\
+								<label for="align_normal"><img alt="' + (NNEditor_Lang['imageAttri_paragraph'] || '한 문단을 차지') + '" src="' + this.Config.imgPATH + 'align_normal.gif">' + (NNEditor_Lang['imageAttri_paragraph'] || '한 문단을 차지') + '</label>\
+							</div>\
+							<div>\
+								<input type="radio" id="align_left" value="left" name="align">\
+								<label for="align_left"><img alt="' + (NNEditor_Lang['imageAttri_left'] || '글의 왼쪽으로') + '" src="' + this.Config.imgPATH + 'align_left.gif">' + (NNEditor_Lang['imageAttri_left'] || '글의 왼쪽으로') + '</label>\
+							</div>\
+							<div>\
+								<input type="radio" id="align_right" value="right" name="align">\
+								<label for="align_right"><img alt="' + (NNEditor_Lang['imageAttri_right'] || '글의 우측으로') + '" src="' + this.Config.imgPATH + 'align_right.gif">' + (NNEditor_Lang['imageAttri_right'] || '글의 우측으로') + '</label>\
+							</div>\
+						</td>\
+					</tr>\
+					<tr>\
+						<th><div>' + (NNEditor_Lang['imageAttri_border'] || '테두리 두께') + '</div></th>\
+						<td><input type="text" size="2" value="0" id="image_border">px</td>\
+					</tr>\
+					</tbody>\
+				</table>\
+			</fieldset>\
+			<div id="resultValue" style="display: none"></div>\
+			<div class="actionPanel">\
+				<div style="text-align: center;">\
+					<input type="button" value="' + NNEditor_Lang['apply'] + '" id="_insert" class="nneditor-insert" />\
+				</div>\
+			</div>',
+		'excel': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['excel_title'] + '</legend>\
+				<table height="100%" width="100%" cellspacing="1" cellpadding="1" border="0">\
+				<tbody><tr>\
+					<td><iframe id="_uploadIFrame" src="' + NN.Config.path + 'filemanager2/presentExcelFile.php?dummy=' + Math.random(999) + '" frameborder="0" width="100%" height="150" marginwidth="0" marginheight="0" scrolling="no"></iframe></td>\
+				</tr>\
+				</tbody>\
+				</table>\
+			</fieldset>\
+			<div id="resultHTML" style="display: none"></div>\
+			<div class="actionPanel">\
+				<div style="text-align: center;">\
+					<input type="button" value="입력" id="_insert" class="nneditor-insert" />\
+				</div>\
+			</div>',
+		'help': '\
+			<fieldset>\
+				<legend>' + NNEditor_Lang['help_title'] + '</legend>\
+				<table height="100%" width="100%" cellspacing="1" cellpadding="1" border="0">\
+				<tbody><tr>\
+					<td>' + NNEditor_Lang['help_title2'] + ' NNEditor ver' + NN.version + '</td>\
+				</tr>\
+				</tbody>\
+				</table>\
+			</fieldset>\
+			<div class="actionPanel">\
+				<div style="float: right;">\
+					<input type="button" value="' + NNEditor_Lang['close'] + '" id="_cancel" class="nneditor-cancel" />\
+				</div>\
+			</div>'
+	};
+	this.save = {
+		'oSelf': this,
+		'undoArray': [],
+		'redoArray': [],
+		'historyCnt': 30,
+		'docuNew': function () {
+			this.oSelf.oSelection.resetContent();
+		},
+		'saveHistory': function (forced) {
+			var
+				t = this,
+				ed = this.oSelf;
+			forced = forced || false;
+			if (!forced && !isNewTypingForUndo) return;
+			if (t.undoArray.length > t.historyCount - 1) t.undoArray.shift();
+			t.undoArray.push({
+				content: ed.getIFDoc().body.innerHTML,
+				scrollTop: ed.getIFDoc().documentElement.scrollTop || ed.getIFDoc().body.scrollTop
+			});
+			t.redoArray = [], isNewTypingForUndo = false;
+		},
+		'undo': function () {
+			var
+				t = this,
+				ed = this.oSelf;
+			if (t.undoArray.length == 0) {
+				if (ed.getIFDoc().body.innerHTML.toLowerCase() != ed.Config.START_HTML.toLowerCase()) {
+					t.redoArray = [
+						{
+							content: ed.getIFDoc().body.innerHTML,
+							scrollTop: ed.getIFDoc().documentElement.scrollTop || ed.getIFDoc().body.scrollTop
+						}
+					];
+					ed.getIFDoc().body.innerHTML = ed.Config.START_HTML;
+				}
+				return;
+			}
+			if (t.redoArray.length > t.historyCnt - 1) t.redoArray.shift();
+			t.redoArray.push({
+				content: ed.getIFDoc().body.innerHTML,
+				scrollTop: ed.getIFDoc().documentElement.scrollTop || ed.getIFDoc().body.scrollTop
+			});
+			var arr = t.undoArray[t.undoArray.length - 1];
+			if (t.undoArray.length > 0) t.undoArray.pop();
+			ed.getIFDoc().body.innerHTML = arr.content;
+			(ed.getIFDoc().documentElement || ed.getIFDoc().body).scrollTop = arr.scrollTop;
+		},
+		'redo': function () {
+			var
+				t = this,
+				ed = this.oSelf;
+			if (t.redoArray.length == 0) return;
+			if (t.undoArray.length > t.historyCnt - 1) t.undoArray.shift();
+			t.undoArray.push({
+				content: ed.getIFDoc().body.innerHTML,
+				scrollTop: ed.getIFDoc().documentElement.scrollTop || ed.getIFDoc().body.scrollTop
+			});
+			var arr = t.redoArray[t.redoArray.length - 1];
+			if (t.redoArray.length > 0) t.redoArray.pop();
+			ed.getIFDoc().body.innerHTML = arr.content;
+			(ed.getIFDoc().documentElement || ed.getIFDoc().body).scrollTop = arr.scrollTop;
+		}
+	};
+	this.imageUploadIE = {
+		'oSelf': this,
+		'setOptions': {
+			'idContainer': 'ImageUploadCtl',
+			'idEventContainer': 'eventOutput',
+			'cssText': 'background-color: #eaeaea; width: 97%; height: 50px; padding: 5px; border: 5px solid #E46CB7; clear: both; line-height: 120%;',
+			'content': '■ 이미지 업로드 구역\
+				<ol>\
+					<li>1. 파일을 이 구역을 드래그 앤 드롭 하세요.</li>\
+					<li>2. 파일을 복사하시고 이 구역을 클릭 후 Ctrl+v하세요</li>\
+					<li>3. PrintScreen 키를 눌러서 캡춰하신 후 이 구역을 클릭 후 Ctrl+v하세요</li>\
+				</ol>'
+		},
+		'init': function (options) {
+			if (NN.Browser.MSIE == false) return;
+			var
+				t = this.oSelf,
+				oSel = t.oSelection;
+			Object.extend(this.setOptions, options);
+			var baseURL = t.Config.path + 'filemanager2/';
+			var uploadServer = baseURL + 'upload.app.php?uploadPath=' + (NN.Config.uploadPath || './data');
+			var cabFileURL = 'http://editor.cafe24.com/filemanager2/IEImageUploadV2.cab#version=1,0,0,7';
+			try {
+				var o = document.createElement('<object id="' + this.setOptions['idContainer'] + '" name="' + this.setOptions['idContainer'] + '" classid="clsid:B13129CB-6ABF-4E19-AC22-369E9FA361B5" codebase="' + cabFileURL + '" width="0" height="0"></object>');
+				var o2 = document.createElement('<param name="UploadServer" value="' + uploadServer + '"></param>');
+				o.appendChild(o2);
+				document.body.insertBefore(o, document.body.firstChild);
+			}
+			catch (e) {
+				var str = '<object id="' + this.setOptions['idContainer'] + '" name="' + this.setOptions['idContainer'] + '" classid="clsid:B13129CB-6ABF-4E19-AC22-369E9FA361B5" codebase="' + cabFileURL + '" width="0" height="0"><param name="UploadServer" value="' + uploadServer + '"></param></object>';
+				var o = document.createElement('div');
+				o.innerHTML = str;
+				t.getCon().appendChild(o);
+			}
+		},
+		'set': function () {
+			if (NN.Browser.MSIE == false) return;
+			var
+				t = this.oSelf,
+				oSel = t.oSelection;
+			var o = document.createElement('div');
+			o.setAttribute('id', this.setOptions['idEventContainer']);
+			o.style.cssText = this.setOptions['cssText'];
+			o.ondragenter = function (evt) {
+				if (!oSel.lastRange) {
+					oSel.lastRange = oSel.getRng();
+					oSel.focus();
+				}
+				else {
+					oSel.lastRange.moveStart('textedit');
+					oSel.lastRange.select();
+				}
+			};
+			o.innerHTML = this.setOptions['content'];
+			var oTarget = t.NN.Utils.g(t.Config.instanceID + '_toolbar_container');
+			oTarget.appendChild(o);
+			var
+				oCon = t.NN.Utils.g(this.setOptions['idContainer']),
+				oEvtCon = t.NN.Utils.g(this.setOptions['idEventContainer']);
+			oCon.setDrogTarget(oEvtCon);
+			t.oEvent.add(oCon, 'OpenImage', function (ret) {
+				var todayDate = new Date();
+				var ty = todayDate.getFullYear();
+				var tm = todayDate.getMonth() + 1;
+				var td = todayDate.getDate();
+				if (tm < 10) tm = '0' + tm;
+				if (td < 10) td = '0' + td;
+				var d = ty.toString() + tm.toString() + td.toString();
+				if (typeof console != "undefined") console.log(ret);
+				var ret = eval('(' + ret + ')');
+				if (ret['result'] == 'failed') {
+					alert('not allowed file type');
+					return;
+				}
+				var imgURL = this.Config.uploadURL == '' ? this.Config.path + 'filemanager2/data/' : this.Config.uploadURL;
+				var s = this.oSelection;
+				if (NN.Browser.MSIE && s.lastRange) {
+					s.focus();
+				}
+				this.save.saveHistory(true);
+				s.pasteContent('<img src="' + imgURL + d + '/' + ret['name'] + '" />');
+			}.bind2Event(t));
+		}
+	};
+	this.imageUploadHTML5 = {
+		'oSelf': this,
+		'Events': ['Uninitialized', 'Loading', 'Loaded', 'Interactive', 'Complete'],
+		'setOptions': {
+			'idContainer': 'ImageUploadCtl',
+			'idEventContainer': 'eventOutput',
+			'cssText': 'background-color: #eaeaea; width: 97%; height: 50px; padding: 5px; border: 5px solid #E46CB7; clear: both; line-height: 120%;',
+			'content': '■ 파일을 이 구역을 드래그 앤 드롭 하세요. 1개씩만 가능합니다.\
+			<div id="status"></div>\
+			<div id="list"></div>'
+		},
+		'init': function (options) {
+			if (NN.Browser.MSIE == true) return;
+			var
+				t = this.oSelf,
+				oSel = t.oSelection;
+			Object.extend(this.setOptions, options);
+			var baseURL = t.Config.path + 'filemanager2/';
+			this.uploadServer = baseURL + 'upload.html5.php?uploadPath=' + (NN.Config.uploadPath || './data');
+		},
+		'set': function () {
+			if (NN.Browser.MSIE == true) return;
+			var self = this;
+			var uploader = function (place, status, targetPHP, show) {
+				var upload = function (file) {
+					if (window.FileReader) {
+						var xhr, bin, filename;
+						this.loadEnd = function () {
+							bin = reader.result;
+							filename = encodeURIComponent(file.name);
+							xhr = new XMLHttpRequest();
+							xhr.open('POST', targetPHP + '&up=true', true);
+							var boundary = 'xxxxxxxxx';
+							var body = '--' + boundary + "\r\n";
+							body += "Content-Disposition: form-data; name='upload'; filename='" + filename + "'\r\n";
+							body += "Content-Type: application/octet-stream\r\n\r\n";
+							body += bin + "\r\n";
+							body += '--' + boundary + '--';
+							xhr.setRequestHeader('content-type', 'multipart/form-data; boundary=' + boundary);
+							xhr.onreadystatechange = self.onSuccess.bind2(self);
+							if (xhr.sendAsBinary != null) {
+								xhr.sendAsBinary(body);
+							}
+							else {
+								xhr.open('POST', targetPHP + '&up=true&base64=true', true);
+								xhr.setRequestHeader('UP-FILENAME', filename);
+								xhr.setRequestHeader('UP-SIZE', file.size);
+								xhr.setRequestHeader('UP-TYPE', file.type);
+								xhr.send(window.btoa(bin));
+							}
+							if (status) {
+								document.getElementById(status).innerHTML = 'Uploading...';
+							}
+						};
+						this.loadError = function (event) {
+							switch (event.target.error.code) {
+								case event.target.error.NOT_FOUND_ERR:
+									document.getElementById(status).innerHTML = 'File not found!';
+									break;
+								case event.target.error.NOT_READABLE_ERR:
+									document.getElementById(status).innerHTML = 'File not readable!';
+									break;
+								case event.target.error.ABORT_ERR:
+									break;
+								default:
+									document.getElementById(status).innerHTML = 'Read error.';
+							}
+						};
+						this.loadProgress = function (event) {
+							if (event.lengthComputable) {
+								var percentage = Math.round((event.loaded * 100) / event.total);
+								document.getElementById(status).innerHTML = 'Loaded : ' + percentage + '%';
+							}
+						};
+						this.previewNow = function (event) {
+							return;
+							bin = preview.result;
+							var img = document.createElement("img");
+							img.className = 'addedIMG';
+							img.file = file;
+							img.src = bin;
+							document.getElementById(show).appendChild(img);
+						};
+						reader = new FileReader();
+						if (reader.addEventListener) {
+							reader.addEventListener('loadend', this.loadEnd, false);
+							if (status != null) {
+								reader.addEventListener('error', this.loadError, false);
+								reader.addEventListener('progress', this.loadProgress, false);
+							}
+						}
+						else {
+							reader.onloadend = this.loadEnd;
+							if (status != null) {
+								reader.onerror = this.loadError;
+								reader.onprogress = this.loadProgress;
+							}
+						}
+						var preview = new FileReader();
+						if (preview.addEventListener) {
+							preview.addEventListener('loadend', this.previewNow, false);
+						}
+						else {
+							preview.onloadend = this.previewNow;
+						}
+						reader.readAsBinaryString(file);
+						if (show) {
+							preview.readAsDataURL(file);
+						}
+					}
+					else {
+						xhr = new XMLHttpRequest();
+						xhr.open('POST', targetPHP + '?up=true', true);
+						xhr.setRequestHeader('UP-FILENAME', filename);
+						xhr.setRequestHeader('UP-SIZE', file.size);
+						xhr.setRequestHeader('UP-TYPE', file.type);
+						xhr.send(file);
+						if (status) {
+							document.getElementById(status).innerHTML = 'Loaded : 100%';
+						}
+						if (show) {
+							var newFile = document.createElement('div');
+							newFile.innerHTML = 'Loaded : ' + file.name + ' size ' + file.size + ' B';
+							document.getElementById(show).appendChild(newFile);
+						}
+					}
+				};
+				this.drop = function (event) {
+					event.preventDefault();
+					var dt = event.dataTransfer;
+					var files = dt.files;
+					for (var i = 0; i < files.length; i++) {
+						var file = files[i];
+						upload(file);
+					}
+				};
+				this.uploadPlace = document.getElementById(place);
+				this.uploadPlace.addEventListener("dragover", function (event) {
+					event.stopPropagation();
+					event.preventDefault();
+				}, true);
+				this.uploadPlace.addEventListener("drop", this.drop, false);
+			};
+			var
+				t = this.oSelf,
+				oSel = t.oSelection;
+			var o = document.createElement('div');
+			o.setAttribute('id', this.setOptions['idEventContainer']);
+			o.style.cssText = this.setOptions['cssText'];
+			o.innerHTML = this.setOptions['content'];
+			var oTarget = t.NN.Utils.g(t.Config.instanceID + '_toolbar_container');
+			oTarget.appendChild(o);
+			var
+				oCon = t.NN.Utils.g(this.setOptions['idContainer']),
+				oEvtCon = t.NN.Utils.g(this.setOptions['idEventContainer']);
+			new uploader(this.setOptions['idEventContainer'], 'status', this.uploadServer, null);
+		},
+		'onSuccess': function (e) {
+			var state = this.Events[e.target.readyState];
+			if (state == 'Complete') {
+				var todayDate = new Date();
+				var ty = todayDate.getFullYear();
+				var tm = todayDate.getMonth() + 1;
+				var td = todayDate.getDate();
+				if (tm < 10) tm = '0' + tm;
+				if (td < 10) td = '0' + td;
+				var d = ty.toString() + tm.toString() + td.toString();
+				var ret = eval('(' + e.target.responseText + ')');
+				if (typeof console != "undefined") console.log(ret);
+				if (ret['result'] == 'failed') {
+					document.getElementById('status').innerHTML = ret['error'];
+					return;
+				}
+				var imgURL = this.oSelf.Config.uploadURL == '' ? this.oSelf.Config.path + 'filemanager2/data/' : this.oSelf.Config.uploadURL;
+				var s = this.oSelf.oSelection;
+				if (NN.Browser.MSIE && s.lastRange) {
+					s.focus();
+				}
+				this.oSelf.save.saveHistory(true);
+				s.pasteContent('<img src="' + imgURL + d + '/' + ret['name'] + '" />');
+				s.focus();
+				document.getElementById('status').innerHTML = 'Uploaded Complete';
+			}
+		}
+	};
+	this.$ = function (obj) {
+		if (NN.Browser.MSIE) {
+			return obj.contentWindow.document;
+		}
+		else {
+			return obj.contentDocument;
+		}
+	};
+	this.getOpt = function (key) {
+		return this.Config[key];
+	};
+	this.setOpt = function (key, val) {
+		this.Config[key] = val;
+	};
+	this.getID = function (key) {
+		return this.Config.id[key];
+	};
+	this.getCon = function () {
+		return this.NN.Utils.g(this.getID('container'));
+	};
+	this.getTB = function () {
+		return this.NN.Utils.g(this.getID('toolbar'));
+	};
+	this.getIF = function () {
+		return this.NN.Utils.g(this.getID('iframe'));
+	};
+	this.getIFW = function () {
+		return this.NN.Utils.g(this.getID('iframe')).contentWindow;
+	};
+	this.getText = function () {
+		return this.NN.Utils.g(this.getID('textarea'));
+	};
+	this.getIFDoc = function () {
+		return this.$(this.NN.Utils.g(this.getID('iframe')));
+	};
+	this.getMode = function () {
+		return this.getOpt['mode'];
+	};
+	this.isEmptyContent = function () {
+		var val = this.getText().value.replace(/\<br\/?\>|\<\/?p\>|\s|&nbsp;/gi, "");
+		if ("" == val) return true;
+		return false;
+	}
+}

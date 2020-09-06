@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://miraetalk.com/miraepushWindow -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                
+                <title>mitalk</title>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<link href="./bootstrap.css" rel="stylesheet">
+                <link rel="stylesheet" href="./push_style.css">
+                <script src="./jquery-3.3.1.min.js.다운로드"></script>
+                <script src="./jquery-ui.min.js.다운로드"></script>
+				<!-- 크로스 브라우징 -->
+				<script src="./bluebird.min.js.다운로드"></script>
+            </head>
+			<body>
+				<div style="padding:10px" class="content_box">
+					<div class="preview_push_box">
+                        <div class="preview_push_profilename">
+                            <img src="./client_1585014871484.png" width="50" height="50" onerror="this.src=&#39;/images/miraetalk/client_1585014871484.png&#39;">
+                            <span class="preview_push_profilename_text"></span>
+                            <span class="preview_push_close_btn" onclick="nudge_close()"><img src="./close_pcbtn.png" style="width:50%"></span>
+                        </div>
+                        <div class="preview_push_title"></div>
+                        <div class="preview_push_cont"></div>
+                        <div class="miraetalk_nudge_box20200324_media">
+                            <div class="miraetalk_media_nudge_box" data-media-type="youtube">
+                            </div>
+                            <div class="miraetalk_media_nudge_box" data-media-type="image">
+                            </div>
+                            <div class="miraetalk_media_nudge_box" data-media-type="button">
+                                <a href="javascript:void(0)" target="_black" class="media_button"></a>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				
+				<script>
+                    var mi_chat_return;
+					function init(){
+                        return new Promise(function(resolve, reject) {
+                            $.get("/bot/nudge/templatesource", {data:mi_chat_return}, function(result, textStatus) {
+                                //받은 데이터 뿌리기(푸시기능)
+                                if(result.type == "push" || result.type == "round"){
+                                    $(".preview_push_title").text(result.title);
+									$(".preview_push_profilename_text").text(result.account_name);
+									$(".preview_push_profilename>img").attr("src",result.account_pic);
+									$(".preview_push_title").css('color',result.title_font_color);
+                                    $(".preview_push_cont").html(result.content);
+                                }
+                                if(result.type == "push"){
+                                    $(".preview_push_box").addClass("slidein");
+                                    //미디어 유튜브 있는경우
+                                    if(result.media == "youtube"){
+                                        if(result.videotype == "youtube"){
+                                            html = "";
+                                            html += '<iframe width="100%" height="auto" class="miraetalk_nudge_box20200324_video" src="https://www.youtube.com/embed/'+result.youtubeid+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>';
+                                            $('[data-media-type="youtube"]').html(html);
+                                        }else if(result.videotype == "vimeo"){
+                                            html = "";
+                                            html += '<iframe width="100%" height="auto" class="miraetalk_nudge_box20200324_video" src="https://player.vimeo.com/video/'+result.youtubeid+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>';
+                                            $('[data-media-type="youtube"]').html(html);
+                                        }
+                                        $('[data-media-type="youtube"]').show();
+                                    }else if(result.media == "image"){
+                                        //미디어 사진 있는경우
+                                        html = "";
+                                        if(result.media_link_pc == ""){
+                                            html += '<a href="javascript:void(0)" class="preview_push_img media_img_link" style="cursor:unset"><img type="text" src="'+result.image+'" style="width:100%;"></a>'
+                                        }else{
+                                            html += '<a href="'+result.media_link_pc+'" target="_blank" class="preview_push_img media_img_link"><img type="text" src="'+result.image+'" style="width:100%;"></a>'
+                                        }
+                                        $('[data-media-type="image"]').html(html);
+                                        $('[data-media-type="image"]').show();
+                                    }else if(result.media == "button"){
+                                        html = "";
+                                        if(result.media_link_pc == ""){
+                                            html += ' <a class="media_button" href="javascript:void(0)" style="background:'+result.button_bg+'; color:'+result.button_color+'; cursor:unset">'+result.button_name+'</a>'
+                                        }else{
+                                            html += ' <a class="media_button" href="'+result.media_link_pc+'"  target="_blank" style="background:'+result.button_bg+'; color:'+result.button_color+';">'+result.button_name+'</a>'
+                                        }
+                                        $('[data-media-type="button"]').html(html);
+                                        $('[data-media-type="button"]').show();
+                                    }
+                                }else if(result.type == "round"){
+                                    html = "";
+                                    html += '       <div class="browser_preview_round slidein" style="background:'+result.pop_background+'">'
+                                    html += '           <div class="preiew_round_box">'
+                                    html += '               <div class="preview_round_profilename">'
+                                    html += '                   <img src="/images/miraetalk/client_1585014871484.png" width="50" height="50">'
+                                    html += '               </div>'
+                                    html += '               <div class="preview_round_cont">'
+                                    html += '                   <h2 style="color:'+result.title_font_color+'">'+result.title+'</h2>'
+                                    html += '                   <p style="color:'+result.content_font_color+'">'+result.content+'</p>'
+                                    html += '               </div>'
+                                    html += '               <span class="preview_round_close_btn" onclick="nudge_close()"><img src="/plugin_chat/img/close_pcbtn.png" style="width:50%"></span>'
+                                    html += '           </div>'
+                                    html += '       </div>'
+                                    $(".content_box").html(html);
+                                    $(".browser_preview_round").addClass("slidein");
+                                }else if(result.type == "tbbar"){
+                                    html = "";
+                                    html += '       <div class="browser_preview_tbbar slidein">'
+                                    html += '            <div class="preview_tbbar_box">'
+                                    html += '                <h2 style="color:'+result.title_font_color+';background:'+result.pop_background+'">'+result.title+'</h2>'
+                                    html += '            </div>'
+                                    html += '            <span class="preview_tbbar_close_btn" onclick="nudge_close()"><img src="/plugin_chat/img/close_pcbtn.png" style="width:50%"></span>'
+                                    html += '        </div>'
+                                    $(".content_box").html(html);
+                                    $(".content_box").css("padding","0px");
+                                    $(".browser_preview_tbbar").addClass("slidein");
+                                }else if(result.type == "speech"){
+                                    html = "";
+                                    html += '         <div class="slidein">'
+                                    html += '             <div class="preview_speech_box">'
+                                    html += '                 <div class="preview_push_profilename">'
+                                    html += '                     <img src="'+result.account_pic+'" width="50" height="50" onerror=\'this.src="/assets/img/user/user-13.jpg"\'>'
+                                    html += '                     <span class="preview_push_profilename_text">'+result.account_name+'</span>'
+                                    html += '                     <span class="preview_push_close_btn" onclick="nudge_close()"><img src="/plugin_chat/img/close_pcbtn.png" style="width:50%;"></span>'
+                                    html += '                 </div>'
+                                    html += '                 <div class="preview_push_title" style="color:'+result.title_font_color+';">'+result.title+'</div>'
+                                    html += '                 <div class="miraetalk_nudge_box20200324_cont">'+result.content+'</div>'
+                                    html += '                 <div class="media_button_box">'
+                                    if(result.media == "button"){
+                                        if(result.media_link_pc == ""){
+                                            html += ' <a class="media_button" href="javascript:void(0)" style="background:'+result.button_bg+'; color:'+result.button_color+'; cursor:unset">'+result.button_name+'</a>'
+                                        }else{
+                                            html += ' <a class="media_button" href="'+result.media_link_pc+'"  target="_blank" style="background:'+result.button_bg+'; color:'+result.button_color+';">'+result.button_name+'</a>'
+                                        }
+                                    }
+                                    html += '                 </div>'
+                                    html += '             </div>'
+									html += '         <div class="preview_push_tail"><img src="/mir_mt/img/img_talkpopup.png"></div>'
+                                    html += '         </div>'
+                                    $(".content_box").html(html);
+                                    $(".browser_preview_speech").addClass("slidein");
+                                }else if(result.type == "alert"){
+                                    html = '';
+                                    html += '             <div class="preview_alert_box alertin">'
+                                    html += '                 <div><img src="/mir_mt/img/nudge_alert2.png" style="width:100%"></div>'
+                                    html += '                 <div class="preview_alert_box_relative">'
+                                    html += '                     <img src="/mir_mt/img/nudge_alert1.png">'
+                                    html += '                     <span class="preview_alert_close_btn" onclick="nudge_close()"><img src="/plugin_chat/img/close_pcbtn.png" style="width:50%;"></span>'
+                                    html += '                     <div class="preview_alert_box_cont_box">'
+                                    html += '                         <div class="preview_alert_box_profile">'
+                                    html += '                             <img src="'+result.account_pic+'" width="50" height="50" onerror=\'this.src="/assets/img/user/user-13.jpg"\'>'
+                                    html += '                             <span class="preview_push_profilename_text"></span>'
+                                    html += '                         </div>'
+                                    html += '                         <div class="preview_alert_box_title">'+result.title+'</div>'
+                                    html += '                         <div class="preview_alert_box_cont">'+result.content+'</div>'
+                                    html += '                         <div class="media_button_box">'
+                                    if(result.media == "button"){
+                                        if(result.media_link_pc == ""){
+                                            html += ' <a class="media_button" href="javascript:void(0)" style="background:'+result.button_bg+'; color:'+result.button_color+'; cursor:unset">'+result.button_name+'</a>'
+                                        }else{
+                                            html += ' <a class="media_button" href="'+result.media_link_pc+'"  target="_blank" style="background:'+result.button_bg+'; color:'+result.button_color+';">'+result.button_name+'</a>'
+                                        }
+                                    }
+                                    html += '                         </div>'
+                                    html += '                     </div>'
+                                    html += '                 </div>'
+                                    html += '             </div>'
+                                    $(".content_box").html(html);
+                                    $(".preview_alert_box").addClass("slidein");
+                                    $(".preview_push_profilename_text").text(result.account_name);
+									$(".preview_alert_box_profile>img").attr("src",result.account_pic);
+                                }
+
+
+                                if(result.media == "image"){
+                                    $(".preview_push_img>img").on('load',function(){
+                                        //부모창에서 아이프레임 높이 자동조절
+                                        var contentHeight = document.body.scrollHeight;
+                                        var sendData = JSON.stringify({fn:'mi_push_data.display('+contentHeight+',"'+result.type+'","'+result.position+'")'});
+                                        window.parent.postMessage(sendData, '*');
+                                    });
+                                }else if(result.type == "alert"){
+                                    $(".preview_alert_box_relative>img").on('load',function(){
+                                        //부모창에서 아이프레임 높이 자동조절
+                                        var contentHeight = document.body.scrollHeight;
+                                        var sendData = JSON.stringify({fn:'mi_push_data.display('+contentHeight+',"'+result.type+'","'+result.position+'")'});
+                                        window.parent.postMessage(sendData, '*');
+                                    });
+                                }else{
+                                    //부모창에서 아이프레임 높이 자동조절
+                                    var contentHeight = document.body.scrollHeight;
+                                    var sendData = JSON.stringify({fn:'mi_push_data.display('+contentHeight+',"'+result.type+'","'+result.position+'")'});
+                                    window.parent.postMessage(sendData, '*');
+                                }
+                            });
+                        });
+                    }
+                    function nudge_close(){
+                        var sendData = JSON.stringify({fn:'mi_push_data.close()'});
+                        window.parent.postMessage(sendData, '*' );
+                    }
+
+					window.addEventListener('message', function(e) {
+                        var parseData = JSON.parse(e.data);
+                        mi_chat_return = parseData.mi_chat_return;
+                        if(parseData.fn){
+                            eval(parseData.fn+"()");
+                        }
+					});
+				</script>
+				
+            
+            
+        </body></html>

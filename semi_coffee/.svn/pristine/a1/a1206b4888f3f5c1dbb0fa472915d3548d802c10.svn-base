@@ -1,0 +1,194 @@
+
+<!-- saved from url=(1450)https://www.mediacategory.com/mediaCategory/js/mobAdverSSL.html?q=JTdCJTIydXJsJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZsb2cubWVkaWFjYXRlZ29yeS5jb20lMkZzZXJ2bGV0JTJGcmYlM0YlMjIlMkMlMjJzZW5kVHlwZSUyMiUzQSUyMkRFRkFVTFQlMjIlMkMlMjJzZW5kVHlwZU9wdGlvbiUyMiUzQW51bGwlMkMlMjJtZXRob2QlMjIlM0ElMjJHRVQlMjIlMkMlMjJkYXRhVHlwZSUyMiUzQSUyMlFVRVJZJTIyJTJDJTIyZGF0YSUyMiUzQSUyMnVzZXJpZCUzRGNvZmZlZWNob2klMjZmb3JtJTNEaHR0cCUyNTNBJTI1MkYlMjUyRmNvZmZlZWNob2kuY28ua3IlMjUyRiUyNTNGbl9tZWRpYSUyNTNEMjc3NTglMjUyNm5fcXVlcnklMjUzRCUyNTI1RUMlMjUyNUI1JTI1MjU5QyUyNTI1RUMlMjUyNUE0JTI1MjU4MCUyNTI1RUMlMjUyNTk4JTI1MjU4MSUyNTI1RUMlMjUyNUJCJTI1MjVBNCUyNTI1RUQlMjUyNTk0JTI1MjVCQyUyNTI2bl9yYW5rJTI1M0QxJTI1MjZuX2FkX2dyb3VwJTI1M0RncnAtYTAwMS0wMS0wMDAwMDAwMTI3Mzc1MzElMjUyNm5fYWQlMjUzRG5hZC1hMDAxLTAxLTAwMDAwMDA3NTczNjAwOSUyNTI2bl9rZXl3b3JkX2lkJTI1M0Rua3ctYTAwMS0wMS0wMDAwMDI0NjQwMjY4OTMlMjUyNm5fa2V5d29yZCUyNTNEJTI1MjVFQyUyNTI1QjUlMjUyNTlDJTI1MjVFQyUyNTI1QTQlMjUyNTgwJTI1MjVFQyUyNTI1OTglMjUyNTgxJTI1MjVFQyUyNTI1QkIlMjUyNUE0JTI1MjVFRCUyNTI1OTQlMjUyNUJDJTI1MjZuX2NhbXBhaWduX3R5cGUlMjUzRDElMjUyNk5hUG0lMjUzRGN0JTI1MjUzRGtkODNhMG93JTI1MjU3Q2NpJTI1MjUzRDBBYTAwMDB1Nk05dFhwMERxTDBDJTI1MjU3Q3RyJTI1MjUzRHNhJTI1MjU3Q2hrJTI1MjUzRGJkYjk3ZDI1M2Q5Y2VkMzA1OGI4ZDRlNTBiY2VlNTZhZjIwNjBiNTQlMjZ1cmwlM0RodHRwJTI1M0ElMjUyRiUyNTJGY29mZmVlY2hvaS5jby5rciUyNTJGbWVtYmVyJTI1MkZsb2dpbi5odG1sJTI2cmRUeXBlJTNEUkYlMjZhZHRtb2RlJTNEMSUyMiUyQyUyMmFwcGVuZFBhcmFtJTIyJTNBJTVCJTIyc19hdV9pZCUyMiUyQyUyMnNfSVBfaW5mbyUyMiU1RCU3RA== -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    window.onload = function () {
+        var search = window.location.search;
+        _SEND(search);
+    };
+
+    function _SEND(search) {
+        var q = decodeURIComponent(atob(decodeURI(getParameter(search, 'q'), 2)));
+        var rawData = JSON.parse(q);
+        // console.log(JSON.stringify(rawData));
+        var data = appendClientData(rawData.sendType, rawData.data, rawData.appendParam);
+        // console.log("data :: " + typeof data === 'object' ? JSON.stringify(data) : data);
+        send(rawData.sendType, rawData.dataType, rawData.method, rawData.url, data, rawData.sendTypeOption);
+    }
+
+    function decodeURI(encodedString, encodedCount) {
+        var decodedString = encodedString;
+        if (typeof encodedCount === 'number') {
+            for (var i = 0; i < encodedCount; i++) {
+                decodedString = decodeURIComponent(decodedString)
+            }
+        }
+        return decodedString;
+    }
+
+    function getParameter(search, paramName) {
+        if (search.length > 0) {
+            search = search.slice(1, search.length);
+        }
+        var params = search.split('&');
+        for (var i = 0; i < params.length; i++) {
+            var param = params[i].split('=');
+            var name = param[0];
+            var value = param[1];
+            if (name === paramName && value.length > 0) {
+                return value;
+            }
+        }
+    }
+
+    function send(sendType, dataType, method, url, data, sendTypeOption) {
+        if (sendType === 'DEFAULT' && dataType === 'QUERY') {
+            (new Image).src = url + data;
+        } else if (sendType === 'AJAX' && dataType === 'JSON') {
+            // console.log(`data=${JSON.stringify(data)}`);
+            var xhr = new XMLHttpRequest();
+            xhr.timeout = sendTypeOption.timeout;
+            xhr.open(method, url, true);
+            xhr.withCredentials = sendTypeOption.withCredentials;
+            xhrSend(xhr, method, data, sendTypeOption);
+        }
+    }
+
+    function hasXhrTransmitted(method, xhrStatus) {
+        switch (method) {
+            case 'GET':
+                return xhrStatus === 200;
+            case 'POST':
+                return xhrStatus === 200 || xhrStatus === 201;
+            case 'PUT':
+                throw new Error('PUT method');
+            case 'DELETE':
+                throw new Error('DELETE method');
+            default:
+                throw new Error('Invalid HTTP method type or not supported yet.');
+        }
+    }
+
+    function getItemFromCookie(type) {
+        if (type === 's_au_id' && getCookie('s_au_id')) {
+            return getCookie('s_au_id');
+        } else if (type === 's_IP_info' && getCookie('s_IP_info')) {
+            return getCookie('s_IP_info');
+        }
+        return null;
+    }
+
+    function getItemFromStorage(type) {
+        var localStorage = window.localStorage;
+        var rtnData = null;
+        if (type === 's_au_id') {
+            if (localStorage.getItem('au_id') != null) {
+                rtnData = localStorage.getItem('au_id');
+            } else {
+                // API 호출
+            }
+        } else if (type === 's_IP_info') {
+            if (localStorage.getItem('IP_info') != null) {
+                rtnData = localStorage.getItem('IP_info');
+            } else {
+                // API 호출
+            }
+        }
+        return rtnData;
+    }
+
+    function getCookie(key) {
+        var cookieValue = null;
+        var rawCookie = document.cookie.split(';');
+        rawCookie.some(function (item) {
+            // 공백을 제거
+            item = item.replace(' ', '');
+            var cookiePair = item.split('=');
+            if (key === cookiePair[0]) {
+                cookieValue = cookiePair[1];
+                return true;    // break;
+            }
+        });
+        return cookieValue;
+    }
+
+    function xhrSend(xhr, method, jsonData, sendTypeOption) {
+        const callbackListener = () => {
+            let hasTransmitted = false; /* 데이터 전송완료 여부 */
+            switch (xhr.readyState) {
+                case xhr.UNSENT:
+                    /* open() has not been called yet. Request not initialized. */
+                    break;
+                case xhr.OPENED:
+                    /* open() has been called. Server connection established. */
+                    break;
+                case xhr.HEADERS_RECEIVED:
+                    /* send() has been called, and headers and status are available. */
+                    break;
+                case xhr.LOADING:
+                    /* Processing request. */
+                    break;
+                case xhr.DONE:
+                    /* Request finished and response is ready. */
+                    hasTransmitted = hasXhrTransmitted(method, xhr.status);
+                    if (sendTypeOption.callback) {
+                        sendTypeOption.callback(xhr, xhr.response, hasTransmitted);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+        if (sendTypeOption.setHeader) {
+            var headers = sendTypeOption.headers;
+            for (var header in headers) {
+                xhr.setRequestHeader(headers[header].name, headers[header].value);
+            }
+        }
+        xhr.onreadystatechange = callbackListener;
+        xhr.send(JSON.stringify(jsonData));
+    }
+
+    function appendClientData(sendType, data, appendParam) {
+        appendParam.forEach((paramName) => {
+            // console.log(paramName);
+            var cookieValue = getItemFromCookie(paramName);
+            if (cookieValue != null) {
+                // console.log("getItemFromCookie data..");
+                data = getAppendedData(sendType, data, paramName, cookieValue);
+            } else {
+                var storageValue = getItemFromStorage(paramName);
+                if (storageValue != null) {
+                    // console.log("getItemFromStorage data..");
+                    data = getAppendedData(sendType, data, paramName, storageValue);
+                }
+            }
+
+        });
+        return data;
+    }
+    function getAppendedData(sendType, data, paramName, paramValue) {
+        if (sendType === 'DEFAULT') {
+            data += '&' + paramName + '=' + paramValue.split("\"").join("");
+        } else if (sendType === 'AJAX') {
+            data[createKey(paramName)] = paramValue.split("\"").join("");
+        }
+        return data;
+    }
+    function createKey(keyName) {
+        switch (keyName) {
+            case 's_au_id':
+                return 'auId';
+            case 's_IP_info':
+                return 'ipInfo';
+            default:
+                return keyName;
+        }
+    }
+</script>
+
+</body></html>

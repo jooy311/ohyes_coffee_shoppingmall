@@ -1,0 +1,868 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0024)http://coffeechoi.co.kr/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--PG크로스브라우징필수내용 시작-->
+<meta http-equiv="Cache-Control" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<!--PG크로스브라우징필수내용 끝--><!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
+<!--allStore_css-->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet"/>
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet"/>
+<!--allStore_css_end-->
+
+<!--allStore_js-->
+<script type="text/javascript" async="" src="js/saved_resource" charset="UTF-8"></script>
+<!--script async="" src="js/jfullscript.js" charset="utf-8"></script-->
+<script src="js/bookmark.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.bxslider.min.js"></script>
+<script src="js/swiper.min.js"></script>
+
+<!--allStore_js-->
+<!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
+<script type="text/javascript" src="js/common.js(1)"></script>
+
+<!-- 해당 JS는 플래시를 사용하기 위한 스크립트입니다. -->
+<script type="text/javascript" charset="UTF-8" src="js/kp.js"></script>
+
+<script type="text/javascript">
+      kakaoPixel('5434449918741362646').pageView();
+</script>
+
+<meta name="naver-site-verification" content="46a212a8c9077655035cc233096ab9e3ef3b6c8d">
+<meta name="google-site-verification" content="M5uppoctmHaAz4F9xq_2K1OnIhIzYQjtrwd80As5ADA">
+<link rel="canonical" href="http://coffeechoi.co.kr/">
+<link rel="alternate" href="http://m.coffeechoi.co.kr/">
+<meta property="og:url" content="http://coffeechoi.co.kr/">
+
+<!-- ★★★★ 나중에 정해지면 바꾸기 ★★★★ -->
+
+<meta property="og:title" content="최준영 커피">
+<meta property="og:description" content="향이 좋은 커피, 최준영 커피입니다.">
+<meta property="og:site_name" content="최준영커피">
+<meta property="og:type" content="website">
+
+
+<link rel="shortcut icon" href="http://coffeechoi.co.kr/web/upload/favicon_20190911050221.ico">
+<script type="text/javascript" src="js/cid.generate.js"></script>
+<script type="text/javascript" src="js/wcslog.js"></script>
+
+<script type="text/javascript">
+	var EC_FRONT_EXTERNAL_SCRIPT_VARIABLE_DATA = {"common_member_id_crypt":""};
+</script>
+            
+<script type="text/javascript">
+   var EC_SDE_SHOP_NUM = 1;
+   
+   var SHOP = {getLanguage : function() {
+      return "ko_KR"; 
+   },getCurrency : function() {
+      return "KRW";
+   },getFlagCode : function() { 
+      return "KR"; 
+   },getTimezone: function() {
+      return "Asia/Seoul" 
+   },isMultiShop : function() {
+      return false; 
+   },isDefaultShop : function() {
+      return true; 
+   },isDefaultLanguageShop : function(sLanguageCode) { 
+      return SHOP.isDefaultShop() && SHOP.isLanguageShop(sLanguageCode); 
+   },isKR : function() { 
+      return true; 
+   },isUS : function() {
+      return false; 
+   },isJP : function() { 
+      return false; 
+   },isCN : function() { 
+      return false; 
+   },isTW : function() {
+      return false; 
+   },isES : function() { 
+      return false; 
+   },isPT : function() { 
+      return false; 
+   },isVN : function() {
+      return false;
+   },isPH : function() { 
+   return false; 
+   },isLanguageShop : function(sLanguageCode) { 
+   return sLanguageCode === "ko_KR"; 
+   },getDefaultShopNo : function() {
+      return 1;
+   },getProductVer : function() { 
+      return 2; 
+   },isSDE : function() { 
+      return true;
+   },isMode : function() {
+      return false;
+   },getModeName : function() {
+      return false; 
+   },isMobileAdmin : function() {
+      return false; 
+   },isExperienceMall : function() {
+      return false; 
+   },getAdminID : function() {
+      return ''
+   },getMallID : function() {
+      return 'boogie111111'
+   },getCurrencyFormat : function(sPriceTxt, bIsNumberFormat) { 
+       sPriceTxt = String(sPriceTxt);
+
+       var aCurrencySymbol = ["","\uc6d0",false];
+
+       if (typeof SHOP_PRICE !== 'undefined' && isNaN(sPriceTxt.replace(/[,]/gi, '')) === false && bIsNumberFormat === true) {
+           // bIsNumberFormat 사용하려면 Ui(':libUipackCurrency')->plugin('Currency') 화폐 라이브러리 추가 필요
+           sPriceTxt = SHOP_PRICE.toShopPrice(sPriceTxt.replace(/[,]/gi, ''), true, EC_SDE_SHOP_NUM);
+       }
+
+        return aCurrencySymbol[0] + sPriceTxt + aCurrencySymbol[1];
+    }};
+   			var EC_COMMON_UTIL = {convertSslForString : function(sString) {
+   				return sString.replace(/http:/gi, '');},convertSslForHtml : function(sHtml) {
+   				return sHtml.replace(/((?:src|href)\s*=\s*['"])http:(\/\/(?:[a-z0-9\-_\.]+)\/)/ig, '$1$2');},getProtocol : function() { return 'http'; },moveSsl : function() { if (EC_COMMON_UTIL.getProtocol() === 'http') { var oLocation = jQuery(window.location); var sUrl = 'https://' + oLocation.attr('host') + oLocation.attr('pathname') + oLocation.attr('search'); window.location.replace(sUrl); } },setEcCookie : function(sKey, sValue, iExpire) {var exdate = new Date();exdate.setDate(exdate.getDate() + iExpire);var setValue = escape(sValue) + "; domain=." + EC_GLOBAL_INFO.getBaseDomain() + "; path=/;expires=" + exdate.toUTCString();document.cookie = sKey + "=" + setValue;}};var EC_SHOP_LIB_INFO = {getBankInfo : function() { 
+            var oBankInfo = "";
+            $.ajax({
+                type: "GET",
+                url: "/exec/front/Shop/Bankinfo",
+                dataType: "json",
+                async: false,
+                success: function(oResponse) {
+                    oBankInfo = oResponse;
+                }
+             });
+             return oBankInfo; }};
+	</script>
+<script type="text/javascript" src="./board_notice_files/moment.php"></script>
+<script type="text/javascript">            
+				var EC_GLOBAL_DATETIME = (function() {
+                var oConstants = {"STANDARD_DATE_REGEX":"\/([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))\/","IN_ZONE":"inZone","OUT_ZONE":"outZone","IN_FORMAT":"inFormat","OUT_FORMAT":"outFormat","IN_DATE_FORMAT":"inDateFormat","IN_TIME_FORMAT":"inTimeFormat","OUT_DATE_FORMAT":"outDateFormat","OUT_TIME_FORMAT":"outTimeFormat","IN_FORMAT_DATE_ONLY":1,"IN_FORMAT_TIME_ONLY":2,"IN_FORMAT_ALL":3,"OUT_FORMAT_DATE_ONLY":1,"OUT_FORMAT_TIME_ONLY":2,"OUT_FORMAT_ALL":3,"DATE_ONLY":"YYYY-MM-DD","TIME_ONLY":"HH:mm:ss","FULL_TIME":"YYYY-MM-DD HH:mm:ss","ISO_8601":"YYYY-MM-DD[T]HH:mm:ssZ","YEAR_ONLY":"YYYY","MONTH_ONLY":"MM","DAY_ONLY":"DD","WEEK_ONLY":"e","TIME_H_I_ONLY":"HH:mm","TIME_HOUR_ONLY":"HH","TIME_MINUTE_ONLY":"mm","POSTGRE_FULL_TIME":"YYYY-MM-DD HH24:MI:SS","POSTGRE_TIME_ONLY":" HH24:MI:SS","MICRO_SECOND_ONLY":"u","SEOUL":"Asia\/Seoul","TOKYO":"Asia\/Tokyo","SHANGHAI":"Asia\/Shanghai","TAIPEI":"Asia\/Taipei","HANOI":"Asia\/Bangkok","LOS_ANGELES":"America\/Los_Angeles","LISBON":"Europe\/Lisbon","MADRID":"Europe\/Madrid","MANILA":"Asia\/Manila","UTC":"Etc\/UTC","MAX_DATETIME":"9999-12-31 23:59:59"};
+                var oOptions = {"inZone":"Asia\/Seoul","inFormat":"YYYY-MM-DD HH:mm:ss","inDateFormat":"YYYY-MM-DD","inTimeFormat":"HH:mm:ss","outZone":"Asia\/Seoul","outFormat":"YYYY-MM-DD HH:mm:ss","outDateFormat":"YYYY-MM-DD","outTimeFormat":"HH:mm:ss"};
+                var oPolicies = {"shop":{"outZone":"Asia\/Seoul","outFormat":"YYYY-MM-DD HH:mm:ss","outDateFormat":"YYYY-MM-DD","outTimeFormat":"HH:mm:ss"}};
+                var sOverrideTimezone = '';
+                var sMomentNamespace = 'EC_GLOBAL_MOMENT';
+                
+                var fMomentLoaded = function() {
+                    var bMomentLoaded = !!window[sMomentNamespace];
+                    var bMomentTZLoaded = false;
+                    if (bMomentLoaded) {
+                        bMomentTZLoaded = !!window[sMomentNamespace].tz;
+                    }
+                    
+                    return bMomentLoaded && bMomentTZLoaded;
+                };
+                
+                var fMomentWrapper = function() {
+                    return window[sMomentNamespace];
+                };
+                
+                var fShallowMerge = function(oTarget, oSource) {
+                    oSource = oSource || {};
+                    for (var sKey in oSource) {
+                        if (oSource.hasOwnProperty(sKey)) {
+                            oTarget[sKey] = oSource[sKey];
+                        }
+                    }
+                    
+                    return oTarget;
+                };
+                
+                var getFormatFromFlag = function(oOptions, iFlag, bOpposite) {
+                    if (bOpposite) {
+                        switch (iFlag) {
+                            case 1:
+                                return oOptions[oConstants.IN_DATE_FORMAT];
+                            case 2:
+                                return oOptions[oConstants.IN_TIME_FORMAT];
+                            default:
+                                return oOptions[oConstants.IN_FORMAT];    
+                        }
+                    }
+                    
+                    switch (iFlag) {
+                        case 1:
+                            return oOptions[oConstants.OUT_DATE_FORMAT];
+                        case 2:
+                            return oOptions[oConstants.OUT_TIME_FORMAT];
+                        default:
+                            return oOptions[oConstants.OUT_FORMAT];
+                    }
+                };
+                              
+                return {
+                    'const': oConstants,
+                    
+                    init: function(fCallback) {
+                        if (fMomentLoaded()) {
+                            if (typeof fCallback === 'function') {
+                                fCallback();
+                            }
+                            
+                            return;
+                        }
+                        
+                        var oScript = document.createElement('script');
+                        oScript.type = 'text/javascript';
+                        oScript.async = true;
+                        oScript.src = '/ind-script/moment.php?convert=T';
+                        oScript.onload = oScript.onreadystatechange = function () {
+                            fMomentWrapper().defaultFormat = oOptions[oConstants.OUT_FORMAT];
+                            fMomentWrapper().tz.setDefault(oOptions[oConstants.IN_ZONE]);
+                            
+                            if (typeof fCallback === 'function') {
+                                fCallback();
+                            }
+                        };
+                        
+                        var oFirstScript = document.getElementsByTagName('script')[0];
+                        oFirstScript.parentNode.insertBefore(oScript, oFirstScript);
+                    },
+                    
+                    initPromise: function() {
+                        if (!window.Promise) {
+                            return;
+                        }
+                        
+                        return new Promise(function(resolve) {
+                            this.init(resolve);
+                        }.bind(this));
+                    },
+                    
+                    isLoaded: function() {
+                        return fMomentLoaded();
+                    },
+                                    
+                    setOptions: function(oNewOptions) {
+                         if (typeof oNewOptions === 'object') {
+                             for (var sKey in oNewOptions) {
+                                 if (oNewOptions.hasOwnProperty(sKey) && oOptions.hasOwnProperty(sKey)) {
+                                     oOptions[sKey] = oNewOptions[sKey];
+                                 }
+                             }
+                         }
+                         
+                         return this;
+                    },
+                    
+                    now: function(mOptions, iFlag) {
+                        if (fMomentLoaded() === false) {
+                            return Math.floor(new Date().getTime() / 1000);
+                        }
+                        
+                        var oFormatOptions = this.getOptions(mOptions);
+                        return fMomentWrapper()()
+                            .tz(oFormatOptions.outZone)
+                            .format(getFormatFromFlag(oFormatOptions, iFlag));
+                    },
+                    
+                    format: function(sTime, mOptions, iFlag) {
+                        if (fMomentLoaded() === false) {
+                            return sTime;
+                        }
+                        
+                        var oFormatOptions = this.getOptions(mOptions);
+                        return fMomentWrapper()
+                            .tz(sTime, oFormatOptions.inZone)
+                            .tz(oFormatOptions.outZone)
+                            .format(getFormatFromFlag(oFormatOptions, iFlag));
+                    },
+                    
+                    parse: function(sTime, mOptions) {
+                        if (fMomentLoaded() === false) {
+                            return sTime;
+                        }
+                        
+                        var oParseOptions = this.getOptions(mOptions);
+                        return fMomentWrapper().tz((sTime || new Date()), oParseOptions.inZone).tz(oParseOptions.outZone);
+                    },
+                    
+                    getOptions: function(mOptions, iFlag) {
+                        mOptions = mOptions || {};
+                      
+                        var oMergedOptions = fShallowMerge({}, oOptions);
+                        if (typeof mOptions === 'string' && oPolicies[mOptions]) {
+                            oMergedOptions = fShallowMerge(oMergedOptions, oPolicies[mOptions]);
+                        } else if (typeof mOptions === 'object') {
+                            oMergedOptions = fShallowMerge(oMergedOptions, mOptions);
+                        }
+                        
+                        if (sOverrideTimezone) {
+                            if ((typeof mOptions === 'string' && mOptions === 'shop') || (typeof mOptions === 'object' && !mOptions[oConstants.OUT_ZONE])) {
+                                oMergedOptions[oConstants.OUT_ZONE] = sOverrideTimezone;
+                            }
+                        }
+                        
+                        return oMergedOptions;
+                    },
+                    
+                    getRevertOptions: function(mOptions) {
+                        var oCurrentOptions = this.getOptions(mOptions);
+                        var oMergedOptions = fShallowMerge({}, oOptions);
+                        oMergedOptions[oConstants.IN_ZONE] = oCurrentOptions[oConstants.OUT_ZONE];
+                        oMergedOptions[oConstants.IN_FORMAT] = oCurrentOptions[oConstants.OUT_FORMAT];
+                        oMergedOptions[oConstants.IN_DATE_FORMAT] = oCurrentOptions[oConstants.OUT_DATE_FORMAT];
+                        oMergedOptions[oConstants.IN_TIME_FORMAT] = oCurrentOptions[oConstants.OUT_TIME_FORMAT];
+                        
+                        return oMergedOptions;
+                    },
+                    
+                    today: function(sTime, mOptions, iFlag) {
+                        if (fMomentLoaded() === false) {
+                            throw new Error('MomentJS didnt initialize');
+                        }
+                        
+                        mOptions = mOptions || 'shop';
+                        var oRevertOptions = this.getRevertOptions(mOptions);
+                        var oToday;
+                        if (!sTime || sTime === 'now') {
+                            oToday = this.parse('', mOptions);
+                        } else {
+                            iFlag = iFlag || oConstants.IN_FORMAT_ALL || 3;
+                            oToday = fMomentWrapper().tz(sTime, getFormatFromFlag(oRevertOptions, iFlag, true), oRevertOptions[oConstants.IN_ZONE]);
+                            if (oToday.isValid() === false) {
+                                var oStandardDateRegex = new RegExp(oConstants.STANDARD_DATE_REGEX.replace(/\//g, ''));
+                                if (oStandardDateRegex.test(sTime) === true) {
+                                    oToday = fMomentWrapper().tz(sTime, oRevertOptions[oConstants.IN_ZONE]);
+                                } else {
+                                    oToday = fMomentWrapper()();
+                                }
+                            }
+                        }
+                        
+                        var oStartOfDay = oToday.clone().startOf('day');
+                        var oEndOfDay = oToday.clone().endOf('day');
+                        
+                        var sStartOfDayInSeoul = oStartOfDay.tz(oConstants.SEOUL).format(oConstants.FULL_TIME);
+                        var sEndOfDayInSeoul = oEndOfDay.tz(oConstants.SEOUL).format(oConstants.FULL_TIME);
+                        
+                        return [sStartOfDayInSeoul, sEndOfDayInSeoul];
+                    },
+                    
+                    parseFromFormat: function(sTime, mOptions, iFlag) {
+                        if (fMomentLoaded() === false) {
+                            return sTime;
+                        }
+                        
+                        mOptions = mOptions || 'shop';
+                        iFlag = iFlag || oConstants.IN_FORMAT_ALL || 3;
+                        
+                        var oRevertOptions = {};
+                        if (typeof mOptions === 'string') {
+                            oRevertOptions = this.getRevertOptions(mOptions);
+                        } else {
+                            oRevertOptions = this.getOptions(mOptions);
+                        }
+                        
+                        return fMomentWrapper()(sTime, getFormatFromFlag(oRevertOptions, iFlag, true));
+                    }
+                };
+            })();</script>
+
+<link rel="stylesheet" type="text/css" href="./board_notice_files/optimizer.php">
+<link rel="stylesheet" type="text/css" href="./board_notice_files/optimizer(1).php">
+
+<title> 공지사항 - 최준영커피</title>
+<meta name="path_role" content="BOARD_FREE_LIST">
+<meta name="description" content="공지사항입니다.">
+<meta name="keywords" content="공지사항">
+<meta name="design_html_path" content="/board/free/list.html">
+<iframe src="./board_notice_files/mobAdverSSL.html" style="display: none; height: 0px; width: 0px; border: none; visibility: hidden;"></iframe>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,800|Noto+Sans');
+#_NBCHAT {padding: 10px 0px;background: rgb(233, 233, 233);}
+._NBCHATBG {background: rgb(255, 255, 255) !important;}
+#_NBCHAT #_NB_MSG p {position: auto;}
+#_NBCHAT ul,#_NBCHAT li,#_NBCHAT ol {margin: 0;padding: 0;list-style-type: none;}
+#_NBCHAT {overflow-y: auto;overflow-x: hidden;height: 100%;}
+#_NBMBOX {font-size: 12px;text-align: center;transition: height 500ms;color: #888;border-left: 1px solid rgb(217, 217, 217);border-right: 1px solid rgb(217, 217, 217);}
+#_NBMBOX_IN {background: rgb(255, 255, 255);text-align: center;padding: 10px 0px;line-height: 20px;margin-top: 100px;}
+#_NBMBOX_TM {background: rgb(255, 255, 255);text-align: right;line-height: 20px;}
+.sendbox_in {background: rgb(233, 233, 233);}
+._NB_POP_X {background: rgb(150, 158, 156);border-radius: 20px;top: -15px;width: 30px;height: 30px;text-align: center;right: -15px;line-height: 40px;float: right;display: block;position: absolute;cursor: pointer;background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAErSURBVDhPnZNdSwJBFIb7/z8gCEzNisQbu+5CCSSJIhKEwFCS7Lsw8iZhYXvGOTM7zpkV6eW92PPOeXbYMzs7u9XKvy3wWbcznT32r6/2Dmp+Tfv8ovf08ty77NvSwES5E68o4+9GI2nK85vBLYmBX9/fJFuJcv+o4RnrkERZlrGHgQfDoWROH1+fIR+RiA3IDVw/OaZbYifPa/J3uWydtgXG9CX5+8lYCidPFnAZHykkcQHjzXxE4jUYw3OS0h5IkziGsZ4Q+lksmGvUGcNJ0srP33sN3kBaRXwBJ89Tf3/IC1z2J/AP6vl73sDcEomdwtnSp3k2E5hJSraSPhXNczHIDRxejOR54oifTB8IDcwCBRHLSdKaNm47bfPv+WGrSSIDs2v+eStXK3+1BrGNUAdgJAAAAABJRU5ErkJggg==);background-repeat: no-repeat;background-position: center center;}
+._NB_RLST {display: table;cursor: pointer;font-size: 13px;width: 100%;border-bottom: 1px solid rgb(217, 217, 217);}
+._NB_RLST:hover {background: rgb(217, 217, 217);}
+.new_msg_box {border-radius: 15px;font-size: 13px;padding: 5px 10px;background: rgb(255, 59, 48);color: #fff;margin-left: 5px;}
+._NBISM #_NBFICB {display: none;}
+._NBISM #_NB_SENDBTN {padding: 7px 9px !important;}
+._NBISM #_NB_SENDBOX #_NB_BTNTD {display: none;}
+._NEWTALK {margin: 20px auto;cursor: pointer;text-align: center;display: block;width: 120px;height: 40px;line-height: 40px;border-radius: 5px;background: rgba(0, 0, 0, 0.5);color: #fff;font-size: 14px;}
+#_NB_WEBPUSHPOPUP {width: auto;max-width: 400px;min-width: 300px;left: 90px;top: 6px;background-color: #FBFBFB !important;border-radius: 2px;border: 1px solid rgba(0, 0, 0, .2);box-shadow: 0 3px 2px rgba(0, 0, 0, .15);color: #000 !important;font-size: 12px;line-height: 1.5;position: fixed;z-index: 999999;box-sizing: border-box;letter-spacing: normal;}
+#_NB_WEBPUSHPOPUP:after,#_NB_WEBPUSHPOPUP:before {content: '';position: absolute;left: 10px;width: 0;height: 0;border-left: 6px solid transparent;border-right: 6px solid transparent;}
+#_NB_WEBPUSHPOPUP:before {top: -6px;border-bottom: 6px solid rgba(0, 0, 0, .25);z-index: 999997;}
+#_NB_WEBPUSHPOPUP:after {top: -5px;border-bottom: 6px solid #FBFBFB;z-index: 999998;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT {line-height: 30px;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHTEXT {padding: 20px;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT img {display: inline-block;width: 36px;height: 36px;margin-right: 10px;vertical-align: middle;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHBTNLAYOUT {display: block;width: 100%;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHBTNLAYOUT ._NBWEBPUSHBTN {text-align: center;display: inline-block;width: 50%;padding: 10px 20px;border-radius: 0px;border: 1px;float: left;border-color: #000;color: #000;font-size: 14px;box-shadow: 0 1px 1px rgba(38, 93, 134, .18)}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHBTNLAYOUT ._NBWEBPUSHBTNOK {background: rgb(59, 175, 218);color: #fff;outline: none;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHBTNLAYOUT ._NBWEBPUSHBTNDENY {background: rgb(255, 255, 255);outline: none;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHCLOSEBTN {display: inline-flex;position: relative;float: right;height: 30px;align-items: center;margin-right: 20px;cursor: pointer;}
+#_NB_WEBPUSHPOPUP ._NBWEBPUSHLAYOUT ._NBWEBPUSHCLOSEBTN img {width: 15px;height: 14px;}
+._NB_QSLI {display: inline-block;text-align: center;cursor: pointer;}
+._NB_QSLI span {display: block;border: 1px solid rgb(192, 192, 192);font-size: 12px;padding: 5px;}
+._NB_QSLI span:hover {background: rgb(232, 232, 232);}
+._NB_X_CLOSE {display: block;padding: 4px;border-radius: 3px;width: 28px;height: 28px;text-align: center;line-height: 13px;font-size: 11px;font-weight: bold;font-family: 굴림;background: rgb(255, 255, 255);margin-right: 5px;cursor: pointer;box-sizing: content-box;}
+._NBISM ._NB_M_ICO {position: absolute;right: 44px;top: 20px;margin-right: 5px;}
+._NBISM ._NB_X_CLOSE {position: absolute;right: 5px;top: 20px;}
+#_NB_NPUSH,#_NB_EVENT {position: fixed;width: 350px;right: -360px;bottom: 20px;z-index: 99997;display: block;margin-left: 20px;transition: all 0.5s cubic-bezier(0.54, 0.33, 0.68, 1.3);font-family: 'Segoe UI Emoji', 'Noto Sans', sans-serif;	pointer-events: none;}
+._NB_NPUSHLAYOUT {	pointer-events: auto;z-index: 99998;background: rgb(255, 255, 255);border-radius: 7px;/*border: 1px solid #c1c8d7;*/overflow: hidden;min-width: 240px;min-height: 80px;text-align: center;position: relative;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;box-shadow: 2px 2px 15px 6px rgba(0, 0, 0, 0.1);}
+._NB_NPUSHLAYOUT ._NB_NPUSHCLOSEBTN {position: absolute;top: 13px;right: 13px;cursor: pointer;z-index: 99999;}
+._NB_NPUSHLAYOUT ._NB_NPUSHCLOSEBTN img {width: 15px;height: 14px;}
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER {width: 100%;padding: 13px;box-sizing: border-box;position: relative;}
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHMANAGERPICTURE {position: relative;text-align: center;overflow: hidden;margin-bottom: 26px;}
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHMANAGERPICTURE img {display: block;border-radius: 50%;height: 48px;width: 48px;float: left;} 
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHMANAGERPICTURE ._NB_NPUSIMGWRAPPER{width:48px;height:48px;border-radius:50%;overflow:hidden;float:left;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);} 
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHMANAGERPICTURE ._NB_NPUSIMGWRAPPER img{display:block;float:left;} 
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHNAME {text-align: left;line-height: 30px;margin-left: 58px;color: #292c32;font-size: 14px;font-weight: bold;  font-family: 'Nanum Gothic', 'Noto Sans', sans-serif, 'Segoe UI Emoji';}
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHSUBTITLE {text-align: left;line-height: 18px;margin-left: 58px;color: #434a54;font-size: 12px;font-family: 'Nanum Gothic', 'Noto Sans', sans-serif, 'Segoe UI Emoji';}
+._NB_NPUSHLAYOUT ._NB_NPUSHCONTAINER ._NB_NPUSHBODY {position: relative;text-align: left;}
+._NB_NPUSHBODY ._NB_NPUSHTITLE {font-size: 17px;color: #4a89dc;margin-bottom: 26px;font-weight: bold;font-family: 'Nanum Gothic', 'Noto Sans', sans-serif, 'Segoe UI Emoji';}
+._NB_NPUSHBODY ._NB_NPUSHCONTENTS {color: #434a54;font-size: 14px;line-height: 24px;margin-bottom: 26px;font-family: 'Nanum Gothic', 'Noto Sans', sans-serif, 'Segoe UI Emoji';}
+._NB_NPUSHBODY ._NB_NPUSHCOUPONWRAP {position: relative;text-align: center;}
+._NB_NPUSHBODY ._NB_NPUSHCOUPONWRAP ._NB_NPUSHCOUPONTITLE {color: #aab2bd;font-size: 12px;text-align: center;margin-bottom: 7px;}
+._NB_NPUSHBODY ._NB_NPUSHCOUPONWRAP ._NB_NPUSHCOUPONNOWRAP {position: relative;text-align: center;}
+._NB_NPUSHBODY ._NB_NPUSHCOUPONWRAP ._NB_NPUSHCOUPONNOWRAP ._NB_NPUSHCOUPONNO {height: 30px;font-size: 26px;color: #434a54;text-align: center;margin-bottom: 26px;font-weight: bold;text-align: center;cursor: pointer;}
+._NB_NPUSHBODY ._NB_NPUSHIMAGEWRAP {position: relative;text-align: center;}
+._NB_NPUSHBODY ._NB_NPUSHIMAGEWRAP img {width: 100%;cursor: pointer;}
+._NB_NPUSHBODY ._NB_NPUSHBUTTONWRAP {overflow: hidden;text-align: center;padding-bottom: 10px;}
+._NB_NPUSHBODY ._NB_NPUSHBUTTON {display: inline-block;width: auto;border-radius: 3px;padding: 13px 26px 13px 26px;color: #fff;font-size: 16px;font-weight: bold;background: #212121;text-align: center;cursor: pointer;}
+@media (max-width:640px) {#_NB_NPUSH {position: fixed;width: calc(100% - 40px);right: 15px;bottom: 0px;top: -100%;left: 15px;z-index: 99997;display: block;margin: 5px;margin-top: 10px;height: 0px;}
+._NB_NPUSHLAYOUT {z-index: 99998;background: rgb(255, 255, 255);border-radius: 7px;/*border: 1px solid #c1c8d7;*/overflow: hidden;min-width: 240px;min-height: 80px;text-align: center;position: relative;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;box-shadow: 2px 2px 15px 6px rgba(0, 0, 0, 0.1);}}#_NB_LPOP {position: fixed;right: 40px;bottom: 108px;z-index: 89998;display: block;opacity: 0;}._NB_LPOPLAYOUT {z-index: 99998;background: rgb(255, 255, 255);border-radius: 15px;border: 1px solid #c1c8d7;overflow: hidden;width: 300px;text-align: center;position: relative;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;box-shadow: 0px 0px 40px rgba(110, 110, 110, 0.3);}
+._NB_LPOPLAYOUT ._NB_LPOPCLOSEBTN {position: absolute;top: 10px;right: 10px;cursor: pointer;z-index: 99999;}
+._NB_LPOPLAYOUT ._NB_LPOPCLOSEBTN img {width: 15px;height: 14px;opacity: 0.7;}
+._NB_LPOPLAYOUT ._NB_LPOPCLOSEBTN img:hover {opacity: 1;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER {width: 100%;padding: 14px;box-sizing: border-box;position: relative;cursor: pointer;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER ._NB_LPOPMANAGERPICTURE {height: 42px;position: relative;text-align: left;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER ._NB_LPOPMANAGERPICTURE img {display: inline-block;border-radius: 50%;height: 42px;width: 42px;float: left;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER ._NB_LPOPMANAGERPICTURE ._NB_LPOPBODY_TITLE {display: inline-block;position: relative;overflow: hidden;margin-left: 14px;}
+._NB_LPOPCONTAINER ._NB_LPOPMANAGERNAME {display: flex;color: #182433;font-weight: bold;font-size: 12px;height: 21px;align-items: flex-end;}
+._NB_LPOPCONTAINER ._NB_LPOPMSGGAP {display: flex;height: 21px;align-items: flex-end;font-size: 11px;font-weight: normal;color: #8492af;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER ._NB_LPOPBODY {position: relative;display: inline-block;text-align: left;width: 100%;padding-top: 14px;padding-bottom: 30px;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER ._NB_LPOPBODY ._NB_LPOPCONTENTMSG {font-size: 13px;overflow: hidden;color: #182433;word-break: break-all;}
+._NB_LPOPLAYOUT ._NB_LPOPCONTAINER ._NB_LPOPCONTENTMSG img {height: auto !important;margin: 0px;}
+._NB_LPOPM {right: 30px;bottom: 98px;}
+#_NB_NOTICE {position: fixed;display: none;z-index: 99998;box-shadow: 0px 0px 40px rgba(110, 110, 110, 0.3);width: 320px;font-size: 12px;}
+#_NB_AUTOMSG_CONTAINER {position: fixed;width: 0px;height: 0px;bottom: 0px;right: 0px;z-index: 1000000;left: 0px;top: 0px;}
+#_NB_AUTOMSG_CONTAINER #_NB_AUTOMSG_MODAL {display: none;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.5);position: fixed;left: 0;top: 0;}
+#_NB_TICKER {position: fixed;width: 0px;height: 0px;bottom: 0px;right: 0px;z-index: 2147483647;left: 0px;top: 0px;}
+._NB_AUTOMSG_TOOLTIP {position: relative;display: inline-block;}
+._NB_AUTOMSG_TOOLTIP ._NB_AUTOMSG_TOOLTIPTEXT {visibility: hidden;width: 140px;background-color: #555;color: #fff;font-size: 12px;text-align: center;border-radius: 6px;padding: 5px 0;position: absolute;z-index: 1;bottom: 125%;left: 50%;margin-left: -70px;opacity: 0;transition: opacity 0.3s;}
+._NB_AUTOMSG_TOOLTIP ._NB_AUTOMSG_TOOLTIPTEXT::after {content: '';position: absolute;top: 100%;left: 50%;margin-left: -5px;border-width: 5px;border-style: solid;border-color: #555 transparent transparent transparent;}
+._NB_AUTOMSG_TOOLTIP:hover ._NB_AUTOMSG_TOOLTIPTEXT {visibility: visible;opacity: 1;}
+#_NB_LPOP.on {animation: show-lpopup 0.5s forwards;}
+#_NB_LPOP.off {animation: close-lpopup 0.5s forwards;}
+@keyframes show-lpopup {0% {transform: translate(20px, 0px);opacity: 0;}90% {transform: translate(0px, 0px);opacity: 0.3;}100% {opacity: 1;transform: translate(0px, 0px);}}
+@keyframes close-lpopup {0% {opacity: 1;transform: translate(0px, 0px);}100% {opacity: 0;transform: translate(20px, 0px);}} 
+._NBTELIMG{vertical-align: middle;width: 16px;height: 16px;padding-right: 5px;}
+	</style>
+<style type="text/css" private="true">
+.rightBottomPosition {
+	right:30px !important;
+	bottom:30px !important;
+}
+.rightTopPosition {
+	right:30px !important;
+	top:30px !important;
+}
+.leftTopPosition {
+	left:30px !important;
+	top:30px !important;
+}
+.leftBottomPosition {
+	right:30px !important;
+	bottom:30px !important;
+}
+.mi-push-iframe-box {
+	display:block; 
+	width: 100% !important; 
+	max-width: 400px; 
+	position: fixed !important;
+	background-color: transparent !important;
+	z-index: -1 !important;
+	overflow: hidden !important; 
+	font-family: !important;
+	opacity: 0;
+}
+.push-position {
+	right: 30px ; 
+	bottom: 120px ;
+}
+.push-position {
+	right:20px;
+	bottom: 120px ;
+}
+.mi-position { 
+	right: 30px ;
+	bottom: 30px ; 
+}
+ </style>
+ </head>
+ <body class="">
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+
+    <!--allStore_header-->
+    <div id="allStoreHeader">
+
+    <!--allStore_topbar-->
+    
+
+<div id="allStore_topbar">
+    <div class="allStore_layout">
+        <div class="text">
+            <div onclick="addAllStoreFavorite()" class="favorite">+ 즐겨찾기</div>         
+                               
+        </div>
+        <div class="xans-element- xans-layout xans-layout-statelogoff "><a href="http://coffeechoi.co.kr/member/login.html">로그인</a>
+<a href="http://coffeechoi.co.kr/member/join.html">회원가입<span class="point">+3,000원</span></a>
+<a href="http://coffeechoi.co.kr/order/basket.html">장바구니<span class="count displaynone"></span></a>
+<a href="http://coffeechoi.co.kr/myshop/order/list.html">주문조회</a>
+<a href="http://coffeechoi.co.kr/myshop/index.html">마이페이지</a>
+<div class="boardbtn">
+             <a href="http://coffeechoi.co.kr/front/php/b/board_list.php?board_no=4">게시판</a>
+                <div class="board-dropdown">
+                    <ol class="xans-element- xans-layout xans-layout-boardinfo"><li class="xans-record-"><a href="http://coffeechoi.co.kr/board/%EC%83%81%ED%92%88%ED%9B%84%EA%B8%B0/4/">상품후기</a></li>
+<li class="xans-record-"><a href="http://coffeechoi.co.kr/board/%EB%AC%B4%EB%A3%8C%EC%83%98%ED%94%8C/101/">무료샘플</a></li>
+<li class="xans-record-"><a href="http://coffeechoi.co.kr/board/%EC%83%81%ED%92%88%EB%AC%B8%EC%9D%98/6/">상품문의</a></li>
+<li class="xans-record-"><a href="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1/">공지사항</a></li>
+</ol>
+</div>
+            </div>
+</div>
+    
+            </div>
+</div> 
+    <!--allStore_topbar-->
+
+<div id="allStore_header">
+<div class="allStore_layout">      
+         
+<div class="xans-element- xans-layout xans-layout-logotop logo ">
+	<a href="http://coffeechoi.co.kr/">
+		<img src="./board_notice_files/55e83c846dd83ad8de1328d612ef5b6b_7_top.jpg"></a>
+</div>
+    
+<div id="allStore_search">
+	<form id="searchBarForm" name="" action="http://coffeechoi.co.kr/product/search.html" method="get" target="_self" enctype="multipart/form-data">
+		<input id="banner_action" name="banner_action" value="" type="hidden">
+<div class="xans-element- xans-layout xans-layout-searchheader search-layout "><!--
+              $product_page=/product/detail.html
+              $category_page=/product/list.html
+              -->
+<fieldset>
+<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder="" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text">               
+<button class="icon icon-magnifier" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"></button>
+</fieldset>
+</div>
+</form>        </div>
+        </div>
+    </div>
+    
+    <!--allStore_nav-->
+    <div id="allStore_nav" class="">
+      <div id="categoryList" class="xans-element- xans-layout xans-layout-category"><div class="allStore_layout">
+           
+           
+           
+          <div class="position">
+            <ul>
+<li><a href="http://coffeechoi.co.kr/shopinfo/company.html">최준영커피 소개</a></li>
+              <li class="xans-record-"><a href="http://coffeechoi.co.kr/product/list.html?cate_no=56">전체 상품</a></li>
+              <li class="xans-record-"><a href="http://coffeechoi.co.kr/product/list.html?cate_no=43">블렌드 원두</a></li>
+              <li class="xans-record-"><a href="http://coffeechoi.co.kr/product/list.html?cate_no=46">싱글오리진 원두</a></li>
+              <li><a href="http://coffeechoi.co.kr/board/%EC%83%81%ED%92%88%ED%9B%84%EA%B8%B0/4/">상품후기</a></li>
+            </ul>
+</div>
+        </div>
+</div>
+      
+    </div>
+    <!--allStore_nav-->
+        
+</div>
+
+    <!--allStore_header-->                 
+    
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+            
+            <div>
+<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 "><!--타이틀, 현재위치-->
+<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 allStore-board-menupackage "><div class="title">
+            <h2><font color="#555555">공지사항</font></h2>
+        </div>
+<div class="nav-path">
+            <ol>
+<li><a href="http://coffeechoi.co.kr/">홈</a></li>
+            <li title="현재 위치"><strong>공지사항</strong></li>
+            </ol>
+</div>
+</div>
+<!--타이틀, 현재위치-->
+<!--이미지-->
+<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 top-title-img "></div>
+<!--이미지-->
+<div class="boardSort">
+                <span class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
+    </div>
+<div class="ec-base-table typeList gBorder">
+<table border="1" summary="">
+<caption>게시판 목록</caption>
+<colgroup class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
+<col style="width:80px;">
+<col style="width:150px;">
+<col style="width:auto;">
+<col style="width:150px;">
+<col style="width:150px;">
+<col style="width:150px;">
+</colgroup>
+<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 "><tr style=" ">
+	<th scope="col"> 번호</th>
+	<th scope="col">카테고리</th>
+	<th scope="col">제목</th>
+	<th scope="col">작성자</th>
+	<th scope="col">작성일</th>
+	<th scope="col">조회수</th>
+</tr>
+</thead>
+<tbody class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">
+</tbody>
+</table><p class="xans-element- xans-board xans-board-empty-1002 xans-board-empty xans-board-1002 message displaynone "></p>
+    </div>
+<div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ec-base-button displaynone ">
+	<span class="gRight">
+		<a href="http://coffeechoi.co.kr/board/free/write.html?board_no=1" class="displaynone allStore-color-btn1">글쓰기</a>
+	</span>
+</div>
+</div>
+
+<div class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
+<a href="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1/?board_no=1&amp;page=1" class="btn">
+<i class="fa fa-angle-left" aria-hidden="true"></i></a>
+<ol>
+	<li class="xans-record-">
+		<a href="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1/?board_no=1&amp;page=1" class="this">1</a>
+	</li>
+</ol>
+	<a href="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1/?board_no=1&amp;page=1" class="btn">
+		<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+</div>
+
+
+<form id="boardSearchForm" name="" action="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1" method="get" target="_top" enctype="multipart/form-data">
+	<input id="board_no" name="board_no" value="1" type="hidden">
+	<input id="page" name="page" value="1" type="hidden">
+	<input id="board_sort" name="board_sort" value="" type="hidden">
+<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
+<fieldset class="boardSearch">
+<legend>게시물 검색</legend>
+	<p><select id="search_date" name="search_date" fw-filter="" fw-label="" fw-msg="">
+		<option value="week">일주일</option>
+		<option value="month">한달</option>
+		<option value="month3">세달</option>
+		<option value="all">전체</option>
+	</select> 
+	<select id="search_key" name="search_key" fw-filter="" fw-label="" fw-msg="">
+		<option value="subject">제목</option>
+		<option value="content">내용</option>
+		<option value="writer_name">글쓴이</option>
+		<option value="member_id">아이디</option>
+		<option value="nick_name">별명</option>
+	</select> 
+	<input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"> 
+	<a href="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1/#none" onclick="BOARD.form_submit(&#39;boardSearchForm&#39;);">
+	<img src="./board_notice_files/btn_find.gif" alt="찾기"></a></p>
+</fieldset>
+</div>
+</form>
+<!-- 관리자 전용 메뉴 -->
+
+<!-- //관리자 전용 메뉴 --></div>
+        </div>
+    </div>
+    <!--allStore_contents-->
+
+    <!--allStore_service_center-->
+     
+    <!--allStore_sevicesenter-->
+
+    <!--allStore_footer-->
+    <div id="allStore_footer" class="xans-element- xans-layout xans-layout-footer "><div class="footer-top">
+        <div class="allStore_layout">
+            <ol class="menu">
+<li><a href="http://coffeechoi.co.kr/">홈</a></li>
+                <li><a href="http://coffeechoi.co.kr/shopinfo/company.html">회사소개</a></li>
+                <li><a href="http://coffeechoi.co.kr/shopinfo/guide.html">이용안내</a></li>                
+                <li><a href="http://coffeechoi.co.kr/member/agreement.html">이용약관</a></li>
+                <li><a href="http://coffeechoi.co.kr/member/privacy.html">개인정보처리방침</a></li>
+            </ol>
+</div>
+	</div>
+<div class="allStore_layout">          
+        <ul class="xans-element- xans-layout xans-layout-info service-center"><li class="">
+            <h5>회사정보</h5>
+            <pre>                <b>회사명</b><span>최준영 커피</span> <b>대표</b><span>최준영</span> <b>전화</b><span>070-8844-1417</span><br><b>사업자등록번호</b><span>705-02-01087 <a href="http://coffeechoi.co.kr/board/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/1/#none" onclick="window.open(&#39;http://www.ftc.go.kr/bizCommPop.do?wrkr_no=7050201087&#39;, &#39;bizCommPop&#39;, &#39;width=750, height=950;&#39;);return false;">[사업자정보확인]</a></span> <br><b>통신판매업 신고번호</b><span>2018-용인기흥-0603</span> <br><b>주소</b><span>(16978) 경기도 용인시 기흥구 강남로 6 (구갈동) 204호</span><br><b>이메일</b><span>help@coffeechoi.co.kr</span> <b>개인정보관리책임자</b><span>최준영</span><br></pre>            
+            </li>
+<li class="">
+            <h5>고객센터</h5>
+            <h3>070-8844-1417</h3>
+            <pre class="time"><b>평일 오후 2시~오후 6시
+토,일,공휴일 휴무</b></pre>                        
+            </li>
+<li>
+            <h5>은행계좌</h5> 
+            <pre class="bank">            <b>예금주</b><span>최준영커피</span>
+<b>국민은행</b><span>698901-01-149302</span> 
+            </pre>
+            </li>
+<li>
+            <h5>SNS</h5>            
+                <ol class="menu">
+<li><a href="https://www.instagram.com/coffeechoi.co.kr" target="_blank"><img src="./board_notice_files/instar.jpg"> 인스타그램</a></li>
+                    <li><a href="https://www.facebook.com/coffeechoi.co.kr" target="_blank"><img src="./board_notice_files/facebook.jpg"> 페이스북</a></li>
+                    <li><a href="https://blog.naver.com/alang33" target="_blank"><img src="./board_notice_files/blog.jpg"> 네이버 블로그</a></li>
+                    <li><a href="http://pf.kakao.com/_ZkmnC" target="_blank"><img src="./board_notice_files/kakao.jpg"> 카카오톡 플러스친구</a></li>
+                </ol>
+</li>
+</ul>
+</div>
+<div class="footer_lay">
+       <div class="copyright">Copyright © <strong>최준영커피</strong>. All rights reserved.</div>
+    </div>
+</div>
+
+
+
+<!--상단으로-->
+<div class="allStore-goToTop">   
+    
+    <i class="icon icon-arrow-up"></i><br>TOP
+</div>
+<!--상단으로-->
+
+ <!-- 참고: 결제를 위한 필수 영역 -->
+<div id="progressPaybar" style="display:none;">
+  <div id="progressPaybarBackground" class="layerProgress"></div>
+  <div id="progressPaybarView">
+    <div class="box">
+      <p class="graph">
+        <span><img src="./board_notice_files/txt_progress.gif" alt="현재 결제가 진행중입니다."></span>
+        <span><img src="./board_notice_files/img_loading.gif" alt=""></span>
+      </p>
+      <p class="txt">
+        본 결제 창은 결제완료 후 자동으로 닫히며,결제 진행 중에 본 결제 창을 닫으시면<br>
+        주문이 되지 않으니 결제 완료 될 때 까지 닫지 마시기 바랍니다.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- //참고 -->
+
+
+<!-- Mirae Log Analysis Script Ver 1.0   -->
+<script type="text/javascript">
+var mi_adkey = "oqyci";
+var mi_is_defender = "";
+var mi_dt=new Date(),mi_y=mi_dt.getFullYear(),mi_m=mi_dt.getMonth()+1,mi_d=mi_dt.getDate(),mi_h=mi_dt.getHours();
+var mi_date=""+mi_y+(mi_m<=9?"0":"")+mi_m+(mi_d<=9?"0":"")+mi_d+(mi_h<=9?"0":"")+mi_h;
+var mi_script = "<scr"+"ipt "+"type='text/javascr"+"ipt' src='//log1.toup.net/mirae_log.js?t="+mi_date+"' charset='utf-8' async='true'></scr"+"ipt>"; 
+document.writeln(mi_script);
+</script><script type="text/javascript" src="./board_notice_files/mirae_log.js.다운로드" charset="utf-8" async="true"></script>
+
+<!-- Mirae Log Analysis Script END  -->
+
+<!-- Mirae Talk Script Ver 1.0   -->
+<script async="true" src="./board_notice_files/mirae_log_chat_common.js.다운로드" charset="UTF-8"></script>
+<!-- Mirae Talk Script End  -->
+
+<!-- Start Script for IFDO (회원분석) -->
+
+<script type="text/javascript">
+var _SSG=sessionStorage;function _G_UDF(a){var b='';if(_SSG.getItem(a)!=null) b=_SSG.getItem(a); return b;};
+if( _G_UDF('_LOGINID') !='' ){
+var _NB_ID = _G_UDF('_LOGINID'); var _NB_EMAIL=_G_UDF('_EMAIL');var _NB_UDF={'udf01':_G_UDF('_NAME'),'udf06':_G_UDF('_GRPNAME')};
+}
+</script>	
+	<!-- End Script for IFDO -->
+				
+
+<!-- Start Script for IFDO -->
+<script type="text/javascript">
+var _NB_gs = 'wlog.ifdo.co.kr'; 
+var _NB_MKTCD = 'ATF3200681360';
+var _NB_APPVER=''; /* 하이브리드 앱 버전 */
+(function(a,b,c,d,e){var f;f=b.createElement(c),g=b.getElementsByTagName(c)[0];f.async=1;f.src=d;
+f.setAttribute('charset','utf-8');
+g.parentNode.insertBefore(f,g)})(window,document,'script','//script.ifdo.co.kr/jfullscript.js');	
+</script>
+
+<script type="text/javascript">
+
+</script>
+<script src="./board_notice_files/enliple_min3.6.js.다운로드" defer="defer" onload="mobRf()"></script>
+
+ 
+    <!--allStore_footer-->
+
+</div>
+<!--allStore_wrap-->
+    
+
+                <script>
+                try {
+                    // Account ID 적용
+                    if (!wcs_add) var wcs_add = {};
+                    wcs_add["wa"] = "s_4c89751248cb";
+            
+                    // 마일리지 White list가 있을 경우
+                    wcs.mileageWhitelist = ["boogie111111.cafe24.com", "www.boogie111111.cafe24.com", "m.boogie111111.cafe24.com", "coffeechoi.co.kr", "www.coffeechoi.co.kr", "m.coffeechoi.co.kr"];
+
+                    // 네이버 페이 White list가 있을 경우
+                    wcs.checkoutWhitelist = ["boogie111111.cafe24.com", "www.boogie111111.cafe24.com", "m.boogie111111.cafe24.com", "coffeechoi.co.kr", "www.coffeechoi.co.kr", "m.coffeechoi.co.kr"];
+                
+                    // 레퍼러 (스크립트 인젠션 공격 대응 strip_tags) ECQAINT-15101
+                    wcs.setReferer("http://coffeechoi.co.kr/front/php/b/board_list.php?board_no=4");
+
+                    // 유입 추적 함수 호출
+                    wcs.inflow("coffeechoi.co.kr");
+
+                    // 로그수집
+                    wcs_do();
+                } catch (e) {};
+                </script>
+            
+<script type="text/javascript" src="./board_notice_files/i18n.php" charset="utf-8"></script>
+<script type="text/javascript" src="./board_notice_files/optimizer(2).php"></script>
+<script type="text/javascript" src="./board_notice_files/optimizer(3).php"></script>
+<script type="text/javascript" src="./board_notice_files/optimizer(4).php"></script>
+<script type="text/javascript">
+var EC_MOBILE = false;
+var EC_MOBILE_DEVICE = false;
+var EC_MOBILE_USE = true;
+localStorage.setItem('EC_JQUERY_VERSION','1.4.4');
+var mobileWeb = false;
+var bUseElastic = false;
+var sSearchBannerUseFlag = 'F';
+var bIsUseSpread = false;
+var sIsSecret = false;
+var iBoardNo = "1";
+var aLogData = {"log_server1":"eclog2-222.cafe24.com","log_server2":"eclog2-222.cafe24.com","mid":"boogie111111","stype":"e","domain":"","shop_no":"1","lang":"ko_KR","ver":2,"etc":""};
+var sMileageName = '적립금';
+var sMileageUnit = '[:PRICE:]원';
+var sDepositName = '예치금';
+var sDepositUnit = '원';
+var SHOP_CURRENCY_INFO = {"1":{"aShopCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"aShopSubCurrencyInfo":null,"aBaseCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"fExchangeRate":1,"fExchangeSubRate":null,"aFrontCurrencyFormat":{"head":"","tail":"\uc6d0"},"aFrontSubCurrencyFormat":{"head":"","tail":""}}};
+var EC_ASYNC_LIVELINKON_ID = '';
+if ($('[async_section=before]').length > 0) {
+$('[async_section=before]').addClass('displaynone');
+}
+var EC_FRONT_JS_CONFIG_MANAGE = {"sSmartBannerScriptUrl":"https:\/\/app4you.cafe24.com\/SmartBanner\/tunnel\/scriptTags?vs=1563164396689206","sMallId":"boogie111111","sDefaultAppDomain":"https:\/\/app4you.cafe24.com","sWebLogOffFlag":"F"};
+var EC_FRONT_JS_CONFIG_MEMBER = {"sAuthUrl":"https:\/\/i-pin.cafe24.com\/certify\/1.0\/?action=auth"};
+</script>
+</body>
+</html>

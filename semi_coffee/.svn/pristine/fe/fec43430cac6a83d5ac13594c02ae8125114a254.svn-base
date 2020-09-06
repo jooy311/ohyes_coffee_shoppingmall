@@ -1,0 +1,40 @@
+<%@page import="ohyes.coffee.dao.NoticeDAO"%>
+<%@page import="ohyes.coffee.dto.NoticeDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//한글처리
+	request.setCharacterEncoding("utf-8");
+	
+	//!!비정상적인 요청에 대한 응답처리
+
+	//!!변수에 DB에 넣을 값 저장하기 
+	int noticeNo=NoticeDAO.getDAO().selectNextNo()+110;	//!!후에 테스트데이터 지우고 수정필요
+	String noticeTitle=request.getParameter("title");
+	String noticeContents=request.getParameter("content");
+	int noticeReadcount=0;	//!!조회수 처리해아
+	
+	//!!변수값 출력 (확인용)
+	System.out.println(noticeNo+"/" +noticeTitle +"/" + noticeContents+"/"+ noticeReadcount);
+	
+	
+	NoticeDTO notice = new NoticeDTO();
+	notice.setNoticeNo(noticeNo);
+	notice.setNoticeTitle(noticeTitle);
+	notice.setNoticeContents(noticeContents);
+	notice.setNoticeReadcount(noticeReadcount);
+	
+	NoticeDAO.getDAO().insertNotice(notice);
+
+	//임시저장 : 1 , 글올리기 : 2 
+	String btnVal=request.getParameter("writeBtn");
+	if(btnVal.equals("2")){
+		NoticeDAO.getDAO().updateNoticeStatus(noticeNo, 2);
+	}
+	
+	//!!창 닫는거 까지는 됬는데 noticeList로 돌아가는데 추가, 변경된거 확인 가능하도록 리로드 되는거 어케 한다냐
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/admin/index.jsp?part=notice&work=list';");
+	out.println("</script>");
+%>
+	

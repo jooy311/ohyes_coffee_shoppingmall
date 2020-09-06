@@ -1,0 +1,33 @@
+<%@page import="ohyes.coffee.dto.ReviewCommentDTO"%>
+<%@page import="ohyes.coffee.dao.ReviewCommentDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//비정상적인 요청에 대한 응답처리
+	if (request.getMethod().equals("get")){
+		out.println("<script type='text/javascript'>");
+		out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=error&work=error400';");
+		out.println("</script>");
+	}
+	
+	int num=Integer.parseInt(request.getParameter("num"));
+	int no=Integer.parseInt(request.getParameter("no"));
+	String memId=request.getParameter("memId");
+
+	int reviewCoNo=ReviewCommentDAO.getDAO().selectNextNum();
+	int reviewNo=Integer.parseInt(request.getParameter("reviewNo"));
+	String reviewCoContent=request.getParameter("reviewCoContent").replace("<", "&lt;").replace(">", "&gt;");
+	String reviewCoId=request.getParameter("reviewCoId");
+	
+	ReviewCommentDTO comment=new ReviewCommentDTO();
+	comment.setReviewCoNo(reviewCoNo);
+	comment.setReviewNo(reviewNo);
+	comment.setReviewCoContent(reviewCoContent);
+	comment.setReviewCoId(reviewCoId);
+	
+	ReviewCommentDAO.getDAO().insertComment(comment);
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=board&work=review_detail&num="+num+"&no="+no+"#comment_modify';");
+	out.println("</script>");
+%>

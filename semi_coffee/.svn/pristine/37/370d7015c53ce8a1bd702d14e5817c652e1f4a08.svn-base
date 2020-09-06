@@ -1,0 +1,82 @@
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dao.ProductAdminDAO"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="ohyes.coffee.dao.MypageDAO"%>
+<%@page import="ohyes.coffee.dto.OrderListDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@include file="/coffee/Mypage/login_check.jspf" %>   
+    
+<%
+	String memId = loginMember.getMemId();
+	String orderNo = request.getParameter("orderNo");
+	
+	List<OrderListDTO> orderList = MypageDAO.getDAO().selectOrderAll3(memId, orderNo);
+	
+	
+	//모든 회원의 주문내역을 일단 리스트로 받는다
+	Set<String> orderSorting = new HashSet<String>();
+	
+	for(OrderListDTO order:orderList) { 
+		
+		orderSorting.add(order.getOrderNo());//일단 주문번호를 다 받아온다. 중복 안됨
+	}
+	
+
+	
+	ProductDTO product = ProductDAO.getProductDAO().selectNoProduct(orderNo);
+	
+
+%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./Mypage/css/default_shop.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+			<section id="smb_my_od">
+				<h2>주문내역(<%=orderNo%>)</h2>
+
+				<!-- 주문 내역 목록 시작 { -->
+				<div class="tbl_head03 tbl_wrap">
+					<table>
+						<thead>
+							<tr>
+								<th scope="col">상품</th>														
+							
+								<th scope="col">상품 주문 수량</th>								
+							</tr>
+						</thead>
+						<tbody>
+						
+						
+						<% for(OrderListDTO order:orderList) { %>
+						
+						<tr>
+						<!-- 상품 -->
+						<th><%= order.getpName()%></th>
+						
+
+						<!-- 해당 상품 주문 수량 -->
+						<th><%=order.getOrderPAmount()%></th>						
+						
+						</tr>
+
+						<%} %>
+						</tbody>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<!-- } 주문 내역 목록 끝 -->
+			</section>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<%@page import="java.util.Date"%>
+<%@page import="ohyes.coffee.dto.MemberDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="ohyes.coffee.dao.ProductDAO"%>
+<%@page import="ohyes.coffee.dto.ProductDTO"%>
+<%@page import="ohyes.coffee.dto.ReviewDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="ohyes.coffee.dao.ReviewDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//검색할때 사용하는 select, keyword 변수 전달받아 저장
+	String sCategory=request.getParameter("category");
+	if(sCategory==null) sCategory="0";
+	int category=Integer.parseInt(sCategory);
+	
+	String search=request.getParameter("search");
+	if(search==null) search="";
+	String keyword=request.getParameter("keyword");
+	if(keyword==null) keyword="";
+	
+	//전달된 페이지 번호 저장 -> 존재하지 않는경우 첫번째 페이지
+	int pageNum=1;
+	if(request.getParameter("pageNum")!=null){
+		pageNum=Integer.parseInt(request.getParameter("pageNum"));
+	}
+	
+	//하나의 페이지에 출력될 게시글 갯수 저장
+	int pageSize=10;//기본값
+	if(request.getParameter("pageSize")!=null){
+		pageSize=Integer.parseInt(request.getParameter("pageSize"));
+	}
+	
+	//총 게시글 갯수 계산하여 저장
+	int totalBoard=ReviewDAO.getDAO().selectReviewCount(search, keyword);
+
+	//총 페이지 갯수 계산하여 저장
+	int totalPage=(int)Math.ceil((double)totalBoard/pageSize);
+	
+	//전달된 페이지 검증
+	if(pageNum<=0 || pageNum>totalBoard) {
+		pageNum=1;
+	}
+	
+	//현재페이지에 대한 시작 게시글 번호 계산하여 저장
+	int startRow=(pageNum-1)*pageSize+1;
+	
+	//현재페이지에 대한 종료 게시글 번호 계산하여 저장
+	int endRow=pageNum*pageSize;
+	
+	//마지막 페이지에 대한 종료 게시글 번호 계산하여 저장
+	if(endRow>totalBoard){
+		endRow=totalBoard;
+	}
+	
+	//게시글의 시작과 종료 게시글 번호를 전달받아 게시글을 출력하는 메소드호출
+	List<ReviewDTO> reviewList=ReviewDAO.getDAO().selectReview(startRow, endRow, search, keyword, category);
+	
+	//현재 페이지에 출력되는 게시글중 첫번째 게시글 번호 출력
+	int number=totalBoard-(pageNum-1)*pageSize;
+	
+	//세션에 저장된 권한관련정보 전달받아 저장
+	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
+	
+	//시스템의 현재 날짜 반환받아 저장
+	String currentDate=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+%>
+<!--allStore_wrap-->
+<div id="allStore_wrap">
+    <!--allStore_header-->
+
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+        <div class="allStore_layout">
+
+            <div class="board-wrap">
+                <div class="xans-board-listpackage">
+                    <!--타이틀, 현재위치-->
+                    <div class="allStore-board-menupackage">
+                        <div class="title">
+                            <h2>
+                                <font color="#555555">상품후기</font>
+                            </h2>
+                        </div>
+                        <div class="nav-path">
+                            <ol>
+                                <li><a href="<%=request.getContextPath()%>/coffee/index.jsp">홈</a></li>
+                                <li title="현재 위치"><strong>상품후기</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--타이틀, 현재위치-->
+                    <div class="ec-base-table typeList gBorder">
+                    	<!-- ****스타일 수정**** -->
+						<form method="post" id="categoryForm">
+							<select id="category" name="category">
+							    <option value="0" <% if(category==0) { %> selected="selected" <% } %>>전체 상품</option>
+							    <option value="1" <% if(category==1) { %> selected="selected" <% } %>>커피용품</option>
+							    <option value="2" <% if(category==2) { %> selected="selected" <% } %>>블렌드 원두</option>
+							    <option value="3" <% if(category==3) { %> selected="selected" <% } %>>싱글오리진 원두</option>
+							</select>          	
+	                	</form>
+                        <table border="1" summary="">
+                            <thead>
+                                <tr>
+                                    <th style="width:80px;"> 번호</th>
+                                    <th style="width:150px;">상품정보</th>
+                                    <th style="width:auto;">제목</th>
+                                    <th style="width:170px;">작성자</th>
+                                    <th style="width:80px;">작성일</th>
+                                    <th style="width:55px;">조회</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<% if(totalBoard==0) { %>
+	                            	<tr style="background-color:#FFFFFF; color:#555555;">
+										<td colspan="6" class="txtNum">검색된 게시글이 하나도 없습니다.</td>
+									</tr>
+                            	<% } else { %>
+                            		<% ProductDTO product=null; %>
+	                            	<% for(ReviewDTO review:reviewList) {%>
+                            		<% product=ProductDAO.getProductDAO().selectNoProduct(review.getReviewPNo()); %>
+	                                <tr style="background-color:#FFFFFF; color:#555555;">
+	                                    <td><%=number %></td>
+	                                    <% if(review.getReviewStatus()!=0) { %>
+	                                    <td class="thumb left">
+	                                        <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=product&work=product_detail&no=<%=review.getReviewPNo()%>">
+	                                        	<img src="<%=product.getpImagePath()%>" border="0" alt="" />
+	                                        	<span><%=product.getpName() %></span>
+	                                        </a>
+	                                    </td>
+	                                    <% } else { %>
+	                                    <td>&nbsp;</td>
+	                                    <% } %>
+	                                    <td class="subject left txtBreak">
+	                                    <% if(review.getReviewStatus()==1) {//일반글 %>
+	                                        <a href="#" style="color:#555555;">
+	                                            <%=review.getReviewTitle() %>
+	                                        </a> 
+	                                    <% } else if(review.getReviewStatus()==0) {//삭제글 %>
+	                    					<span class="remove">삭제글</span>
+	                    					작성자 또는 관리자에 의해 삭제된 게시글입니다.
+	                    				<% } %>
+	                                    </td>
+	                                    
+	                                    <% if(review.getReviewStatus()!=0) { %>
+	                                    <td><%=review.getReviewMemid() %></td>
+	                                    <td ><span class="txtNum"><%=review.getReviewDate() %></span></td>
+	                                    <td ><span class="txtNum"><%=review.getReviewReadcount() %></span></td>
+	                                    
+	                                    <% } else { %>
+	                                    <td>&nbsp;</td>
+	                                    <td>&nbsp;</td>
+	                                    <td>&nbsp;</td>
+	                                    <% } %>
+	                                </tr>
+	                                <% number--; %>
+	                                <% } %>
+                            	<% } %>
+                            </tbody>
+                        </table>
+                        <p class="message displaynone"></p>
+                    </div>
+                    <% //if(loginMember!=null) { %>
+                    <div class="xans-board-buttonlist ec-base-button">
+                        <span class="gRight">
+                            <a href="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=board&work=review_write" class="allStore-color-btn1">
+                                글쓰기
+                            </a>
+                        </span>
+                    </div>
+                    <% //} %>
+                </div>
+				
+				<%-- 페이징 처리 --%>
+				<% 
+					int blockSize=5;
+					int startPage=(pageNum-1)/blockSize*blockSize+1;
+					int endPage=startPage+blockSize-1;
+					if(endPage>totalPage) {
+						endPage=totalPage;
+					}
+				%>
+				
+                <div class="ec-base-paginate">
+                	<% if(startPage>endPage) { %>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=1&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn">
+                    <img src="images/btn_page_first.gif" alt="처음"/>
+                    </a>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=<%=startPage-blockSize%>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn">
+					<img src="images/btn_page_prev.gif" alt="이전"/>
+					</a>
+                	<% } else { %>
+                	<img src="images/btn_page_first.gif" alt="처음"/><img src="images/btn_page_prev.gif" alt="이전"/>
+                	<% } %>
+                    <ol>
+                    <% for(int i=startPage;i<=endPage;i++) { %>
+                    	<% if(pageNum!=i) { %>
+                        <li><a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=<%=i%>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="other"><%=i%></a></li>
+                        <% } else { %>
+                        <li><a href="#" class="this"><%=i%></a></li>                        
+                        <% } %>
+                    <% } %>
+                    </ol>
+                    <% if(endPage!=totalPage) { %>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=<%=startPage+blockSize%>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn"><img src="<%=request.getContextPath()%>/coffee/images/btn_page_next"alt="다음"/></a>
+                    <a href="<%=request.getContextPath() %>/coffee/index.jsp?workgroup=board&work=review_list&pageNum=<%=totalPage %>&category=<%=category%>&search=<%=search%>&keyword=<%=keyword%>" class="btn"><img src="<%=request.getContextPath()%>/coffee/images/btn_page_last.gif" alt="마지막"/></a>
+                	<% } else { %>
+                	<img src="images/btn_page_next.gif" alt="다음"/><img src="images/btn_page_last.gif"alt="마지막"/>
+                	<% } %>
+                </div>
+				<%-- /페이징 처리 --%>
+
+                <div class="search_board">	
+                    <form id="boardSearchForm" method="post">
+                    	<input id="board_no" name="category" value="<%=category%>" type="hidden"/>
+                        <div class="xans-board-search">
+                            <fieldset class="boardSearch">
+                                <p class="category">
+                                    <select id="search_key" name="search">
+                                        <option value="review_title">제목</option>
+                                        <option value="review_content">내용</option>
+                                        <option value="review_memid">아이디</option>
+                                    </select> 
+                                    <input id="search" name="keyword" class="inputTypeText" type="text" /> 
+                                    <button type="submit"><img src="<%=request.getContextPath()%>/coffee/images/btn_find.gif" alt="찾기" /></button>
+                                </p>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--allStore_contents-->
+</div>
+
+<script type="text/javascript">
+$("#category").change(function() {
+	$("#categoryForm").submit();
+});
+</script>

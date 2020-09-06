@@ -1,0 +1,104 @@
+package ohyes.coffee.dto;
+
+/*
+이름                 널?       유형            
+------------------ -------- ------------- 
+ORDER_NO           NOT NULL VARCHAR2(13)  
+ORDER_MEM_ID       NOT NULL VARCHAR2(12)  
+ORDER_RECV_NAME    NOT NULL VARCHAR2(10)  
+ORDER_RECV_ADDRESS NOT NULL VARCHAR2(180) 
+ORDER_RECV_PHONE   NOT NULL VARCHAR2(20)  
+ORDER_DATE         NOT NULL DATE          
+ORDER_STATUS       NOT NULL NUMBER        
+ORDER_TOTAL_COST   NOT NULL NUMBER        
+ORDER_MESSAGE      NOT NULL VARCHAR2(200) 
+ */
+public class PayDTO {
+	private String ORDER_NO;
+	private String ORDER_MEM_ID;
+	private String ORDER_RECV_NAME;
+	private String ORDER_RECV_ADDRESS;
+	private String ORDER_RECV_PHONE;
+	private String ORDER_DATE;
+	private int ORDER_STATUS;
+	private int ORDER_TOTAL_COST;
+	private String ORDER_MESSAGE;
+	
+	public PayDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getORDER_NO() {
+		return ORDER_NO;
+	}
+
+	public void setORDER_NO(String oRDER_NO) {
+		ORDER_NO = oRDER_NO;
+	}
+
+	public String getORDER_MEM_ID() {
+		return ORDER_MEM_ID;
+	}
+
+	public void setORDER_MEM_ID(String oRDER_MEM_ID) {
+		ORDER_MEM_ID = oRDER_MEM_ID;
+	}
+
+	public String getORDER_RECV_NAME() {
+		return ORDER_RECV_NAME;
+	}
+
+	public void setORDER_RECV_NAME(String oRDER_RECV_NAME) {
+		ORDER_RECV_NAME = oRDER_RECV_NAME;
+	}
+
+	public String getORDER_RECV_ADDRESS() {
+		return ORDER_RECV_ADDRESS;
+	}
+
+	public void setORDER_RECV_ADDRESS(String oRDER_RECV_ADDRESS) {
+		ORDER_RECV_ADDRESS = oRDER_RECV_ADDRESS;
+	}
+
+	public String getORDER_RECV_PHONE() {
+		return ORDER_RECV_PHONE;
+	}
+
+	public void setORDER_RECV_PHONE(String oRDER_RECV_PHONE) {
+		ORDER_RECV_PHONE = oRDER_RECV_PHONE;
+	}
+
+	public String getORDER_DATE() {
+		return ORDER_DATE;
+	}
+
+	public void setORDER_DATE(String oRDER_DATE) {
+		ORDER_DATE = oRDER_DATE;
+	}
+
+	public int getORDER_STATUS() {
+		return ORDER_STATUS;
+	}
+
+	public void setORDER_STATUS(int oRDER_STATUS) {
+		ORDER_STATUS = oRDER_STATUS;
+	}
+
+	public int getORDER_TOTAL_COST() {
+		return ORDER_TOTAL_COST;
+	}
+
+	public void setORDER_TOTAL_COST(int oRDER_TOTAL_COST) {
+		ORDER_TOTAL_COST = oRDER_TOTAL_COST;
+	}
+
+	public String getORDER_MESSAGE() {
+		return ORDER_MESSAGE;
+	}
+
+	public void setORDER_MESSAGE(String oRDER_MESSAGE) {
+		ORDER_MESSAGE = oRDER_MESSAGE;
+	}
+
+	
+}

@@ -1,0 +1,368 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+	<div class="container-fluid">
+		<div class="container" id = "sidebox" style = "width : 30%; top:100px; right:10px; position:absolute; ">
+		<h2 style="text-align: center">주문 검색</h2>
+		<p style="text-align: center">원하는 주문을 검색하세요</p>
+			<form action = "" method = "post">
+				<div class="row">
+					<div class="col-25">
+						<label for="fname">검색 분류</label>
+					</div>
+					<div class="col-75">
+						<!--상품명인지 상품코드인지 선택-->
+						<select id="select_classification" name="classification"
+							style="width: 30%">
+							<option value="order_status">주문자</option>
+							<option value="order_status">주문번호</option>
+						</select> <input type="text" id="product" name="search_product"
+							placeholder="입력.." style="width: 30%">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-25">
+						<label for="country">기간</label>
+					</div>
+					<div class="col-75">
+						<select id="country" name="country">
+							<option value="australia">전체</option>
+							<option value="australia">7일</option>
+							<option value="canada">1개월</option>
+							<option value="usa">3개월</option>
+							<option value="usa">전체</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-25">
+						<label for="lname">상품</label>
+					</div>
+					<div class="col-75">
+						<select id="select_category" name="category">
+							<option value="goods" >상품이름</option>
+							<option value="blend_beans">상품번호(코드)</option>
+						
+						</select>
+					</div>
+				</div>
+				
+				
+				<div class="row checkList">
+					<div class="col-25">
+						<label for="lname">주문상태</label>
+					</div>
+					<div style = "border:1px #eee; padding-top :15px;">
+						<input type="checkbox" name="order_status" value="주문완료">주문완료&nbsp;&nbsp;
+						<input type="checkbox" name="order_status" value="주문취소">주문취소&nbsp;&nbsp;
+					</div>
+				</div>
+
+				<div class="row">
+					<input type="submit" value="검색">
+				</div>
+			</form>
+		</div>
+
+
+	
+		<div class="container" style ="float : left; width : 63%; margin-top : 10px;">
+			&nbsp;&nbsp;
+		<h2 style="text-align: center">주문 목록</h2>
+			&nbsp;&nbsp;
+		
+			<table class="table table-hover" id = "list_table">
+				<thead>
+					<tr>
+						<th>주문날짜</th>
+						<th>주문번호</th>
+						<th>주문자</th>
+						<th>상품명</th> <!-- 목록으로 받아야되나.. -->
+						<th>결제금액</th>
+						<th>결제상태</th>
+						
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>조윤진</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+					<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+					
+						<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+		
+		
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+		
+		
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+			<tr>
+						<td>2020-08-02</td>
+						<td><a href="" class = "show_detail">20200802-00000001</a></td>
+						<td>이주영</td>
+						<td>오렌지 블렌드 외 3건</td>
+						<td>3,5000</td>
+						<td>결제완료</td>
+					
+					</tr>
+		
+		
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+	<!-- /#page-content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+	
+	<!-- -------------------------------------스크립트 시작----------------------------------- -->
+	<script type="text/javascript">
+		//각각의 show_detail을 누르면 상세정보가 보일 수 있도록 한다
+		var $list = $(".show_detail"); //생기는 리스트만큼의 요소가 list객체에 저장된다.
+		//해당 주문번호를 클릭하면 새창이 작게 열린다
+		$(".show_detail").click(function() {
+			window.open("","주문  상세페이지", width = "100px");
+		});
+		
+		var currentPosition = parseInt($("#sidebox").css("top"));
+		$(window).scroll(function() { 
+			var position = $(window).scrollTop(); 
+			$("#sidebox").stop().animate({
+				"top":position+currentPosition+"px"},1000); 
+		});		
+		
+	</script>
+

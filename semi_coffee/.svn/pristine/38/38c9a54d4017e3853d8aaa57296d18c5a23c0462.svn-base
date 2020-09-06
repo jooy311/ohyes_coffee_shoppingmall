@@ -1,0 +1,90 @@
+<%@page import="ohyes.coffee.dao.CartDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="ohyes.coffee.dto.CartOrderDTO"%>
+<%@page import="ohyes.coffee.dao.OrderPayDAO"%>
+<%@page import="ohyes.coffee.dto.OrderListDTO"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@include file="/coffee/Mypage/login_check.jspf" %>
+
+<%
+	int listSize = Integer.parseInt(request.getParameter("listSize"));
+	//System.out.println("리스트사이즈" + listSize);	
+	
+	//이름
+	String memName = request.getParameter("rname");
+	//System.out.println(memName);
+	
+	//배송지
+	String memZipcode = request.getParameter("zipcode1");
+	String memAddress1 = request.getParameter("raddr1");
+	String memAddress2 = request.getParameter("raddr2");
+	
+	String allAddress = memZipcode + " " + memAddress1 + " " + memAddress2;
+	
+	//핸드폰번호
+	String memPhone = "010-" + request.getParameter("rphone2") + "-" + request.getParameter("rphone3");
+	
+	//배송메세지
+	String postMessage = request.getParameter("postMessage");
+	
+	//회원아이디
+	String memId = loginMember.getMemId();
+	
+	//주문번호
+	Date now = new Date();
+	SimpleDateFormat pattern = new SimpleDateFormat("yyyyMMdd");
+	SimpleDateFormat pattern3 = new SimpleDateFormat("HHmmss");
+	String orderNo = pattern.format(now) + "-" + pattern3.format(now) + "-" + memId;
+	
+	//주문날짜->now사용
+	SimpleDateFormat pattern2 = new SimpleDateFormat("yyyy-MM-dd");
+	String orderDate = pattern2.format(now);
+	
+	//주문 총 가격
+	String totalCost = request.getParameter("totalCost");//단일상품일때
+
+	OrderListDTO tmpOrder = new OrderListDTO();
+	tmpOrder.setOrderNo(orderNo);
+	tmpOrder.setMemID(memId);
+	tmpOrder.setOrderDate(orderDate);
+	tmpOrder.setOrderTotalCost(Integer.parseInt(totalCost));//총가격
+	OrderPayDAO.getOrderPayDAO().insertOrderPay(tmpOrder, allAddress, memPhone, postMessage, memName);
+	
+	for(int i = 1 ; i <= listSize; i++) {
+		//String tmp = "pno"+i;
+		int pno = Integer.parseInt(request.getParameter("pno"+i));
+		String pName = request.getParameter("pname"+i);
+		int quantityNum = Integer.parseInt(request.getParameter("quantityNum"+i));
+		int cost = Integer.parseInt(request.getParameter("cost"+i));
+		
+		//System.out.println(pno);
+		OrderListDTO order = new OrderListDTO();
+		
+		order.setMemID(memId);
+		order.setOrderdetailPNo((pno));
+		order.setOrderDate(orderDate);
+		order.setOrderNo(orderNo);
+		order.setpName(pName);
+		order.setOrderPAmount(quantityNum);
+		order.setOrderTotalCost(Integer.parseInt(totalCost));
+		
+		//DAO에 넘겨주기
+		OrderPayDAO.getOrderPayDAO().insertOrderDetail(order, allAddress, memPhone, postMessage, memName, quantityNum);
+		
+		//장바구니 비워주기
+		//CartDAO.getDAO().removeCart(pno,memId);
+	}
+	
+	
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=Mypage&work=mypage';");
+	out.println("</script>");
+
+
+%>

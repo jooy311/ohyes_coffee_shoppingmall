@@ -1,0 +1,261 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<!-- Mirrored from coffeechoi.co.kr/article/상품후기/4/494/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Jul 2020 14:12:32 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <script src="../../../../allStore/js/bookmark.js"></script>
+    <script src="../../../../allStore/js/jquery.min.js"></script>
+    <script src="../../../../allStore/js/jquery.bxslider.min.js"></script>
+    <script src="../../../../allStore/js/swiper.min.js"></script>
+    
+
+    <link rel="stylesheet" type="text/css" href="../css/optimizerb082.css" />
+    <link rel="stylesheet" type="text/css" href="../css/optimizer47d3.css" />
+
+    <title>만족 상품후기 - 최준영커피</title>
+    <meta name="path_role" content="BOARD_PRODUCT_DETAIL" />
+    <meta name="description" content="상품후기 게시판입니다." />
+    <meta name="keywords" content="상품후기" />
+    <meta name="design_html_path" content="/board/product/read.html" />
+</head>
+
+<body>
+    <!--allStore_wrap-->
+    <div id="allStore_wrap">
+        <!--=========================================================================================================================================-->
+
+        <!--allStore_contents-->
+        <div id="allStore_contents">
+            <div class="allStore_layout">
+
+                <div>
+                    <div class="xans-board xans-board-readpackage-4 xans-board-readpackage xans-board-4 ">
+                        <!--타이틀, 현재위치-->
+                        <div
+                            class="xans-board xans-board-title-4 xans-board-title xans-board-4 allStore-board-menupackage ">
+                            <div class="title">
+                                <h2>
+                                    <font color="#555555">상품후기</font>
+                                </h2>
+                            </div>
+                            <div class="nav-path">
+                                <ol>
+                                    <li><a href="../../../../index.html">홈</a></li>
+                                    <li title="현재 위치"><strong>상품후기</strong></li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!--타이틀, 현재위치-->
+                        <div
+                            class="xans-board xans-board-product-4 xans-board-product xans-board-4 ec-base-box typeProduct ">
+                            <p class="thumbnail"><a
+                                    href="../../../../product/%ec%97%90%ed%8b%b0%ec%98%a4%ed%94%bc%ec%95%84-%ec%98%88%ea%b0%80%ec%b2%b4%ed%94%84-500g/27/index.html"><img
+                                        src="../../../../web/product/tiny/20200108/7c64cffcd16c8630fb3c4c28e0bd9fae.jpg"
+                                        alt=""
+                                        onerror="this.src='../../../../../img.echosting.cafe24.com/thumb/75x75.gif'" /></a>
+                            </p>
+                            <div class="information">
+                                <img src="../../../../../img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_product_point.gif"
+                                    class="icon_img" alt="적립금" />
+                                <h3><a
+                                        href="../../../../product/%ec%97%90%ed%8b%b0%ec%98%a4%ed%94%bc%ec%95%84-%ec%98%88%ea%b0%80%ec%b2%b4%ed%94%84-500g/27/index.html">에티오피아
+                                        예가체프 500g</a></h3>
+                                <p class="price allStore-text-color1">20,000원</p>
+                                <p class="button">
+                                    <a href="../../../../product/%ec%97%90%ed%8b%b0%ec%98%a4%ed%94%bc%ec%95%84-%ec%98%88%ea%b0%80%ec%b2%b4%ed%94%84-500g/27/index.html"
+                                        title="새창으로 이동" class="allStore-color-btn1">
+                                        상품 상세보기 <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <form id="BoardDelForm" name="" action="http://coffeechoi.co.kr/exec/front/Board/del/4"
+                            method="post" target="_self" enctype="multipart/form-data">
+                            <input id="no" name="no" value="494" type="hidden" />
+                            <input id="bulletin_no" name="bulletin_no" value="486" type="hidden" />
+                            <input id="board_no" name="board_no" value="4" type="hidden" />
+                            <input id="member_id" name="member_id" value="" type="hidden" />
+                            <input id="list_url" name="list_url" value="/board/product/list.html?board_no=4"
+                                type="hidden" />
+                            <input id="bdf_modify_url" name="bdf_modify_url"
+                                value="/board/product/modify.html?board_act=edit&amp;no=494&amp;board_no=4"
+                                type="hidden" />
+                            <input id="bdf_del_url" name="bdf_del_url" value="/exec/front/Board/del/4" type="hidden" />
+                            <input id="bdf_action_type" name="bdf_action_type" value="" type="hidden" />
+                            <div class="xans-board xans-board-read-4 xans-board-read xans-board-4">
+
+                                <div class="ec-base-table typeWrite ">
+                                    <table border="1" summary="">
+                                        <caption>상품 게시판 상세</caption>
+                                        <colgroup>
+                                            <col style="width:130px;" />
+                                            <col style="width:auto;" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">제목</th>
+                                                <td>만족</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">작성자</th>
+                                                <td> 네**** <span class="displaynone">(ip:)</span> </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" >
+                                                    <ul class="etcArea">
+                                                        <li class="">
+                                                            <strong>작성일</strong> <span class="txtNum">2020-07-21</span>
+                                                        </li>
+                                                        
+                                                        <li >
+                                                            <strong>조회수</strong> <span class="txtNum">29</span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="detail">
+                                                        맛나는 커피 좋네요. 여려분 구매했는데 괜찬아요
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="ec-base-button ">
+                                    <span class="gLeft">
+                                        <a href="#">
+                                            <img src="#" alt="목록" /></a>
+                                    </span>
+                                    <span class="gRight">
+                                        <a href="#" class=" allStore-color-btn1">
+                                            수정
+                                        </a>
+                                        <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','4');"
+                                            class=" allStore-color-btn3">
+                                            삭제
+                                        </a>
+                                        <a href="#" class="displaynone allStore-color-btn2">
+                                            답변
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="xans-board xans-board-commentpackage-4 xans-board-commentpackage xans-board-4 ">
+                        <!-- 코멘트 리스트 -->
+                        <div class="xans-board xans-board-commentlist-4 xans-board-commentlist xans-board-4">
+                            <ul class="boardComment">
+                                <li class="first  xans-record-">
+                                    <div class="commentTop">
+                                        <strong class="name"> 최준영 커피</strong>
+                                        <span class="date">2020-07-21</span>
+                                    </div>
+                                    <span class="button">
+                                        <a href="javascript:;"
+                                            onclick="BOARD_COMMENT.comment_update('494','121',this);"><img
+                                                src="../images/btn_ico_modify.gif"
+                                                alt="수정" /></a>
+                                        <a href="javascript:;"
+                                            onclick="BOARD_COMMENT.comment_delete('../../../../board/product/comment_deld3dd.html?board_no=4&amp;no=494&amp;comment_no=121&amp;page=&amp;return_url=/board/product/read.html');"><img
+                                                src="../images/btn_ico_delete.gif"
+                                                alt="삭제" /></a>
+                                        <a href="javascript:;" onclick="" class="displaynone"><img
+                                                src="../images/btn_ico_reply.gif"
+                                                alt="댓글" /></a>
+                                    </span>
+                                    <div class="comment">
+                                        <span id="comment_contents121">좋게 평가해 주시고 추천도 해주셔서 감사합니다 ㅎㅎ 맛있게 드세요! ^^</span>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        
+                        <!-- 댓글 쓰기 -->
+                        <form id="commentWriteForm" name="" action="#" method="post">
+                            
+                            <div class="xans-board xans-board-commentwrite-4 xans-board-commentwrite xans-board-4 ">
+                                <!-- 댓글권한 있음 -->
+                                <div class="">
+                                    <fieldset>
+                                        <legend>댓글 입력</legend>
+                                        <p>
+                                            <strong>댓글달기</strong>
+                                            
+                                        <div class="view">
+                                            <textarea id="comment" name="comment"></textarea> 
+                                            <a href="#none" onclick="BOARD_COMMENT.comment_insert('/exec/front/Board/CommentWrite/4');" class="submit  allStore-color-btn1" style=" line-height: 50px; min-width: 75px; padding:0">
+                                                확인
+                                            </a>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- 댓글의 댓글 쓰기 -->
+                    </div>
+
+                    <div class="xans-board xans-board-movement-4 xans-board-movement xans-board-4 ">
+                        <ul>
+                            <li class="prev displaynone">
+                                <strong>이전글</strong>
+                                <a href="../%243/index.html"></a>
+                            </li>
+                            <li class="next ">
+                                <strong>다음글</strong>
+                                <a href="../492/index.html">아주만족합니다</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="xans-board xans-board-listsgroup-4 xans-board-listsgroup xans-board-4">
+                        <h3>관련 글 보기</h3>
+                        <div class="ec-base-table typeList gBorder">
+                            <table border="1" summary="">
+                                <caption>관련글 모음</caption>
+                                <colgroup>
+                                    <col style="width:70px;" />
+                                    <col style="width:134px;" />
+                                    <col style="width:auto;" />
+                                    <col style="width:84px;" />
+                                    <col style="width:77px;" class="" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">번호</th>
+                                        <th scope="col">상품명</th>
+                                        <th scope="col">제목</th>
+                                        <th scope="col">작성자</th>
+                                        <th scope="col" class="">작성일</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="center">
+                                    <tr class="xans-record-">
+                                        <td>494</td>
+                                        <td><span>에티오피아 예가체프 500g</span></td>
+                                        <td class="subject left txtBreak">
+                                            <a href="index.html">만족</a> </td>
+                                        <td>네****</td>
+                                        <td class=""><span class="txtNum">2020-07-21</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--allStore_contents-->
+        <!--상단으로-->
+        <div class="allStore-goToTop">
+
+            <i class="icon icon-arrow-up"></i><br />TOP
+        </div>
+        <!--상단으로-->
+</body>
+</html>

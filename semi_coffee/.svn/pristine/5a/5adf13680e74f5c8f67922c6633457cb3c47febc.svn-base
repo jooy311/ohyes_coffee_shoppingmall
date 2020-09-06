@@ -1,0 +1,83 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.List"%>
+<%@page import="ohyes.coffee.dao.ProductAdminDAO"%>
+<%@page import="ohyes.coffee.dto.ProductAdminDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--product_list.jsp문서를 처리하는 JSP문서
+    	검색정보를 전달받아 product테이블에 저장된 상품정보를 검색하는 문서
+     --%>
+
+<%
+	//1.비정상적인 요청에대한 처리
+       	//폼페이지에서 post방식으로 요청했기 때문에 처리페이지도 post방식이어야함
+       	if(request.getMethod().equals("GET")){
+       	     out.println("<script type='text/javascript'>");
+       	     out.println("location.href='"+request.getContextPath()+"/coffee/admin/index.jsp?part=error&work=error_400';");
+       	     out.println("</script>");
+       	     
+       	     return;
+       	}
+
+       	//2.view페이지에서 받아올 값은 총3개
+       	//2-1. 상품명(index = 1), 상품이름(index = 2)로 설정해서 dao에 파라미터로 넘겨준다
+       	//2-2. 카테고리에서, 커피용품(index =3), 블렌드원두(index = 4), 싱글오리진 원두(index = 5)
+       	//2-3. 상품등록일에서, 전체(index = 6), 7일(index = 7), 1개월(index = 8), 3개월(index = 9)
+       	String search_Name_no = request.getParameter("select_classification");//드롭박스 뭐 선택했니?
+       	String search_category = request.getParameter("select_category");//드롭박스 뭐 선택했니?
+       	String search_date = request.getParameter("productDate");//드롭박스 뭐 선택했니?
+       	
+       	String value_Name_no = "";//상품이름,번호 입력창에 관리자가 뭐라고 적었는지 받아오기
+       	
+       	int index1 = 0; //어떤것을 선택했는지
+       	int index2 = 0; //어떤것을 선택했는지
+       	int index3 = 0; //어떤것을 선택했는지
+       	
+       /*	
+       	if(what == null){//값을 입력안했을때
+       	 productName = "";
+       	 out.println("<script type='text/javascript'>");
+   	     out.println("location.href='"+request.getContextPath()+"/coffee/admin/index.jsp?part=product&work=list';");
+   	     out.println("alert('검색할 값을 입력해주세요');");
+   	     out.println("</script>");
+       	}*/
+       	
+       	if(search_Name_no.equals("product_name")) index1 = 1;
+       	else if(search_Name_no.equals("product_code")) index1 = 2;
+       	value_Name_no = request.getParameter("search_product");
+       	
+       	if(search_category.equals("goods")) index2 = 3;
+       	else if(search_category.equals("blend_beans")) index2 = 4;
+       	else if(search_category.equals("single_beans")) index2 = 5;
+       	
+       	if(search_date.equals("all")) index3 = 6;
+       	else if(search_date.equals("for7days")) index3 = 7;
+       	else if(search_date.equals("for1month")) index3 = 8;
+       	else if(search_date.equals("for3month")) index3 = 9;
+       	
+       	Date now = new Date();
+		SimpleDateFormat pattern = new SimpleDateFormat(("yyyy-MM-dd"));
+		//System.out.println(	pattern.format(now));
+ 
+        value_Name_no = new String(value_Name_no.getBytes("ISO-8859-1"), "UTF-8");//한글깨짐해결
+
+        String startRow = request.getParameter("startRow");
+        String endRow = request.getParameter("endRow");
+        
+       	//3. 받아온값으로 DAO로 보내서 검색하도록 한다.
+       	List<ProductAdminDTO> productList = ProductAdminDAO.getProductDAO().selectProductAdminNameNo(index1, value_Name_no, index2, index3, startRow, endRow);
+		//System.out.println(index1 +  " " + value_Name_no + " " + index2 +  " " + index3);
+       	//리퀘스트에 다시 저장하고(세션이용해도 됨)
+       	request.setAttribute("productList", productList);//productList라는 속성값으로 리스트에 담긴 상품객체들을 다른 JSP로 넘긴다
+%>
+<!-- 템플릿 사이트를 이용하지 않았다면 forward를 이용하는게 맞지만 , 템플릿사이트가 모든흐름을 통제하기 때문에 똑같이 include를 사용해 주는 것이 맞다. -->
+<jsp:include page="product_list.jsp" />
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import ohyes.coffee.dto.OrderPayDTO;
+
+
+public class OrderPayDAO extends JdbcDAO{
+private static OrderPayDAO _dao;
+	
+	public OrderPayDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new OrderPayDAO();
+	}
+	
+	public static OrderPayDAO getOrderPayDAO() {
+		return _dao;
+	}
+	
+	public List<> selectProductFromMember(){
+		
+	}
+}

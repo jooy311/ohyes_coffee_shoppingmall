@@ -1,0 +1,73 @@
+<%@page import="ohyes.coffee.dao.OrderPayDAO"%>
+<%@page import="ohyes.coffee.dto.OrderListDTO"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@include file="/coffee/Mypage/login_check.jspf" %>
+
+<%
+	//결제하기를 누르는 순간 해당 회원의 아이디의 주문내역 테이블에 insert가 되어야함
+	
+	//받아와야할 정보들
+	//고른 상품의 정보(단일 vs 여러개)
+	//상품이름, 해당상품 수량
+	String pno = request.getParameter("pno");
+	String pName = request.getParameter("pname");
+	int quantityNum = Integer.parseInt(request.getParameter("quantityNum"));
+	int cost = Integer.parseInt(request.getParameter("cost"));
+	
+	//System.out.println(pno);
+	
+	//이름
+	String memName = request.getParameter("rname");
+	//배송지
+	String memZipcode = request.getParameter("zipcode1");
+	String memAddress1 = request.getParameter("raddr1");
+	String memAddress2 = request.getParameter("raddr2");
+	
+	String allAddress = memZipcode + " " + memAddress1 + " " + memAddress2;
+	
+	//핸드폰번호
+	String memPhone = "010-" + request.getParameter("rphone2_2") + "-" + request.getParameter("rphone2_3");
+	
+	//배송메세지
+	String postMessage = request.getParameter("postMessage");
+	
+	//회원아이디
+	String memId = loginMember.getMemId();
+	
+	//주문번호
+	Date now = new Date();
+	SimpleDateFormat pattern = new SimpleDateFormat("yyyyMMdd");
+	SimpleDateFormat pattern3 = new SimpleDateFormat("HHmmss");
+	String orderNo = pattern.format(now) + "-" + pattern3.format(now) + "-" + memId;
+	
+	//주문날짜->now사용
+	SimpleDateFormat pattern2 = new SimpleDateFormat("yyyy-MM-dd");
+	String orderDate = pattern2.format(now);
+	
+	//주문 총 가격
+	String totalCost = request.getParameter("cost");//단일상품일때
+	
+	
+	OrderListDTO order = new OrderListDTO();
+	order.setMemID(memId);
+	order.setOrderdetailPNo(Integer.parseInt(pno));
+	order.setOrderDate(orderDate);
+	order.setOrderNo(orderNo);
+	order.setpName(pName);
+	order.setOrderPAmount(quantityNum);
+	order.setOrderTotalCost(Integer.parseInt(totalCost));
+	
+	//DAO에 넘겨주기
+	OrderPayDAO.getOrderPayDAO().insertOrderPay(order, allAddress, memPhone, postMessage, memName);
+	OrderPayDAO.getOrderPayDAO().insertOrderDetail(order, allAddress, memPhone, postMessage, memName, quantityNum);
+	
+	out.println("<script type='text/javascript'>");
+	out.println("location.href='"+request.getContextPath()+"/coffee/index.jsp?workgroup=Mypage&work=mypage';");
+	out.println("</script>");
+
+
+%>

@@ -1,0 +1,16 @@
+#stdPaymentConfirmView { border: 1px solid #7f8186; color: #000; overflow: hidden; position: absolute; width: 430px; z-index: 2100; }
+#stdPaymentConfirmView h3 { background: #666; color: #fefefe; font-size: 14px; height: 39px; line-height: 39px; padding: 0 35px 0 19px;}
+#stdPaymentConfirmView h1 {height:35px;padding:0 35px 0 19px;color:#fff;font-size:14px;line-height:35px;background:#495164;}
+#stdPaymentConfirmView colgroup {display: table-column-group;}
+#stdPaymentConfirmView caption {display: none;}
+#stdPaymentConfirmView .content {background: #fff; padding: 20px;}
+#stdPaymentConfirmView .content table {table-layout:fixed; border: 1px solid #d7d5d5; color:#202020; line-height:180%;width:100%; }
+#stdPaymentConfirmView .content th, #stdPaymentConfirmView .content td {display: table-cell;}
+#stdPaymentConfirmView .content th { padding: 12px 10px 12px 20px; border-top: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; background: #fbf9fa; color:#414141; text-align:left; }
+#stdPaymentConfirmView .content td { width:auto; padding: 7px 10px; border-top: 1px solid #e8e8e8;}
+#stdPaymentConfirmView .close { position: absolute; right: 14px; top: 12px;}
+#stdPaymentConfirmView .close img { cursor: pointer; }
+#stdPaymentConfirmView .pgmBtnArea { background:#e5e5e5; border-top: 1px solid #c7ccd2; margin: 0; padding: 10px 0; text-align: center;width:100%;}
+#stdPaymentConfirmView h4 { color: #000000; font-family: gulim,sans-serif; font-size: 22px; padding: 10px 0 0; text-align: center;}
+#stdPaymentConfirmView ul { border: 0 none; color: #747474; font-size: 11px; line-height: 1.5; margin: 15px 0 0; padding: 0 0 10px;}
+#stdPaymentConfirmView li { background: url("//img.echosting.cafe24.com/design/skin/default/common/ico_list.gif") no-repeat 0 5px;); margin: 6px 0 0; padding: 0 0 0 10px;}

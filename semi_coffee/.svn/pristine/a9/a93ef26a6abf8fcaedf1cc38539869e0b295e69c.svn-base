@@ -1,0 +1,26 @@
+<%@page import="ohyes.coffee.dao.QnaAdminDAO"%>
+<%@page import="ohyes.coffee.dto.QnaDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	for(int i=1; i<=10;i++) {
+		QnaDTO qna=new QnaDTO();
+		qna.setQnaNo(QnaAdminDAO.getDAO().selectNextNum());
+		qna.setQnaMemId("작성자"+i);
+		qna.setQnaTitle("질문"+i);
+		qna.setQnaContents("질문"+i);
+		qna.setQnaCode(i%5+1);
+		
+		QnaAdminDAO.getDAO().insertQnaAdmin(qna);
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>100개의 글 저장 완료</h1>
+</body>
+</html>

@@ -1,0 +1,182 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap');
+/* CSS Document */
+body {-webkit-text-size-adjust:none}
+
+/* BASIC */
+html {margin:0; padding:0;} 
+body {margin:0;overflow: hidden; display:block;} 
+
+body, p, ul, ol, li, dl, dt, dd, form, table, th, td, fieldset, input, textarea, select, button, h1, h2, h3, h4, h5, h6, pre {margin:0; padding:0; -webkit-text-size-adjust:none; font-family:"Rubik",'Noto Sans KR', 'Noto Sans KR',sans-serif !important; }
+/* ������ ���θ�� ���� ũ�� Ȯ�� ����: -webkit-text-size-adjust:none; */
+body, input, textarea, select, button {color:#585858; font-size:12px; font-family: Dotum; } 
+
+header, footer, nav, aside, section, article {display:block;} fieldset, img {border:0;} img {-ms-interpolation-mode:bicubic !important; border:0;} table {padding:0; border-spacing:0px; border:0; border-collapse:collapse;} ul, ol {list-style:none;}
+a { color:#ffffff; text-decoration:none;}
+input,textarea:focus { outline: none; }
+
+.clear { clear:both; }
+.chat_clear { clear: both; width: 3px; height: 1px; }
+
+
+/*--------------------------pc-----------------------------------*/
+.content_box{box-sizing: unset;}
+
+.miraetalk_nudge_box20200324_cont{font-size: 15px; margin-bottom: 1rem; max-height: 5rem; line-height: 1.25rem; overflow-y: hidden; word-break:break-all;}
+.miraetalk_nudge_box20200324_cont .emoji{width:15px; }
+.preview_alert_box_cont .emoji{width:15px;}
+
+.preview_push_box{background: #fff; border-radius: 5px; padding: 10px;width: 100%; max-width: 400px; box-sizing:border-box;
+    box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);
+   -webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+   -moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+}   
+.preview_push_profilename{font-weight: bold; font-size: 13px;}
+.preview_push_profilename>img{vertical-align:middle}
+.preview_alert_box_profile{font-weight: bold; font-size: 13px;}
+.preview_alert_box_profile>img{vertical-align: middle;}
+.preview_push_close_btn{font-size: 13px; cursor: pointer; float: right; width: 20px; height: 20px; line-height: 20px; border-radius: 50%; background: #444; font-weight: 300; text-align: center; color: #fff;}
+.preview_push_title{font-weight: bold; font-size: 16px;padding: 5px 0;}
+.preview_push_cont{font-size: 15px; max-height: 5rem; line-height: 1.25rem; overflow-y: hidden;}
+.preview_push_cont .emoji{width:16px}
+.preview_push_youtube{position: relative;width: 100%;height: 0;padding-bottom: 56.25%;}
+.preview_push_video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+.preview_push_img>img{width: 100%; height: auto;}
+
+.media_button{padding: 7px 20px; border-radius: 5px; background: #111; display: inline-block; margin: 0 auto; color: #fff; }
+.miraetalk_media_nudge_box{display: none; text-align: center;}
+.miraetalk_nudge_box20200324_media{margin-top: 10px;}
+
+
+.browser_preview_round{width: 100%; max-width: 400px; z-index: 1001; background: #fff; border-radius: 50px; transition: all 0.5s; padding-right: 20px; box-sizing: border-box;
+    box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);
+    -webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+    -moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);}
+.preview_round{position: fixed; bottom: 20px; right: -400px; width: 100%; max-width: 400px; z-index: 1001; background: #fff; border-radius: 50px; transition: all 0.5s; padding-right: 20px;}
+.preview_round_profilename{display: inline-block; height:100px; vertical-align: middle;}
+.preview_round_profilename>img{height: 84px; width: auto; margin-left: 10px; margin-top: 8px;}
+.preview_round_cont{display: inline-block; width: calc(100% - 120px);  vertical-align: middle; padding-left: 10px;}
+.preview_round_cont>h2{font-size: 16px; font-weight: bold;}
+.preview_round_cont>p{font-size: 15px;}
+.preview_round_close_btn{font-size: 14px; cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%);  width: 20px; height: 20px; line-height: 20px; border-radius: 50%; background: #444; font-weight: 300; text-align: center; color: #fff;}
+
+
+.browser_preview_tbbar{
+ position: relative;
+}
+.preview_tbbar{position: fixed; top:-100px; left: 0px; width: 100%; z-index: 1001; transition: all 0.5s;
+    box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);
+   -webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+   -moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+}
+.preview_tbbar_box{position: relative;}
+.preview_tbbar_box>h2{display: inline-block; font-size: 16px; color: #fff; font-weight: bold; width: 100%; text-align: center;line-height: 50px; margin-bottom: 0px;  background: #000;}
+.preview_tbbar_close_btn{position: absolute; cursor: pointer; right: 10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; line-height: 20px; border-radius: 50%; background: #444; color: #fff; text-align: center;}
+
+.miraetalk_media_nudge_box[data-media-type="youtube"]{
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+.miraetalk_nudge_box20200324_video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.preview_speech_box{background: #fff; border-radius: 5px; padding: 20px;width: 100%; box-sizing:border-box; border-radius: 40px;
+    box-shadow: 0 3px 9px 0 rgba(169,184,200,.7);
+   -webkit-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+   -moz-box-shadow:0 3px 9px 0 rgba(169,184,200,.7);
+   position: relative;
+}
+.preview_speech_box_title{font-weight: bold; font-size: 16px;margin: 5px 0;}
+.preview_push_tail{text-align: right; padding-right: 30px; position: relative; padding-bottom: 10px;}
+
+
+.preview_alert{position: fixed; top:50%; left: 50%; transform: translate(-50%, -50%); z-index: 1001; transition: all 1s; width: 100%; max-width: 400px; display: none;}
+.preview_alert_box_relative{position: relative;}
+.preview_alert_box_relative>img{width: 100%;}
+.preview_alert_box_cont_box{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 250px;}
+.preview_alert_box_profile{text-align: center; margin-bottom: 15px;}
+.preview_alert_box_title{font-weight: bold; font-size: 16px; margin-bottom: 10px; text-align: center; color: #000;}
+.preview_alert_box_cont{font-weight: 500; font-size: 13px; margin-bottom: 20px;  text-align: center; word-break:break-all; max-height: 60px; overflow: hidden; color: #000;}
+.preview_alert_close_btn{font-size: 14px; cursor: pointer; position: absolute; top: 30px; right: 30px; width: 20px; height: 20px; line-height: 20px; border-radius: 50%; background: #444; font-weight: 300; text-align: center; color: #fff; }
+
+.media_button_box{width: 100%; text-align: center;}
+.media_button{min-width: 130px; text-align: center; border-radius: 10px; padding: 10px 0; font-weight: 500; font-size: 15px; color: #fff; border: 0px; cursor: pointer; display: inline-block; background: #111;}
+
+
+
+.slidein{
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -moz-animation-name: slidein;
+    -webkit-animation-name: slidein;
+    animation-name: slidein;
+}
+
+.alertin{
+    -moz-animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -moz-animation-iteration-count: 5;
+    -webkit-animation-iteration-count: 5;
+    animation-iteration-count: 5;
+    -moz-animation-name: alertin;
+    -webkit-animation-name: alertin;
+    animation-name: alertin;
+}
+
+@-webkit-keyframes slidein {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slidein {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+
+@-webkit-keyframes alertin {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes alertin {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
+
+
+
+@media screen and (max-width: 720px) {
+    .preview_push_box{width: 100%; max-width: unset;}
+}
+
+
+
+@media screen and (max-width: 480px) {
+
+}

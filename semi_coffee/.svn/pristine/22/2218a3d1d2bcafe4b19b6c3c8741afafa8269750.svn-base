@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/product.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+    <title>오렌지 블렌드 100g - 최준영커피</title>
+
+</head>
+
+<body>
+    <!--allStore_wrap-->
+    <div id="allStore_wrap">
+
+        <!--allStore_header-->
+        <div id="allStoreHeader">
+
+            <!--allStore_topbar-->
+
+
+            <div id="allStore_topbar">
+                <div class="allStore_layout">
+
+                    <div class="xans-layout xans-layout-statelogoff "><a href="#로그인">로그인</a>
+                        <a href="#회원가입">회원가입</a>
+                        <a href="#">장바구니<span class="count displaynone"></span></a>
+                        <a href="#">주문조회</a>
+                        <a href="#">마이페이지</a>
+                        <div class="boardbtn">
+                            <a href="#">게시판</a>
+                            <div class="board-dropdown">
+                                <ol class="xans-layout xans-layout-boardinfo">
+                                    <li ><a
+                                            href="#">상품후기</a>
+                                    </li>
+                                    <li ><a
+                                            href="#">무료샘플</a>
+                                    </li>
+                                    <li ><a
+                                            href="#">상품문의</a>
+                                    </li>
+                                    <li ><a
+                                            href="#">공지사항</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--allStore_topbar-->
+
+            <div id="allStore_header">
+                <div class="allStore_layout">
+
+                    <div class="xans-layout xans-layout-logotop logo "><a href="../index.html"><img
+                                src="../images/55e83c846dd83ad8de1328d612ef5b6b_7_top.jpg" /></a>
+                    </div>
+
+                    <div id="allStore_search">
+                        <form id="searchBarForm" name="" action="http://coffeechoi.co.kr/product/search.html"
+                            method="get" target="_self" enctype="multipart/form-data">
+                            <input id="banner_action" name="banner_action" value="" type="hidden" />
+                            <div class="xans-layout xans-layout-searchheader search-layout ">
+                                <fieldset>
+                                    <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg=""
+                                        class="inputTypeText" placeholder=""
+                                        onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text" />
+                                    <button class="icon icon-magnifier"
+                                        onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--allStore_nav-->
+            <div id="allStore_nav">
+                <div id="categoryList" class="xans-layout xans-layout-category">
+                    <div class="allStore_layout">
+
+
+
+                        <div class="position">
+                            <ul>
+                                <li><a href="#최준영커피 링크">최준영커피 소개</a></li>
+                                <li ><a href="listcdb6.html?cate_no=56">전체 상품</a></li>
+                                <li ><a href="listb147.html?cate_no=43">블렌드 원두</a></li>
+                                <li ><a href="listb8c0.html?cate_no=46">싱글오리진 원두</a></li>
+                                <li><a href="#상품후기 링크">상품후기</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--allStore_nav-->
+
+        </div>
+
+        <!--allStore_header-->
+
+        <!--allStore_contents-->
+        <div id="allStore_contents">
+            <div class="allStore_layout">
+
+                <div>
+                    <!-- 상단 제품 정보  -->
+                    <div class="xans-element- xans-product xans-product-detail">
+                        <div class="detailArea ">
+
+                            <!-- 이미지 영역 -->
+                            <div class="xans-element- xans-product xans-product-image imgArea ">
+                                <!-- 참고 : 뉴상품관리 전용 모듈입니다. 뉴상품관리 이외의 곳에서 사용하면 정상동작하지 않습니다. -->
+                                <div class="xans-element- xans-product xans-product-addimage listImg">
+                                    <ul>
+                                        <li >
+                                            <img src="./images/small/coffee/189f437a7dc2d2181e64479aa702ce00.jpg" class="ThumbImage" alt="" />
+                                        </li>
+                                        <li >
+                                            <img src="./images/extra/small/9cd2c0ba930d47c5af8fdd1cebabbd56.jpg" class="ThumbImage" alt="" />
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- //참고 -->
+                                <div class="keyImg">
+                                    <div class="thumbnail">
+                                        <a alt="P00000BG">
+                                            <div id="rate" data-price="0.00" data-sale="6000"></div>
+                                            <img src="./images/big/coffee/efcc70f448019dccbce6cd6bd5f3030c.jpg" alt="오렌지 블렌드 100g" class="bigimg BigImage " />
+                                            <span class="xans-element- xans-product xans-product-imagestyle ">
+                                                <span class="prdIcon ec-product-bgLT" style="background-image:url('./images/img/ico_thumb_recommend1.png');"></span>
+                                            </span>
+                                            <span class="prdIcon ec-product-bgLT" style="background-image:url('./images/img/ico_thumb_recommend1.png');"></span>
+                                        </a>
+                                        <div class="likeButton likePrd likePrd_32">
+                                            <button type="button">
+                                                <img src="./images/img/ico_likeit.png" class="likePrdIcon" product_no="32" category_no="56" icon_status="off" alt="좋아요 등록 전" /><span class="count">
+                                                    <span class="likePrdCount likePrdCount_32">9</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div id="zoom_wrap"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //이미지 영역 -->
+
+                            <!-- 상세정보 내역 -->
+                            <div class="infoArea">
+                                <div class="product_name">
+                                    <!-- 참고 : 뉴상품관리 전용 모듈입니다. 뉴상품관리 이외의 곳에서 사용하면 정상동작하지 않습니다. -->
+                                    <div class="color displaynone">
+                                    </div>
+                                    <!-- //참고 -->
+                                    오렌지 블렌드 100g
+                                </div>
+                                <div class="infoAreaLay">
+
+                                    <!--left-->
+                                    <div class="info-left">
+                                        <div class="xans-element- xans-product xans-product-detaildesign">
+                                            <table border="1" summary="">
+                                                <caption> 기본 정보</caption>
+                                                <tbody>
+                                                    <tr style="display:none;" class=" ">
+                                                        <th scope="row">
+                                                            <span style="font-size:16px;color:#555555;font-weight:bold;">상품명</span>
+                                                        </th>
+                                                        <td>
+                                                            <span style="font-size:16px;color:#555555;font-weight:bold;">오렌지 블렌드 100g</span></td>
+                                                    </tr>
+                                                    <tr class=" ">
+                                                        <th scope="row">
+                                                            <span style="font-size:15px;color:#000000;font-weight:bold;">판매가</span>
+                                                        </th>
+                                                        <td>
+                                                            <span style="font-size:15px;color:#000000;font-weight:bold;">
+                                                                <strong id="span_product_price_text">6,000원 </strong>
+                                                                <input id="product_price" name="product_price" value="" type="hidden" />
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class=" ">
+                                                        <th scope="row">
+                                                            <span style="font-size:12px;color:#555555;">적립금</span>
+                                                        </th>
+                                                        <td>
+                                                            <span style="font-size:12px;color:#555555;">
+                                                                <span id="span_mileage_text">300원 (5%)</span>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class=" ">
+                                                        <th scope="row">
+                                                            <span style="font-size:12px;color:#555555;">배송방법</span>
+                                                        </th>
+                                                        <td>
+                                                            <span style="font-size:12px;color:#555555;">택배</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class=" ">
+                                                        <th scope="row">
+                                                            <span style="font-size:12px;color:#555555;">배송비</span>
+                                                        </th>
+                                                        <td>
+                                                            <span style="font-size:12px;color:#555555;">
+                                                                <span class="delv_price_B">
+                                                                    2500원
+                                                                </span>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                      
+                                        <div id="totalProducts" >
+                                            <table border="1" summary="">
+                                                <caption>상품 목록</caption>
+                                                <colgroup>
+                                                    <col style="width:284px;" />
+                                                    <col style="width:80px;" />
+                                                    <col style="width:110px;" />
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">상품명</th>
+                                                        <th scope="col">상품수</th>
+                                                        <th scope="col">가격</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="">
+                                                    <tr>
+                                                        <td>수량</td>
+                                                        <td>
+                                                            <span class="quantity">
+                                                                <input id="quantity" name="quantity_name" value="1" type="text" /> 
+                                                                <a href="#none"><img src="./images/img//skin/btn_count_up.gif" alt="수량증가" class="QuantityUp up" /></a>
+                                                                <a href="#none"><img src="./images/img//skin/btn_count_down.gif" alt="수량감소" class="QuantityDown down" /></a>
+                                                            </span>
+                                                        </td>
+                                                        <td class="right">
+                                                            <span class="quantity_price">6000원</span> 
+                                                            <span class="mileage ">(<img src="./images/img//ico_product_point.gif" /><span class="mileage_price">300원</span>)
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <strong>총 상품금액</strong>(수량) : <span
+                                                                class="total"><strong><em>0</em></strong> (0개)</span>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="xans-element- xans-product xans-product-action ">
+                                    <div class="ec-base-button btns">
+                                        <a href="#none" class="first  allStore-color-btn1" onclick="product_submit(1, '../../../../../../../exec/front/order/basket/index.html', this)"
+                                            style="padding:0; min-width:auto;">
+                                            <span>
+                                                <input type="submit" id="btnBuy" value="구매하기" class="allStore-color-btn1" style="display:inline-block;line-height:50px;height:52px;min-width:150px;padding:0;" />
+                                            </span>
+                                            <span>
+                                                <input type="submit" id="btnReserve" value="예약주문" class="displaynone allStore-color-btn1" style="line-height:50px; height:50px;min-width:150px;padding:0;" />
+                                            </span>
+                                        </a>
+                                        <span class="displaynone allStore-border-btn1" style="line-height:50px;height:50px;min-width:148px;padding:0;">
+                                            품절
+                                        </span>
+                                        <div style="font-size:0;">
+                                            <a href="#none" id="actionCart" class=" allStore-border-btn1" onclick="product_submit(2, '../../../../../../../exec/front/order/basket/index.html', this)"
+                                                style="display:inline-block;width:calc(49%) !important; margin-right:1%; font-size:14px; line-height:50px;height:50px;min-width:148px;padding:0;">
+                                                장바구니
+                                            </a>
+                                            <a href="#none" id="actionWish" onclick="add_wishlist(this, true);" class=" allStore-border-btn1" style="display:inline-block; width:49% !important;font-size:14px;line-height:50px;height:50px;min-width:148px;padding:0;">
+                                                관심상품
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //참고 -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //상단 제품 정보 -->
+
+                    <div class="xans-element- xans-product xans-product-additional ">
+                        <!-- 상품상세정보 -->
+                        <div id="prdDetail" class="ec-base-tab grid4">
+                            <ul class="menu">
+                                <li class="selected"><a href="#prdDetail">상세정보</a></li>
+                                <li><a href="#prdReview">상품후기</a></li>
+                                <li><a href="#prdQnA">상품문의</a></li>
+                            </ul>
+                            <div class="cont" style="text-align:center;">
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%802_%eb%b8%94%eb%a0%8c%eb%93%9c_shop1_111721.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%803_%ec%98%a4%eb%a0%8c%ec%a7%80_shop1_111721.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%807_shop1_111721.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%808_shop1_111721.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%809_shop1_111721.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%8010_shop1_111722.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/11_shop1_111722.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%8012_shop1_111722.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%8013_shop1_111722.jpg">
+                                </p>
+                                <p align="center"><img alt=""
+                                        src="./images/detail/181212_%ec%b5%9c%ec%a4%80%ec%98%81%ec%bb%a4%ed%94%bc_%ec%83%81%ec%84%b8%ed%8e%98%ec%9d%b4%ec%a7%8014_shop1_111722.jpg">
+                                </p>
+                            </div>
+                        </div>
+                        <!-- //상품상세정보 -->
+
+                        <!-- 상품사용후기 -->
+                        <div id="prdReview" class="ec-base-tab grid4">
+                            <ul class="menu">
+                                <li><a href="#prdDetail">상세정보</a></li>
+                                <li class="selected"><a href="#prdReview">상품후기</a></li>
+                                <li><a href="#prdQnA">상품문의</a></li>
+                            </ul>
+                            <div class="board">
+                                <div class="xans-element- xans-product xans-product-review"><a name="use_review"></a>   
+                                    <div class="ec-base-table typeList">
+                                        <table border="1" summary="" >
+                                            <caption>상품사용후기</caption>
+                                            <colgroup>
+                                                <col style="width:70px;" />
+                                                <col style="width:auto" />
+                                                <col style="width:100px;" />
+                                                <col style="width:100px;" />
+                                                <col style="width:80px;" />
+                                                <col style="width:80px;" class="displaynone" />
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">번호</th>
+                                                    <th scope="col">제목</th>
+                                                    <th scope="col">작성자</th>
+                                                    <th scope="col">작성일</th>
+                                                    <th scope="col">조회</th>
+                                                    <th scope="col" class="displaynone">평점</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="center">
+                                                <tr >
+                                                    <td>14</td>
+                                                    <td class="subject left txtBreak">
+                                                        <a href="../../../../../../../article/%ec%83%81%ed%92%88%ed%9b%84%ea%b8%b0/4/475/indexeab8.html?no=475&amp;board_no=4&amp;spread_flag=T"> 오렌지 블렌드도 괜찮아요!!!</a> 
+                                                        <span class="txtWarn">[1]</span>
+                                                    </td>
+                                                    <td> k****</td>
+                                                    <td class="txtInfo txt11">2020-06-25</td>
+                                                    <td class="txtInfo txt11">29</td>
+                                                    <td class="displaynone"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <p class="ec-base-button">
+                                    <span class="gRight">
+                                        <a href="../../../../../../../board/product/writefd66.html?board_no=4&amp;product_no=32&amp;cate_no=56&amp;display_group=1"
+                                            class="allStore-color-btn1">글쓰기</a>
+                                        <a href="../../../../../../../board/product/list4878.html?board_no=4"
+                                            class="allStore-color-btn2">더보기</a>
+                                    </span>
+                                </p>
+
+                                <div style="margin:0;"
+                                    class="xans-element- xans-product xans-product-reviewpaging ec-base-paginate paging">
+                                    <a href="#none" class="btn first"><i class="fa fa-angle-double-left"
+                                            aria-hidden="true"></i></a>
+                                    <a href="#none" class="btn"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                    <ol>
+                                        <li ><a href="index2c2b.html?page_4=1#use_review"
+                                                class="this">1</a></li>
+                                        <li ><a href="indexee11.html?page_4=2#use_review"
+                                                class="other">2</a></li>
+                                    </ol>
+                                    <a href="indexee11.html?page_4=2#use_review" class="btn"><i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <a href="indexee11.html?page_4=2#use_review" class="btn last"><i
+                                            class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //상품사용후기 -->
+                        <!-- 상품 Q&A -->
+                        <div id="prdQnA" class="ec-base-tab grid4">
+                            <ul class="menu">
+                                <li><a href="#prdDetail">상세정보</a></li>
+                                <li><a href="#prdReview">상품후기</a></li>
+                                <li class="selected"><a href="#prdQnA">상품문의</a></li>
+                            </ul>
+                            <div class="board">
+                                <p class="nodata">게시물이 없습니다</p>
+                                <p class="ec-base-button">
+                                    <span class="gRight">
+                                        <a href="../../../../../../../board/product/write8cc0.html?board_no=6&amp;product_no=32&amp;cate_no=56&amp;display_group=1"
+                                            class="allStore-color-btn1">글쓰기</a>
+                                        <a href="../../../../../../../board/product/listf946.html?board_no=6"
+                                            class="allStore-color-btn2">더보기</a>
+                                    </span>
+                                </p>
+
+
+                            </div>
+                        </div>
+                        <!-- //상품Q&A -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <!--allStore_footer-->
+       <div id="allStore_footer" class="xans-layout xans-layout-footer ">
+        <div class="footer-top">
+            <div class="allStore_layout">
+                <ol class="menu">
+                    <li><a href="../index.html">홈</a></li>
+                    <li><a href="../shopinfo/company.html">회사소개</a></li>
+                    <li><a href="../shopinfo/guide.html">이용안내</a></li>
+                    <li><a href="../member/agreement.html">이용약관</a></li>
+                    <li><a href="../member/privacy.html">개인정보처리방침</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="allStore_layout">
+            <ul class="xans-layout xans-layout-info service-center">
+                <li class="">
+                    <h5>회사정보</h5>
+                    <pre>
+            <b>회사명</b><span>최준영 커피</span> <b>대표</b><span>최준영</span> <b>전화</b><span>070-8844-1417</span><br/><b>사업자등록번호</b><span>705-02-01087 <a href="#none" onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=7050201087', 'bizCommPop', 'width=750, height=950;');return false;">[사업자정보확인]</a></span> <br/><b>통신판매업 신고번호</b><span>2018-용인기흥-0603</span> <br/><b>주소</b><span>(16978) 경기도 용인시 기흥구 강남로 6 (구갈동) 204호</span><br/><b>이메일</b><span>help@coffeechoi.co.kr</span> <b>개인정보관리책임자</b><span>최준영</span><br/></pre>
+                </li>
+                <li class="">
+                    <h5>고객센터</h5>
+                    <h3>070-8844-1417</h3>
+                    <pre class="time"><b>평일 오후 2시~오후 6시 토,일,공휴일 휴무</b></pre>
+                </li>
+                <li>
+                    <h5>은행계좌</h5>
+                    <pre class="bank">
+                    <b>예금주</b>
+                    <span>최준영커피</span>
+                    <b>국민은행</b>
+                    <span>698901-01-149302</span> 
+                    </pre>
+                </li>
+                <li>
+                    <h5>SNS</h5>
+                    <ol class="menu">
+                        <li><a href="https://www.instagram.com/coffeechoi.co.kr" target="_blank"><img
+                                    src="./images/img//sns/instar.jpg" /> 인스타그램</a></li>
+                        <li><a href="https://www.facebook.com/coffeechoi.co.kr" target="_blank"><img
+                                    src="./images/img//sns/facebook.jpg" /> 페이스북</a></li>
+                        <li><a href="https://blog.naver.com/alang33" target="_blank"><img
+                                    src="./images/img//sns/blog.jpg" /> 네이버 블로그</a></li>
+                        <li><a href="http://pf.kakao.com/_ZkmnC" target="_blank"><img src="./images/img//sns/kakao.jpg" />
+                                카카오톡 플러스친구</a></li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+        <div class="footer_lay">
+            <div class="copyright">Copyright © <strong>최준영커피</strong>. All rights reserved.</div>
+        </div>
+    </div>
+
+        <!--상단으로-->
+        <div class="allStore-goToTop">
+
+            <i class="icon icon-arrow-up"></i><br />TOP
+        </div>
+        <!--상단으로-->
+    </div>
+    <!--allStore_wrap-->
+</body>
+</html>

@@ -1,0 +1,85 @@
+<%@page import="java.lang.reflect.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String message=(String)session.getAttribute("message");
+	if(message==null) {
+		message="";
+	} else {
+		session.removeAttribute("message");
+	}
+	String memId=(String)session.getAttribute("memId");
+	String memName=(String)session.getAttribute("memName");
+	if(memName==null) {
+		memName="";
+	} else {
+		session.removeAttribute("memName");
+	}
+%>  
+
+<link rel="stylesheet" type="text/css" href="./member/fine_id/optimizer.php">
+<link rel="stylesheet" type="text/css" href="./member/fine_id/optimizer(1).php">
+
+    <!--allStore_contents-->
+    <div id="allStore_contents">
+    <div class="allStore_layout">
+        <!--타이틀, 현재위치-->
+    <div class="allStore-board-menupackage">
+        
+        <div class="title">
+            <h2>아이디 찾기</h2>
+        </div>
+        <div class="nav-path">
+            <ol><li><a href="<%=request.getContextPath()%>/coffee/index.jsp">홈</a></li>
+            <li title="현재 위치"><strong>아이디 찾기</strong></li>
+            </ol></div>
+    </div>
+    <form id="findId" name="findIdForm" action="<%=request.getContextPath()%>/coffee/index.jsp?workgroup=member&work=fineid_action" method="post" onsubmit="return;">
+<div class="xans-element- xans-member xans-member-findid findid">
+
+<div class="findidtitle">
+<h2>아이디 찾기</h2>
+</div>
+<div class="findId">        
+<fieldset style="width: 300px;margin: 0 auto;">
+	<p class="check">
+<p id="name_lable"><strong>이름</strong> 
+		<input id="memName" name="memName" type="text" style="width:270px;" value="<%=memName%>"></p>
+	<p id="memEmail_lable"  ><strong>이메일 </strong> 
+		<input id="memEmail" name="memEmail" type="text" style="width:270px;"></p>
+		<div style="text-align: center;color: red;"><%=message %></div>
+<p class="ec-base-button ">
+<button type="submit"><img src="./board/images/btn_secret_submit.gif"></button>
+</p>
+</fieldset>
+</div>
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+	$("#memName").focus();
+	
+	$("#findId").submit(function() {
+	
+	    var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;  //Email 유효성 검사 정규식
+	    
+		if ($("#memName").val()=="") {
+			alert("이름을 입력해 주세요.");
+			$("#memName").focus();
+			return false ;
+		}else if($("#memEmail").val()=="") {
+			alert("이메일을 입력해 주세요.");
+			$("#memEmail").focus();
+			return false ;
+		}else if(checkEmail.test($("#memEmail").val())!=true) {
+			alert("올바른 형식의 이메일로 입력해 주세요.");
+			$("#memEmail").focus();
+			return false ;
+		}
+		});	
+	
+
+	
+
+</script>

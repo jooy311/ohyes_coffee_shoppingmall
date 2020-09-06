@@ -1,0 +1,79 @@
+package ohyes.coffee.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import ohyes.coffee.dto.OrderPayDTO;
+
+
+public class OrderPayDAO extends JdbcDAO{
+private static OrderPayDAO _dao;
+	
+	public OrderPayDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	static {
+		_dao=new OrderPayDAO();
+	}
+	
+	public static OrderPayDAO getOrderPayDAO() {
+		return _dao;
+	}
+	
+	public int insertPay(OrderPayDTO pay) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="insert into order_oay values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, pay.getOrderNo());
+			pstmt.setString(2, pay.getOrderMemId());
+			pstmt.setString(3, pay.getOrderRecvName());
+			pstmt.setString(4, pay.getOrderRecvAddress());
+			pstmt.setString(5, pay.getOrderRecvPhone());
+			pstmt.setString(6, pay.getOrderDate());
+			pstmt.setInt(7, pay.getOrderStatus());
+			pstmt.setInt(8, pay.getOrderTotalCost());
+			pstmt.setString(9, pay.getOrderMessage());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]insertProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+	/*public int deletePay(OrderPayDTO pay) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="delete from pay where order_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, pay.getORDER_NO());
+			pstmt.setString(2, pay.getORDER_MEM_ID());
+			pstmt.setString(3, pay.getORDER_RECV_NAME());
+			pstmt.setString(4, pay.getORDER_RECV_ADDRESS());
+			pstmt.setString(5, pay.getORDER_RECV_PHONE());
+			pstmt.setString(6, pay.getORDER_DATE());
+			pstmt.setInt(7, pay.getORDER_STATUS());
+			pstmt.setInt(8, pay.getORDER_TOTAL_COST());
+			pstmt.setString(9, pay.getORDER_MESSAGE());
+				
+		} catch (SQLException e) {
+			System.out.println("[에러]updateProduct() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		} 
+		return rows;
+	}*/
+}
