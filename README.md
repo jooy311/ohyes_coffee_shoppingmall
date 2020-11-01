@@ -1,6 +1,8 @@
 # 커피원두 판매 쇼핑몰
 
 ![image](https://user-images.githubusercontent.com/60565941/97480882-5e6eae00-1997-11eb-8ad3-eaa7ada0edec.png)
+## 사용환경
+: java Eclipse, SqlDeveloper OracleXE, Apache Tomcat 등
 
 # 1. 맡은 역할 
 : 주문/결재페이지/관리자페이지-매출/상품/주문관리 + 데이터베이스 설계
