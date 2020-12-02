@@ -8,6 +8,7 @@
 ## 사용환경
 : java Eclipse, SqlDeveloper OracleXE, Apache Tomcat 등
 
+
 # 1. 맡은 역할 
 : 주문/결재페이지/관리자페이지-매출/상품/주문관리 + 데이터베이스 설계
 
@@ -16,6 +17,7 @@
 
 # 2. 개발환경/도구
 : Apache Tomcat/OracleXE/Eclipse/SqlDeveloper
+
 
 # 3. 데이터베이스 관계도
 ## 관계도 사이트 : https://www.erdcloud.com/d/uAx6vSWDeimHhHggL
